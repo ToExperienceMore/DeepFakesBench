@@ -37,11 +37,11 @@ from logger import create_logger
 
 parser = argparse.ArgumentParser(description='Process some paths.')
 parser.add_argument('--detector_path', type=str, 
-                    default='/home/zhiyuanyan/DeepfakeBench/training/config/detector/resnet34.yaml',
+                    default='/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/config/detector/resnet34.yaml',
                     help='path to detector YAML file')
 parser.add_argument("--test_dataset", nargs="+")
 parser.add_argument('--weights_path', type=str, 
-                    default='/mntcephfs/lab_data/zhiyuanyan/benchmark_results/auc_draw/cnn_aug/resnet34_2023-05-20-16-57-22/test/FaceForensics++/ckpt_epoch_9_best.pth')
+                    default='/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/FaceForensics++/ckpt_epoch_9_best.pth')
 #parser.add_argument("--lmdb", action='store_true', default=False)
 args = parser.parse_args()
 

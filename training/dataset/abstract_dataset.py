@@ -296,7 +296,8 @@ class DeepfakeAbstractBaseDataset(data.Dataset):
         size = self.config['resolution'] # if self.mode == "train" else self.config['resolution']
         if not self.lmdb:
             if not file_path[0] == '.':
-                file_path =  f'./{self.config["rgb_dir"]}\\'+file_path
+                #file_path =  f'./{self.config["rgb_dir"]}\\'+file_path
+                file_path =  f'./{self.config["rgb_dir"]}/'+file_path
             assert os.path.exists(file_path), f"{file_path} does not exist"
             img = cv2.imread(file_path)
             if img is None:
@@ -481,6 +482,10 @@ class DeepfakeAbstractBaseDataset(data.Dataset):
             if self.video_level and image_path == image_paths[0]:
                 augmentation_seed = random.randint(0, 2**32 - 1)
 
+            #print("img_path:", image_path)
+            image_path = image_path.replace("\\", "/")
+            #print("Img_path:", image_path)
+            
             # Get the mask and landmark paths
             mask_path = image_path.replace('frames', 'masks')  # Use .png for mask
             landmark_path = image_path.replace('frames', 'landmarks').replace('.png', '.npy')  # Use .npy for landmark
