@@ -1,3 +1,4 @@
+log_dir: /root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/logs/testing_bench
 # model setting
 pretrained: training/pretrained/I3D_8x8_R50.pth   # path to a pre-trained model, if using one
 model_name: altfreezing   # model name
