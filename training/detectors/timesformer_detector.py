@@ -52,7 +52,9 @@ class TimeSformerDetector(AbstractDetector):
 
     def build_backbone(self, config):
         from transformers import TimesformerModel
-        backbone = TimesformerModel.from_pretrained(config['pretrained'])
+        #backbone = TimesformerModel.from_pretrained(config['pretrained'])
+        #backbone = TimesformerModel.from_pretrained("/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/timesformer_model.bin")
+        backbone = TimesformerModel.from_pretrained("/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/")
         # for name, param in backbone.named_parameters():
         #     print('{}: {}'.format(name, param.requires_grad))
         # num_param = sum(p.numel() for p in backbone.parameters() if p.requires_grad)

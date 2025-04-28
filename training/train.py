@@ -47,6 +47,7 @@ parser.add_argument('--no-save_feat', dest='save_feat', action='store_false', de
 parser.add_argument("--ddp", action='store_true', default=False)
 parser.add_argument('--local_rank', type=int, default=0)
 parser.add_argument('--task_target', type=str, default="", help='specify the target of current training task')
+parser.add_argument('--checkpoint', type=str, default=None, help='path to the checkpoint file')
 args = parser.parse_args()
 torch.cuda.set_device(args.local_rank)
 
@@ -295,6 +296,18 @@ def main():
 
     # prepare the trainer
     trainer = Trainer(config, model, optimizer, scheduler, logger, metric_scoring, time_now=timenow)
+
+    # Load checkpoint if provided
+    if args.checkpoint:
+        checkpoint_path = args.checkpoint
+        if os.path.exists(checkpoint_path):
+            checkpoint = torch.load(checkpoint_path)
+            model.load_state_dict(checkpoint['model_state_dict'])
+            optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+            config['start_epoch'] = checkpoint['epoch'] + 1  # Start from the next epoch
+            logger.info(f"Loaded checkpoint from {checkpoint_path}, starting from epoch {config['start_epoch']}")
+        else:
+            logger.warning(f"Checkpoint file {checkpoint_path} does not exist. Starting training from scratch.")
 
     # start training
     for epoch in range(config['start_epoch'], config['nEpochs'] + 1):
