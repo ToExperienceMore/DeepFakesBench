@@ -297,6 +297,10 @@ def main():
     # prepare the trainer
     trainer = Trainer(config, model, optimizer, scheduler, logger, metric_scoring, time_now=timenow)
 
+    if os.path.exists(args.checkpoint):
+        trainer.load_ckpt(args.checkpoint)
+
+    """
     # Load checkpoint if provided
     if args.checkpoint:
         checkpoint_path = args.checkpoint
@@ -308,6 +312,7 @@ def main():
             logger.info(f"Loaded checkpoint from {checkpoint_path}, starting from epoch {config['start_epoch']}")
         else:
             logger.warning(f"Checkpoint file {checkpoint_path} does not exist. Starting training from scratch.")
+    """
 
     # start training
     for epoch in range(config['start_epoch'], config['nEpochs'] + 1):
