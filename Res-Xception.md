@@ -49,3 +49,35 @@ pred: [0.6849107  0.3431891  0.25549412 ... 0.47702727 0.7538128  0.8280899 ]
 video_auc: 0.6056122448979592
 label: [1 0 1 ... 0 0 1]
 ===> Test Done!
+
+(DeepfakeBench) root@autodl-container-f74b419777-65470359:DeepfakeBench# sh cmd.sh 
++ python3 training/test.py --detector_path ./training/config/detector/xception.yaml --test_dataset DFDC --weights_path ./training/weights/xception_best.pth
+['in_channels', 'out_channels', 'kernel_size', 'stride', 'padding', 'dilation', 'groups', 'bias', 'padding_mode', 'device', 'dtype']
+spatial_count=0 keep_stride_count=0
+===> Load checkpoint done!
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 4129/4129 [04:49<00:00, 14.28it/s]
+dataset: DFDC
+acc: 0.6415574192376396
+auc: 0.7129731023873718
+eer: 0.35436655338654865
+ap: 0.7367475462394519
+pred: [0.2541699  0.00319419 0.17357123 ... 0.4890571  0.31631312 0.34502238]
+video_auc: 0.7398307758652645
+label: [0 0 0 ... 1 1 0]
+===> Test Done!
+
+(DeepfakeBench) root@autodl-container-f74b419777-65470359:DeepfakeBench# sh cmd.sh 
++ python3 training/test.py --detector_path ./training/config/detector/xception.yaml --test_dataset Celeb-DF-v2 --weights_path ./training/weights/xception_best.pth
+['in_channels', 'out_channels', 'kernel_size', 'stride', 'padding', 'dilation', 'groups', 'bias', 'padding_mode', 'device', 'dtype']
+spatial_count=0 keep_stride_count=0
+===> Load checkpoint done!
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 514/514 [00:37<00:00, 13.82it/s]
+dataset: Celeb-DF-v2
+acc: 0.695006090133983
+auc: 0.7402563430868591
+eer: 0.3286476868327402
+ap: 0.8371910697293352
+pred: [0.9719672  0.33310133 0.9071739  ... 0.9769001  0.76295537 0.3971603 ]
+video_auc: 0.8164573694646398
+label: [0 0 1 ... 1 1 0]
+===> Test Done!

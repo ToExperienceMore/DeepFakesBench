@@ -473,6 +473,17 @@ if __name__ == '__main__':
         sub_train_dataset_names = ["dfdc_train_part_" + str(i) for i in range(0,50)]
         sub_train_dataset_paths = [Path(os.path.join(dataset_path, 'train', name)) for name in sub_train_dataset_names]
         sub_dataset_paths = [Path(os.path.join(dataset_path, 'test'))] + sub_train_dataset_paths
+    ## ForgeryNet
+    elif dataset_name == 'ForgeryNet':
+        #sub_dataset_names = ['val_video_release']
+        # train dataset is too large, so we split it into 50 parts
+        #sub_train_dataset_names = [str(i) for i in range(0,50)]
+        #sub_train_dataset_paths = [Path(os.path.join(dataset_path, 'train', name)) for name in sub_train_dataset_names]
+
+        sub_train_dataset_names = [str(i) for i in list(range(1, 9)) + list(range(16, 20))]
+        #[str(i) for i in list(range(0, 9)) + list(range(16, 20))]
+        sub_dataset_paths = [Path(os.path.join(dataset_path, 'val_video_release', name)) for name in sub_train_dataset_names]
+        #sub_dataset_paths = [Path(os.path.join(dataset_path, 'val_video_release'))] + sub_train_dataset_paths
    
    ## DeeperForensics-1.0
     elif dataset_name == 'DeeperForensics-1.0':

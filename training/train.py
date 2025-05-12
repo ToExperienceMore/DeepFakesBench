@@ -47,7 +47,7 @@ parser.add_argument('--no-save_feat', dest='save_feat', action='store_false', de
 parser.add_argument("--ddp", action='store_true', default=False)
 parser.add_argument('--local_rank', type=int, default=0)
 parser.add_argument('--task_target', type=str, default="", help='specify the target of current training task')
-parser.add_argument('--checkpoint', type=str, default=None, help='path to the checkpoint file')
+#parser.add_argument('--checkpoint', type=str, default=None, help='path to the checkpoint file')
 args = parser.parse_args()
 torch.cuda.set_device(args.local_rank)
 
@@ -297,8 +297,8 @@ def main():
     # prepare the trainer
     trainer = Trainer(config, model, optimizer, scheduler, logger, metric_scoring, time_now=timenow)
 
-    if os.path.exists(args.checkpoint):
-        trainer.load_ckpt(args.checkpoint)
+    #if os.path.exists(args.checkpoint):
+    #    trainer.load_ckpt(args.checkpoint)
 
     """
     # Load checkpoint if provided

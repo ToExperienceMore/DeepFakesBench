@@ -44,49 +44,53 @@ class TimeSformerDetector(AbstractDetector):
     def __init__(self, config):
         super().__init__()
         self.config = config
+        self.efficientnet = self.build_efficientnet(config)
         self.backbone = self.build_backbone(config)
-        # self.fc_norm = nn.LayerNorm(768)
-        # self.temporal_module = self.build_temporal_module(config)
-        self.head = nn.Linear(768, 2)
+        self.fc = nn.Linear(1280 + 768, 2)
         self.loss_func = self.build_loss(config)
+
+    def build_efficientnet(self, config):
+        from efficientnet_pytorch import EfficientNet
+        efficientnet = EfficientNet.from_pretrained('efficientnet-b0')
+        efficientnet._fc = nn.Identity()  # remove classification head to get 1280-dim features
+        return efficientnet
 
     def build_backbone(self, config):
         from transformers import TimesformerModel
-        #backbone = TimesformerModel.from_pretrained(config['pretrained'])
-        #backbone = TimesformerModel.from_pretrained("/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/timesformer_model.bin")
         backbone = TimesformerModel.from_pretrained("/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/")
-        # for name, param in backbone.named_parameters():
-        #     print('{}: {}'.format(name, param.requires_grad))
-        # num_param = sum(p.numel() for p in backbone.parameters() if p.requires_grad)
-        # num_total_param = sum(p.numel() for p in backbone.parameters())
-        # print('Number of total parameters: {}, tunable parameters: {}'.format(num_total_param, num_param))
         return backbone
 
     def build_temporal_module(self, config):
         return nn.LSTM(input_size=2048, hidden_size=512, num_layers=3, batch_first=True)
 
     def build_loss(self, config):
-        # prepare the loss function
         loss_class = LOSSFUNC[config['loss_func']]
         loss_func = loss_class()
 
         return loss_func
 
     def features(self, data_dict: dict) -> torch.tensor:
-        # b, t, c, h, w = data_dict['image'].shape
-        # frame_input = data_dict['image'].reshape(-1, c, h, w)
-        # # get frame-level features
-        # frame_level_features = self.backbone.features(frame_input)
-        # frame_level_features = F.adaptive_avg_pool2d(frame_level_features, (1, 1)).reshape(b, t, -1)
-        # # get video-level features
-        # video_level_features = self.temporal_module(frame_level_features)[0][:, -1, :]
-
+        #video_faces = data_dict['video_faces']
+        video_faces = data_dict['image']
+        b, t, c, h, w = video_faces.shape
+        video_faces = video_faces.view(-1, c, h, w)
+        #print("video_faces shape:", video_faces.shape)  # 打印维度
+        efficientnet_features = self.efficientnet(video_faces)
+        #print("efficientnet_features shape:", efficientnet_features.shape)  # 打印维度
+        eff_features = efficientnet_features.view(b, t, -1)  # (B, T, 1280)
+        eff_pooled = eff_features.mean(dim=1)  # (B, 1280)
+        #print("eff_pooled shape:", eff_pooled.shape)  # 打印维度
+        
         outputs = self.backbone(data_dict['image'], output_hidden_states=True)
-        video_level_features = outputs[0][:, 0]
-        return video_level_features
+        timesformer_features = outputs[0][:, 0]
+        #print("timesformer_features shape:", timesformer_features.shape)  # 打印维度
+
+        combined_features = torch.cat((eff_pooled, timesformer_features), dim=1)
+        #print("combined_features shape:", combined_features.shape)  # 打印维度
+        return combined_features
 
     def classifier(self, features: torch.tensor) -> torch.tensor:
-        return self.head(features)
+        return self.fc(features)
 
     def get_losses(self, data_dict: dict, pred_dict: dict) -> dict:
         label = data_dict['label']
