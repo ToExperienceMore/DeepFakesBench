@@ -9,3 +9,5 @@
 /logs/
 training/pretrained/
 training/weights/
+preprocessing/dataset_json/
+preprocessing/dataset_json/
