@@ -8,3 +8,4 @@
 /datasets/
 /logs/
 training/pretrained/
+training/weights/
