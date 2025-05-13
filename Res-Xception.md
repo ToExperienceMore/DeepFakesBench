@@ -81,3 +81,21 @@ pred: [0.9719672  0.33310133 0.9071739  ... 0.9769001  0.76295537 0.3971603 ]
 video_auc: 0.8164573694646398
 label: [0 0 1 ... 1 1 0]
 ===> Test Done!
+
+(DeepfakeBench) root@autodl-container-f74b419777-65470359:DeepfakeBench# sh cmd.sh 
++ python3 training/test.py --detector_path ./training/config/detector/xception.yaml --test_dataset FMFCC-V --weights_path ./training/weights/xception_best.pth
+['in_channels', 'out_channels', 'kernel_size', 'stride', 'padding', 'dilation', 'groups', 'bias', 'padding_mode', 'device', 'dtype']
+spatial_count=0 keep_stride_count=0
+===> Load checkpoint done!
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 6595/6595 [07:30<00:00, 14.62it/s]
+len(y_pred): 211026
+len(y_true): 211026
+dataset: FMFCC-V
+acc: 0.6510524769459688
+auc: 0.7620570922931958
+eer: 0.31727375613027625
+ap: 0.7193985499485246
+pred: [0.6816701  0.5657868  0.7224978  ... 0.99240077 0.7275018  0.8908845 ]
+video_auc: 0.8038423130622926
+label: [0 0 1 ... 1 0 1]
+===> Test Done!

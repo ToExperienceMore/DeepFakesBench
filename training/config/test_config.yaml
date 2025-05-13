@@ -36,3 +36,5 @@ label_dict:
   # Roop
   roop_Real: 0
   roop_Fake: 1
+  real: 0
+  fake: 1

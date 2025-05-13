@@ -19,8 +19,9 @@ set -x
 #python3 training/test.py --detector_path $config --test_dataset  DFDC  --weights_path $weight
 #python3 training/test.py --detector_path $config --test_dataset   "DFDC" "FF-F2F" "FF-DF" "FF-FS"  "FF-NT" "DeepFakeDetection"  "FaceShifter"  --weights_path $weight
 #python3 training/test.py --detector_path $config --test_dataset  "FaceForensics++" "UADFV" "Celeb-DF-v2" --weights_path $weight
-python3 training/test.py --detector_path $config --test_dataset  "UADFV" --weights_path $weight
+#python3 training/test.py --detector_path $config --test_dataset  "UADFV" --weights_path $weight
 #python3 training/test.py --detector_path $config --test_dataset   "DFDC"  --weights_path $weight
 
 #FaceForensics++, FF-F2F, FF-DF, FF-FS, FF-NT, FaceShifter, DeepFakeDetection, Celeb-DF-v1, Celeb-DF-v2, DFDCP, DFDC, DeeperForensics-1.0, UADFV
 #DFDC, FaceForensics++, FF-F2F, FF-DF, FF-FS, FF-NT, FaceShifter, DeepFakeDetection, Celeb-DF-v2, , UADFV
+python3 training/test.py --detector_path $config --test_dataset  "FMFCC-V" --weights_path $weight

@@ -56,6 +56,7 @@ class DeepfakeAbstractBaseDataset(data.Dataset):
         """
         
         # Set the configuration and mode
+        #print("config:",config)
         self.config = config
         self.mode = mode
         self.compression = config['compression']
@@ -201,6 +202,7 @@ class DeepfakeAbstractBaseDataset(data.Dataset):
                 unique_video_name = video_info['label'] + '_' + video_name
 
                 # Get the label and frame paths for the current video
+                #print("video_info:",video_info)
                 if video_info['label'] not in self.config['label_dict']:
                     raise ValueError(f'Label {video_info["label"]} is not found in the configuration file.')
                 label = self.config['label_dict'][video_info['label']]

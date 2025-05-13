@@ -89,5 +89,7 @@ def get_test_metrics(y_pred, y_true, img_names):
     else:
         # video-level methods
         v_auc=auc
+    print("len(y_pred):",len(y_pred))
+    print("len(y_true):",len(y_true))
 
     return {'acc': acc, 'auc': auc, 'eer': eer, 'ap': ap, 'pred': y_pred, 'video_auc': v_auc, 'label': y_true}
