@@ -21,6 +21,9 @@ import torch.backends.cudnn as cudnn
 import torch.nn.functional as F
 import torch.utils.data
 import torch.optim as optim
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.metrics import confusion_matrix
 
 from dataset.abstract_dataset import DeepfakeAbstractBaseDataset
 from dataset.ff_blend import FFBlendDataset
@@ -119,6 +122,29 @@ def test_one_dataset(model, data_loader):
             break;
         """
 
+    # 将预测概率转换为二分类标签（阈值0.5）
+    pred_labels = (np.array(prediction_lists) > 0.5).astype(int)
+    true_labels = np.array(label_lists)
+    
+    # 计算混淆矩阵
+    cm = confusion_matrix(true_labels, pred_labels)
+    
+    # 创建混淆矩阵可视化
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+                xticklabels=['Real', 'Fake'],
+                yticklabels=['Real', 'Fake'])
+    plt.title('Confusion Matrix')
+    plt.ylabel('True Label')
+    plt.xlabel('Predicted Label')
+    
+    # 创建保存目录
+    save_dir = 'confusion_matrices'
+    os.makedirs(save_dir, exist_ok=True)
+    
+    # 保存混淆矩阵图
+    plt.savefig(os.path.join(save_dir, f'confusion_matrix_{data_loader.dataset.__class__.__name__}.png'))
+    plt.close()
     
     return np.array(prediction_lists), np.array(label_lists)
     #return np.array(prediction_lists), np.array(label_lists),np.array(feature_lists)
@@ -134,9 +160,29 @@ def test_epoch(model, test_data_loaders):
     keys = test_data_loaders.keys()
     for key in keys:
         data_dict = test_data_loaders[key].dataset.data_dict
-        # compute loss for each dataset
-        #predictions_nps, label_nps,feat_nps = test_one_dataset(model, test_data_loaders[key])
         predictions_nps, label_nps = test_one_dataset(model, test_data_loaders[key])
+        
+        # 计算并打印混淆矩阵的详细指标
+        pred_labels = (predictions_nps > 0.5).astype(int)
+        cm = confusion_matrix(label_nps, pred_labels)
+        tn, fp, fn, tp = cm.ravel()
+        
+        # 计算额外指标
+        accuracy = (tp + tn) / (tp + tn + fp + fn)
+        precision = tp / (tp + fp) if (tp + fp) > 0 else 0
+        recall = tp / (tp + fn) if (tp + fn) > 0 else 0
+        f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
+        
+        # 打印详细指标
+        tqdm.write(f"\nDetailed metrics for {key}:")
+        tqdm.write(f"True Negatives (Real classified as Real): {tn}")
+        tqdm.write(f"False Positives (Real classified as Fake): {fp}")
+        tqdm.write(f"False Negatives (Fake classified as Real): {fn}")
+        tqdm.write(f"True Positives (Fake classified as Fake): {tp}")
+        tqdm.write(f"Accuracy: {accuracy:.4f}")
+        tqdm.write(f"Precision: {precision:.4f}")
+        tqdm.write(f"Recall: {recall:.4f}")
+        tqdm.write(f"F1 Score: {f1:.4f}")
         
         # compute metric for each dataset
         metric_one_dataset = get_test_metrics(y_pred=predictions_nps, y_true=label_nps,
@@ -144,7 +190,7 @@ def test_epoch(model, test_data_loaders):
         metrics_all_datasets[key] = metric_one_dataset
         
         # info for each dataset
-        tqdm.write(f"dataset: {key}")
+        tqdm.write(f"\ndataset: {key}")
         for k, v in metric_one_dataset.items():
             tqdm.write(f"{k}: {v}")
 

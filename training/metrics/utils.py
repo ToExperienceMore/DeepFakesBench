@@ -83,6 +83,7 @@ def get_test_metrics(y_pred, y_true, img_names):
     prediction_class = (y_pred > 0.5).astype(int)
     correct = (prediction_class == np.clip(y_true, a_min=0, a_max=1)).sum().item()
     acc = correct / len(prediction_class)
+    #print("img_names:", img_names)
     if type(img_names[0]) is not list:
         # calculate video-level auc for the frame-level methods.
         v_auc, _ = get_video_metrics(img_names, y_pred, y_true)

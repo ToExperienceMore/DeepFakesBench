@@ -231,6 +231,8 @@ def video_manipulate(
         None
     """
 
+    #print("movie_path:", movie_path)
+    #print("dataset_path:", dataset_path)
     # Define face detector and predictor models
     face_detector = dlib.get_frontal_face_detector()
     predictor_path = './dlib_tools/shape_predictor_81_face_landmarks.dat'
@@ -319,12 +321,18 @@ def video_manipulate(
                 continue
 
             # Save cropped face, landmarks, and visualization image
-            save_path_ = save_path / 'frames' / org_path.stem
+
+            #save_path_ = save_path / 'frames' / org_path.stem
+            # for ForgeryNet
+            save_path_ = Path(str(org_path).replace('val_video_release', 'frames')).parent
+            #print("save_path_:", save_path_)
+            #dir_path = os.path.dirname(video_path)
             save_path_.mkdir(parents=True, exist_ok=True)
 
             # Save cropped face
             image_path = save_path_ / f"{cnt_frame:03d}.png"
             if not image_path.is_file():
+                #print("image_path:", image_path)
                 cv2.imwrite(str(image_path), cropped_face)
 
             # Save landmarks
@@ -338,6 +346,7 @@ def video_manipulate(
                 os.makedirs(os.path.dirname(mask_path), exist_ok=True)
                 _, binary_mask = cv2.threshold(masks, 1, 255, cv2.THRESH_BINARY)  # obtain binary mask only
                 cv2.imwrite(str(mask_path), binary_mask)
+            #exit()
 
         # Release the video capture
         cap_org.release()

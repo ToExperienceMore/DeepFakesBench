@@ -1,0 +1,19 @@
+['in_channels', 'out_channels', 'kernel_size', 'stride', 'padding', 'dilation', 'groups', 'bias', 'padding_mode', 'device', 'dtype']
+spatial_count=0 keep_stride_count=0
+Traceback (most recent call last):
+  File "/root/autodl-tmp/miniconda3/envs/DeepfakeBench/lib/python3.7/site-packages/insightface/__init__.py", line 8, in <module>
+    import onnxruntime
+ModuleNotFoundError: No module named 'onnxruntime'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "training/train.py", line 33, in <module>
+    from detectors import DETECTOR
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/detectors/__init__.py", line 39, in <module>
+    from .iid_detector import IIDDetector
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/detectors/iid_detector.py", line 49, in <module>
+    import insightface
+  File "/root/autodl-tmp/miniconda3/envs/DeepfakeBench/lib/python3.7/site-packages/insightface/__init__.py", line 11, in <module>
+    "Unable to import dependency onnxruntime. "
+ImportError: Unable to import dependency onnxruntime. 

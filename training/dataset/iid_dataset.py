@@ -26,6 +26,7 @@ class IIDDataset(DeepfakeAbstractBaseDataset):
 
     def __getitem__(self, index):
         # Get the image paths and label
+
         image_path = self.data_dict['image'][index]
         if '\\' in image_path:
             per = image_path.split('\\')[-2]
@@ -33,6 +34,8 @@ class IIDDataset(DeepfakeAbstractBaseDataset):
             per = image_path.split('/')[-2]
         id_index = int(per.split('_')[-1])  # real video id
         label = self.data_dict['label'][index]
+
+        image_path = image_path.replace("\\", "/")
 
         # Load the image
         try:
