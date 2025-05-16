@@ -12,6 +12,7 @@ from .utils import slowfast
 from .facexray_detector import FaceXrayDetector
 from .xception_detector import XceptionDetector
 from .efficientnet_detector import EfficientNetDetector
+from .efficientnetV2_detector import EfficientNetV2Detector
 from .resnet34_detector import ResnetDetector
 from .f3net_detector import F3netDetector
 from .meso4_detector import Meso4Detector

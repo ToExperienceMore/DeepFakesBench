@@ -18,11 +18,11 @@ class EfficientNetV2(nn.Module):
         self.mode = efficientnetv2_config["mode"]
         self.variant = efficientnetv2_config.get("variant", "s")  # s, m, or l
 
-        # Map variant to model name
+        # Map variant to model name with ImageNet-21k pre-trained weights
         variant_map = {
-            "s": "tf_efficientnetv2_s.in21k",
-            "m": "tf_efficientnetv2_m.in21k",
-            "l": "tf_efficientnetv2_l.in21k"
+            "s": "tf_efficientnetv2_s_in21k",
+            "m": "tf_efficientnetv2_m_in21k",
+            "l": "tf_efficientnetv2_l_in21k"
         }
         model_name = variant_map[self.variant]
 

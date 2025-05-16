@@ -1,5 +1,6 @@
-config=./training/config/detector/timesformer.yaml
+#config=./training/config/detector/timesformer.yaml
 #config=./training/config/detector/efficientnet.yaml
+config=./training/config/detector/efficientnetv2.yaml
 #config=./training/config/detector/iid.yaml
 #config=./training/config/detector/xception.yaml
 #config=./training/config/detector/sbi.yaml
@@ -28,4 +29,4 @@ set -x
 nohup python training/train.py \
 --detector_path $config \
 --train_dataset "FaceForensics++"  \
---test_dataset  "DFDC" "Celeb-DF-v2" > train_FaceForensics++timeSformer_efficientnet_B0-again.log 2>&1 &
+--test_dataset  "DFDC" "Celeb-DF-v2" > train_FaceForensics++_efficientnetv2.log 2>&1 &

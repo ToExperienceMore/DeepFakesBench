@@ -1,25 +1,33 @@
 # path=DeepfakeBench/training/networks/efficientnetb0.py
 import torch
 import torch.nn as nn
-from efficientnet_pytorch import EfficientNet
+import timm
 from metrics.registry import BACKBONE
 
-@BACKBONE.register_module(module_name="efficientnetb0")
-class EfficientNetB0(nn.Module):
-    def __init__(self, efficientnetb0_config):
-        super(EfficientNetB0, self).__init__()
+@BACKBONE.register_module(module_name="efficientnetv2")
+class EfficientNetV2(nn.Module):
+    def __init__(self, efficientnetv2_config):
+        super(EfficientNetV2, self).__init__()
         """ Constructor
         Args:
-            efficientnetb0_config: configuration file with the dict format
+            efficientnetv2_config: configuration file with the dict format
         """
-        self.num_classes = efficientnetb0_config["num_classes"]
-        inc = efficientnetb0_config["inc"]
-        self.dropout = efficientnetb0_config["dropout"]
-        self.mode = efficientnetb0_config["mode"]
+        self.num_classes = efficientnetv2_config["num_classes"]
+        inc = efficientnetv2_config["inc"]
+        self.dropout = efficientnetv2_config["dropout"]
+        self.mode = efficientnetv2_config["mode"]
+        self.variant = efficientnetv2_config.get("variant", "s")  # s, m, or l
 
-        # Load the EfficientNet-B0 model without pre-trained weights
-        #self.efficientnet = EfficientNet.from_name('efficientnet-b0')
-        self.efficientnet = EfficientNet.from_pretrained('efficientnet-b0')
+        # Map variant to model name
+        variant_map = {
+            "s": "tf_efficientnetv2_s",
+            "m": "tf_efficientnetv2_m",
+            "l": "tf_efficientnetv2_l"
+        }
+        model_name = variant_map[self.variant]
+
+        # Load the EfficientNetV2 model with pre-trained weights
+        self.efficientnet = timm.create_model(model_name, pretrained=True)
 
         # Modify the first convolutional layer to accept input tensors with 'inc' channels
         self.efficientnet._conv_stem = nn.Conv2d(inc, 32, kernel_size=3, stride=2, bias=False)
