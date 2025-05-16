@@ -22,6 +22,8 @@ def get_prediction(output, label):
 
 
 def calculate_metrics_for_train(label, output):
+    #print("output", output.shape)
+    #print("output", output.size(1))
     if output.size(1) == 2:
         prob = torch.softmax(output, dim=1)[:, 1]
     else:

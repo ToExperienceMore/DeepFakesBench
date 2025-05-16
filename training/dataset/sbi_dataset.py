@@ -43,6 +43,7 @@ class SBIDataset(DeepfakeAbstractBaseDataset):
         landmark = self.load_landmark(real_landmark_path).astype(np.int32)
 
         # Load the real images
+        real_image_path = real_image_path.replace("\\", "/")
         real_image = self.load_rgb(real_image_path)
         real_image = np.array(real_image)  # Convert to numpy array
 

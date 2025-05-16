@@ -22,28 +22,20 @@ Traceback (most recent call last):
 RuntimeError: CUDA error: invalid device ordinal
 CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
 For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-Traceback (most recent call last):
-  File "training/train.py", line 52, in <module>
-    torch.cuda.set_device(args.local_rank)
-  File "/root/autodl-tmp/miniconda3/envs/DeepfakeBench/lib/python3.7/site-packages/torch/cuda/__init__.py", line 314, in set_device
-    torch._C._cuda_setDevice(device)
-RuntimeError: CUDA error: invalid device ordinal
-CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
-2025-05-15 05:10:44,969 - INFO - Save log to ./logs/training/sbi_2025-05-15-05-10-44
-2025-05-15 05:10:44,969 - INFO - --------------- Configuration ---------------
-2025-05-15 05:10:44,969 - INFO - Parameters: 
+2025-05-17 07:29:37,265 - INFO - Save log to ./logs/training/sbi_2025-05-17-07-29-37
+2025-05-17 07:29:37,265 - INFO - --------------- Configuration ---------------
+2025-05-17 07:29:37,266 - INFO - Parameters: 
 log_dir: ./logs/training/
-pretrained: /data/home/zhiyuanyan/DeepfakeBench/training/pretrained/xception-b5690688.pth
+pretrained: ./training/pretrained/xception-b5690688.pth
 model_name: sbi
-backbone_name: efficientnetb4
+backbone_name: xception
 backbone_config: {'mode': 'original', 'num_classes': 3, 'inc': 3, 'dropout': False, 'pretrained': True}
 all_dataset: ['FaceForensics++', 'FF-F2F', 'FF-DF', 'FF-FS', 'FF-NT', 'FaceShifter', 'DeepFakeDetection', 'Celeb-DF-v1', 'Celeb-DF-v2', 'DFDCP', 'DFDC', 'DeeperForensics-1.0', 'UADFV']
 train_dataset: ['FaceForensics++']
 test_dataset: ['Celeb-DF-v2', 'roop', 'FaceShifter']
 dataset_type: blend
 compression: c23
-train_batchSize: 24
+train_batchSize: 8
 test_batchSize: 32
 workers: 8
 frame_num: {'train': 8, 'test': 32}
@@ -83,7 +75,15 @@ label_dict: {'DFD_fake': 1, 'DFD_real': 0, 'FF-SH': 1, 'FF-F2F': 1, 'FF-DF': 1, 
 local_rank: 0
 ddp: True
 
-2025-05-15 05:10:44,970 - INFO - Added key: store_based_barrier_key:1 to store for rank: 0
+2025-05-17 07:29:37,267 - INFO - Added key: store_based_barrier_key:1 to store for rank: 0
+Traceback (most recent call last):
+  File "training/train.py", line 52, in <module>
+    torch.cuda.set_device(args.local_rank)
+  File "/root/autodl-tmp/miniconda3/envs/DeepfakeBench/lib/python3.7/site-packages/torch/cuda/__init__.py", line 314, in set_device
+    torch._C._cuda_setDevice(device)
+RuntimeError: CUDA error: invalid device ordinal
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
 /root/autodl-tmp/miniconda3/envs/DeepfakeBench/lib/python3.7/site-packages/torch/distributed/launch.py:186: FutureWarning: The module torch.distributed.launch is deprecated
 and will be removed in future. Use torchrun.
 Note that --use_env is set by default in torchrun.
@@ -93,8 +93,8 @@ https://pytorch.org/docs/stable/distributed.html#launch-utility for
 further instructions
 
   FutureWarning,
-WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 99449 closing signal SIGTERM
-ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 1 (pid: 99450) of binary: /root/autodl-tmp/miniconda3/envs/DeepfakeBench/bin/python3
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 205353 closing signal SIGTERM
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 1 (pid: 205354) of binary: /root/autodl-tmp/miniconda3/envs/DeepfakeBench/bin/python3
 Traceback (most recent call last):
   File "/root/autodl-tmp/miniconda3/envs/DeepfakeBench/lib/python3.7/runpy.py", line 193, in _run_module_as_main
     "__main__", mod_spec)
@@ -118,26 +118,26 @@ training/train.py FAILED
 ------------------------------------------------------------
 Failures:
 [1]:
-  time      : 2025-05-15_05:10:45
+  time      : 2025-05-17_07:29:37
   host      : autodl-container-f74b419777-65470359
   rank      : 2 (local_rank: 2)
-  exitcode  : 1 (pid: 99451)
+  exitcode  : 1 (pid: 205355)
   error_file: <N/A>
   traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
 [2]:
-  time      : 2025-05-15_05:10:45
+  time      : 2025-05-17_07:29:37
   host      : autodl-container-f74b419777-65470359
   rank      : 3 (local_rank: 3)
-  exitcode  : 1 (pid: 99452)
+  exitcode  : 1 (pid: 205356)
   error_file: <N/A>
   traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
 ------------------------------------------------------------
 Root Cause (first observed failure):
 [0]:
-  time      : 2025-05-15_05:10:45
+  time      : 2025-05-17_07:29:37
   host      : autodl-container-f74b419777-65470359
   rank      : 1 (local_rank: 1)
-  exitcode  : 1 (pid: 99450)
+  exitcode  : 1 (pid: 205354)
   error_file: <N/A>
   traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
 ============================================================

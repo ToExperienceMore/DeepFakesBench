@@ -68,6 +68,7 @@ class SBIDetector(AbstractDetector):
         model_config = config['backbone_config']
         backbone = backbone_class(model_config)
         # if donot load the pretrained weights, fail to get good results
+        print("config['pretrained']", config['pretrained'])
         state_dict = torch.load(config['pretrained'])
         for name, weights in state_dict.items():
             if 'pointwise' in name:
@@ -99,6 +100,9 @@ class SBIDetector(AbstractDetector):
     def get_train_metrics(self, data_dict: dict, pred_dict: dict) -> dict:
         label = data_dict['label']
         pred = pred_dict['cls']
+        print("pred", pred.shape)
+        pred= pred[:, 0]
+        print("pred", pred.shape)
         # compute metrics for batch data
         auc, eer, acc, ap = calculate_metrics_for_train(label.detach(), pred.detach())
         metric_batch_dict = {'acc': acc, 'auc': auc, 'eer': eer, 'ap': ap}
