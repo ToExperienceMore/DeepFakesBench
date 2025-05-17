@@ -12,7 +12,7 @@ backbone_config:
   num_classes: 2
   inc: 3
   dropout: false
-  variant: l  # can be 's', 'm', or 'l' for different EfficientNetV2 variants
+  variant: s  # can be 's', 'm', or 'l' for different EfficientNetV2 variants
 
 # dataset
 all_dataset: [FaceForensics++, FF-F2F, FF-DF, FF-FS, FF-NT, FaceShifter, DeepFakeDetection, Celeb-DF-v1, Celeb-DF-v2, DFDCP, DFDC, DeeperForensics-1.0, UADFV]

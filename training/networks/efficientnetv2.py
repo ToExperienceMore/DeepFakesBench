@@ -27,7 +27,9 @@ class EfficientNetV2(nn.Module):
         model_name = variant_map[self.variant]
 
         # Load the EfficientNetV2 model with pre-trained weights
-        self.efficientnet = timm.create_model(model_name, pretrained=True)
+        model_path = "training/pretrained/tf_efficientnetv2_s_21k-6337ad01.pth"
+        self.efficientnet = timm.create_model(model_name, pretrained=False)
+        self.efficientnet.load_state_dict(torch.load(model_path))
 
         # Modify the first convolutional layer to accept input tensors with 'inc' channels
         if hasattr(self.efficientnet, 'conv_stem'):
