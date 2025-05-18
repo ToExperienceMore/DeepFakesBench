@@ -141,6 +141,7 @@ class FTCNDetector(AbstractDetector):
         cfg.TRAIN.BATCH_SIZE = 1
         cfg.DATA.NUM_FRAMES = config['clip_size']
         self.resnet = ResNetOri(cfg)
+        print("pretrained", config['pretrained'])
         if config['pretrained'] is not None:
             print(f"loading pretrained model from {config['pretrained']}")
             pretrained_weights = torch.load(config['pretrained'], map_location='cpu', encoding='latin1')

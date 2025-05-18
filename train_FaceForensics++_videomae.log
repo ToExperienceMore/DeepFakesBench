@@ -1,0 +1,161 @@
+2025-05-18 04:14:20,434 - INFO - Save log to ./logs/training/videomae_2025-05-18-04-14-20
+2025-05-18 04:14:20,434 - INFO - --------------- Configuration ---------------
+2025-05-18 04:14:20,434 - INFO - Parameters: 
+log_dir: ./logs/training/
+pretrained: /data/home/zhiyuanyan/DeepfakeBench/training/pretrained/xception-b5690688.pth
+model_name: videomae
+backbone_name: None
+backbone_config: {'mode': 'original', 'num_classes': 2, 'inc': 3, 'dropout': False}
+all_dataset: ['FaceForensics++', 'FF-F2F', 'FF-DF', 'FF-FS', 'FF-NT', 'FaceShifter', 'DeepFakeDetection', 'Celeb-DF-v1', 'Celeb-DF-v2', 'DFDCP', 'DFDC', 'DeeperForensics-1.0', 'UADFV']
+train_dataset: ['FaceForensics++']
+test_dataset: ['DFDC', 'Celeb-DF-v2']
+compression: c23
+train_batchSize: 8
+test_batchSize: 8
+workers: 8
+frame_num: {'train': 32, 'test': 32}
+resolution: 256
+with_mask: False
+with_landmark: True
+video_mode: True
+clip_size: 8
+use_data_augmentation: True
+data_aug: {'flip_prob': 0.5, 'rotate_prob': 0.5, 'rotate_limit': [-10, 10], 'blur_prob': 0.5, 'blur_limit': [3, 7], 'brightness_prob': 0.5, 'brightness_limit': [-0.1, 0.1], 'contrast_limit': [-0.1, 0.1], 'quality_lower': 40, 'quality_upper': 100}
+mean: [0.5, 0.5, 0.5]
+std: [0.5, 0.5, 0.5]
+optimizer: {'type': 'adam', 'adam': {'lr': 0.0002, 'beta1': 0.9, 'beta2': 0.999, 'eps': 1e-08, 'weight_decay': 0.0005, 'amsgrad': False}, 'sgd': {'lr': 0.0002, 'momentum': 0.9, 'weight_decay': 0.0005}}
+lr_scheduler: None
+nEpochs: 10
+start_epoch: 0
+save_epoch: 1
+rec_iter: 100
+logdir: ./logs
+manualSeed: 1024
+save_ckpt: True
+save_feat: True
+loss_func: cross_entropy
+losstype: None
+metric_scoring: auc
+cuda: True
+cudnn: True
+mode: train
+lmdb: False
+dry_run: False
+rgb_dir: ./datasets/rgb
+lmdb_dir: ./datasets/lmdb
+dataset_json_folder: ./preprocessing/dataset_json
+SWA: False
+save_avg: True
+label_dict: {'DFD_fake': 1, 'DFD_real': 0, 'FF-SH': 1, 'FF-F2F': 1, 'FF-DF': 1, 'FF-FS': 1, 'FF-NT': 1, 'FF-FH': 1, 'FF-real': 0, 'CelebDFv1_real': 0, 'CelebDFv1_fake': 1, 'CelebDFv2_real': 0, 'CelebDFv2_fake': 1, 'DFDCP_Real': 0, 'DFDCP_FakeA': 1, 'DFDCP_FakeB': 1, 'DFDC_Fake': 1, 'DFDC_Real': 0, 'DF_fake': 1, 'DF_real': 0, 'UADFV_Fake': 1, 'UADFV_Real': 0, 'roop_Real': 0, 'roop_Fake': 1, 'real': 0, 'fake': 1}
+local_rank: 0
+ddp: False
+
+'(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /MCG-NJU/videomae-base/resolve/main/config.json (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7fa9d8e7fc18>, 'Connection to huggingface.co timed out. (connect timeout=10)'))"), '(Request ID: 7f79183f-e185-4524-9b7e-48c0da80c448)')' thrown while requesting HEAD https://huggingface.co/MCG-NJU/videomae-base/resolve/main/config.json
+2025-05-18 04:14:31,243 - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /MCG-NJU/videomae-base/resolve/main/config.json (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7fa9d8e7fc18>, 'Connection to huggingface.co timed out. (connect timeout=10)'))"), '(Request ID: 7f79183f-e185-4524-9b7e-48c0da80c448)')' thrown while requesting HEAD https://huggingface.co/MCG-NJU/videomae-base/resolve/main/config.json
+['in_channels', 'out_channels', 'kernel_size', 'stride', 'padding', 'dilation', 'groups', 'bias', 'padding_mode', 'device', 'dtype']
+spatial_count=0 keep_stride_count=0
+Skipping video DFDC_Real_hmvjiodnxy because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_zffenlgire because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_mpwoskwuuk because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Real_hqfpcnnxuj because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_iyfwndboqs because it has less than clip_size (8) frames (3).
+Skipping video DFDC_Real_issioyofmn because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_xgtelcltvg because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_vytzcppkpg because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Real_gqqhtdjoha because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_nodoppwmyj because it has less than clip_size (8) frames (3).
+Skipping video DFDC_Real_bsduhevcwg because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Real_pgbtmrrmrq because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_dxuxornpue because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Real_rpqkwlaasy because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Real_usrimdndpz because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_rodpvqvdxm because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_fagregozex because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_aalscayrfi because it has less than clip_size (8) frames (3).
+Skipping video DFDC_Real_sygzijgurs because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_qvpjagljpr because it has less than clip_size (8) frames (3).
+Skipping video DFDC_Real_puhcxsfnde because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_rafzcxkbsh because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Real_olanckxfdx because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Real_cemvsipmew because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_egxsckqubp because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_hmmnljhtom because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_gdnacoubws because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Real_xvkflltlbg because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_ejunkkahbw because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_snsnifxref because it has less than clip_size (8) frames (3).
+Skipping video DFDC_Real_zztotvpkjc because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_eppwzalgil because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_xnwmohspsh because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_pwfhdwzxqm because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Real_igbpkykmrz because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Real_apmxeenhpt because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Real_sfuddhcgmz because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_kdiezumwzi because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Real_vxvqnhakrk because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Real_bzqohcbrip because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_ovyikmbbdr because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_nuhvoaxqtn because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Real_ovbvtbmuxo because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_knamsitmul because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_mipljmaefr because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_hswqufrqdq because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_ljaedxbwki because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_gkhhhvjkmr because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Fake_xirozlwlpd because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Fake_noodanjabq because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Fake_ydiydkhofb because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Fake_nrzayygpza because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Fake_wpotxtrxtj because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Fake_eboyboyzis because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Fake_jqfpwtawdw because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Fake_zfbfgatuvk because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Fake_ejhumipcge because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Fake_pcnvtisyms because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_hmwdlvrwbe because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Fake_bxgfrpxpyp because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_wxorluvmvm because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Fake_jgmmablvoo because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_gneonsmngz because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Fake_okogoesrwg because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_wuzzdfwxlv because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Fake_jarlmlkfam because it has less than clip_size (8) frames (3).
+Skipping video DFDC_Fake_shjmzxlkgk because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Fake_hrijskleak because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Fake_mzldnycwvi because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Fake_szkejtkgqq because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Fake_gowytswfqh because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_ikgvwddrng because it has less than clip_size (8) frames (7).
+Skipping video CelebDFv2_real_id10_0001 because it has less than clip_size (8) frames (3).
+Traceback (most recent call last):
+  File "/root/autodl-tmp/miniconda3/envs/DeepfakeBench/lib/python3.7/site-packages/transformers/utils/hub.py", line 429, in cached_file
+    local_files_only=local_files_only,
+  File "/root/autodl-tmp/miniconda3/envs/DeepfakeBench/lib/python3.7/site-packages/huggingface_hub/utils/_validators.py", line 118, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/root/autodl-tmp/miniconda3/envs/DeepfakeBench/lib/python3.7/site-packages/huggingface_hub/file_download.py", line 1292, in hf_hub_download
+    "Connection error, and we cannot find the requested files in"
+huggingface_hub.utils._errors.LocalEntryNotFoundError: Connection error, and we cannot find the requested files in the disk cache. Please try again or make sure your Internet connection is on.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "training/train.py", line 341, in <module>
+    main()
+  File "training/train.py", line 286, in main
+    model = model_class(config)
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/detectors/videomae_detector.py", line 58, in __init__
+    self.backbone = self.build_backbone(config)
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/detectors/videomae_detector.py", line 65, in build_backbone
+    backbone = VideoMAEModel.from_pretrained("MCG-NJU/videomae-base")
+  File "/root/autodl-tmp/miniconda3/envs/DeepfakeBench/lib/python3.7/site-packages/transformers/modeling_utils.py", line 2318, in from_pretrained
+    **kwargs,
+  File "/root/autodl-tmp/miniconda3/envs/DeepfakeBench/lib/python3.7/site-packages/transformers/configuration_utils.py", line 547, in from_pretrained
+    config_dict, kwargs = cls.get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "/root/autodl-tmp/miniconda3/envs/DeepfakeBench/lib/python3.7/site-packages/transformers/configuration_utils.py", line 574, in get_config_dict
+    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "/root/autodl-tmp/miniconda3/envs/DeepfakeBench/lib/python3.7/site-packages/transformers/configuration_utils.py", line 641, in _get_config_dict
+    _commit_hash=commit_hash,
+  File "/root/autodl-tmp/miniconda3/envs/DeepfakeBench/lib/python3.7/site-packages/transformers/utils/hub.py", line 453, in cached_file
+    f"We couldn't connect to '{HUGGINGFACE_CO_RESOLVE_ENDPOINT}' to load this file, couldn't find it in the"
+OSError: We couldn't connect to 'https://huggingface.co' to load this file, couldn't find it in the cached files and it looks like MCG-NJU/videomae-base is not the path to a directory containing a file named config.json.
+Checkout your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.

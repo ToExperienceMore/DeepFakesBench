@@ -1,0 +1,254 @@
+2025-05-17 18:42:19,553 - INFO - Save log to ./logs/training/ftcn_2025-05-17-18-42-19
+2025-05-17 18:42:19,553 - INFO - --------------- Configuration ---------------
+2025-05-17 18:42:19,553 - INFO - Parameters: 
+log_dir: ./logs/training/
+pretrained: ./training/pretrained/I3D_8x8_R50.pth
+model_name: ftcn
+backbone_name: xception
+backbone_config: {'mode': 'original', 'num_classes': 1, 'inc': 3, 'dropout': False}
+all_dataset: ['FaceForensics++', 'FF-F2F', 'FF-DF', 'FF-FS', 'FF-NT', 'FaceShifter', 'DeepFakeDetection', 'Celeb-DF-v1', 'Celeb-DF-v2', 'DFDCP', 'DFDC', 'DeeperForensics-1.0', 'UADFV']
+train_dataset: ['FaceForensics++']
+test_dataset: ['DFDC', 'Celeb-DF-v2']
+compression: c23
+train_batchSize: 8
+test_batchSize: 8
+workers: 8
+frame_num: {'train': 32, 'test': 32}
+resolution: 224
+with_mask: False
+with_landmark: False
+video_mode: True
+clip_size: 16
+use_data_augmentation: True
+data_aug: {'flip_prob': 0.5, 'rotate_prob': 0.5, 'rotate_limit': [-10, 10], 'blur_prob': 0.5, 'blur_limit': [3, 7], 'brightness_prob': 0.5, 'brightness_limit': [-0.1, 0.1], 'contrast_limit': [-0.1, 0.1], 'quality_lower': 40, 'quality_upper': 100}
+mean: [0.5, 0.5, 0.5]
+std: [0.5, 0.5, 0.5]
+optimizer: {'type': 'adam', 'adam': {'lr': 0.0002, 'beta1': 0.9, 'beta2': 0.999, 'eps': 1e-08, 'weight_decay': 0.0005, 'amsgrad': False}, 'sgd': {'lr': 0.0002, 'momentum': 0.9, 'weight_decay': 0.0005}}
+lr_scheduler: None
+nEpochs: 10
+start_epoch: 0
+save_epoch: 1
+rec_iter: 100
+logdir: ./logs
+manualSeed: 1024
+save_ckpt: True
+save_feat: True
+loss_func: cross_entropy
+losstype: None
+metric_scoring: auc
+ngpu: 1
+cuda: True
+cudnn: True
+mode: train
+lmdb: False
+dry_run: False
+rgb_dir: ./datasets/rgb
+lmdb_dir: ./datasets/lmdb
+dataset_json_folder: ./preprocessing/dataset_json
+SWA: False
+save_avg: True
+label_dict: {'DFD_fake': 1, 'DFD_real': 0, 'FF-SH': 1, 'FF-F2F': 1, 'FF-DF': 1, 'FF-FS': 1, 'FF-NT': 1, 'FF-FH': 1, 'FF-real': 0, 'CelebDFv1_real': 0, 'CelebDFv1_fake': 1, 'CelebDFv2_real': 0, 'CelebDFv2_fake': 1, 'DFDCP_Real': 0, 'DFDCP_FakeA': 1, 'DFDCP_FakeB': 1, 'DFDC_Fake': 1, 'DFDC_Real': 0, 'DF_fake': 1, 'DF_real': 0, 'UADFV_Fake': 1, 'UADFV_Real': 0, 'roop_Real': 0, 'roop_Fake': 1, 'real': 0, 'fake': 1}
+local_rank: 0
+ddp: False
+
+['in_channels', 'out_channels', 'kernel_size', 'stride', 'padding', 'dilation', 'groups', 'bias', 'padding_mode', 'device', 'dtype']
+spatial_count=0 keep_stride_count=0
+Skipping video FF-DF_569_921 because it has less than clip_size (16) frames (14).
+Skipping video FF-FS_281_474 because it has less than clip_size (16) frames (12).
+Skipping video DFDC_Real_hrtkwnhzox because it has less than clip_size (16) frames (13).
+Skipping video DFDC_Real_etxpsgmszb because it has less than clip_size (16) frames (12).
+Skipping video DFDC_Real_hmvjiodnxy because it has less than clip_size (16) frames (4).
+Skipping video DFDC_Real_mrvtzvlazp because it has less than clip_size (16) frames (13).
+Skipping video DFDC_Real_zffenlgire because it has less than clip_size (16) frames (4).
+Skipping video DFDC_Real_mpwoskwuuk because it has less than clip_size (16) frames (7).
+Skipping video DFDC_Real_hqfpcnnxuj because it has less than clip_size (16) frames (4).
+Skipping video DFDC_Real_iyfwndboqs because it has less than clip_size (16) frames (3).
+Skipping video DFDC_Real_janzoyqvbx because it has less than clip_size (16) frames (11).
+Skipping video DFDC_Real_issioyofmn because it has less than clip_size (16) frames (1).
+Skipping video DFDC_Real_xgtelcltvg because it has less than clip_size (16) frames (1).
+Skipping video DFDC_Real_vytzcppkpg because it has less than clip_size (16) frames (2).
+Skipping video DFDC_Real_gqqhtdjoha because it has less than clip_size (16) frames (5).
+Skipping video DFDC_Real_nodoppwmyj because it has less than clip_size (16) frames (3).
+Skipping video DFDC_Real_bsduhevcwg because it has less than clip_size (16) frames (7).
+Skipping video DFDC_Real_ccwmnfsmyf because it has less than clip_size (16) frames (12).
+Skipping video DFDC_Real_rtopeqayya because it has less than clip_size (16) frames (12).
+Skipping video DFDC_Real_pgbtmrrmrq because it has less than clip_size (16) frames (1).
+Skipping video DFDC_Real_dxuxornpue because it has less than clip_size (16) frames (6).
+Skipping video DFDC_Real_dapkptdvvh because it has less than clip_size (16) frames (12).
+Skipping video DFDC_Real_bkbcsaatyp because it has less than clip_size (16) frames (15).
+Skipping video DFDC_Real_phocdzixmd because it has less than clip_size (16) frames (11).
+Skipping video DFDC_Real_rpqkwlaasy because it has less than clip_size (16) frames (7).
+Skipping video DFDC_Real_usrimdndpz because it has less than clip_size (16) frames (5).
+Skipping video DFDC_Real_rodpvqvdxm because it has less than clip_size (16) frames (5).
+Skipping video DFDC_Real_fagregozex because it has less than clip_size (16) frames (5).
+Skipping video DFDC_Real_aalscayrfi because it has less than clip_size (16) frames (3).
+Skipping video DFDC_Real_sygzijgurs because it has less than clip_size (16) frames (4).
+Skipping video DFDC_Real_qvpjagljpr because it has less than clip_size (16) frames (3).
+Skipping video DFDC_Real_mzcurgpxvm because it has less than clip_size (16) frames (14).
+Skipping video DFDC_Real_puhcxsfnde because it has less than clip_size (16) frames (4).
+Skipping video DFDC_Real_rafzcxkbsh because it has less than clip_size (16) frames (7).
+Skipping video DFDC_Real_olanckxfdx because it has less than clip_size (16) frames (6).
+Skipping video DFDC_Real_hkkiotnxqz because it has less than clip_size (16) frames (15).
+Skipping video DFDC_Real_cemvsipmew because it has less than clip_size (16) frames (1).
+Skipping video DFDC_Real_egxsckqubp because it has less than clip_size (16) frames (5).
+Skipping video DFDC_Real_hmmnljhtom because it has less than clip_size (16) frames (5).
+Skipping video DFDC_Real_gdnacoubws because it has less than clip_size (16) frames (2).
+Skipping video DFDC_Real_xvkflltlbg because it has less than clip_size (16) frames (4).
+Skipping video DFDC_Real_uxtrutsgaf because it has less than clip_size (16) frames (11).
+Skipping video DFDC_Real_nhnbkbalsi because it has less than clip_size (16) frames (9).
+Skipping video DFDC_Real_usbauwaxqm because it has less than clip_size (16) frames (11).
+Skipping video DFDC_Real_ejunkkahbw because it has less than clip_size (16) frames (1).
+Skipping video DFDC_Real_snsnifxref because it has less than clip_size (16) frames (3).
+Skipping video DFDC_Real_zztotvpkjc because it has less than clip_size (16) frames (5).
+Skipping video DFDC_Real_eppwzalgil because it has less than clip_size (16) frames (1).
+Skipping video DFDC_Real_xnwmohspsh because it has less than clip_size (16) frames (1).
+Skipping video DFDC_Real_pwfhdwzxqm because it has less than clip_size (16) frames (2).
+Skipping video DFDC_Real_igbpkykmrz because it has less than clip_size (16) frames (2).
+Skipping video DFDC_Real_apmxeenhpt because it has less than clip_size (16) frames (6).
+Skipping video DFDC_Real_sfuddhcgmz because it has less than clip_size (16) frames (4).
+Skipping video DFDC_Real_jmmxjuowsd because it has less than clip_size (16) frames (10).
+Skipping video DFDC_Real_ossrxiwdvm because it has less than clip_size (16) frames (14).
+Skipping video DFDC_Real_kdiezumwzi because it has less than clip_size (16) frames (2).
+Skipping video DFDC_Real_udbleyoyxv because it has less than clip_size (16) frames (9).
+Skipping video DFDC_Real_vxvqnhakrk because it has less than clip_size (16) frames (7).
+Skipping video DFDC_Real_bzqohcbrip because it has less than clip_size (16) frames (1).
+Skipping video DFDC_Real_ovyikmbbdr because it has less than clip_size (16) frames (5).
+Skipping video DFDC_Real_jrlomrjplr because it has less than clip_size (16) frames (10).
+Skipping video DFDC_Real_avtdrvnfyh because it has less than clip_size (16) frames (14).
+Skipping video DFDC_Real_nuhvoaxqtn because it has less than clip_size (16) frames (2).
+Skipping video DFDC_Real_ovbvtbmuxo because it has less than clip_size (16) frames (1).
+Skipping video DFDC_Real_knamsitmul because it has less than clip_size (16) frames (4).
+Skipping video DFDC_Real_ftvxeobwml because it has less than clip_size (16) frames (14).
+Skipping video DFDC_Real_mipljmaefr because it has less than clip_size (16) frames (4).
+Skipping video DFDC_Real_hswqufrqdq because it has less than clip_size (16) frames (6).
+Skipping video DFDC_Fake_vdjhhpaaqy because it has less than clip_size (16) frames (15).
+Skipping video DFDC_Fake_xzkdlxqryz because it has less than clip_size (16) frames (12).
+Skipping video DFDC_Fake_ljaedxbwki because it has less than clip_size (16) frames (6).
+Skipping video DFDC_Fake_gkhhhvjkmr because it has less than clip_size (16) frames (5).
+Skipping video DFDC_Fake_dpvrlixbvw because it has less than clip_size (16) frames (8).
+Skipping video DFDC_Fake_xirozlwlpd because it has less than clip_size (16) frames (1).
+Skipping video DFDC_Fake_qyttiwrnjd because it has less than clip_size (16) frames (11).
+Skipping video DFDC_Fake_noodanjabq because it has less than clip_size (16) frames (1).
+Skipping video DFDC_Fake_ydiydkhofb because it has less than clip_size (16) frames (1).
+Skipping video DFDC_Fake_nrzayygpza because it has less than clip_size (16) frames (7).
+Skipping video DFDC_Fake_brcqtpnjtq because it has less than clip_size (16) frames (9).
+Skipping video DFDC_Fake_vsczwmjwoz because it has less than clip_size (16) frames (14).
+Skipping video DFDC_Fake_wpotxtrxtj because it has less than clip_size (16) frames (2).
+Skipping video DFDC_Fake_eboyboyzis because it has less than clip_size (16) frames (4).
+Skipping video DFDC_Fake_hmdtqenovo because it has less than clip_size (16) frames (11).
+Skipping video DFDC_Fake_llotvzbmji because it has less than clip_size (16) frames (13).
+Skipping video DFDC_Fake_jqfpwtawdw because it has less than clip_size (16) frames (2).
+Skipping video DFDC_Fake_ieptfbchav because it has less than clip_size (16) frames (10).
+Skipping video DFDC_Fake_zfbfgatuvk because it has less than clip_size (16) frames (1).
+Skipping video DFDC_Fake_ejhumipcge because it has less than clip_size (16) frames (2).
+Skipping video DFDC_Fake_nyylccgtfk because it has less than clip_size (16) frames (15).
+Skipping video DFDC_Fake_pcnvtisyms because it has less than clip_size (16) frames (6).
+Skipping video DFDC_Fake_hmwdlvrwbe because it has less than clip_size (16) frames (4).
+Skipping video DFDC_Fake_zsokursmxs because it has less than clip_size (16) frames (13).2025-05-17 18:42:24,980 - INFO - ===> Epoch[0] start!
+2025-05-17 18:42:25,006 - INFO - data_dict saved to ./logs/training/ftcn_2025-05-17-18-42-19/train/FaceForensics++/data_dict_train.pickle
+
+Skipping video DFDC_Fake_tudkhemgde because it has less than clip_size (16) frames (13).
+Skipping video DFDC_Fake_bxgfrpxpyp because it has less than clip_size (16) frames (6).
+Skipping video DFDC_Fake_wxorluvmvm because it has less than clip_size (16) frames (2).
+Skipping video DFDC_Fake_jmqeqhetmh because it has less than clip_size (16) frames (10).
+Skipping video DFDC_Fake_jgmmablvoo because it has less than clip_size (16) frames (6).
+Skipping video DFDC_Fake_aeetlrrqpy because it has less than clip_size (16) frames (11).
+Skipping video DFDC_Fake_gneonsmngz because it has less than clip_size (16) frames (2).
+Skipping video DFDC_Fake_okogoesrwg because it has less than clip_size (16) frames (6).
+Skipping video DFDC_Fake_wuzzdfwxlv because it has less than clip_size (16) frames (5).
+Skipping video DFDC_Fake_jarlmlkfam because it has less than clip_size (16) frames (3).
+Skipping video DFDC_Fake_shjmzxlkgk because it has less than clip_size (16) frames (1).
+Skipping video DFDC_Fake_wcoljjbiyd because it has less than clip_size (16) frames (13).
+Skipping video DFDC_Fake_mcgkwjgwsb because it has less than clip_size (16) frames (11).
+Skipping video DFDC_Fake_hrijskleak because it has less than clip_size (16) frames (4).
+Skipping video DFDC_Fake_bfkjxlcflx because it has less than clip_size (16) frames (11).
+Skipping video DFDC_Fake_mzldnycwvi because it has less than clip_size (16) frames (1).
+Skipping video DFDC_Fake_szkejtkgqq because it has less than clip_size (16) frames (7).
+Skipping video DFDC_Fake_dnndknhuuv because it has less than clip_size (16) frames (10).
+Skipping video DFDC_Fake_gowytswfqh because it has less than clip_size (16) frames (6).
+Skipping video DFDC_Fake_ikgvwddrng because it has less than clip_size (16) frames (7).
+Skipping video CelebDFv2_real_id10_0001 because it has less than clip_size (16) frames (3).
+Skipping video CelebDFv2_fake_id10_id7_0001 because it has less than clip_size (16) frames (13).
+64
+pretrained ./training/pretrained/I3D_8x8_R50.pth
+loading pretrained model from ./training/pretrained/I3D_8x8_R50.pth
+1 replace model.s1.pathway0_stem.conv: Conv3d(3, 64, kernel_size=(5, 7, 7), stride=(1, 2, 2), padding=(2, 3, 3), bias=False) with Conv3d(3, 64, kernel_size=(5, 1, 1), stride=(1, 1, 1), padding=(2, 0, 0), bias=False)
+stride 1 replace model.s1.pathway0_stem.bn: Sequential(
+  (0): BatchNorm3d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (1): MaxPool3d(kernel_size=(1, 2, 2), stride=(1, 2, 2), padding=0, dilation=1, ceil_mode=False)
+)
+2 replace model.s2.pathway0_res0.branch2.b: Conv3d(64, 64, kernel_size=(1, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1), bias=False) with Conv3d(64, 64, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+3 replace model.s2.pathway0_res1.branch2.b: Conv3d(64, 64, kernel_size=(1, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1), bias=False) with Conv3d(64, 64, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+4 replace model.s2.pathway0_res2.branch2.b: Conv3d(64, 64, kernel_size=(1, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1), bias=False) with Conv3d(64, 64, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+5 replace model.s3.pathway0_res0.branch1: Conv3d(256, 512, kernel_size=(1, 1, 1), stride=(1, 2, 2), bias=False) with Conv3d(256, 512, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+stride 2 replace model.s3.pathway0_res0.branch1_bn: Sequential(
+  (0): BatchNorm3d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (1): MaxPool3d(kernel_size=(1, 2, 2), stride=(1, 2, 2), padding=0, dilation=1, ceil_mode=False)
+)
+6 replace model.s3.pathway0_res0.branch2.b: Conv3d(128, 128, kernel_size=(1, 3, 3), stride=(1, 2, 2), padding=(0, 1, 1), bias=False) with Conv3d(128, 128, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+stride 3 replace model.s3.pathway0_res0.branch2.b_bn: Sequential(
+  (0): BatchNorm3d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (1): MaxPool3d(kernel_size=(1, 2, 2), stride=(1, 2, 2), padding=0, dilation=1, ceil_mode=False)
+)
+7 replace model.s3.pathway0_res1.branch2.b: Conv3d(128, 128, kernel_size=(1, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1), bias=False) with Conv3d(128, 128, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+8 replace model.s3.pathway0_res2.branch2.b: Conv3d(128, 128, kernel_size=(1, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1), bias=False) with Conv3d(128, 128, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+9 replace model.s3.pathway0_res3.branch2.b: Conv3d(128, 128, kernel_size=(1, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1), bias=False) with Conv3d(128, 128, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+10 replace model.s4.pathway0_res0.branch1: Conv3d(512, 1024, kernel_size=(1, 1, 1), stride=(1, 2, 2), bias=False) with Conv3d(512, 1024, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+stride 4 replace model.s4.pathway0_res0.branch1_bn: Sequential(
+  (0): BatchNorm3d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (1): MaxPool3d(kernel_size=(1, 2, 2), stride=(1, 2, 2), padding=0, dilation=1, ceil_mode=False)
+)
+11 replace model.s4.pathway0_res0.branch2.b: Conv3d(256, 256, kernel_size=(1, 3, 3), stride=(1, 2, 2), padding=(0, 1, 1), bias=False) with Conv3d(256, 256, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+stride 5 replace model.s4.pathway0_res0.branch2.b_bn: Sequential(
+  (0): BatchNorm3d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (1): MaxPool3d(kernel_size=(1, 2, 2), stride=(1, 2, 2), padding=0, dilation=1, ceil_mode=False)
+)
+12 replace model.s4.pathway0_res1.branch2.b: Conv3d(256, 256, kernel_size=(1, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1), bias=False) with Conv3d(256, 256, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+13 replace model.s4.pathway0_res2.branch2.b: Conv3d(256, 256, kernel_size=(1, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1), bias=False) with Conv3d(256, 256, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+14 replace model.s4.pathway0_res3.branch2.b: Conv3d(256, 256, kernel_size=(1, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1), bias=False) with Conv3d(256, 256, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+15 replace model.s4.pathway0_res4.branch2.b: Conv3d(256, 256, kernel_size=(1, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1), bias=False) with Conv3d(256, 256, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+16 replace model.s4.pathway0_res5.branch2.b: Conv3d(256, 256, kernel_size=(1, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1), bias=False) with Conv3d(256, 256, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+17 replace model.s5.pathway0_res0.branch1: Conv3d(1024, 2048, kernel_size=(1, 1, 1), stride=(1, 2, 2), bias=False) with Conv3d(1024, 2048, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+stride 6 replace model.s5.pathway0_res0.branch1_bn: Sequential(
+  (0): BatchNorm3d(2048, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (1): MaxPool3d(kernel_size=(1, 2, 2), stride=(1, 2, 2), padding=0, dilation=1, ceil_mode=False)
+)
+18 replace model.s5.pathway0_res0.branch2.b: Conv3d(512, 512, kernel_size=(1, 3, 3), stride=(1, 2, 2), padding=(0, 1, 1), bias=False) with Conv3d(512, 512, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+stride 7 replace model.s5.pathway0_res0.branch2.b_bn: Sequential(
+  (0): BatchNorm3d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (1): MaxPool3d(kernel_size=(1, 2, 2), stride=(1, 2, 2), padding=0, dilation=1, ceil_mode=False)
+)
+19 replace model.s5.pathway0_res1.branch2.b: Conv3d(512, 512, kernel_size=(1, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1), bias=False) with Conv3d(512, 512, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+20 replace model.s5.pathway0_res2.branch2.b: Conv3d(512, 512, kernel_size=(1, 3, 3), stride=(1, 1, 1), padding=(0, 1, 1), bias=False) with Conv3d(512, 512, kernel_size=(1, 1, 1), stride=(1, 1, 1), bias=False)
+{'dim': 1024, 'depth': 1, 'heads': 16, 'mlp_dim': 2048, 'dropout': 0.1, 'emb_dropout': 0.1}
+  0%|          | 0/891 [00:00<?, ?it/s]  0%|          | 0/891 [00:01<?, ?it/s]
+Traceback (most recent call last):
+  File "training/train.py", line 341, in <module>
+    main()
+  File "training/train.py", line 323, in main
+    test_data_loaders=test_data_loaders,
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/trainer/trainer.py", line 246, in train_epoch
+    losses,predictions=self.train_step(data_dict)
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/trainer/trainer.py", line 200, in train_step
+    predictions = self.model(data_dict)
+  File "/root/autodl-tmp/miniconda3/envs/DeepfakeBench/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/detectors/ftcn_detector.py", line 212, in forward
+    prob, features = self.features(data_dict)
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/detectors/ftcn_detector.py", line 187, in features
+    pred, video_level_features = self.resnet(inputs)
+  File "/root/autodl-tmp/miniconda3/envs/DeepfakeBench/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/detectors/utils/slowfast/models/video_model_builder.py", line 561, in forward
+    x = self.s1(x)
+  File "/root/autodl-tmp/miniconda3/envs/DeepfakeBench/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/detectors/utils/slowfast/models/stem_helper.py", line 98, in forward
+    x[pathway] = m(x[pathway])
+  File "/root/autodl-tmp/miniconda3/envs/DeepfakeBench/lib/python3.7/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/detectors/utils/slowfast/models/stem_helper.py", line 174, in forward
+    x = self.conv(x)
+  File "/root/autodl-tmp/miniconda3/envs/DeepfakeBench/lib/python3.7/site-packages/torch/nn/modu  4%|▍         | 39/891 [00:40<15:52,  1.12s/it]  4%|▍         | 40/891 [00:41<14:25,  1.02s/it]  5%|▍         | 41/891 [00:42<13:23,  1.06it/s]  5%|▍         | 42/891 [00:43<12:41,  1.12it/s]  5%|▍         | 43/891 [00:44<12:12,  1.16it/s]  5%|▍         | 44/891 [00:44<11:52,  1.19it/s]  5%|▌         | 45/891 [00:45<11:38,  1.21it/s]  5%|▌         | 46/891 [00:46<11:26,  1.23it/s]  5%|▌         | 47/891 [00:47<11:19,  1.24it/s]  5%|▌         | 48/891 [00:48<11:14,  1.25it/s]  5%|▌         | 49/891 [00:48<11:11,  1.25it/s]  6%|▌         | 50/891 [00:49<11:08,  1.26it/s]  6%|▌         | 51/891 [00:50<11:05,  1.26it/s]  6%|▌         | 52/891 [00:51<11:03,  1.27it/s]  6%|▌         | 53/891 [00:51<11:02,  1.27it/s]  6%|▌         | 54/891 [00:52<11:01,  1.27it/s]  6%|▌         | 55/891 [00:53<11:01,  1.26it/s]  6%|▋         | 56/891 [00:54<11:00,  1.26it/s]  6%|▋         | 57/891 [00:55<10:59,  1.27it/s]  7%|▋         | 58/891 [00:55<10:58,  1.26it/s]  7%|▋         | 59/891 [00:56<10:58,  1.26it/s]  7%|▋         | 60/891 [00:57<10:56,  1.27it/s]  7%|▋         | 61/891 [00:58<10:56,  1.26it/s]  7%|▋         | 62/891 [00:59<10:55,  1.26it/s]  7%|▋         | 63/891 [00:59<10:55,  1.26it/s]  7%|▋         | 64/891 [01:00<10:56,  1.26it/s]  7%|▋         | 65/891 [01:01<10:56,  1.26it/s]  7%|▋         | 66/891 [01:02<10:54,  1.26it/s]  8%|▊         | 67/891 [01:03<10:53,  1.26it/s]  8%|▊         | 68/891 [01:03<10:53,  1.26it/s]  8%|▊         | 69/891 [01:04<10:51,  1.26it/s]  8%|▊         | 70/891 [01:05<10:50,  1.26it/s]  8%|▊         | 71/891 [01:06<10:50,  1.26it/s]  8%|▊         | 72/891 [01:07<10:48,  1.26it/s]  8%|▊         | 73/891 [01:07<10:46,  1.27it/s]  8%|▊         | 74/891 [01:08<10:45,  1.27it/s]  8%|▊         | 75/891 [01:09<10:46,  1.26it/s]  9%|▊         | 76/891 [01:10<10:45,  1.26it/s]  9%|▊         | 77/891 [01:10<10:44,  1.26it/s]  9%|▉         | 78/891 [01:11<10:43,  1.26it/s]  9%|▉         | 79/891 [01:12<10:42,  1.26it/s]  9%|▉         | 80/891 [01:13<10:41,  1.26it/s]  9%|▉         | 81/891 [01:14<10:40,  1.27it/s]  9%|▉         | 82/891 [01:14<10:38,  1.27it/s]  9%|▉         | 83/891 [01:15<10:37,  1.27it/s]  9%|▉         | 84/891 [01:16<10:37,  1.27it/s] 10%|▉         | 85/891 [01:17<10:37,  1.26it/s] 10%|▉         | 86/891 [01:18<10:35,  1.27it/s] 10%|▉         | 87/891 [01:18<10:35,  1.27it/s] 10%|▉         | 88/891 [01:19<10:34,  1.27it/s] 10%|▉         | 89/891 [01:20<10:33,  1.27it/s] 10%|█         | 90/891 [01:21<10:33,  1.27it/s] 10%|█         | 91/891 [01:22<10:32,  1.27it/s] 10%|█         | 92/891 [01:22<10:31,  1.27it/s] 10%|█         | 93/891 [01:23<10:30,  1.26it/s] 11%|█         | 94/891 [01:24<10:30,  1.26it/s] 11%|█         | 95/891 [01:25<10:29,  1.26it/s] 11%|█         | 96/891 [01:25<10:28,  1.26it/s] 11%|█         | 97/891 [01:26<10:28,  1.26it/s] 11%|█         | 98/891 [01:27<10:27,  1.26it/s] 11%|█         | 99/891 [01:28<10:27,  1.26it/s] 11%|█         | 100/891 [01:29<10:26,  1.26it/s] 11%|█▏        | 101/891 [01:29<10:25,  1.26it/s] 11%|█▏        | 102/891 [01:30<10:23,  1.27it/s] 12%|█▏        | 103/891 [01:31<10:22,  1.27it/s] 12%|█▏        | 104/891 [01:32<10:22,  1.26it/s] 12%|█▏        | 105/891 [01:33<10:22,  1.26it/s] 12%|█▏        | 106/891 [01:33<10:23,  1.26it/s] 12%|█▏        | 107/891 [01:34<10:21,  1.26it/s] 12%|█▏        | 108/891 [01:35<10:20,  1.26it/s] 12%|█▏        | 109/891 [01:36<10:18,  1.26it/s] 12%|█▏        | 110/891 [01:37<10:18,  1.26it/s] 12%|█▏        | 111/891 [01:37<10:17,  1.26it/s] 13%|█▎        | 112/891 [01:38<10:16,  1.26it/s] 13%|█▎        | 113/891 [01:39<10:15,  1.26it/s] 13%|█▎        | 114/891 [01:40<10:14,  1.26it/s] 13%|█▎        | 115/891 [01:41<10:13,  1.27it/s] 13%|█▎        | 116/891 [01:41<10:11,  1.27it/s] 13%|█▎        | 117/891 [01:42<10:10,  1.27it/s] 13%|█▎        | 118/891 [01:43<10:10,  1.27it/s] 13%|█▎        | 119/891 [01:44<10:10,  1.26it/s] 13%|█▎        | 120/891 [01:44<10:10,  1.26it/s] 14%|█▎        | 121/891 [01:45<10:09,  1.26it/s] 14%|█▎        | 122/891 [01:46<10:09,  1.26it/s] 14%|█▍        | 123/891 [01:47<10:09,  1.26it/s] 14%|█▍        | 124/891 [01:48<10:07,  1.26it/s] 14%|█▍        | 125/891 [01:48<10:06,  1.26it/s] 14%|█▍        | 126/891 [01:49<10:06,  1.26it/s] 14%|█▍        | 127/891 [01:50<10:05,  1.26it/s] 14%|█▍        | 128/891 [01:51<10:04,  1.26it/s] 14%|█▍        | 129/891 [01:52<10:03,  1.26it/s] 15%|█▍        | 130/891 [01:52<10:02,  1.26it/s] 15%|█▍        | 131/891 [01:53<10:01,  1.26it/s] 15%|█▍        | 132/891 [01:54<10:01,  1.26it/s] 15%|█▍        | 133/891 [01:55<10:00,  1.26it/s] 15%|█▌        | 134/891 [01:56<09:59,  1.26it/s] 15%|█▌        | 135/891 [01:56<09:58,  1.26it/s] 15%|█▌        | 136/891 [01:57<09:58,  1.26it/s] 15%|█▌        | 137/891 [01:58<09:57,  1.26it/s] 15%|█▌        | 138/891 [01:59<09:56,  1.26it/s] 16%|█▌        | 139/891 [02:00<09:57,  1.26it/s] 16%|█▌        | 140/891 [02:00<09:55,  1.26it/s] 16%|█▌        | 141/891 [02:01<09:55,  1.26it/s] 16%|█▌        | 142/891 [02:02<09:54,  1.26it/s] 16%|█▌        | 143/891 [02:03<09:53,  1.26it/s] 16%|█▌        | 144/891 [02:04<09:52,  1.26it/s] 16%|█▋        | 145/891 [02:04<09:51,  1.26it/s] 16%|█▋        | 146/891 [02:05<09:50,  1.26it/s] 16%|█▋        | 147/891 [02:06<09:50,  1.26it/s] 17%|█▋        | 148/891 [02:07<09:49,  1.26it/s] 17%|█▋        | 149/891 [02:07<09:47,  1.26it/s] 17%|█▋        | 150/891 [02:08<09:48,  1.26it/s] 17%|█▋        | 151/891 [02:09<09:49,  1.26it/s] 17%|█▋        | 152/891 [02:10<09:47,  1.26it/s] 17%|█▋        | 153/891 [02:11<09:47,  1.26it/s] 17%|█▋        | 154/891 [02:11<09:46,  1.26it/s] 17%|█▋        | 155/891 [02:12<09:45,  1.26it/s] 18%|█▊        | 156/891 [02:13<09:44,  1.26it/s] 18%|█▊        | 157/891 [02:14<09:43,  1.26it/s] 18%|█▊        | 158/891 [02:15<09:42,  1.26it/s] 18%|█▊        | 159/891 [02:15<09:40,  1.26it/s] 18%|█▊        | 160/891 [02:16<09:39,  1.26it/s] 18%|█▊        | 161/891 [02:17<09:39,  1.26it/s] 18%|█▊        | 162/891 [02:18<09:38,  1.26it/s] 18%|█▊        | 163/891 [02:19<09:36,  1.26it/s] 18%|█▊        | 164/891 [02:19<09:35,  1.26it/s] 19%|█▊        | 165/891 [02:20<09:34,  1.26it/s] 19%|█▊        | 166/891 [02:21<09:33,  1.26it/s] 19%|█▊        | 167/891 [02:22<09:33,  1.26it/s] 19%|█▉        | 168/891 [02:23<09:32,  1.26it/s] 19%|█▉        | 169/891 [02:23<09:32,  1.26it/s] 19%|█▉        | 170/891 [02:24<09:32,  1.26it/s] 19%|█▉        | 171/891 [02:25<09:31,  1.26it/s] 19%|█▉        | 172/891 [02:26<09:30,  1.26it/s] 19%|█▉        | 173/891 [02:27<09:29,  1.26it/s] 20%|█▉        | 174/891 [02:27<09:29,  1.26it/s] 20%|█▉        | 175/891 [02:28<09:28,  1.26it/s] 20%|█▉        | 176/891 [02:29<09:27,  1.26it/s] 20%|█▉        | 177/891 [02:30<09:25,  1.26it/s] 20%|█▉        | 178/891 [02:30<09:25,  1.26it/s] 20%|██        | 179/891 [02:31<09:24,  1.26it/s] 20%|██        | 180/891 [02:32<09:24,  1.26it/s] 20%|██        | 181/891 [02:33<09:23,  1.26it/s] 20%|██        | 182/891 [02:34<09:22,  1.26it/s] 21%|██        | 183/891 [02:34<09:21,  1.26it/s] 21%|██        | 184/891 [02:35<09:21,  1.26it/s] 21%|██        | 185/891 [02:36<09:20,  1.26it/s] 21%|██        | 186/891 [02:37<09:33,  1.23it/s] 21%|██        | 187/891 [02:38<09:27,  1.24it/s] 21%|██        | 188/891 [02:38<09:25,  1.24it/s] 21%|██        | 189/891 [02:39<09:22,  1.25it/s] 21%|██▏       | 190/891 [02:40<09:19,  1.25it/s] 21%|██▏       | 191/891 [02:41<09:17,  1.26it/s] 22%|██▏       | 192/891 [02:42<09:15,  1.26it/s] 22%|██▏       | 193/891 [02:42<09:14,  1.26it/s] 22%|██▏       | 194/891 [02:43<09:13,  1.26it/s] 22%|██▏       | 195/891 [02:44<09:13,  1.26it/s] 22%|██▏       | 196/891 [02:45<09:12,  1.26it/s] 22%|██▏       | 197/891 [02:46<09:12,  1.26it/s] 22%|██▏       | 198/891 [02:46<09:12,  1.26it/s] 22%|██▏       | 199/891 [02:47<09:12,  1.25it/s] 22%|██▏       | 200/891 [02:48<09:11,  1.25it/s] 23%|██▎       | 201/891 [02:49<09:08,  1.26it/s] 23%|██▎       | 202/891 [02:50<09:05,  1.26it/s] 23%|██▎       | 203/891 [02:50<09:05,  1.26it/s] 23%|██▎       | 204/891 [02:51<09:04,  1.26it/s] 23%|██▎       | 205/891 [02:52<09:04,  1.26it/s] 23%|██▎       | 206/891 [02:53<09:02,  1.26it/s] 23%|██▎       | 207/891 [02:54<09:02,  1.26it/s] 23%|██▎       | 208/891 [02:54<09:02,  1.26it/s] 23%|██▎       | 209/891 [02:55<09:02,  1.26it/s] 24%|██▎       | 210/891 [02:56<09:00,  1.26it/s] 24%|██▎       | 211/891 [02:57<09:00,  1.26it/s] 24%|██▍       | 212/891 [02:58<08:58,  1.26it/s] 24%|██▍       | 213/891 [02:58<08:58,  1.26it/s] 24%|██▍       | 214/891 [02:59<08:58,  1.26it/s] 24%|██▍       | 215/891 [03:00<08:58,  1.26it/s] 24%|██▍       | 216/891 [03:01<08:56,  1.26it/s] 24%|██▍       | 217/891 [03:02<08:54,  1.26it/s] 24%|██▍       | 218/891 [03:02<08:53,  1.26it/s] 25%|██▍       | 219/891 [03:03<08:52,  1.26it/s] 25%|██▍       | 220/891 [03:04<08:51,  1.26it/s] 25%|██▍       | 221/891 [03:05<08:51,  1.26it/s] 25%|██▍       | 222/891 [03:05<08:49,  1.26it/s] 25%|██▌       | 223/891 [03:06<08:48,  1.26it/s] 25%|██▌       | 224/891 [03:07<08:48,  1.26it/s] 25%|██▌       | 225/891 [03:08<08:47,  1.26it/s] 25%|██▌       | 226/891 [03:09<08:46,  1.26it/s] 25%|██▌       | 227/891 [03:09<08:46,  1.26it/s] 26%|██▌       | 228/891 [03:10<09:07,  1.21it/s] 26%|██▌       | 229/891 [03:11<09:20,  1.18it/s] 26%|██▌       | 230/891 [03:12<09:44,  1.13it/s] 26%|██▌       | 231/891 [03:13<09:54,  1.11it/s] 26%|██▌       | 232/891 [03:14<09:52,  1.11it/s] 26%|██▌       | 233/891 [03:15<09:32,  1.15it/s] 26%|██▋       | 234/891 [03:16<09:16,  1.18it/s] 26%|██▋       | 235/891 [03:16<09:05,  1.20it/s] 26%|██▋       | 236/891 [03:17<08:57,  1.22it/s] 27%|██▋       | 237/891 [03:18<08:50,  1.23it/s] 27%|██▋       | 238/891 [03:19<08:46,  1.24it/s] 27%|██▋       | 239/891 [03:20<08:43,  1.25it/s] 27%|██▋       | 240/891 [03:20<08:41,  1.25it/s] 27%|██▋       | 241/891 [03:21<08:38,  1.25it/s] 27%|██▋       | 242/891 [03:22<08:37,  1.25it/s] 27%|██▋       | 243/891 [03:23<08:37,  1.25it/s] 27%|██▋       | 244/891 [03:24<08:36,  1.25it/s] 27%|██▋       | 245/891 [03:24<08:35,  1.25it/s] 28%|██▊       | 246/891 [03:25<08:34,  1.25it/s] 28%|██▊       | 247/891 [03:26<08:32,  1.26it/s] 28%|██▊       | 248/891 [03:27<08:32,  1.26it/s] 28%|██▊       | 249/891 [03:28<08:30,  1.26it/s] 28%|██▊       | 250/891 [03:28<08:29,  1.26it/s] 28%|██▊       | 251/891 [03:29<08:28,  1.26it/s] 28%|██▊       | 252/891 [03:30<08:27,  1.26it/s] 28%|██▊       | 253/891 [03:31<08:26,  1.26it/s] 29%|██▊       | 254/891 [03:32<08:26,  1.26it/s] 29%|██▊       | 255/891 [03:32<08:25,  1.26it/s] 29%|██▊       | 256/891 [03:33<08:26,  1.25it/s] 29%|██▉       | 257/891 [03:34<08:25,  1.25it/s] 29%|██▉       | 258/891 [03:35<08:24,  1.26it/s] 29%|██▉       | 259/891 [03:36<08:22,  1.26it/s] 29%|██▉       | 260/891 [03:36<08:21,  1.26it/s] 29%|██▉       | 261/891 [03:37<08:20,  1.26it/s] 29%|██▉       | 262/891 [03:38<08:19,  1.26it/s] 30%|██▉       | 263/891 [03:39<08:18,  1.26it/s] 30%|██▉       | 264/891 [03:39<08:17,  1.26it/s] 30%|██▉       | 265/891 [03:40<08:16,  1.26it/s] 30%|██▉       | 266/891 [03:41<08:15,  1.26it/s] 30%|██▉       | 267/891 [03:42<08:14,  1.26it/s] 30%|███       | 268/891 [03:43<08:13,  1.26it/s] 30%|███       | 269/891 [03:43<08:12,  1.26it/s] 30%|███       | 270/891 [03:44<08:14,  1.26it/s] 30%|███       | 271/891 [03:45<08:12,  1.26it/s] 31%|███       | 272/891 [03:46<08:12,  1.26it/s] 31%|███       | 273/891 [03:47<08:11,  1.26it/s] 31%|███       | 274/891 [03:47<08:09,  1.26it/s] 31%|███       | 275/891 [03:48<08:09,  1.26it/s] 31%|███       | 276/891 [03:49<08:08,  1.26it/s] 31%|███       | 277/891 [03:50<08:07,  1.26it/s] 31%|███       | 278/891 [03:51<08:06,  1.26it/s] 31%|███▏      | 279/891 [03:51<08:06,  1.26it/s] 31%|███▏      | 280/891 [03:52<08:05,  1.26it/s] 32%|███▏      | 281/891 [03:53<08:06,  1.25it/s] 32%|███▏      | 282/891 [03:54<08:07,  1.25it/s] 32%|███▏      | 283/891 [03:55<08:07,  1.25it/s] 32%|███▏      | 284/891 [03:55<08:06,  1.25it/s] 32%|███▏      | 285/891 [03:56<08:05,  1.25it/s] 32%|███▏      | 286/891 [03:57<08:03,  1.25it/s] 32%|███▏      | 287/891 [03:58<08:01,  1.25it/s] 32%|███▏      | 288/891 [03:59<08:00,  1.26it/s] 32%|███▏      | 289/891 [03:59<07:58,  1.26it/s] 33%|███▎      | 290/891 [04:00<07:57,  1.26it/s] 33%|███▎      | 291/891 [04:01<07:56,  1.26it/s] 33%|███▎      | 292/891 [04:02<07:55,  1.26it/s] 33%|███▎      | 293/891 [04:03<07:54,  1.26it/s] 33%|███▎      | 294/891 [04:03<07:53,  1.26it/s] 33%|███▎      | 295/891 [04:04<07:53,  1.26it/s] 33%|███▎      | 296/891 [04:05<07:52,  1.26it/s] 33%|███▎      | 297/891 [04:06<07:52,  1.26it/s] 33%|███▎      | 298/891 [04:07<07:51,  1.26it/s] 34%|███▎      | 299/891 [04:07<07:51,  1.26it/s] 34%|███▎      | 300/891 [04:08<07:49,  1.26it/s]2025-05-17 18:45:57,135 - INFO - Iter: 300    training-loss, overall: 0.5289121270179749    
+2025-05-17 18:45:57,136 - INFO - Iter: 300    training-metric, acc: 0.19916666666666666    training-metric, auc: 0.5092394447657608    training-metric, eer: 0.48252361673414307    training-metric, ap: 0.856495332577476    
+ 34%|███▍      | 301/891 [04:09<08:29,  1.16it/s] 34%|███▍      | 302/891 [04:10<08:17,  1.18it/s] 34%|███▍      | 303/891 [04:11<08:08,  1.20it/s] 34%|███▍      | 304/891 [04:12<08:02,  1.22it/s] 34%|███▍      | 305/891 [04:12<07:57,  1.23it/s] 34%|███▍      | 306/891 [04:13<07:53,  1.24it/s] 34%|███▍      | 307/891 [04:14<07:49,  1.24it/s] 35%|███▍      | 308/891 [04:15<07:48,  1.24it/s]

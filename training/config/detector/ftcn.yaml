@@ -2,7 +2,7 @@
 log_dir: /Youtu_Pangu_Security_Public/youtu-pangu-public/zhiyuanyan/logs/benchv2/ftcn
 
 # model setting
-pretrained: ../torch_ckpts/I3D_8x8_R50.pth   # path to a pre-trained model, if using one
+pretrained: ./training/pretrained/I3D_8x8_R50.pth   # path to a pre-trained model, if using one
 model_name: ftcn   # model name
 backbone_name: xception  # backbone name
 

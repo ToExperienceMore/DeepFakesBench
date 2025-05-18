@@ -1,0 +1,2 @@
+type: swin3d
+pretrained_weights: path/to/pretrained.pth  # 如有可选

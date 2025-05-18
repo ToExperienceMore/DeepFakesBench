@@ -3,7 +3,7 @@ log_dir: /data/home/zhiyuanyan/DeepfakeBench/logs_debug/video_baseline
 
 # model setting
 pretrained: /data/home/zhiyuanyan/DeepfakeBench/training/pretrained/xception-b5690688.pth   # path to a pre-trained model, if using one
-model_name: video_baseline   # model name
+model_name: videomae # model name
 backbone_name: null  # backbone name
 
 #backbone setting
