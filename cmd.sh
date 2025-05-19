@@ -1,6 +1,9 @@
-#weight=./training/weights/xception_best.pth
+weight=./training/weights/xception_best.pth
+#test_list=/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/ssl_vits_df/val_list-n.txt
+#test_list=/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/ssl_vits_df/test_lists/FaceForensics++_test_list.txt
+test_list=/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/ssl_vits_df/Py_data/ForgeryNet_test_list.txt
 #weight=./logs/training/xception_2025-05-15-05-13-08/test/avg/ckpt_best.pth
-weight=./logs/training/xception_2025-05-15-05-13-08/test/avg/ckpt_best.pth
+#weight=./logs/training/xception_2025-05-15-05-13-08/test/avg/ckpt_best.pth
 
 #weight=./logs/training/efficientnetb0_2025-05-15-07-10-51/test/avg/ckpt_best.pth
 #timesformer
@@ -38,5 +41,16 @@ set -x
 
 #FaceForensics++, FF-F2F, FF-DF, FF-FS, FF-NT, FaceShifter, DeepFakeDetection, Celeb-DF-v1, Celeb-DF-v2, DFDCP, DFDC, DeeperForensics-1.0, UADFV
 #DFDC, FaceForensics++, FF-F2F, FF-DF, FF-FS, FF-NT, FaceShifter, DeepFakeDetection, Celeb-DF-v2, , UADFV
-python3 training/test.py --detector_path $config --test_dataset  "FaceForensics++" --weights_path $weight
+#python3 training/test.py --detector_path $config --test_dataset  "FaceForensics++" --weights_path $weight
 #python3 training/test.py --detector_path $config --test_dataset  "FMFCC-V" "UADFV" "Celeb-DF-v2" "DeepFakeDetection" "FF-F2F" "FF-DF" "FF-FS" "FF-NT" "FaceShifter" --weights_path $weight
+
+#python3 training/test.py --detector_path $config --test_dataset  "FaceForensics++" --weights_path $weight
+
+# 示例命令
+
+python3 training/test2.py \
+    --detector_path $config \
+    --test_list $test_list \
+    --weights_path $weight
+
+#--data_dir /root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/datasets/rgb/FaceForensics++

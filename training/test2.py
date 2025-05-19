@@ -1,0 +1,230 @@
+"""
+eval pretained model.
+"""
+import os
+import numpy as np
+from os.path import join
+import cv2
+import random
+import datetime
+import time
+import yaml
+import pickle
+from tqdm import tqdm
+from copy import deepcopy
+from PIL import Image as pil_image
+from metrics.utils import get_test_metrics
+import torch
+import torch.nn as nn
+import torch.nn.parallel
+import torch.backends.cudnn as cudnn
+import torch.nn.functional as F
+import torch.utils.data
+import torch.optim as optim
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.metrics import confusion_matrix
+
+from dataset.test_dataset import TestDataset
+from trainer.trainer import Trainer
+from detectors import DETECTOR
+from metrics.base_metrics_class import Recorder
+from collections import defaultdict
+
+import argparse
+from logger import create_logger
+
+parser = argparse.ArgumentParser(description='Process some paths.')
+parser.add_argument('--detector_path', type=str, 
+                    default='/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/config/detector/resnet34.yaml',
+                    help='path to detector YAML file')
+parser.add_argument('--test_list', type=str, required=True,
+                    help='path to test list file')
+parser.add_argument('--weights_path', type=str, 
+                    default='/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/FaceForensics++/ckpt_epoch_9_best.pth')
+args = parser.parse_args()
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+def init_seed(config):
+    if config['manualSeed'] is None:
+        config['manualSeed'] = random.randint(1, 10000)
+    random.seed(config['manualSeed'])
+    torch.manual_seed(config['manualSeed'])
+    if config['cuda']:
+        torch.cuda.manual_seed_all(config['manualSeed'])
+
+
+def prepare_testing_data(config):
+    def get_test_data_loader(config):
+        # 使用 TestDataset 替代 DeepfakeAbstractBaseDataset
+        test_set = TestDataset(
+                config=config,
+                mode='test', 
+            )
+        test_data_loader = \
+            torch.utils.data.DataLoader(
+                dataset=test_set, 
+                batch_size=config['test_batchSize'],
+                shuffle=False, 
+                num_workers=int(config['workers']),
+                collate_fn=test_set.collate_fn,
+                drop_last=False
+            )
+        return test_data_loader
+
+    # 只返回一个数据加载器
+    return get_test_data_loader(config)
+
+
+def choose_metric(config):
+    metric_scoring = config['metric_scoring']
+    if metric_scoring not in ['eer', 'auc', 'acc', 'ap']:
+        raise NotImplementedError('metric {} is not implemented'.format(metric_scoring))
+    return metric_scoring
+
+
+def test_one_dataset(model, data_loader):
+    prediction_lists = []
+    feature_lists = []
+    label_lists = []
+    for i, data_dict in tqdm(enumerate(data_loader), total=len(data_loader)):
+        # get data
+        data, label, mask, landmark = \
+        data_dict['image'], data_dict['label'], data_dict['mask'], data_dict['landmark']
+        label = torch.where(data_dict['label'] != 0, 1, 0)
+        # move data to GPU
+        data_dict['image'], data_dict['label'] = data.to(device), label.to(device)
+        if mask is not None:
+            data_dict['mask'] = mask.to(device)
+        if landmark is not None:
+            data_dict['landmark'] = landmark.to(device)
+
+        # model forward without considering gradient computation
+        predictions = inference(model, data_dict)
+        label_lists += list(data_dict['label'].cpu().detach().numpy())
+        prediction_lists += list(predictions['prob'].cpu().detach().numpy())
+
+    # 将预测概率转换为二分类标签（阈值0.5）
+    pred_labels = (np.array(prediction_lists) > 0.5).astype(int)
+    true_labels = np.array(label_lists)
+    
+    # 计算混淆矩阵
+    cm = confusion_matrix(true_labels, pred_labels)
+    
+    # 创建混淆矩阵可视化
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+                xticklabels=['Real', 'Fake'],
+                yticklabels=['Real', 'Fake'])
+    plt.title('Confusion Matrix')
+    plt.ylabel('True Label')
+    plt.xlabel('Predicted Label')
+    
+    # 创建保存目录
+    save_dir = 'confusion_matrices'
+    os.makedirs(save_dir, exist_ok=True)
+    
+    # 保存混淆矩阵图
+    plt.savefig(os.path.join(save_dir, 'confusion_matrix.png'))
+    plt.close()
+    
+    return np.array(prediction_lists), np.array(label_lists)
+    
+def test_epoch(model, test_data_loader):
+    # set model to eval mode
+    model.eval()
+
+    # define test recorder
+    metrics = {}
+
+    # testing
+    data_dict = test_data_loader.dataset.data_dict
+    predictions_nps, label_nps = test_one_dataset(model, test_data_loader)
+    
+    # 计算并打印混淆矩阵的详细指标
+    pred_labels = (predictions_nps > 0.5).astype(int)
+    cm = confusion_matrix(label_nps, pred_labels)
+    tn, fp, fn, tp = cm.ravel()
+    
+    # 计算额外指标
+    accuracy = (tp + tn) / (tp + tn + fp + fn)
+    precision = tp / (tp + fp) if (tp + fp) > 0 else 0
+    recall = tp / (tp + fn) if (tp + fn) > 0 else 0
+    f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
+    
+    # 打印详细指标
+    tqdm.write("\nDetailed metrics:")
+    tqdm.write(f"True Negatives (Real classified as Real): {tn}")
+    tqdm.write(f"False Positives (Real classified as Fake): {fp}")
+    tqdm.write(f"False Negatives (Fake classified as Real): {fn}")
+    tqdm.write(f"True Positives (Fake classified as Fake): {tp}")
+    tqdm.write(f"Accuracy: {accuracy:.4f}")
+    tqdm.write(f"Precision: {precision:.4f}")
+    tqdm.write(f"Recall: {recall:.4f}")
+    tqdm.write(f"F1 Score: {f1:.4f}")
+    
+    # compute metric
+    metric = get_test_metrics(y_pred=predictions_nps, y_true=label_nps,
+                              img_names=data_dict['image'])
+    metrics.update(metric)
+    
+    # info
+    for k, v in metric.items():
+        tqdm.write(f"{k}: {v}")
+
+    return metrics
+
+@torch.no_grad()
+def inference(model, data_dict):
+    predictions = model(data_dict, inference=True)
+    return predictions
+
+
+def main():
+    # parse options and load config
+    with open(args.detector_path, 'r') as f:
+        config = yaml.safe_load(f)
+    with open('./training/config/test_config.yaml', 'r') as f:
+        config2 = yaml.safe_load(f)
+    config.update(config2)
+    
+    # 添加 test_list 到配置
+    config['test_list'] = args.test_list
+    
+    weights_path = None
+    if args.weights_path:
+        config['weights_path'] = args.weights_path
+        weights_path = args.weights_path
+    
+    # init seed
+    init_seed(config)
+
+    # set cudnn benchmark if needed
+    if config['cudnn']:
+        cudnn.benchmark = True
+
+    # prepare the testing data loader
+    test_data_loader = prepare_testing_data(config)
+    
+    # prepare the model (detector)
+    model_class = DETECTOR[config['model_name']]
+    model = model_class(config).to(device)
+    epoch = 0
+    if weights_path:
+        try:
+            epoch = int(weights_path.split('/')[-1].split('.')[0].split('_')[2])
+        except:
+            epoch = 0
+        ckpt = torch.load(weights_path, map_location=device)
+        model.load_state_dict(ckpt, strict=True)
+        print('===> Load checkpoint done!')
+    else:
+        print('Fail to load the pre-trained weights')
+    
+    # start testing
+    metrics = test_epoch(model, test_data_loader)
+    print('===> Test Done!')
+
+if __name__ == '__main__':
+    main()

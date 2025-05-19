@@ -15,3 +15,4 @@ from .efficientnetb4 import EfficientNetB4
 from .efficientnetb0 import EfficientNetB0
 from .efficientnetv2 import EfficientNetV2
 from .xception_sladd import Xception_SLADD
+from .dino import DINOv2

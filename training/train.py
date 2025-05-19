@@ -282,6 +282,7 @@ def main():
     test_data_loaders = prepare_testing_data(config)
 
     # prepare the model (detector)
+    print("model_name:",config['model_name'])
     model_class = DETECTOR[config['model_name']]
     model = model_class(config)
 

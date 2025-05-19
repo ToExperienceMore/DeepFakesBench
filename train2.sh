@@ -1,4 +1,4 @@
-#config=./training/config/detector/timesformer.yaml
+config=./training/config/detector/timesformer.yaml
 #config=./training/config/detector/efficientnet.yaml
 #config=./training/config/detector/efficientnetv2.yaml
 #config=./training/config/detector/ftcn.yaml
@@ -8,7 +8,8 @@
 #config=./training/config/detector/sbi.yaml
 #config=./training/config/detector/altfreezing.yaml
 #config=./training/config/detector/tall.yaml
-config=./training/config/detector/videomae.yaml
+#config=./training/config/detector/videomae.yaml
+#config=./training/config/detector/tall_video.yaml
 
 #nohup python training/train.py \
 #--detector_path $config \
@@ -29,7 +30,12 @@ config=./training/config/detector/videomae.yaml
 
 set -x
 
-nohup python training/train.py \
+#nohup python training/train.py \
+#--detector_path $config \
+#--train_dataset "FaceForensics++"  \
+#--test_dataset  "DFDC" "Celeb-DF-v2" > train_FaceForensics++_tall_video.log 2>&1 &
+
+python training/train.py \
 --detector_path $config \
 --train_dataset "FaceForensics++"  \
---test_dataset  "DFDC" "Celeb-DF-v2" > train_FaceForensics++_videomae.log 2>&1 &
+--test_dataset  "DFDC"

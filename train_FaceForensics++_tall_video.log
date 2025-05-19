@@ -1,0 +1,98 @@
+2025-05-18 20:02:54,347 - INFO - Save log to ./logs/training/tall_video_2025-05-18-20-02-54
+2025-05-18 20:02:54,347 - INFO - --------------- Configuration ---------------
+2025-05-18 20:02:54,347 - INFO - Parameters: 
+pretrained: True
+model_name: tall_video
+backbone_name: dinov2
+backbone_config: {'num_classes': 2, 'pretrained': True, 'dropout': 0.1}
+dinov2: {'pretrained': True, 'freeze_backbone': True}
+transformer: {'input_dim': 1024, 'hidden_dim': 2048, 'num_layers': 4, 'num_heads': 8, 'dropout': 0.1}
+classifier: {'hidden_dim': 512, 'dropout': 0.1, 'num_classes': 2}
+all_dataset: ['FaceForensics++', 'FF-F2F', 'FF-DF', 'FF-FS', 'FF-NT', 'FaceShifter', 'DeepFakeDetection', 'Celeb-DF-v1', 'Celeb-DF-v2', 'DFDCP', 'DFDC', 'DeeperForensics-1.0', 'UADFV']
+train_dataset: ['FaceForensics++']
+test_dataset: ['DFDC', 'Celeb-DF-v2']
+compression: c23
+train_batchSize: 32
+test_batchSize: 32
+workers: 4
+frame_num: {'train': 32, 'test': 32}
+resolution: 224
+with_mask: False
+with_landmark: False
+video_mode: True
+clip_size: 4
+use_data_augmentation: False
+data_aug: {'flip_prob': 0.5, 'rotate_prob': 0.5, 'rotate_limit': [-10, 10], 'blur_prob': 0.5, 'blur_limit': [3, 7], 'brightness_prob': 0.5, 'brightness_limit': [-0.1, 0.1], 'contrast_limit': [-0.1, 0.1], 'quality_lower': 40, 'quality_upper': 100}
+mean: [0.485, 0.456, 0.406]
+std: [0.229, 0.224, 0.225]
+optimizer: {'type': 'adam', 'adam': {'lr': 2e-05, 'beta1': 0.9, 'beta2': 0.999, 'eps': 1e-08, 'weight_decay': 0.0005, 'amsgrad': False}, 'sgd': {'lr': 0.0002, 'momentum': 0.9, 'weight_decay': 0.0005}}
+lr_scheduler: None
+nEpochs: 100
+start_epoch: 0
+save_epoch: 1
+rec_iter: 100
+logdir: ./logs
+manualSeed: 1024
+save_ckpt: True
+save_feat: True
+loss_func: cross_entropy
+losstype: None
+metric_scoring: auc
+cuda: True
+cudnn: True
+mode: train
+lmdb: False
+dry_run: False
+rgb_dir: ./datasets/rgb
+lmdb_dir: ./datasets/lmdb
+dataset_json_folder: ./preprocessing/dataset_json
+SWA: False
+save_avg: True
+log_dir: ./logs/training/
+label_dict: {'DFD_fake': 1, 'DFD_real': 0, 'FF-SH': 1, 'FF-F2F': 1, 'FF-DF': 1, 'FF-FS': 1, 'FF-NT': 1, 'FF-FH': 1, 'FF-real': 0, 'CelebDFv1_real': 0, 'CelebDFv1_fake': 1, 'CelebDFv2_real': 0, 'CelebDFv2_fake': 1, 'DFDCP_Real': 0, 'DFDCP_FakeA': 1, 'DFDCP_FakeB': 1, 'DFDC_Fake': 1, 'DFDC_Real': 0, 'DF_fake': 1, 'DF_real': 0, 'UADFV_Fake': 1, 'UADFV_Real': 0, 'roop_Real': 0, 'roop_Fake': 1, 'real': 0, 'fake': 1}
+local_rank: 0
+ddp: False
+
+['in_channels', 'out_channels', 'kernel_size', 'stride', 'padding', 'dilation', 'groups', 'bias', 'padding_mode', 'device', 'dtype']
+spatial_count=0 keep_stride_count=0
+Skipping video DFDC_Real_iyfwndboqs because it has less than clip_size (4) frames (3).
+Skipping video DFDC_Real_issioyofmn because it has less than clip_size (4) frames (1).
+Skipping video DFDC_Real_xgtelcltvg because it has less than clip_size (4) frames (1).
+Skipping video DFDC_Real_vytzcppkpg because it has less than clip_size (4) frames (2).
+Skipping video DFDC_Real_nodoppwmyj because it has less than clip_size (4) frames (3).
+Skipping video DFDC_Real_pgbtmrrmrq because it has less than clip_size (4) frames (1).
+Skipping video DFDC_Real_aalscayrfi because it has less than clip_size (4) frames (3).
+Skipping video DFDC_Real_qvpjagljpr because it has less than clip_size (4) frames (3).
+Skipping video DFDC_Real_cemvsipmew because it has less than clip_size (4) frames (1).
+Skipping video DFDC_Real_gdnacoubws because it has less than clip_size (4) frames (2).
+Skipping video DFDC_Real_ejunkkahbw because it has less than clip_size (4) frames (1).
+Skipping video DFDC_Real_snsnifxref because it has less than clip_size (4) frames (3).
+Skipping video DFDC_Real_eppwzalgil because it has less than clip_size (4) frames (1).
+Skipping video DFDC_Real_xnwmohspsh because it has less than clip_size (4) frames (1).
+Skipping video DFDC_Real_pwfhdwzxqm because it has less than clip_size (4) frames (2).
+Skipping video DFDC_Real_igbpkykmrz because it has less than clip_size (4) frames (2).
+Skipping video DFDC_Real_kdiezumwzi because it has less than clip_size (4) frames (2).
+Skipping video DFDC_Real_bzqohcbrip because it has less than clip_size (4) frames (1).
+Skipping video DFDC_Real_nuhvoaxqtn because it has less than clip_size (4) frames (2).
+Skipping video DFDC_Real_ovbvtbmuxo because it has less than clip_size (4) frames (1).
+Skipping video DFDC_Fake_xirozlwlpd because it has less than clip_size (4) frames (1).
+Skipping video DFDC_Fake_noodanjabq because it has less than clip_size (4) frames (1).
+Skipping video DFDC_Fake_ydiydkhofb because it has less than clip_size (4) frames (1).
+Skipping video DFDC_Fake_wpotxtrxtj because it has less than clip_size (4) frames (2).
+Skipping video DFDC_Fake_jqfpwtawdw because it has less than clip_size (4) frames (2).
+Skipping video DFDC_Fake_zfbfgatuvk because it has less than clip_size (4) frames (1).
+Skipping video DFDC_Fake_ejhumipcge because it has less than clip_size (4) frames (2).
+Skipping video DFDC_Fake_wxorluvmvm because it has less than clip_size (4) frames (2).
+Skipping video DFDC_Fake_gneonsmngz because it has less than clip_size (4) frames (2).
+Skipping video DFDC_Fake_jarlmlkfam because it has less than clip_size (4) frames (3).
+Skipping video DFDC_Fake_shjmzxlkgk because it has less than clip_size (4) frames (1).
+Skipping video DFDC_Fake_mzldnycwvi because it has less than clip_size (4) frames (1).
+Skipping video CelebDFv2_real_id10_0001 because it has less than clip_size (4) frames (3).
+Traceback (most recent call last):
+  File "training/train.py", line 341, in <module>
+    main()
+  File "training/train.py", line 285, in main
+    model_class = DETECTOR[config['model_name']]
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/metrics/registry.py", line 15, in __getitem__
+    return self.data[key]
+KeyError: 'tall_video'
