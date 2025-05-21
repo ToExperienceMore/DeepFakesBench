@@ -30,6 +30,7 @@ from torchvision import transforms as T
 import albumentations as A
 
 from .albu import IsotropicResize
+from abc import ABC, abstractmethod
 
 FFpp_pool=['FaceForensics++','FaceShifter','DeepFakeDetection','FF-DF','FF-F2F','FF-FS','FF-NT']#
 
@@ -39,106 +40,146 @@ def all_in_pool(inputs,pool):
             return False
     return True
 
-
-class DeepfakeAbstractBaseDataset(data.Dataset):
+class DatasetLoader(ABC):
+    """Abstract base class for dataset loaders.
+    
+    This class defines the interface for loading different types of datasets.
+    Each specific dataset implementation should inherit from this class and
+    implement the collect_img_and_label method.
     """
-    Abstract base class for all deepfake datasets.
-    """
-    def __init__(self, config=None, mode='train'):
-        """Initializes the dataset object.
-
-        Args:
-            config (dict): A dictionary containing configuration parameters.
-            mode (str): A string indicating the mode (train or test).
-
-        Raises:
-            NotImplementedError: If mode is not train or test.
-        """
+    
+    def __init__(self, config, mode):
+        """Initialize the dataset loader.
         
-        # Set the configuration and mode
-        #print("config:",config)
+        Args:
+            config (dict): Configuration dictionary containing dataset parameters
+            mode (str): Mode of operation ('train' or 'test')
+        """
         self.config = config
         self.mode = mode
         self.compression = config['compression']
         self.frame_num = config['frame_num'][mode]
-
-        # Check if 'video_mode' exists in config, otherwise set video_level to False
         self.video_level = config.get('video_mode', False)
         self.clip_size = config.get('clip_size', None)
         self.lmdb = config.get('lmdb', False)
-        # Dataset dictionary
-        self.image_list = []
-        self.label_list = []
+    
+    @abstractmethod
+    def collect_img_and_label(self, dataset_name: str):
+        """Collect image paths and labels for a dataset.
         
-        # Set the dataset dictionary based on the mode
-        if mode == 'train':
-            dataset_list = config['train_dataset']
-            # Training data should be collected together for training
-            image_list, label_list = [], []
-            for one_data in dataset_list:
-                tmp_image, tmp_label, tmp_name = self.collect_img_and_label_for_one_dataset(one_data)
-                image_list.extend(tmp_image)
-                label_list.extend(tmp_label)
-            if self.lmdb:
-                if len(dataset_list)>1:
-                    if all_in_pool(dataset_list,FFpp_pool):
-                        lmdb_path = os.path.join(config['lmdb_dir'], f"FaceForensics++_lmdb")
-                        self.env = lmdb.open(lmdb_path, create=False, subdir=True, readonly=True, lock=False)
-                    else:
-                        raise ValueError('Training with multiple dataset and lmdb is not implemented yet.')
-                else:
-                    lmdb_path = os.path.join(config['lmdb_dir'], f"{dataset_list[0] if dataset_list[0] not in FFpp_pool else 'FaceForensics++'}_lmdb")
-                    self.env = lmdb.open(lmdb_path, create=False, subdir=True, readonly=True, lock=False)
-        elif mode == 'test':
-            one_data = config['test_dataset']
-            # Test dataset should be evaluated separately. So collect only one dataset each time
-            image_list, label_list, name_list = self.collect_img_and_label_for_one_dataset(one_data)
-            if self.lmdb:
-                lmdb_path = os.path.join(config['lmdb_dir'], f"{one_data}_lmdb" if one_data not in FFpp_pool else 'FaceForensics++_lmdb')
-                self.env = lmdb.open(lmdb_path, create=False, subdir=True, readonly=True, lock=False)
+        Args:
+            dataset_name (str): Name of the dataset to load
+            
+        Returns:
+            tuple: (frame_path_list, label_list, video_name_list)
+                - frame_path_list: List of paths to image frames
+                - label_list: List of corresponding labels
+                - video_name_list: List of video names
+        """
+        pass
+    
+    def process_frame_paths(self, frame_paths, total_frames):
+        """Process frame paths based on video level and frame number requirements.
+        
+        Args:
+            frame_paths (list): List of frame paths
+            total_frames (int): Total number of frames
+            
+        Returns:
+            list: Processed frame paths
+        """
+        if self.frame_num < total_frames:
+            if self.video_level:
+                # Select clip_size continuous frames
+                start_frame = random.randint(0, total_frames - self.frame_num) if self.mode == 'train' else 0
+                frame_paths = frame_paths[start_frame:start_frame + self.frame_num]
+            else:
+                # Select self.frame_num frames evenly distributed throughout the video
+                step = total_frames // self.frame_num
+                frame_paths = [frame_paths[i] for i in range(0, total_frames, step)][:self.frame_num]
+        return frame_paths
+    
+    def process_video_level_clips(self, frame_paths, total_frames, unique_video_name):
+        """Process video level clips if video_level is enabled.
+        
+        Args:
+            frame_paths (list): List of frame paths
+            total_frames (int): Total number of frames
+            unique_video_name (str): Unique identifier for the video
+            
+        Returns:
+            tuple: (selected_clips, clip_labels, clip_video_names)
+        """
+        if not self.video_level or total_frames < self.clip_size:
+            return None, None, None
+            
+        selected_clips = []
+        num_clips = total_frames // self.clip_size
+        
+        if num_clips > 1:
+            clip_step = (total_frames - self.clip_size) // (num_clips - 1)
+            for i in range(num_clips):
+                start_frame = random.randrange(i * clip_step, min((i + 1) * clip_step, total_frames - self.clip_size + 1)) if self.mode == 'train' else i * clip_step
+                continuous_frames = frame_paths[start_frame:start_frame + self.clip_size]
+                selected_clips.append(continuous_frames)
         else:
-            raise NotImplementedError('Only train and test modes are supported.')
+            start_frame = random.randrange(0, total_frames - self.clip_size + 1) if self.mode == 'train' else 0
+            continuous_frames = frame_paths[start_frame:start_frame + self.clip_size]
+            selected_clips.append(continuous_frames)
+            
+        return selected_clips, [self.config['label_dict'][label]] * len(selected_clips), [unique_video_name] * len(selected_clips)
 
-        assert len(image_list)!=0 and len(label_list)!=0, f"Collect nothing for {mode} mode!"
-        self.image_list, self.label_list = image_list, label_list
-
-
-        # Create a dictionary containing the image and label lists
-        self.data_dict = {
-            'image': self.image_list, 
-            'label': self.label_list, 
-        }
+class ForgeryDatasetLoader(DatasetLoader):
+    """Default implementation of DatasetLoader for standard datasets."""
+    
+    def collect_img_and_label(self, dataset_name: str):
+        """Collect image and label lists for a standard dataset.
         
-        self.transform = self.init_data_aug_method()
+        Args:
+            dataset_name (str): Name of the dataset to load
+            
+        Returns:
+            tuple: (frame_path_list, label_list, video_name_list)
+        """
+        label_list = []
+        frame_path_list = []
+        video_name_list = []
         
-    def init_data_aug_method(self):
-        trans = A.Compose([           
-            A.HorizontalFlip(p=self.config['data_aug']['flip_prob']),
-            A.Rotate(limit=self.config['data_aug']['rotate_limit'], p=self.config['data_aug']['rotate_prob']),
-            A.GaussianBlur(blur_limit=self.config['data_aug']['blur_limit'], p=self.config['data_aug']['blur_prob']),
-            A.OneOf([                
-                IsotropicResize(max_side=self.config['resolution'], interpolation_down=cv2.INTER_AREA, interpolation_up=cv2.INTER_CUBIC),
-                IsotropicResize(max_side=self.config['resolution'], interpolation_down=cv2.INTER_AREA, interpolation_up=cv2.INTER_LINEAR),
-                IsotropicResize(max_side=self.config['resolution'], interpolation_down=cv2.INTER_LINEAR, interpolation_up=cv2.INTER_LINEAR),
-            ], p = 0 if self.config['with_landmark'] else 1),
-            A.OneOf([
-                A.RandomBrightnessContrast(brightness_limit=self.config['data_aug']['brightness_limit'], contrast_limit=self.config['data_aug']['contrast_limit']),
-                A.FancyPCA(),
-                A.HueSaturationValue()
-            ], p=0.5),
-            A.ImageCompression(quality_lower=self.config['data_aug']['quality_lower'], quality_upper=self.config['data_aug']['quality_upper'], p=0.5)
-        ], 
-            keypoint_params=A.KeypointParams(format='xy') if self.config['with_landmark'] else None
-        )
-        return trans
+        if not os.path.exists(self.config['dataset_json_folder']):
+            raise ValueError(f'dataset_json_folder {self.config["dataset_json_folder"]} not exist!')
+            
+        try:
+            with open(os.path.join(self.config['dataset_json_folder'], dataset_name + '.json'), 'r') as f:
+                dataset_info = json.load(f)
+        except Exception as e:
+            print(e)
+            raise ValueError(f'dataset {dataset_name} not exist!')
+            
+        sub_dataset_info = dataset_info[self.mode]
+            
+        for video_info in sub_dataset_info:
+            file_path = video_info['file_path']
+            binary_cls_label = video_info['binary_cls_label']
+            
+            if not binary_cls_label in [0,1]:
+                raise ValueError(f'Label {video_info["label"]} is not found in the configuration file.')
 
-    def rescale_landmarks(self, landmarks, original_size=256, new_size=224):
-        scale_factor = new_size / original_size
-        rescaled_landmarks = landmarks * scale_factor
-        return rescaled_landmarks
+            if self.mode == 'test' and len(label_list) >= 4000:
+                continue
+            
+            label_list.append(binary_cls_label)
+            frame_path_list.append(file_path)
+                    
+        shuffled = list(zip(label_list, frame_path_list))
+        random.shuffle(shuffled)
+        label_list, frame_path_list = zip(*shuffled)
+        
+        return frame_path_list, label_list, video_name_list
 
-
-    def collect_img_and_label_for_one_dataset(self, dataset_name: str):
+class DefaultDatasetLoader(DatasetLoader):
+    """Default implementation of DatasetLoader for standard datasets."""
+    
+    def collect_img_and_label(self, dataset_name: str):
         """Collects image and label lists.
 
         Args:
@@ -280,6 +321,121 @@ class DeepfakeAbstractBaseDataset(data.Dataset):
         label_list, frame_path_list, video_name_list = zip(*shuffled)
         
         return frame_path_list, label_list, video_name_list
+
+class DeepfakeAbstractBaseDataset(data.Dataset):
+    """
+    Abstract base class for all deepfake datasets.
+    """
+    def __init__(self, config=None, mode='train'):
+        """Initializes the dataset object.
+
+        Args:
+            config (dict): A dictionary containing configuration parameters.
+            mode (str): A string indicating the mode (train or test).
+
+        Raises:
+            NotImplementedError: If mode is not train or test.
+        """
+        
+        # Set the configuration and mode
+        #print("config:",config)
+        self.config = config
+        self.mode = mode
+        self.compression = config['compression']
+        self.frame_num = config['frame_num'][mode]
+
+        # Check if 'video_mode' exists in config, otherwise set video_level to False
+        self.video_level = config.get('video_mode', False)
+        self.clip_size = config.get('clip_size', None)
+        self.lmdb = config.get('lmdb', False)
+        # Dataset dictionary
+        self.image_list = []
+        self.label_list = []
+        
+        # Set the dataset dictionary based on the mode
+        if mode == 'train':
+            dataset_list = config['train_dataset']
+            # Training data should be collected together for training
+            image_list, label_list = [], []
+            for one_data in dataset_list:
+                tmp_image, tmp_label, tmp_name = self.collect_img_and_label(one_data)
+                image_list.extend(tmp_image)
+                label_list.extend(tmp_label)
+            if self.lmdb:
+                if len(dataset_list)>1:
+                    if all_in_pool(dataset_list,FFpp_pool):
+                        lmdb_path = os.path.join(config['lmdb_dir'], f"FaceForensics++_lmdb")
+                        self.env = lmdb.open(lmdb_path, create=False, subdir=True, readonly=True, lock=False)
+                    else:
+                        raise ValueError('Training with multiple dataset and lmdb is not implemented yet.')
+                else:
+                    lmdb_path = os.path.join(config['lmdb_dir'], f"{dataset_list[0] if dataset_list[0] not in FFpp_pool else 'FaceForensics++'}_lmdb")
+                    self.env = lmdb.open(lmdb_path, create=False, subdir=True, readonly=True, lock=False)
+        elif mode == 'test':
+            one_data = config['test_dataset']
+            # Test dataset should be evaluated separately. So collect only one dataset each time
+            image_list, label_list, name_list = self.collect_img_and_label(one_data)
+            if self.lmdb:
+                lmdb_path = os.path.join(config['lmdb_dir'], f"{one_data}_lmdb" if one_data not in FFpp_pool else 'FaceForensics++_lmdb')
+                self.env = lmdb.open(lmdb_path, create=False, subdir=True, readonly=True, lock=False)
+        else:
+            raise NotImplementedError('Only train and test modes are supported.')
+
+        assert len(image_list)!=0 and len(label_list)!=0, f"Collect nothing for {mode} mode!"
+        self.image_list, self.label_list = image_list, label_list
+
+
+        # Create a dictionary containing the image and label lists
+        self.data_dict = {
+            'image': self.image_list, 
+            'label': self.label_list, 
+        }
+        
+        self.transform = self.init_data_aug_method()
+        
+    def init_data_aug_method(self):
+        trans = A.Compose([           
+            A.HorizontalFlip(p=self.config['data_aug']['flip_prob']),
+            A.Rotate(limit=self.config['data_aug']['rotate_limit'], p=self.config['data_aug']['rotate_prob']),
+            A.GaussianBlur(blur_limit=self.config['data_aug']['blur_limit'], p=self.config['data_aug']['blur_prob']),
+            A.OneOf([                
+                IsotropicResize(max_side=self.config['resolution'], interpolation_down=cv2.INTER_AREA, interpolation_up=cv2.INTER_CUBIC),
+                IsotropicResize(max_side=self.config['resolution'], interpolation_down=cv2.INTER_AREA, interpolation_up=cv2.INTER_LINEAR),
+                IsotropicResize(max_side=self.config['resolution'], interpolation_down=cv2.INTER_LINEAR, interpolation_up=cv2.INTER_LINEAR),
+            ], p = 0 if self.config['with_landmark'] else 1),
+            A.OneOf([
+                A.RandomBrightnessContrast(brightness_limit=self.config['data_aug']['brightness_limit'], contrast_limit=self.config['data_aug']['contrast_limit']),
+                A.FancyPCA(),
+                A.HueSaturationValue()
+            ], p=0.5),
+            A.ImageCompression(quality_lower=self.config['data_aug']['quality_lower'], quality_upper=self.config['data_aug']['quality_upper'], p=0.5)
+        ], 
+            keypoint_params=A.KeypointParams(format='xy') if self.config['with_landmark'] else None
+        )
+        return trans
+
+    def rescale_landmarks(self, landmarks, original_size=256, new_size=224):
+        scale_factor = new_size / original_size
+        rescaled_landmarks = landmarks * scale_factor
+        return rescaled_landmarks
+
+
+    def collect_img_and_label(self, dataset_name: str):
+        """Collect image and label lists using the appropriate dataset loader.
+        
+        Args:
+            dataset_name (str): Name of the dataset to load
+            
+        Returns:
+            tuple: (frame_path_list, label_list, video_name_list)
+        """
+        if dataset_name in FFpp_pool or dataset_name in ['DFDC', 'FMFCC-V']:
+            loader = DefaultDatasetLoader(self.config, self.mode)
+        elif dataset_name in ['ForgeryNet']:
+            loader = ForgeryDatasetLoader(self.config, self.mode)
+        else:
+            raise ValueError(f"Dataset {dataset_name} not found.")
+        return loader.collect_img_and_label(dataset_name)
 
      
     def load_rgb(self, file_path):

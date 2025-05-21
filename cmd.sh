@@ -1,7 +1,7 @@
 weight=./training/weights/xception_best.pth
 #test_list=/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/ssl_vits_df/val_list-n.txt
 #test_list=/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/ssl_vits_df/test_lists/FaceForensics++_test_list.txt
-test_list=/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/ssl_vits_df/Py_data/ForgeryNet_test_list.txt
+test_list=/root/autodl-tmp/benchmark_deepfakes/ssl_vits_df/Py_data/ForgeryNet_test_list.txt
 #weight=./logs/training/xception_2025-05-15-05-13-08/test/avg/ckpt_best.pth
 #weight=./logs/training/xception_2025-05-15-05-13-08/test/avg/ckpt_best.pth
 

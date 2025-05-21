@@ -6,7 +6,7 @@ from PIL import Image
 import numpy as np
 
 class TestDataset(DeepfakeAbstractBaseDataset):
-    def collect_img_and_label_for_one_dataset(self, dataset_name: str):
+    def collect_img_and_label(self, dataset_name: str):
         """从 list.txt 文件加载数据
         
         list.txt 的格式：

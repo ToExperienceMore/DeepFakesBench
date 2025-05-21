@@ -1,10 +1,10 @@
-config=./training/config/detector/timesformer.yaml
+#config=./training/config/detector/timesformer.yaml
 #config=./training/config/detector/efficientnet.yaml
 #config=./training/config/detector/efficientnetv2.yaml
 #config=./training/config/detector/ftcn.yaml
 #config=./training/config/detector/uia_vit.yaml
 #config=./training/config/detector/iid.yaml
-#config=./training/config/detector/xception.yaml
+config=./training/config/detector/xception.yaml
 #config=./training/config/detector/sbi.yaml
 #config=./training/config/detector/altfreezing.yaml
 #config=./training/config/detector/tall.yaml
@@ -37,5 +37,5 @@ set -x
 
 python training/train.py \
 --detector_path $config \
---train_dataset "FaceForensics++"  \
---test_dataset  "DFDC"
+--train_dataset "ForgeryNet"  \
+--test_dataset  "ForgeryNet" > train_ForgeryNet_xception1.log 2>&1 &
