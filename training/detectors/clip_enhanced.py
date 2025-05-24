@@ -2,115 +2,106 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from transformers import CLIPVisionModel, CLIPImageProcessor
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Dict, Any
 from metrics.registry import DETECTOR
+from dataclasses import dataclass
+from .base_detector import AbstractDetector
+from loss import LOSSFUNC
+from metrics.base_metrics_class import calculate_metrics_for_train
+import os
+
+@dataclass
+class Batch:
+    images: Optional[torch.Tensor]
+    labels: Optional[torch.Tensor]
+    identity: Optional[torch.Tensor]
+    source: Optional[torch.Tensor]
+    idx: Optional[torch.Tensor]
+    paths: Optional[list[str]]
+
+    def __getitem__(self, key):
+        return getattr(self, key)
+
+    @staticmethod
+    def from_dict(batch: dict):
+        return Batch(
+            images=batch.get("image"),
+            labels=batch.get("label"),
+            identity=batch.get("identity"),
+            source=batch.get("source"),
+            idx=batch.get("idx"),
+            paths=batch.get("path"),
+        )
 
 @DETECTOR.register_module(module_name='clip_enhanced')
-class CLIPEnhanced(nn.Module):
+class CLIPEnhanced(AbstractDetector):
     def __init__(self, config):
         super().__init__()
         self.config = config
         
-        # Load CLIP vision model
-        self.backbone = CLIPVisionModel.from_pretrained("openai/clip-vit-large-patch14")
+        # Initialize feature extractor (CLIP)
+        self.clip_path = "../deepfake-detection/weights/clip-vit-large-patch14"
+        if not os.path.exists(self.clip_path):
+            raise ValueError(f"本地模型文件不存在: {self.clip_path}，请确保模型文件已下载到正确位置")
         
-        # Freeze backbone if specified
-        if config.get('freeze_backbone', False):
-            for param in self.backbone.parameters():
-                param.requires_grad = False
+        self.feature_extractor = CLIPVisionModel.from_pretrained(self.clip_path)
         
-        # PEFT: Layer Normalization tuning
-        if config.get('use_peft', False):
-            self._setup_peft()
+        # Initialize head (classifier)
+        features_dim = self.feature_extractor.config.hidden_size
+        self.classifier_head = nn.Linear(features_dim, 2, bias=True)
         
-        # Classifier
-        self.classifier = nn.Linear(
-            config['classifier']['in_features'],
-            config['classifier']['out_features'],
-            bias=config['classifier'].get('bias', True)
-        )
-        
-        # L2 normalization
-        self.use_l2_norm = config.get('use_l2_norm', False)
-        
-        # Metric learning parameters
-        self.use_metric_learning = config.get('use_metric_learning', False)
-        if self.use_metric_learning:
-            self.metric_margin = config.get('metric_margin', 0.3)
-        
-        # Contrastive learning parameters
-        self.use_contrastive_loss = config.get('use_contrastive_loss', False)
-        if self.use_contrastive_loss:
-            self.temperature = config.get('temperature', 0.07)
+        # Initialize loss function
+        self.loss_func = self.build_loss(config)
     
-    def _setup_peft(self):
-        """Setup Parameter Efficient Fine-Tuning"""
-        if self.config.get('peft_type') == 'ln_tuning':
-            # Only train LayerNorm parameters
-            for name, param in self.backbone.named_parameters():
-                if 'layer_norm' in name:
-                    param.requires_grad = True
-                else:
-                    param.requires_grad = False
+    def build_backbone(self, config):
+        """Build the backbone network"""
+        return self.feature_extractor
     
-    def forward(self, x: torch.Tensor) -> Tuple[torch.Tensor, Optional[torch.Tensor]]:
-        # Get features from backbone
-        features = self.backbone(x).last_hidden_state[:, 0, :]  # [B, 768]
-        
-        # Apply L2 normalization if enabled
-        if self.use_l2_norm:
-            features = F.normalize(features, p=2, dim=1)
-        
-        # Get classification logits
-        logits = self.classifier(features)
-        
-        # Return features for contrastive loss if enabled
-        if self.use_contrastive_loss:
-            return logits, features
-        return logits, None
+    def build_loss(self, config):
+        """Build the loss function"""
+        loss_name = config.get('loss_func', 'CrossEntropyLoss')
+        loss_class = LOSSFUNC[loss_name]
+        loss_func = loss_class()
+        return loss_func
     
-    def compute_loss(self, logits: torch.Tensor, targets: torch.Tensor, 
-                    features: Optional[torch.Tensor] = None) -> torch.Tensor:
-        # Cross entropy loss
-        ce_loss = F.cross_entropy(logits, targets)
+    def features(self, data_dict: dict) -> torch.tensor:
+        """Extract features from the input data"""
+        x = data_dict['image']
+        features = self.feature_extractor(x).last_hidden_state[:, 0, :]  # [B, 768]
+        return features
+    
+    def classifier(self, features: torch.tensor) -> torch.tensor:
+        """Classify the features"""
+        return self.classifier_head(features)
+    
+    def get_losses(self, data_dict: dict, pred_dict: dict) -> dict:
+        """Compute the losses"""
+        label = data_dict['label']
+        pred = pred_dict['cls']
+        loss = self.loss_func(pred, label)
+        return {'overall': loss}
+    
+    def get_train_metrics(self, data_dict: dict, pred_dict: dict) -> dict:
+        """Compute training metrics"""
+        label = data_dict['label']
+        pred = pred_dict['cls']
+        auc, eer, acc, ap = calculate_metrics_for_train(label.detach(), pred.detach())
+        metric_batch_dict = {'acc': acc, 'auc': auc, 'eer': eer, 'ap': ap}
+        return metric_batch_dict
+    
+    def forward(self, data_dict: dict, inference=False) -> dict:
+        """Forward pass through the model"""
+        features = self.features(data_dict)
+        pred = self.classifier(features)
+        prob = torch.softmax(pred, dim=1)[:, 1]
         
-        if not (self.use_contrastive_loss and features is not None):
-            return ce_loss
-        
-        # Contrastive loss
-        batch_size = features.size(0)
-        labels = targets.unsqueeze(0).eq(targets.unsqueeze(1)).float()
-        
-        # Compute similarity matrix
-        similarity = torch.matmul(features, features.t()) / self.temperature
-        
-        # Remove diagonal
-        mask = torch.eye(batch_size, dtype=torch.bool, device=features.device)
-        similarity = similarity[~mask].view(batch_size, -1)
-        labels = labels[~mask].view(batch_size, -1)
-        
-        # Compute contrastive loss
-        pos_sim = similarity[labels.bool()].view(batch_size, -1)
-        neg_sim = similarity[~labels.bool()].view(batch_size, -1)
-        
-        # Compute metric learning loss if enabled
-        if self.use_metric_learning:
-            pos_loss = torch.clamp(self.metric_margin - pos_sim, min=0).mean()
-            neg_loss = torch.clamp(neg_sim, min=0).mean()
-            metric_loss = pos_loss + neg_loss
-        else:
-            metric_loss = 0
-        
-        # Combine losses
-        contrastive_loss = -torch.log(
-            torch.exp(pos_sim) / (torch.exp(pos_sim) + torch.exp(neg_sim).sum(dim=1, keepdim=True))
-        ).mean()
-        
-        # Weighted combination
-        ce_weight = self.config['loss'].get('ce_weight', 0.7)
-        contrastive_weight = self.config['loss'].get('contrastive_weight', 0.3)
-        
-        total_loss = (ce_weight * ce_loss + 
-                     contrastive_weight * (contrastive_loss + metric_loss))
-        
-        return total_loss 
+        pred_dict = {
+            'cls': pred,
+            'prob': prob
+        }
+        return pred_dict
+    
+    def get_preprocessing(self):
+        """Get preprocessing function for inference"""
+        processor = CLIPImageProcessor.from_pretrained(self.clip_path)
+        return processor 

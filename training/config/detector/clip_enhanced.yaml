@@ -1,5 +1,6 @@
 name: clip_enhanced
 type: clip
+model_name: clip_enhanced  # model name for detector registration
 backbone: ViT-L/14
 pretrained: true
 freeze_backbone: false
@@ -10,38 +11,98 @@ metric_margin: 0.3
 use_l2_norm: true  # Enable L2 normalization
 temperature: 0.07  # Temperature for contrastive loss
 use_contrastive_loss: true  # Enable contrastive learning
+
+# Basic settings
+manualSeed: 1024  # manual seed for random number generation
+cuda: true  # whether to use CUDA acceleration
+cudnn: true  # whether to use CuDNN for convolution operations
+log_dir: ./logs/clip_enhanced  # folder to output images and logs
+save_ckpt: true  # whether to save checkpoint
+save_feat: true  # whether to save features
+
+# Dataset settings
+all_dataset: [FaceForensics++, FF-F2F, FF-DF, FF-FS, FF-NT, FaceShifter, DeepFakeDetection, Celeb-DF-v1, Celeb-DF-v2, DFDCP, DFDC, DeeperForensics-1.0, UADFV]
+train_dataset: [FaceForensics++]
+test_dataset: [FaceForensics++, DeepFakeDetection]
+compression: c23  # compression-level for videos
+frame_num: {'train': 32, 'test': 32}  # number of frames to use per video
+with_mask: false  # whether to include mask information
+with_landmark: false  # whether to include facial landmark information
+resolution: 224  # resolution of output image to network
+
+# Batch size settings
+train_batchSize: 32  # training batch size
+test_batchSize: 32  # test batch size
+workers: 4  # number of data loading workers
+
+# Model settings
 classifier:
   type: linear
   in_features: 768
   out_features: 2
   bias: true
+
+# Training settings
 optimizer:
   type: AdamW
   lr: 1e-4
   weight_decay: 0.01
+
 scheduler:
   type: cosine
   warmup_epochs: 5
   min_lr: 1e-6
+
+nEpochs: 10  # number of epochs to train for
+start_epoch: 0  # manual epoch number (useful for restarts)
+save_epoch: 1  # interval epochs for saving models
+rec_iter: 100  # interval iterations for recording
+
+# Loss settings
 loss:
   type: combined  # Combined loss (CE + Contrastive)
   ce_weight: 0.7
   contrastive_weight: 0.3
+
+# Data settings
 data:
   img_size: 224
   batch_size: 32
   num_workers: 4
   use_face_detection: true  # Enable face detection preprocessing
-  augmentations:
-    - type: random_resized_crop
-      size: 224
-      scale: [0.8, 1.0]
-    - type: random_horizontal_flip
-      p: 0.5
-    - type: color_jitter
-      brightness: 0.2
-      contrast: 0.2
-      saturation: 0.2
-      hue: 0.1
-    - type: random_erasing
-      p: 0.2 
+
+# Data augmentation settings
+use_data_augmentation: true
+data_aug:
+  # Basic augmentations
+  flip_prob: 0.5
+  rotate_prob: 0.5
+  rotate_limit: [-10, 10]
+  blur_prob: 0.5
+  blur_limit: [3, 7]
+  # Color augmentations
+  brightness_prob: 0.5
+  brightness_limit: [-0.1, 0.1]
+  contrast_limit: [-0.1, 0.1]
+  # Quality augmentations
+  quality_lower: 40
+  quality_upper: 100
+  # CLIP-specific augmentations
+  random_resized_crop:
+    size: 224
+    scale: [0.8, 1.0]
+  color_jitter:
+    brightness: 0.2
+    contrast: 0.2
+    saturation: 0.2
+    hue: 0.1
+  random_erasing:
+    p: 0.2
+
+# Normalization settings
+mean: [0.5, 0.5, 0.5]
+std: [0.5, 0.5, 0.5]
+
+# Metric settings
+metric_scoring: auc  # metric for evaluation (auc, acc, eer, ap) 
+loss_func: cross_entropy   # loss function to use

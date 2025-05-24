@@ -1,4 +1,4 @@
-weight=./training/weights/xception_best.pth
+#weight=./training/weights/xception_best.pth
 #test_list=/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/ssl_vits_df/val_list-n.txt
 #test_list=/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/ssl_vits_df/test_lists/FaceForensics++_test_list.txt
 #test_list=/root/autodl-tmp/benchmark_deepfakes/ssl_vits_df/Py_data/ForgeryNet_test_list.txt
@@ -29,9 +29,9 @@ weight=./training/weights/xception_best.pth
 config=./training/config/detector/xception.yaml
 #config=./training/config/detector/timesformer.yaml
 #config=./training/config/detector/efficientnet.yaml
-#config=./training/config/detector/clip_enhanced.yaml
+config=./training/config/detector/clip_enhanced.yaml
 # 使用deepfake-detection的权重
-#weight=../deepfake-detection/weights/model.ckpt
+weight=../deepfake-detection/weights/model.ckpt
 set -x
 
 #python3 training/test.py --detector_path $config --test_dataset   "FF-DF"  "FF-F2F"  "FF-FS"  "FF-NT" "DeepFakeDetection"  "FaceShifter"  --weights_path $weight

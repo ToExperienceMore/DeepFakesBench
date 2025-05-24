@@ -68,6 +68,10 @@ def prepare_testing_data(config):
                 config=config,
                 mode='test', 
             )
+        # Calculate number of batches needed for 200 images
+        batch_size = config['test_batchSize']
+        num_batches = min(200 // batch_size + (1 if 200 % batch_size else 0), len(test_set) // batch_size + (1 if len(test_set) % batch_size else 0))
+        
         test_data_loader = \
             torch.utils.data.DataLoader(
                 dataset=test_set, 
@@ -93,43 +97,97 @@ def choose_metric(config):
 
 
 def test_one_dataset(model, data_loader):
-    prediction_lists = []
-    feature_lists = []
-    label_lists = []
-    for i, data_dict in tqdm(enumerate(data_loader), total=len(data_loader)):
+    """
+    Test the model on a dataset.
+    
+    Args:
+        model: The model to test
+        data_loader: DataLoader containing the test data
+    """
+    prediction_lists = []  # List to store prediction probabilities
+    feature_lists = []    # List to store features (if needed)
+    label_lists = []      # List to store ground truth labels
+    
+    # Calculate number of batches needed for 200 images
+    batch_size = data_loader.batch_size
+    num_batches = 40
+    
+    for i, data_dict in tqdm(enumerate(data_loader), total=num_batches):
+        if i >= num_batches:
+            break
+            
         # get data
+        # data: torch.Tensor, shape [B, C, H, W] where B=batch_size, C=3 (RGB), H=height, W=width
+        # label: torch.Tensor, shape [B] containing binary labels (0 or 1)
+        # mask: torch.Tensor or None, shape [B, 1, H, W] if present
+        # landmark: torch.Tensor or None, shape [B, 81, 2] if present
         data, label, mask, landmark = \
         data_dict['image'], data_dict['label'], data_dict['mask'], data_dict['landmark']
-        label = torch.where(data_dict['label'] != 0, 1, 0)
-        # move data to GPU
-        data_dict['image'], data_dict['label'] = data.to(device), label.to(device)
+        label = torch.where(data_dict['label'] != 0, 1, 0)  # Convert to binary labels
+        
+        # Get preprocessing function from model and process images
+        preprocess = model.get_preprocessing()  # Returns CLIPImageProcessor
+        
+        # Convert tensor to PIL images for CLIP preprocessing
+        # data: torch.Tensor [B, C, H, W] -> numpy.ndarray [B, C, H, W]
+        data = data.cpu().numpy()
+        # data: numpy.ndarray [B, C, H, W] -> [B, H, W, C] for PIL
+        data = np.transpose(data, (0, 2, 3, 1))
+        # Convert to PIL Images
+        # data: List[PIL.Image.Image], length B
+        data = [pil_image.fromarray(img) for img in data]
+        
+        # Process images using CLIP processor
+        # processed_data: BatchFeature containing 'pixel_values' tensor or dict
+        processed_data = preprocess(data)
+        
+        # Extract pixel values based on return type
+        if hasattr(processed_data, 'pixel_values'):
+            # If BatchFeature object
+            processed_data = processed_data.pixel_values
+        elif isinstance(processed_data, dict) and 'pixel_values' in processed_data:
+            # If dictionary with pixel_values
+            processed_data = processed_data['pixel_values']
+        elif isinstance(processed_data, torch.Tensor):
+            # If already a tensor
+            pass
+        else:
+            raise TypeError(f"Unexpected return type from preprocess: {type(processed_data)}")
+        
+        # Ensure processed_data is a tensor
+        if not isinstance(processed_data, torch.Tensor):
+            processed_data = torch.tensor(processed_data)
+        
+        # move data to GPU and convert to float32
+        # processed_data: torch.Tensor [B, C, H, W] on GPU with float32 dtype
+        data_dict['image'] = processed_data.to(device).to(torch.float32)
+        # label: torch.Tensor [B] on GPU
+        data_dict['label'] = label.to(device)
         if mask is not None:
+            # mask: torch.Tensor [B, 1, H, W] on GPU
             data_dict['mask'] = mask.to(device)
         if landmark is not None:
+            # landmark: torch.Tensor [B, 81, 2] on GPU
             data_dict['landmark'] = landmark.to(device)
 
         # model forward without considering gradient computation
+        # predictions: dict containing 'prob' tensor [B] with probabilities
         predictions = inference(model, data_dict)
+        # Collect predictions and labels
         label_lists += list(data_dict['label'].cpu().detach().numpy())
         prediction_lists += list(predictions['prob'].cpu().detach().numpy())
-        #feature_lists += list(predictions['feat'].cpu().detach().numpy())
-        """
-        print(f"Number of features in feature_lists: {len(feature_lists)}")
 
-        # 假设每个元素是一个 NumPy 数组，打印它们的形状
-        for i, features in enumerate(feature_lists[:5]):  # 打印前 5 个元素的信息
-            print(f"Feature {i} shape: {features.shape}")
-            break;
-        """
-
-    # 将预测概率转换为二分类标签（阈值0.5）
+    # Convert predictions to binary labels using 0.5 threshold
+    # pred_labels: numpy.ndarray [N] containing 0s and 1s
     pred_labels = (np.array(prediction_lists) > 0.5).astype(int)
+    # true_labels: numpy.ndarray [N] containing ground truth labels
     true_labels = np.array(label_lists)
     
-    # 计算混淆矩阵
+    # Calculate confusion matrix
+    # cm: numpy.ndarray [2, 2] containing confusion matrix values
     cm = confusion_matrix(true_labels, pred_labels)
     
-    # 创建混淆矩阵可视化
+    # Create confusion matrix visualization
     plt.figure(figsize=(8, 6))
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
                 xticklabels=['Real', 'Fake'],
@@ -138,17 +196,16 @@ def test_one_dataset(model, data_loader):
     plt.ylabel('True Label')
     plt.xlabel('Predicted Label')
     
-    # 创建保存目录
+    # Create directory for saving confusion matrices
     save_dir = 'confusion_matrices'
     os.makedirs(save_dir, exist_ok=True)
     
-    # 保存混淆矩阵图
+    # Save confusion matrix plot
     plt.savefig(os.path.join(save_dir, f'confusion_matrix_{data_loader.dataset.__class__.__name__}.png'))
     plt.close()
     
     return np.array(prediction_lists), np.array(label_lists)
-    #return np.array(prediction_lists), np.array(label_lists),np.array(feature_lists)
-    
+
 def test_epoch(model, test_data_loaders):
     # set model to eval mode
     model.eval()
@@ -160,6 +217,10 @@ def test_epoch(model, test_data_loaders):
     keys = test_data_loaders.keys()
     for key in keys:
         data_dict = test_data_loaders[key].dataset.data_dict
+        print(f"\nDataset: {key}")
+        print("Number of images:", len(data_dict['image']))
+        print("Number of labels:", len(data_dict['label']))
+        
         predictions_nps, label_nps = test_one_dataset(model, test_data_loaders[key])
         
         # 计算并打印混淆矩阵的详细指标
@@ -185,8 +246,16 @@ def test_epoch(model, test_data_loaders):
         tqdm.write(f"F1 Score: {f1:.4f}")
         
         # compute metric for each dataset
+        print("\nPredictions shape:", predictions_nps.shape)
+        print("Labels shape:", label_nps.shape)
+        print("Number of processed images:", len(data_dict['image']))
+        
+        # 确保只使用处理过的图像
+        processed_image_names = data_dict['image'][:len(predictions_nps)]
+        print("Number of processed image names:", len(processed_image_names))
+        
         metric_one_dataset = get_test_metrics(y_pred=predictions_nps, y_true=label_nps,
-                                              img_names=data_dict['image'])
+                                              img_names=processed_image_names)
         metrics_all_datasets[key] = metric_one_dataset
         
         # info for each dataset
@@ -230,19 +299,31 @@ def main():
     test_data_loaders = prepare_testing_data(config)
     
     # prepare the model (detector)
-    model_class = DETECTOR[config['model_name']]
-    model = model_class(config).to(device)
-    epoch = 0
     if weights_path:
-        try:
-            epoch = int(weights_path.split('/')[-1].split('.')[0].split('_')[2])
-        except:
-            epoch = 0
+        # Load checkpoint
         ckpt = torch.load(weights_path, map_location=device)
-        model.load_state_dict(ckpt, strict=True)
-        print('===> Load checkpoint done!')
+        
+        # Get hyperparameters from checkpoint
+        if 'hyper_parameters' in ckpt:
+            hyper_params = ckpt['hyper_parameters']
+            # Update config with hyperparameters
+            config.update(hyper_params)
+        
+        # Initialize model with updated config
+        model_class = DETECTOR[config['model_name']]
+        model = model_class(config).to(device)
+        
+        # Load state dict
+        if 'state_dict' in ckpt:
+            state_dict = ckpt['state_dict']
+            # Remove 'model.' prefix if it exists
+            state_dict = {k.replace('model.', ''): v for k, v in state_dict.items()}
+            model.load_state_dict(state_dict, strict=False)
+            print('===> Load checkpoint done!')
     else:
         print('Fail to load the pre-trained weights')
+        model_class = DETECTOR[config['model_name']]
+        model = model_class(config).to(device)
     
     # start testing
     best_metric = test_epoch(model, test_data_loaders)
