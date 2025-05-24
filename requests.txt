@@ -1,0 +1,1 @@
+@https://github.com/yermandy/deepfake-detection 将这个实现，移动到 本工程。目前已经移植了3个新文件，  training/config/detector/clip_enhanced.yaml, training/dataset/clip_enhanced_dataset.py, training/detectors/clip_enhanced.py

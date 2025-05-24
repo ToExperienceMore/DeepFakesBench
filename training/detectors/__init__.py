@@ -45,3 +45,4 @@ from .multi_attention_detector import MultiAttentionDetector
 from .sia_detector import SIADetector
 from .tall_detector import TALLDetector
 from .tall_video_detector import TALLVideoDetector
+from .clip_enhanced import CLIPEnhanced

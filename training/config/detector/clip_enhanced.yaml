@@ -1,0 +1,47 @@
+name: clip_enhanced
+type: clip
+backbone: ViT-L/14
+pretrained: true
+freeze_backbone: false
+use_peft: true  # Parameter Efficient Fine-Tuning
+peft_type: ln_tuning  # Layer Normalization tuning
+use_metric_learning: true  # Enable metric learning on hypersphere
+metric_margin: 0.3
+use_l2_norm: true  # Enable L2 normalization
+temperature: 0.07  # Temperature for contrastive loss
+use_contrastive_loss: true  # Enable contrastive learning
+classifier:
+  type: linear
+  in_features: 768
+  out_features: 2
+  bias: true
+optimizer:
+  type: AdamW
+  lr: 1e-4
+  weight_decay: 0.01
+scheduler:
+  type: cosine
+  warmup_epochs: 5
+  min_lr: 1e-6
+loss:
+  type: combined  # Combined loss (CE + Contrastive)
+  ce_weight: 0.7
+  contrastive_weight: 0.3
+data:
+  img_size: 224
+  batch_size: 32
+  num_workers: 4
+  use_face_detection: true  # Enable face detection preprocessing
+  augmentations:
+    - type: random_resized_crop
+      size: 224
+      scale: [0.8, 1.0]
+    - type: random_horizontal_flip
+      p: 0.5
+    - type: color_jitter
+      brightness: 0.2
+      contrast: 0.2
+      saturation: 0.2
+      hue: 0.1
+    - type: random_erasing
+      p: 0.2 

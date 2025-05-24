@@ -25,10 +25,17 @@ pip install tensorboard==2.10.1
 pip install setuptools==59.5.0
 pip install loralib
 pip install einops
-pip install transformers
+pip install transformers==4.50.0
 pip install filterpy
 pip install simplejson
 pip install kornia
 pip install fvcore
 pip install imgaug==0.4.0
 #pip install git+https://github.com/openai/CLIP.git
+
+# New dependencies for CLIP-Enhanced
+pip install lightning==2.5.0
+pip install wandb==0.19.4
+pip install pydantic==2.9.2
+pip install fire==0.7.0
+pip install peft==0.14.0
