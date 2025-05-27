@@ -43,7 +43,7 @@ class LayerNormWithTuning(nn.Module):
 
     def forward(self, x):
         #return self.base_layer(x) + self.ln_tuning_layers['default'](x)
-        x = self.base_layer(x)
+        #x = self.base_layer(x)
         return self.ln_tuning_layers['default'](x)
 
 @DETECTOR.register_module(module_name='clip_enhanced')

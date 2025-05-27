@@ -176,6 +176,13 @@ def choose_optimizer(model, config):
             amsgrad=config['optimizer'][opt_name]['amsgrad'],
         )
         return optimizer
+    elif opt_name == 'AdamW':
+        optimizer = optim.AdamW(
+            params=model.parameters(),
+            lr=float(config['optimizer']['lr']),
+            weight_decay=config['optimizer']['weight_decay']
+        )
+        return optimizer
     elif opt_name == 'sam':
         optimizer = SAM(
             model.parameters(), 
@@ -201,8 +208,8 @@ def choose_scheduler(config, optimizer):
     elif config['lr_scheduler'] == 'cosine':
         scheduler = optim.lr_scheduler.CosineAnnealingLR(
             optimizer,
-            T_max=config['lr_T_max'],
-            eta_min=config['lr_eta_min'],
+            T_max=config['nEpochs'],
+            eta_min=float(config['min_lr']),
         )
         return scheduler
     elif config['lr_scheduler'] == 'linear':

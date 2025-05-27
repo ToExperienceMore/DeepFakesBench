@@ -35,7 +35,8 @@ def load_model(config, weights_path):
         for k, v in state_dict.items():
             new_key = k.replace('feature_extractor.base_model.model.', 'feature_extractor.')
             new_state_dict[new_key] = v
-        detector.load_state_dict(new_state_dict, strict=True)
+        #detector.load_state_dict(new_state_dict, strict=True)
+        detector.load_state_dict(state_dict, strict=False)
         print('===> Load checkpoint done!')
     else:
         print('===> Load checkpoint error!')

@@ -4,12 +4,13 @@
 #config=./training/config/detector/ftcn.yaml
 #config=./training/config/detector/uia_vit.yaml
 #config=./training/config/detector/iid.yaml
-config=./training/config/detector/xception.yaml
+#config=./training/config/detector/xception.yaml
 #config=./training/config/detector/sbi.yaml
 #config=./training/config/detector/altfreezing.yaml
 #config=./training/config/detector/tall.yaml
 #config=./training/config/detector/videomae.yaml
 #config=./training/config/detector/tall_video.yaml
+config=./training/config/detector/clip_enhanced.yaml
 
 #nohup python training/train.py \
 #--detector_path $config \
@@ -30,12 +31,12 @@ config=./training/config/detector/xception.yaml
 
 set -x
 
-#nohup python training/train.py \
-#--detector_path $config \
-#--train_dataset "FaceForensics++"  \
-#--test_dataset  "DFDC" "Celeb-DF-v2" > train_FaceForensics++_tall_video.log 2>&1 &
-
-python training/train.py \
+nohup python training/train.py \
 --detector_path $config \
---train_dataset "ForgeryNet"  \
---test_dataset  "ForgeryNet" > train_ForgeryNet_xception1.log 2>&1 &
+--train_dataset "FaceForensics++"  \
+--test_dataset  "DFDC" > train_FaceForensics++_clip_enhanced-0527-1.log 2>&1 &
+
+#python training/train.py \
+#--detector_path $config \
+#--train_dataset "ForgeryNet"  \
+#--test_dataset  "ForgeryNet" > train_ForgeryNet_xception1.log 2>&1 &
