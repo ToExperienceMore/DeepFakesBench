@@ -34,7 +34,7 @@ set -x
 nohup python training/train.py \
 --detector_path $config \
 --train_dataset "FaceForensics++"  \
---test_dataset  "DFDC" > train_FaceForensics++_clip_enhanced-0527-1.log 2>&1 &
+--test_dataset  "DFDC" > train_FaceForensics++_clip_enhanced-0527-debug-AMP.log 2>&1 &
 
 #python training/train.py \
 #--detector_path $config \

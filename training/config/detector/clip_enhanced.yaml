@@ -49,6 +49,11 @@ optimizer:
   weight_decay: 0.0
   betas: [0.9, 0.999]
 
+# AMP settings
+use_amp: true
+amp_dtype: bf16  # 可选: float16, bf16
+amp_level: O1    # 可选: O0, O1, O2, O3
+
 lr_scheduler: cosine
 min_lr: 5e-5
 nEpochs: 10

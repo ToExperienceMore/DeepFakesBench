@@ -560,6 +560,7 @@ class DeepfakeAbstractBaseDataset(data.Dataset):
         """
         mean = self.config['mean']
         std = self.config['std']
+        #print(f"mean: {mean}, std: {std}")
         normalize = T.Normalize(mean=mean, std=std)
         return normalize(img)
 
@@ -626,6 +627,8 @@ class DeepfakeAbstractBaseDataset(data.Dataset):
         # Get the image paths and label
         image_paths = self.data_dict['image'][index]
         label = self.data_dict['label'][index]
+        #print(f"image_paths: {image_paths}")
+        #print(f"label: {label}")
 
         if not isinstance(image_paths, list):
             image_paths = [image_paths]  # for the image-level IO, only one frame is used
