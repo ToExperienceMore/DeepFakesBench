@@ -1,0 +1,1888 @@
+Found 146 matching output files to compare
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.0.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.0.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 10.808116
+Mean difference: 1.307917
+Min value 1: -18.899139
+Max value 1: 8.604545
+Min value 2: -18.623526
+Max value 2: 6.172556
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.0.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.0.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 17.684620
+Mean difference: 0.419496
+Min value 1: -17.836847
+Max value 1: 11.184378
+Min value 2: -2.029249
+Max value 2: 1.591002
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.0.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.0.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 3.343224
+Mean difference: 0.420923
+Min value 1: -4.110449
+Max value 1: 4.275326
+Min value 2: -3.757746
+Max value 2: 3.729028
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.0.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.0.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.292618
+Mean difference: 0.145926
+Min value 1: -2.570639
+Max value 1: 1.885317
+Min value 2: -1.828354
+Max value 2: 1.585157
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.0.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.0.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 4.166386
+Mean difference: 0.545183
+Min value 1: -4.399174
+Max value 1: 5.460570
+Min value 2: -4.515417
+Max value 2: 6.033500
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.0.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.0.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 2.739866
+Mean difference: 0.190396
+Min value 1: -4.423783
+Max value 1: 3.774546
+Min value 2: -4.184593
+Max value 2: 3.523782
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.1.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.1.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 5.472735
+Mean difference: 0.614348
+Min value 1: -10.826300
+Max value 1: 4.702495
+Min value 2: -8.724432
+Max value 2: 3.381995
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.1.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.1.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 2.115228
+Mean difference: 0.083673
+Min value 1: -1.907660
+Max value 1: 1.597098
+Min value 2: -2.695102
+Max value 2: 2.247198
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.1.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.1.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 7.743242
+Mean difference: 0.501980
+Min value 1: -7.255419
+Max value 1: 7.553113
+Min value 2: -4.278943
+Max value 2: 4.782171
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.1.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.1.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.484471
+Mean difference: 0.132782
+Min value 1: -1.489703
+Max value 1: 1.801090
+Min value 2: -0.955731
+Max value 2: 0.934258
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.1.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.1.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 6.588343
+Mean difference: 0.463841
+Min value 1: -6.374240
+Max value 1: 4.839336
+Min value 2: -4.438757
+Max value 2: 4.347473
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.1.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.1.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 4.977072
+Mean difference: 0.200456
+Min value 1: -4.806398
+Max value 1: 4.536241
+Min value 2: -2.355657
+Max value 2: 2.627376
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.10.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.10.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 9.429823
+Mean difference: 0.767895
+Min value 1: -7.216505
+Max value 1: 4.359273
+Min value 2: -6.719528
+Max value 2: 5.593959
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.10.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.10.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 5.681238
+Mean difference: 0.145244
+Min value 1: -1.339264
+Max value 1: 1.893062
+Min value 2: -2.999950
+Max value 2: 5.059818
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.10.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.10.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 7.004590
+Mean difference: 0.842098
+Min value 1: -6.049478
+Max value 1: 7.065888
+Min value 2: -5.578702
+Max value 2: 5.761982
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.10.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.10.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.245777
+Mean difference: 0.147409
+Min value 1: -1.397846
+Max value 1: 1.289704
+Min value 2: -1.559955
+Max value 2: 1.607185
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.10.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.10.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 7.036860
+Mean difference: 0.820593
+Min value 1: -5.610223
+Max value 1: 5.848575
+Min value 2: -4.989493
+Max value 2: 5.277710
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.10.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.10.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 3.722008
+Mean difference: 0.546696
+Min value 1: -3.175402
+Max value 1: 2.929286
+Min value 2: -3.645800
+Max value 2: 4.026496
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.11.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.11.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 33.483154
+Mean difference: 0.916811
+Min value 1: -23.133503
+Max value 1: 3.298980
+Min value 2: -16.825375
+Max value 2: 27.121914
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.11.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.11.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 60.563553
+Mean difference: 0.149647
+Min value 1: -1.847820
+Max value 1: 1.546891
+Min value 2: -15.547512
+Max value 2: 60.473572
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.11.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.11.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 12.230320
+Mean difference: 0.956879
+Min value 1: -11.073228
+Max value 1: 9.552204
+Min value 2: -5.316440
+Max value 2: 6.669949
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.11.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.11.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.079682
+Mean difference: 0.143632
+Min value 1: -1.364091
+Max value 1: 1.499230
+Min value 2: -1.939241
+Max value 2: 1.376687
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.11.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.11.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 8.155918
+Mean difference: 0.910756
+Min value 1: -7.837843
+Max value 1: 7.578964
+Min value 2: -5.368113
+Max value 2: 4.994419
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.11.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.11.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 5.332491
+Mean difference: 0.549545
+Min value 1: -4.922846
+Max value 1: 3.113200
+Min value 2: -4.983268
+Max value 2: 3.962533
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.12.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.12.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 45.161194
+Mean difference: 0.990115
+Min value 1: -21.336769
+Max value 1: 16.384474
+Min value 2: -27.177959
+Max value 2: 57.959175
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.12.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.12.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 104.954170
+Mean difference: 0.172630
+Min value 1: -3.873606
+Max value 1: 28.905373
+Min value 2: -17.498020
+Max value 2: 130.488663
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.12.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.12.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 10.307124
+Mean difference: 0.987506
+Min value 1: -10.532673
+Max value 1: 9.911891
+Min value 2: -5.633015
+Max value 2: 6.745965
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.12.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.12.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.088451
+Mean difference: 0.124294
+Min value 1: -1.368683
+Max value 1: 1.107163
+Min value 2: -1.579979
+Max value 2: 1.416742
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.12.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.12.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 7.950382
+Mean difference: 0.946639
+Min value 1: -7.558461
+Max value 1: 7.586438
+Min value 2: -4.892540
+Max value 2: 5.631964
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.12.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.12.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 3.822785
+Mean difference: 0.526531
+Min value 1: -2.841794
+Max value 1: 3.017385
+Min value 2: -2.887067
+Max value 2: 3.576278
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.13.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.13.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 12.005991
+Mean difference: 0.980658
+Min value 1: -8.637059
+Max value 1: 2.991084
+Min value 2: -6.512332
+Max value 2: 6.420911
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.13.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.13.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 2.316334
+Mean difference: 0.127012
+Min value 1: -1.433426
+Max value 1: 1.689436
+Min value 2: -1.295770
+Max value 2: 2.084292
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.13.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.13.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 10.353306
+Mean difference: 1.169649
+Min value 1: -9.569305
+Max value 1: 10.931587
+Min value 2: -6.335283
+Max value 2: 6.229918
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.13.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.13.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 2.890416
+Mean difference: 0.136213
+Min value 1: -2.634174
+Max value 1: 3.034078
+Min value 2: -1.535972
+Max value 2: 1.398866
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.13.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.13.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 10.569950
+Mean difference: 1.105847
+Min value 1: -9.338825
+Max value 1: 9.398194
+Min value 2: -5.444084
+Max value 2: 5.975375
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.13.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.13.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 4.058861
+Mean difference: 0.564098
+Min value 1: -3.398343
+Max value 1: 2.418661
+Min value 2: -3.167834
+Max value 2: 3.059691
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.14.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.14.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 9.363857
+Mean difference: 1.226411
+Min value 1: -8.573984
+Max value 1: 2.451057
+Min value 2: -6.282440
+Max value 2: 4.326037
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.14.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.14.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.904413
+Mean difference: 0.118782
+Min value 1: -1.039551
+Max value 1: 1.286503
+Min value 2: -1.000750
+Max value 2: 1.700883
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.14.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.14.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 10.965411
+Mean difference: 1.076380
+Min value 1: -8.074520
+Max value 1: 7.964267
+Min value 2: -5.990307
+Max value 2: 6.057373
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.14.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.14.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 5.778682
+Mean difference: 0.125600
+Min value 1: -5.720623
+Max value 1: 5.590178
+Min value 2: -1.163155
+Max value 2: 0.829577
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.14.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.14.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 7.179548
+Mean difference: 0.981753
+Min value 1: -6.553521
+Max value 1: 6.595951
+Min value 2: -5.355154
+Max value 2: 5.897699
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.14.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.14.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 3.664570
+Mean difference: 0.533503
+Min value 1: -2.526554
+Max value 1: 2.083052
+Min value 2: -2.926954
+Max value 2: 2.615040
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.15.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.15.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 8.374129
+Mean difference: 1.259926
+Min value 1: -10.440569
+Max value 1: 3.126754
+Min value 2: -6.979463
+Max value 2: 4.164057
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.15.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.15.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.178158
+Mean difference: 0.126314
+Min value 1: -1.000351
+Max value 1: 1.186616
+Min value 2: -0.840740
+Max value 2: 1.356494
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.15.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.15.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 8.720810
+Mean difference: 0.973336
+Min value 1: -6.806901
+Max value 1: 6.211667
+Min value 2: -6.553510
+Max value 2: 6.588748
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.15.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.15.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.422354
+Mean difference: 0.149459
+Min value 1: -1.550951
+Max value 1: 0.931121
+Min value 2: -1.165091
+Max value 2: 0.822610
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.15.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.15.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 6.099419
+Mean difference: 0.917569
+Min value 1: -4.639333
+Max value 1: 4.895145
+Min value 2: -6.554675
+Max value 2: 6.359414
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.15.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.15.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 3.789351
+Mean difference: 0.583649
+Min value 1: -3.216068
+Max value 1: 2.961531
+Min value 2: -2.790686
+Max value 2: 2.981865
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.16.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.16.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 11.625777
+Mean difference: 1.471749
+Min value 1: -10.753138
+Max value 1: 3.004303
+Min value 2: -6.830189
+Max value 2: 6.595850
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.16.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.16.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.684206
+Mean difference: 0.095368
+Min value 1: -0.521373
+Max value 1: 1.526671
+Min value 2: -0.903729
+Max value 2: 1.970558
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.16.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.16.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 12.114721
+Mean difference: 1.016979
+Min value 1: -10.389382
+Max value 1: 10.887495
+Min value 2: -8.069114
+Max value 2: 7.575555
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.16.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.16.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.637209
+Mean difference: 0.156304
+Min value 1: -1.775782
+Max value 1: 0.906173
+Min value 2: -1.323102
+Max value 2: 0.909786
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.16.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.16.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 8.815990
+Mean difference: 0.978438
+Min value 1: -6.412455
+Max value 1: 6.845201
+Min value 2: -6.104548
+Max value 2: 6.225253
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.16.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.16.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 3.769730
+Mean difference: 0.622263
+Min value 1: -2.743554
+Max value 1: 2.722729
+Min value 2: -3.415650
+Max value 2: 2.952969
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.17.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.17.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 10.201192
+Mean difference: 1.986064
+Min value 1: -12.512219
+Max value 1: 2.257559
+Min value 2: -9.461309
+Max value 2: 6.291132
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.17.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.17.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 0.985649
+Mean difference: 0.088895
+Min value 1: -0.459017
+Max value 1: 1.172697
+Min value 2: -0.837911
+Max value 2: 1.302301
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.17.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.17.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 11.106184
+Mean difference: 1.031360
+Min value 1: -6.331132
+Max value 1: 7.055762
+Min value 2: -8.595116
+Max value 2: 9.463758
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.17.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.17.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 0.863057
+Mean difference: 0.146848
+Min value 1: -1.100094
+Max value 1: 0.846425
+Min value 2: -0.906346
+Max value 2: 0.380655
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.17.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.17.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 6.992753
+Mean difference: 0.985712
+Min value 1: -4.966950
+Max value 1: 5.221895
+Min value 2: -5.655860
+Max value 2: 6.610005
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.17.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.17.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 4.256942
+Mean difference: 0.621412
+Min value 1: -2.516194
+Max value 1: 2.844741
+Min value 2: -3.476473
+Max value 2: 3.128205
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.18.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.18.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 12.040936
+Mean difference: 2.096215
+Min value 1: -13.214675
+Max value 1: 3.898825
+Min value 2: -9.404779
+Max value 2: 5.282200
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.18.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.18.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.188649
+Mean difference: 0.094596
+Min value 1: -0.533645
+Max value 1: 1.539769
+Min value 2: -0.774244
+Max value 2: 1.823802
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.18.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.18.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 11.807598
+Mean difference: 1.036320
+Min value 1: -10.257363
+Max value 1: 14.221908
+Min value 2: -9.417647
+Max value 2: 14.902543
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.18.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.18.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.013934
+Mean difference: 0.159132
+Min value 1: -0.667243
+Max value 1: 0.751501
+Min value 2: -0.570463
+Max value 2: 0.755885
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.18.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.18.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 7.905831
+Mean difference: 1.017426
+Min value 1: -4.932331
+Max value 1: 5.398563
+Min value 2: -7.932954
+Max value 2: 8.931546
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.18.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.18.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 4.214152
+Mean difference: 0.664912
+Min value 1: -2.587481
+Max value 1: 3.670293
+Min value 2: -3.554985
+Max value 2: 3.445726
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.19.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.19.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 14.308406
+Mean difference: 1.873642
+Min value 1: -13.518188
+Max value 1: 3.309774
+Min value 2: -12.311489
+Max value 2: 9.663954
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.19.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.19.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.490696
+Mean difference: 0.121477
+Min value 1: -0.482983
+Max value 1: 1.390818
+Min value 2: -1.055589
+Max value 2: 1.880691
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.19.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.19.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 11.850488
+Mean difference: 1.059721
+Min value 1: -9.404591
+Max value 1: 7.018542
+Min value 2: -8.232956
+Max value 2: 10.298358
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.19.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.19.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.195461
+Mean difference: 0.168906
+Min value 1: -1.416205
+Max value 1: 0.819592
+Min value 2: -0.914294
+Max value 2: 0.501067
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.19.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.19.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 7.804427
+Mean difference: 1.023515
+Min value 1: -6.631870
+Max value 1: 6.344308
+Min value 2: -7.240636
+Max value 2: 7.028925
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.19.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.19.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 5.803267
+Mean difference: 0.687602
+Min value 1: -2.985250
+Max value 1: 3.255318
+Min value 2: -3.062686
+Max value 2: 3.949006
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.2.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.2.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 7.593967
+Mean difference: 0.728640
+Min value 1: -8.341444
+Max value 1: 6.477142
+Min value 2: -6.770671
+Max value 2: 2.988283
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.2.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.2.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 5.156497
+Mean difference: 0.233627
+Min value 1: -5.766129
+Max value 1: 5.143119
+Min value 2: -2.220598
+Max value 2: 2.148442
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.2.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.2.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 7.083359
+Mean difference: 0.512369
+Min value 1: -6.994421
+Max value 1: 6.971731
+Min value 2: -4.530894
+Max value 2: 4.130112
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.2.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.2.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 2.104107
+Mean difference: 0.108375
+Min value 1: -1.150999
+Max value 1: 1.924049
+Min value 2: -0.804274
+Max value 2: 0.752714
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.2.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.2.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 6.204082
+Mean difference: 0.506013
+Min value 1: -6.175434
+Max value 1: 6.627956
+Min value 2: -4.355948
+Max value 2: 4.422615
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.2.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.2.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 6.251486
+Mean difference: 0.202223
+Min value 1: -7.298407
+Max value 1: 6.625188
+Min value 2: -3.911514
+Max value 2: 3.499777
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.20.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.20.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 35.964386
+Mean difference: 2.072035
+Min value 1: -17.662365
+Max value 1: 10.465932
+Min value 2: -13.945645
+Max value 2: 32.964375
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.20.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.20.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 4.615134
+Mean difference: 0.278262
+Min value 1: -1.475955
+Max value 1: 1.086966
+Min value 2: -3.344128
+Max value 2: 4.563170
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.20.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.20.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 15.746901
+Mean difference: 1.169344
+Min value 1: -13.951285
+Max value 1: 9.329768
+Min value 2: -12.766968
+Max value 2: 9.121407
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.20.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.20.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 2.984691
+Mean difference: 0.208308
+Min value 1: -3.356686
+Max value 1: 1.951313
+Min value 2: -1.457826
+Max value 2: 0.532678
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.20.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.20.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 8.736112
+Mean difference: 1.074380
+Min value 1: -6.839708
+Max value 1: 6.589819
+Min value 2: -7.712968
+Max value 2: 9.522218
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.20.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.20.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 5.415820
+Mean difference: 0.758412
+Min value 1: -3.794055
+Max value 1: 3.912380
+Min value 2: -3.362866
+Max value 2: 3.738953
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.21.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.21.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 36.799740
+Mean difference: 1.635162
+Min value 1: -37.283478
+Max value 1: 12.561910
+Min value 2: -42.153404
+Max value 2: 12.967774
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.21.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.21.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 5.719686
+Mean difference: 0.249173
+Min value 1: -4.851689
+Max value 1: 3.825481
+Min value 2: -4.756017
+Max value 2: 5.571336
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.21.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.21.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 12.263908
+Mean difference: 0.952248
+Min value 1: -13.059540
+Max value 1: 16.239643
+Min value 2: -12.109658
+Max value 2: 15.897881
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.21.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.21.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.959662
+Mean difference: 0.213969
+Min value 1: -1.356015
+Max value 1: 1.602101
+Min value 2: -1.617043
+Max value 2: 0.714682
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.21.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.21.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 59.726635
+Mean difference: 1.949883
+Min value 1: -34.858242
+Max value 1: 22.136501
+Min value 2: -56.754284
+Max value 2: 33.796867
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.21.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.21.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 4.852693
+Mean difference: 0.757924
+Min value 1: -3.437962
+Max value 1: 3.493175
+Min value 2: -4.020916
+Max value 2: 3.948774
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.22.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.22.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 15.830521
+Mean difference: 1.334726
+Min value 1: -12.900958
+Max value 1: 9.600458
+Min value 2: -15.797235
+Max value 2: 7.243539
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.22.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.22.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 4.106201
+Mean difference: 0.177013
+Min value 1: -3.239060
+Max value 1: 4.451415
+Min value 2: -2.743030
+Max value 2: 5.307124
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.22.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.22.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 10.645231
+Mean difference: 0.866879
+Min value 1: -25.082649
+Max value 1: 24.352951
+Min value 2: -24.809364
+Max value 2: 24.921894
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.22.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.22.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 3.628024
+Mean difference: 0.203886
+Min value 1: -5.543258
+Max value 1: 1.449825
+Min value 2: -3.901197
+Max value 2: 1.470711
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.22.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.22.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 204.747711
+Mean difference: 10.343443
+Min value 1: -107.528587
+Max value 1: 89.474426
+Min value 2: -96.098328
+Max value 2: 117.008087
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.22.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.22.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 5.161150
+Mean difference: 0.697594
+Min value 1: -3.198115
+Max value 1: 2.825068
+Min value 2: -4.920645
+Max value 2: 4.373734
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.23.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.23.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 5.705821
+Mean difference: 0.813802
+Min value 1: -5.887331
+Max value 1: 4.736043
+Min value 2: -7.101253
+Max value 2: 4.186694
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.23.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.23.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 7.234161
+Mean difference: 0.248105
+Min value 1: -6.370160
+Max value 1: 3.861459
+Min value 2: -9.367319
+Max value 2: 5.257780
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.23.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.23.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 10.249006
+Mean difference: 0.882629
+Min value 1: -10.110747
+Max value 1: 10.139180
+Min value 2: -10.005625
+Max value 2: 10.186465
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.23.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.23.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 2.256950
+Mean difference: 0.305359
+Min value 1: -2.385446
+Max value 1: 1.821744
+Min value 2: -1.174922
+Max value 2: 1.176737
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.23.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.23.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 4.386834
+Mean difference: 0.734533
+Min value 1: -5.481393
+Max value 1: 4.916023
+Min value 2: -5.666931
+Max value 2: 4.879129
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.23.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.23.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 5.654884
+Mean difference: 0.773426
+Min value 1: -3.439219
+Max value 1: 4.048383
+Min value 2: -4.140702
+Max value 2: 5.284114
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.3.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.3.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 5.840921
+Mean difference: 0.543638
+Min value 1: -8.723303
+Max value 1: 4.526978
+Min value 2: -6.444222
+Max value 2: 2.624593
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.3.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.3.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.600778
+Mean difference: 0.130562
+Min value 1: -1.987904
+Max value 1: 2.361465
+Min value 2: -1.011345
+Max value 2: 0.989197
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.3.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.3.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 14.265733
+Mean difference: 0.944456
+Min value 1: -18.352486
+Max value 1: 17.531748
+Min value 2: -6.444805
+Max value 2: 6.357956
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.3.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.3.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 2.670556
+Mean difference: 0.097185
+Min value 1: -2.387858
+Max value 1: 2.152072
+Min value 2: -1.766260
+Max value 2: 1.012995
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.3.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.3.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 13.404918
+Mean difference: 0.895867
+Min value 1: -15.968351
+Max value 1: 15.722757
+Min value 2: -5.968987
+Max value 2: 6.004615
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.3.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.3.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 4.335717
+Mean difference: 0.223974
+Min value 1: -4.085649
+Max value 1: 4.476407
+Min value 2: -2.837701
+Max value 2: 2.923398
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.4.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.4.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 5.949951
+Mean difference: 0.531100
+Min value 1: -6.377508
+Max value 1: 4.969535
+Min value 2: -6.126343
+Max value 2: 2.444216
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.4.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.4.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 2.705483
+Mean difference: 0.187966
+Min value 1: -2.886435
+Max value 1: 1.694469
+Min value 2: -0.912870
+Max value 2: 1.095339
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.4.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.4.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 9.016430
+Mean difference: 0.534513
+Min value 1: -10.349039
+Max value 1: 10.893488
+Min value 2: -5.837934
+Max value 2: 5.745952
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.4.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.4.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 0.616152
+Mean difference: 0.077357
+Min value 1: -0.856700
+Max value 1: 0.772404
+Min value 2: -1.140258
+Max value 2: 0.905430
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.4.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.4.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 7.389317
+Mean difference: 0.553810
+Min value 1: -8.522968
+Max value 1: 8.299896
+Min value 2: -5.736521
+Max value 2: 4.891100
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.4.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.4.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 3.071803
+Mean difference: 0.222095
+Min value 1: -4.176914
+Max value 1: 3.563130
+Min value 2: -3.255596
+Max value 2: 2.464951
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.5.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.5.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 5.751584
+Mean difference: 0.514576
+Min value 1: -7.113245
+Max value 1: 5.470504
+Min value 2: -7.129357
+Max value 2: 2.420866
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.5.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.5.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 4.558537
+Mean difference: 0.129038
+Min value 1: -4.837583
+Max value 1: 4.697916
+Min value 2: -0.900934
+Max value 2: 1.920740
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.5.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.5.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 7.059753
+Mean difference: 0.555138
+Min value 1: -6.918780
+Max value 1: 6.610407
+Min value 2: -4.774544
+Max value 2: 4.659254
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.5.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.5.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 0.946112
+Mean difference: 0.102923
+Min value 1: -0.855101
+Max value 1: 0.555708
+Min value 2: -0.797124
+Max value 2: 0.833468
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.5.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.5.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 5.447994
+Mean difference: 0.552739
+Min value 1: -5.207143
+Max value 1: 5.745114
+Min value 2: -4.348556
+Max value 2: 4.932443
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.5.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.5.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 3.591513
+Mean difference: 0.301791
+Min value 1: -2.420502
+Max value 1: 2.265383
+Min value 2: -2.569358
+Max value 2: 3.484507
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.6.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.6.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 5.776724
+Mean difference: 0.523260
+Min value 1: -7.374708
+Max value 1: 3.460021
+Min value 2: -7.416292
+Max value 2: 3.728551
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.6.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.6.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.092152
+Mean difference: 0.138721
+Min value 1: -1.149809
+Max value 1: 1.969394
+Min value 2: -1.258134
+Max value 2: 1.863245
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.6.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.6.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 12.340641
+Mean difference: 1.014987
+Min value 1: -14.016643
+Max value 1: 13.148581
+Min value 2: -5.751092
+Max value 2: 5.678006
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.6.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.6.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.282229
+Mean difference: 0.119813
+Min value 1: -1.306898
+Max value 1: 0.982643
+Min value 2: -1.679442
+Max value 2: 1.090602
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.6.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.6.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 8.976147
+Mean difference: 0.853427
+Min value 1: -10.006375
+Max value 1: 9.957652
+Min value 2: -5.441741
+Max value 2: 5.607625
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.6.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.6.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 3.806396
+Mean difference: 0.353548
+Min value 1: -3.304535
+Max value 1: 3.030874
+Min value 2: -3.191715
+Max value 2: 2.892313
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.7.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.7.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 6.227238
+Mean difference: 0.548951
+Min value 1: -7.221795
+Max value 1: 2.847440
+Min value 2: -7.250021
+Max value 2: 3.561413
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.7.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.7.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.537211
+Mean difference: 0.136457
+Min value 1: -1.583164
+Max value 1: 1.640244
+Min value 2: -1.118156
+Max value 2: 1.873936
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.7.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.7.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 6.872871
+Mean difference: 0.666531
+Min value 1: -5.311921
+Max value 1: 6.099581
+Min value 2: -4.478006
+Max value 2: 4.843249
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.7.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.7.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 0.793877
+Mean difference: 0.118779
+Min value 1: -1.106016
+Max value 1: 0.540843
+Min value 2: -1.241445
+Max value 2: 0.711525
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.7.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.7.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 5.116725
+Mean difference: 0.667382
+Min value 1: -5.207851
+Max value 1: 4.983537
+Min value 2: -6.639297
+Max value 2: 5.851800
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.7.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.7.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 3.922784
+Mean difference: 0.444382
+Min value 1: -2.715793
+Max value 1: 2.628806
+Min value 2: -3.618579
+Max value 2: 3.175405
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.8.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.8.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 7.578482
+Mean difference: 0.593706
+Min value 1: -6.408405
+Max value 1: 3.096096
+Min value 2: -6.021782
+Max value 2: 4.687134
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.8.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.8.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 3.675680
+Mean difference: 0.154149
+Min value 1: -1.503511
+Max value 1: 1.948815
+Min value 2: -1.810213
+Max value 2: 3.934097
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.8.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.8.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 6.877228
+Mean difference: 0.751897
+Min value 1: -8.420478
+Max value 1: 8.617609
+Min value 2: -4.963263
+Max value 2: 5.530985
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.8.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.8.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.463496
+Mean difference: 0.133767
+Min value 1: -1.547650
+Max value 1: 0.904396
+Min value 2: -1.208305
+Max value 2: 0.974125
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.8.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.8.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 5.503389
+Mean difference: 0.733593
+Min value 1: -6.512914
+Max value 1: 6.347875
+Min value 2: -6.185719
+Max value 2: 6.113019
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.8.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.8.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 4.785740
+Mean difference: 0.501390
+Min value 1: -3.614910
+Max value 1: 4.285367
+Min value 2: -4.503548
+Max value 2: 3.402130
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.9.mlp.fc1_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.9.mlp.fc1_output.pt
+Shape 1: torch.Size([1, 257, 4096])
+Shape 2: torch.Size([1, 257, 4096])
+Max difference: 7.926345
+Mean difference: 0.686037
+Min value 1: -6.757711
+Max value 1: 2.860540
+Min value 2: -6.808828
+Max value 2: 4.380157
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.9.mlp.fc2_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.9.mlp.fc2_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 4.511977
+Mean difference: 0.145981
+Min value 1: -1.082920
+Max value 1: 1.994491
+Min value 2: -1.922725
+Max value 2: 4.851249
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.9.self_attn.k_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.9.self_attn.k_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 8.101906
+Mean difference: 0.825354
+Min value 1: -7.291210
+Max value 1: 8.790481
+Min value 2: -5.454447
+Max value 2: 4.621850
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.9.self_attn.out_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.9.self_attn.out_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 1.190647
+Mean difference: 0.161127
+Min value 1: -1.035135
+Max value 1: 1.479164
+Min value 2: -1.304526
+Max value 2: 1.953690
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.9.self_attn.q_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.9.self_attn.q_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 6.756823
+Mean difference: 0.786095
+Min value 1: -5.996514
+Max value 1: 6.060337
+Min value 2: -6.726791
+Max value 2: 4.700107
+
+Layer comparison:
+Name 1: feature_extractor.vision_model.encoder.layers.9.self_attn.v_proj_output.pt
+Name 2: image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.9.self_attn.v_proj_output.pt
+Shape 1: torch.Size([1, 257, 1024])
+Shape 2: torch.Size([1, 257, 1024])
+Max difference: 4.762351
+Mean difference: 0.558429
+Min value 1: -2.956553
+Max value 1: 3.437799
+Min value 2: -4.788741
+Max value 2: 3.392953
+
+Layer comparison:
+Name 1: model.linear_output.pt
+Name 2: image_0__forward_module.model.linear_output.pt
+Shape 1: torch.Size([1, 2])
+Shape 2: torch.Size([1, 2])
+Max difference: 1.508488
+Mean difference: 1.492743
+Min value 1: -0.108721
+Max value 1: 0.119349
+Min value 2: -1.357649
+Max value 2: 1.399767
+
+Summary of significant differences:
+feature_extractor.vision_model.encoder.layers.22.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.22.self_attn.q_proj_output.pt: 10.343443
+feature_extractor.vision_model.encoder.layers.18.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.18.mlp.fc1_output.pt: 2.096215
+feature_extractor.vision_model.encoder.layers.20.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.20.mlp.fc1_output.pt: 2.072035
+feature_extractor.vision_model.encoder.layers.17.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.17.mlp.fc1_output.pt: 1.986064
+feature_extractor.vision_model.encoder.layers.21.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.21.self_attn.q_proj_output.pt: 1.949883
+feature_extractor.vision_model.encoder.layers.19.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.19.mlp.fc1_output.pt: 1.873642
+feature_extractor.vision_model.encoder.layers.21.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.21.mlp.fc1_output.pt: 1.635162
+model.linear_output.pt <-> image_0__forward_module.model.linear_output.pt: 1.492743
+feature_extractor.vision_model.encoder.layers.16.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.16.mlp.fc1_output.pt: 1.471749
+feature_extractor.vision_model.encoder.layers.22.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.22.mlp.fc1_output.pt: 1.334726
+feature_extractor.vision_model.encoder.layers.0.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.0.mlp.fc1_output.pt: 1.307917
+feature_extractor.vision_model.encoder.layers.15.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.15.mlp.fc1_output.pt: 1.259926
+feature_extractor.vision_model.encoder.layers.14.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.14.mlp.fc1_output.pt: 1.226411
+feature_extractor.vision_model.encoder.layers.13.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.13.self_attn.k_proj_output.pt: 1.169649
+feature_extractor.vision_model.encoder.layers.20.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.20.self_attn.k_proj_output.pt: 1.169344
+feature_extractor.vision_model.encoder.layers.13.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.13.self_attn.q_proj_output.pt: 1.105847
+feature_extractor.vision_model.encoder.layers.14.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.14.self_attn.k_proj_output.pt: 1.076380
+feature_extractor.vision_model.encoder.layers.20.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.20.self_attn.q_proj_output.pt: 1.074380
+feature_extractor.vision_model.encoder.layers.19.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.19.self_attn.k_proj_output.pt: 1.059721
+feature_extractor.vision_model.encoder.layers.18.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.18.self_attn.k_proj_output.pt: 1.036320
+feature_extractor.vision_model.encoder.layers.17.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.17.self_attn.k_proj_output.pt: 1.031360
+feature_extractor.vision_model.encoder.layers.19.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.19.self_attn.q_proj_output.pt: 1.023515
+feature_extractor.vision_model.encoder.layers.18.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.18.self_attn.q_proj_output.pt: 1.017426
+feature_extractor.vision_model.encoder.layers.16.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.16.self_attn.k_proj_output.pt: 1.016979
+feature_extractor.vision_model.encoder.layers.6.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.6.self_attn.k_proj_output.pt: 1.014987
+feature_extractor.vision_model.encoder.layers.12.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.12.mlp.fc1_output.pt: 0.990115
+feature_extractor.vision_model.encoder.layers.12.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.12.self_attn.k_proj_output.pt: 0.987506
+feature_extractor.vision_model.encoder.layers.17.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.17.self_attn.q_proj_output.pt: 0.985712
+feature_extractor.vision_model.encoder.layers.14.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.14.self_attn.q_proj_output.pt: 0.981753
+feature_extractor.vision_model.encoder.layers.13.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.13.mlp.fc1_output.pt: 0.980658
+feature_extractor.vision_model.encoder.layers.16.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.16.self_attn.q_proj_output.pt: 0.978438
+feature_extractor.vision_model.encoder.layers.15.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.15.self_attn.k_proj_output.pt: 0.973336
+feature_extractor.vision_model.encoder.layers.11.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.11.self_attn.k_proj_output.pt: 0.956879
+feature_extractor.vision_model.encoder.layers.21.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.21.self_attn.k_proj_output.pt: 0.952248
+feature_extractor.vision_model.encoder.layers.12.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.12.self_attn.q_proj_output.pt: 0.946639
+feature_extractor.vision_model.encoder.layers.3.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.3.self_attn.k_proj_output.pt: 0.944456
+feature_extractor.vision_model.encoder.layers.15.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.15.self_attn.q_proj_output.pt: 0.917569
+feature_extractor.vision_model.encoder.layers.11.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.11.mlp.fc1_output.pt: 0.916811
+feature_extractor.vision_model.encoder.layers.11.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.11.self_attn.q_proj_output.pt: 0.910756
+feature_extractor.vision_model.encoder.layers.3.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.3.self_attn.q_proj_output.pt: 0.895867
+feature_extractor.vision_model.encoder.layers.23.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.23.self_attn.k_proj_output.pt: 0.882629
+feature_extractor.vision_model.encoder.layers.22.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.22.self_attn.k_proj_output.pt: 0.866879
+feature_extractor.vision_model.encoder.layers.6.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.6.self_attn.q_proj_output.pt: 0.853427
+feature_extractor.vision_model.encoder.layers.10.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.10.self_attn.k_proj_output.pt: 0.842098
+feature_extractor.vision_model.encoder.layers.9.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.9.self_attn.k_proj_output.pt: 0.825354
+feature_extractor.vision_model.encoder.layers.10.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.10.self_attn.q_proj_output.pt: 0.820593
+feature_extractor.vision_model.encoder.layers.23.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.23.mlp.fc1_output.pt: 0.813802
+feature_extractor.vision_model.encoder.layers.9.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.9.self_attn.q_proj_output.pt: 0.786095
+feature_extractor.vision_model.encoder.layers.23.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.23.self_attn.v_proj_output.pt: 0.773426
+feature_extractor.vision_model.encoder.layers.10.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.10.mlp.fc1_output.pt: 0.767895
+feature_extractor.vision_model.encoder.layers.20.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.20.self_attn.v_proj_output.pt: 0.758412
+feature_extractor.vision_model.encoder.layers.21.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.21.self_attn.v_proj_output.pt: 0.757924
+feature_extractor.vision_model.encoder.layers.8.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.8.self_attn.k_proj_output.pt: 0.751897
+feature_extractor.vision_model.encoder.layers.23.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.23.self_attn.q_proj_output.pt: 0.734533
+feature_extractor.vision_model.encoder.layers.8.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.8.self_attn.q_proj_output.pt: 0.733593
+feature_extractor.vision_model.encoder.layers.2.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.2.mlp.fc1_output.pt: 0.728640
+feature_extractor.vision_model.encoder.layers.22.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.22.self_attn.v_proj_output.pt: 0.697594
+feature_extractor.vision_model.encoder.layers.19.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.19.self_attn.v_proj_output.pt: 0.687602
+feature_extractor.vision_model.encoder.layers.9.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.9.mlp.fc1_output.pt: 0.686037
+feature_extractor.vision_model.encoder.layers.7.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.7.self_attn.q_proj_output.pt: 0.667382
+feature_extractor.vision_model.encoder.layers.7.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.7.self_attn.k_proj_output.pt: 0.666531
+feature_extractor.vision_model.encoder.layers.18.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.18.self_attn.v_proj_output.pt: 0.664912
+feature_extractor.vision_model.encoder.layers.16.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.16.self_attn.v_proj_output.pt: 0.622263
+feature_extractor.vision_model.encoder.layers.17.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.17.self_attn.v_proj_output.pt: 0.621412
+feature_extractor.vision_model.encoder.layers.1.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.1.mlp.fc1_output.pt: 0.614348
+feature_extractor.vision_model.encoder.layers.8.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.8.mlp.fc1_output.pt: 0.593706
+feature_extractor.vision_model.encoder.layers.15.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.15.self_attn.v_proj_output.pt: 0.583649
+feature_extractor.vision_model.encoder.layers.13.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.13.self_attn.v_proj_output.pt: 0.564098
+feature_extractor.vision_model.encoder.layers.9.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.9.self_attn.v_proj_output.pt: 0.558429
+feature_extractor.vision_model.encoder.layers.5.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.5.self_attn.k_proj_output.pt: 0.555138
+feature_extractor.vision_model.encoder.layers.4.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.4.self_attn.q_proj_output.pt: 0.553810
+feature_extractor.vision_model.encoder.layers.5.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.5.self_attn.q_proj_output.pt: 0.552739
+feature_extractor.vision_model.encoder.layers.11.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.11.self_attn.v_proj_output.pt: 0.549545
+feature_extractor.vision_model.encoder.layers.7.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.7.mlp.fc1_output.pt: 0.548951
+feature_extractor.vision_model.encoder.layers.10.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.10.self_attn.v_proj_output.pt: 0.546696
+feature_extractor.vision_model.encoder.layers.0.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.0.self_attn.q_proj_output.pt: 0.545183
+feature_extractor.vision_model.encoder.layers.3.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.3.mlp.fc1_output.pt: 0.543638
+feature_extractor.vision_model.encoder.layers.4.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.4.self_attn.k_proj_output.pt: 0.534513
+feature_extractor.vision_model.encoder.layers.14.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.14.self_attn.v_proj_output.pt: 0.533503
+feature_extractor.vision_model.encoder.layers.4.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.4.mlp.fc1_output.pt: 0.531100
+feature_extractor.vision_model.encoder.layers.12.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.12.self_attn.v_proj_output.pt: 0.526531
+feature_extractor.vision_model.encoder.layers.6.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.6.mlp.fc1_output.pt: 0.523260
+feature_extractor.vision_model.encoder.layers.5.mlp.fc1_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.5.mlp.fc1_output.pt: 0.514576
+feature_extractor.vision_model.encoder.layers.2.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.2.self_attn.k_proj_output.pt: 0.512369
+feature_extractor.vision_model.encoder.layers.2.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.2.self_attn.q_proj_output.pt: 0.506013
+feature_extractor.vision_model.encoder.layers.1.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.1.self_attn.k_proj_output.pt: 0.501980
+feature_extractor.vision_model.encoder.layers.8.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.8.self_attn.v_proj_output.pt: 0.501390
+feature_extractor.vision_model.encoder.layers.1.self_attn.q_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.1.self_attn.q_proj_output.pt: 0.463841
+feature_extractor.vision_model.encoder.layers.7.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.7.self_attn.v_proj_output.pt: 0.444382
+feature_extractor.vision_model.encoder.layers.0.self_attn.k_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.0.self_attn.k_proj_output.pt: 0.420923
+feature_extractor.vision_model.encoder.layers.0.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.0.mlp.fc2_output.pt: 0.419496
+feature_extractor.vision_model.encoder.layers.6.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.6.self_attn.v_proj_output.pt: 0.353548
+feature_extractor.vision_model.encoder.layers.23.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.23.self_attn.out_proj_output.pt: 0.305359
+feature_extractor.vision_model.encoder.layers.5.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.5.self_attn.v_proj_output.pt: 0.301791
+feature_extractor.vision_model.encoder.layers.20.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.20.mlp.fc2_output.pt: 0.278262
+feature_extractor.vision_model.encoder.layers.21.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.21.mlp.fc2_output.pt: 0.249173
+feature_extractor.vision_model.encoder.layers.23.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.23.mlp.fc2_output.pt: 0.248105
+feature_extractor.vision_model.encoder.layers.2.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.2.mlp.fc2_output.pt: 0.233627
+feature_extractor.vision_model.encoder.layers.3.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.3.self_attn.v_proj_output.pt: 0.223974
+feature_extractor.vision_model.encoder.layers.4.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.4.self_attn.v_proj_output.pt: 0.222095
+feature_extractor.vision_model.encoder.layers.21.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.21.self_attn.out_proj_output.pt: 0.213969
+feature_extractor.vision_model.encoder.layers.20.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.20.self_attn.out_proj_output.pt: 0.208308
+feature_extractor.vision_model.encoder.layers.22.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.22.self_attn.out_proj_output.pt: 0.203886
+feature_extractor.vision_model.encoder.layers.2.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.2.self_attn.v_proj_output.pt: 0.202223
+feature_extractor.vision_model.encoder.layers.1.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.1.self_attn.v_proj_output.pt: 0.200456
+feature_extractor.vision_model.encoder.layers.0.self_attn.v_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.0.self_attn.v_proj_output.pt: 0.190396
+feature_extractor.vision_model.encoder.layers.4.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.4.mlp.fc2_output.pt: 0.187966
+feature_extractor.vision_model.encoder.layers.22.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.22.mlp.fc2_output.pt: 0.177013
+feature_extractor.vision_model.encoder.layers.12.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.12.mlp.fc2_output.pt: 0.172630
+feature_extractor.vision_model.encoder.layers.19.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.19.self_attn.out_proj_output.pt: 0.168906
+feature_extractor.vision_model.encoder.layers.9.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.9.self_attn.out_proj_output.pt: 0.161127
+feature_extractor.vision_model.encoder.layers.18.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.18.self_attn.out_proj_output.pt: 0.159132
+feature_extractor.vision_model.encoder.layers.16.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.16.self_attn.out_proj_output.pt: 0.156304
+feature_extractor.vision_model.encoder.layers.8.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.8.mlp.fc2_output.pt: 0.154149
+feature_extractor.vision_model.encoder.layers.11.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.11.mlp.fc2_output.pt: 0.149647
+feature_extractor.vision_model.encoder.layers.15.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.15.self_attn.out_proj_output.pt: 0.149459
+feature_extractor.vision_model.encoder.layers.10.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.10.self_attn.out_proj_output.pt: 0.147409
+feature_extractor.vision_model.encoder.layers.17.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.17.self_attn.out_proj_output.pt: 0.146848
+feature_extractor.vision_model.encoder.layers.9.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.9.mlp.fc2_output.pt: 0.145981
+feature_extractor.vision_model.encoder.layers.0.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.0.self_attn.out_proj_output.pt: 0.145926
+feature_extractor.vision_model.encoder.layers.10.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.10.mlp.fc2_output.pt: 0.145244
+feature_extractor.vision_model.encoder.layers.11.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.11.self_attn.out_proj_output.pt: 0.143632
+feature_extractor.vision_model.encoder.layers.6.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.6.mlp.fc2_output.pt: 0.138721
+feature_extractor.vision_model.encoder.layers.7.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.7.mlp.fc2_output.pt: 0.136457
+feature_extractor.vision_model.encoder.layers.13.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.13.self_attn.out_proj_output.pt: 0.136213
+feature_extractor.vision_model.encoder.layers.8.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.8.self_attn.out_proj_output.pt: 0.133767
+feature_extractor.vision_model.encoder.layers.1.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.1.self_attn.out_proj_output.pt: 0.132782
+feature_extractor.vision_model.encoder.layers.3.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.3.mlp.fc2_output.pt: 0.130562
+feature_extractor.vision_model.encoder.layers.5.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.5.mlp.fc2_output.pt: 0.129038
+feature_extractor.vision_model.encoder.layers.13.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.13.mlp.fc2_output.pt: 0.127012
+feature_extractor.vision_model.encoder.layers.15.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.15.mlp.fc2_output.pt: 0.126314
+feature_extractor.vision_model.encoder.layers.14.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.14.self_attn.out_proj_output.pt: 0.125600
+feature_extractor.vision_model.encoder.layers.12.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.12.self_attn.out_proj_output.pt: 0.124294
+feature_extractor.vision_model.encoder.layers.19.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.19.mlp.fc2_output.pt: 0.121477
+feature_extractor.vision_model.encoder.layers.6.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.6.self_attn.out_proj_output.pt: 0.119813
+feature_extractor.vision_model.encoder.layers.14.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.14.mlp.fc2_output.pt: 0.118782
+feature_extractor.vision_model.encoder.layers.7.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.7.self_attn.out_proj_output.pt: 0.118779
+feature_extractor.vision_model.encoder.layers.2.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.2.self_attn.out_proj_output.pt: 0.108375
+feature_extractor.vision_model.encoder.layers.5.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.5.self_attn.out_proj_output.pt: 0.102923
+feature_extractor.vision_model.encoder.layers.3.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.3.self_attn.out_proj_output.pt: 0.097185
+feature_extractor.vision_model.encoder.layers.16.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.16.mlp.fc2_output.pt: 0.095368
+feature_extractor.vision_model.encoder.layers.18.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.18.mlp.fc2_output.pt: 0.094596
+feature_extractor.vision_model.encoder.layers.17.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.17.mlp.fc2_output.pt: 0.088895
+feature_extractor.vision_model.encoder.layers.1.mlp.fc2_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.1.mlp.fc2_output.pt: 0.083673
+feature_extractor.vision_model.encoder.layers.4.self_attn.out_proj_output.pt <-> image_0__forward_module.feature_extractor.base_model.model.vision_model.encoder.layers.4.self_attn.out_proj_output.pt: 0.077357

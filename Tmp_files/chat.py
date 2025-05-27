@@ -1,4 +1,3 @@
-
 from efficientnet_pytorch import EfficientNet
 from transformers import TimesformerModel
 import torch
@@ -38,7 +37,7 @@ class TimeSformerDetector(AbstractDetector):
         eff_pooled = eff_features.mean(dim=1)  # (B, 1280)
 
         ts_output = self.backbone(data_dict['image'], output_hidden_states=True)
-        ts_feat = ts_output.last_hidden_state[:, 0, :]  # (B, 768) — CLS token
+        ts_feat = ts_output.pooler_output  # (B, 768) — using pooler_output instead of CLS token
 
         combined = torch.cat((eff_pooled, ts_feat), dim=1)  # (B, 2048)
         return combined

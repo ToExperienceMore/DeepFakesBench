@@ -70,7 +70,6 @@ def prepare_testing_data(config):
             )
         # Calculate number of batches needed for 200 images
         batch_size = config['test_batchSize']
-        num_batches = min(200 // batch_size + (1 if 200 % batch_size else 0), len(test_set) // batch_size + (1 if len(test_set) % batch_size else 0))
         
         test_data_loader = \
             torch.utils.data.DataLoader(
@@ -110,7 +109,7 @@ def test_one_dataset(model, data_loader):
     
     # Calculate number of batches needed for 200 images
     batch_size = data_loader.batch_size
-    num_batches = 40
+    num_batches = 10
     
     for i, data_dict in tqdm(enumerate(data_loader), total=num_batches):
         if i >= num_batches:
@@ -123,44 +122,8 @@ def test_one_dataset(model, data_loader):
         # landmark: torch.Tensor or None, shape [B, 81, 2] if present
         data, label, mask, landmark = \
         data_dict['image'], data_dict['label'], data_dict['mask'], data_dict['landmark']
-        label = torch.where(data_dict['label'] != 0, 1, 0)  # Convert to binary labels
         
-        # Get preprocessing function from model and process images
-        preprocess = model.get_preprocessing()  # Returns CLIPImageProcessor
-        
-        # Convert tensor to PIL images for CLIP preprocessing
-        # data: torch.Tensor [B, C, H, W] -> numpy.ndarray [B, C, H, W]
-        data = data.cpu().numpy()
-        # data: numpy.ndarray [B, C, H, W] -> [B, H, W, C] for PIL
-        data = np.transpose(data, (0, 2, 3, 1))
-        # Convert to PIL Images
-        # data: List[PIL.Image.Image], length B
-        data = [pil_image.fromarray(img) for img in data]
-        
-        # Process images using CLIP processor
-        # processed_data: BatchFeature containing 'pixel_values' tensor or dict
-        processed_data = preprocess(data)
-        
-        # Extract pixel values based on return type
-        if hasattr(processed_data, 'pixel_values'):
-            # If BatchFeature object
-            processed_data = processed_data.pixel_values
-        elif isinstance(processed_data, dict) and 'pixel_values' in processed_data:
-            # If dictionary with pixel_values
-            processed_data = processed_data['pixel_values']
-        elif isinstance(processed_data, torch.Tensor):
-            # If already a tensor
-            pass
-        else:
-            raise TypeError(f"Unexpected return type from preprocess: {type(processed_data)}")
-        
-        # Ensure processed_data is a tensor
-        if not isinstance(processed_data, torch.Tensor):
-            processed_data = torch.tensor(processed_data)
-        
-        # move data to GPU and convert to float32
-        # processed_data: torch.Tensor [B, C, H, W] on GPU with float32 dtype
-        data_dict['image'] = processed_data.to(device).to(torch.float32)
+        data_dict['image'] = data.to(device)
         # label: torch.Tensor [B] on GPU
         data_dict['label'] = label.to(device)
         if mask is not None:
@@ -312,13 +275,20 @@ def main():
         # Initialize model with updated config
         model_class = DETECTOR[config['model_name']]
         model = model_class(config).to(device)
+        #print("model keys:")
+        #print(list(model.state_dict().keys()))
+        #print("ckpt keys:")
+        #print(list(ckpt['state_dict'].keys()))
         
         # Load state dict
         if 'state_dict' in ckpt:
             state_dict = ckpt['state_dict']
-            # Remove 'model.' prefix if it exists
-            state_dict = {k.replace('model.', ''): v for k, v in state_dict.items()}
-            model.load_state_dict(state_dict, strict=False)
+            # 转换键值
+            new_state_dict = {}
+            for k, v in state_dict.items():
+                new_key = k.replace('feature_extractor.base_model.model.', 'feature_extractor.')
+                new_state_dict[new_key] = v
+            model.load_state_dict(new_state_dict, strict=True)
             print('===> Load checkpoint done!')
     else:
         print('Fail to load the pre-trained weights')

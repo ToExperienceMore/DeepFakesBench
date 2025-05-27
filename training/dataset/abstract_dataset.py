@@ -470,7 +470,7 @@ class DeepfakeAbstractBaseDataset(data.Dataset):
                 image_buf = np.frombuffer(image_bin, dtype=np.uint8)
                 img = cv2.imdecode(image_buf, cv2.IMREAD_COLOR)
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        #img = cv2.resize(img, (size, size), interpolation=cv2.INTER_CUBIC)
+        img = cv2.resize(img, (size, size), interpolation=cv2.INTER_CUBIC)
         return Image.fromarray(np.array(img, dtype=np.uint8))
 
 
@@ -671,12 +671,14 @@ class DeepfakeAbstractBaseDataset(data.Dataset):
             else:
                 image_trans, landmarks_trans, mask_trans = deepcopy(image), deepcopy(landmarks), deepcopy(mask)
             
-            # Convert to tensor
-            image_trans = torch.from_numpy(image_trans).permute(2, 0, 1)  # Convert to CxHxW format
-            if landmarks_trans is not None:
-                landmarks_trans = torch.from_numpy(landmarks_trans)
-            if mask_trans is not None:
-                mask_trans = torch.from_numpy(mask_trans)
+
+            # To tensor and normalize
+            if not no_norm:
+                image_trans = self.normalize(self.to_tensor(image_trans))
+                if self.config['with_landmark']:
+                    landmarks_trans = torch.from_numpy(landmarks)
+                if self.config['with_mask']:
+                    mask_trans = torch.from_numpy(mask_trans)
 
             image_tensors.append(image_trans)
             landmark_tensors.append(landmarks_trans)
