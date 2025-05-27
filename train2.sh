@@ -12,6 +12,13 @@
 #config=./training/config/detector/tall_video.yaml
 config=./training/config/detector/clip_enhanced.yaml
 
+# 设置检查点路径（如果有的话）
+checkpoint=""
+#checkpoint="/path/to/your/checkpoint.pth"
+
+# 设置任务名称
+task_name="clip_enhanced_debug"
+
 #nohup python training/train.py \
 #--detector_path $config \
 #--train_dataset "FaceForensics++" \
@@ -31,10 +38,15 @@ config=./training/config/detector/clip_enhanced.yaml
 
 set -x
 
+#--max_train_images 100 \
+#--max_test_images 100 \
 nohup python training/train.py \
 --detector_path $config \
---train_dataset "FaceForensics++"  \
---test_dataset  "DFDC" > train_FaceForensics++_clip_enhanced-0527-debug-AMP.log 2>&1 &
+--train_dataset "FaceForensics++" \
+--test_dataset "DFDC" \
+--task_target $task_name \
+${checkpoint:+--checkpoint $checkpoint} \
+> train_FF++_${task_name}.log 2>&1 &
 
 #python training/train.py \
 #--detector_path $config \

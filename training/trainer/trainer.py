@@ -356,7 +356,8 @@ class Trainer(object):
             predictions = self.inference(data_dict)
             label_lists += list(data_dict['label'].cpu().detach().numpy())
             prediction_lists += list(predictions['prob'].cpu().detach().numpy())
-            feature_lists += list(predictions['feat'].cpu().detach().numpy())
+            if 'feat' in predictions:
+                feature_lists += list(predictions['feat'].cpu().detach().numpy())
             if type(self.model) is not AveragedModel:
                 # compute all losses for each batch data
                 if type(self.model) is DDP:

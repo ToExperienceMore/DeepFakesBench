@@ -47,7 +47,9 @@ parser.add_argument('--no-save_feat', dest='save_feat', action='store_false', de
 parser.add_argument("--ddp", action='store_true', default=False)
 parser.add_argument('--local_rank', type=int, default=0)
 parser.add_argument('--task_target', type=str, default="", help='specify the target of current training task')
-#parser.add_argument('--checkpoint', type=str, default=None, help='path to the checkpoint file')
+parser.add_argument('--checkpoint', type=str, default=None, help='path to the checkpoint file to resume training')
+parser.add_argument('--max_train_images', type=int, default=None, help='maximum number of training images to use (for testing)')
+parser.add_argument('--max_test_images', type=int, default=None, help='maximum number of test images to use (for testing)')
 args = parser.parse_args()
 torch.cuda.set_device(args.local_rank)
 
@@ -59,6 +61,10 @@ def init_seed(config):
     if config['cuda']:
         torch.manual_seed(config['manualSeed'])
         torch.cuda.manual_seed_all(config['manualSeed'])
+        # Set cudnn settings
+        if config.get('cudnn', False):
+            cudnn.enabled = True
+            cudnn.benchmark = config.get('cudnn_benchmark', True)
 
 
 def prepare_training_data(config):
@@ -99,6 +105,9 @@ def prepare_training_data(config):
                 num_workers=int(config['workers']),
                 sampler=custom_sampler, 
                 collate_fn=train_set.collate_fn,
+                pin_memory=True,
+                persistent_workers=True if int(config['workers']) > 0 else False,
+                prefetch_factor=2 if int(config['workers']) > 0 else None,
             )
     elif config['ddp']:
         sampler = DistributedSampler(train_set)
@@ -108,7 +117,10 @@ def prepare_training_data(config):
                 batch_size=config['train_batchSize'],
                 num_workers=int(config['workers']),
                 collate_fn=train_set.collate_fn,
-                sampler=sampler
+                sampler=sampler,
+                pin_memory=True,
+                persistent_workers=True if int(config['workers']) > 0 else False,
+                prefetch_factor=2 if int(config['workers']) > 0 else None,
             )
     else:
         train_data_loader = \
@@ -118,7 +130,10 @@ def prepare_training_data(config):
                 shuffle=True,
                 num_workers=int(config['workers']),
                 collate_fn=train_set.collate_fn,
-                )
+                pin_memory=True,
+                persistent_workers=True if int(config['workers']) > 0 else False,
+                prefetch_factor=2 if int(config['workers']) > 0 else None,
+            )
     return train_data_loader
 
 
@@ -146,6 +161,9 @@ def prepare_testing_data(config):
                 num_workers=int(config['workers']),
                 collate_fn=test_set.collate_fn,
                 drop_last = (test_name=='DeepFakeDetection'),
+                pin_memory=True,
+                persistent_workers=True if int(config['workers']) > 0 else False,
+                prefetch_factor=2 if int(config['workers']) > 0 else None,
             )
 
         return test_data_loader
@@ -251,6 +269,15 @@ def main():
     config['save_feat'] = args.save_feat
     if config['lmdb']:
         config['dataset_json_folder'] = 'preprocessing/dataset_json_v3'
+    
+    # Add max_train_images and max_test_images to config if specified
+    if args.max_train_images is not None:
+        config['max_train_images'] = args.max_train_images
+        print(f"Setting maximum training images to {args.max_train_images}")
+    if args.max_test_images is not None:
+        config['max_test_images'] = args.max_test_images
+        print(f"Setting maximum test images to {args.max_test_images}")
+
     # create logger
     timenow=datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
     task_str = f"_{config['task_target']}" if config.get('task_target', None) is not None else ""
@@ -275,6 +302,7 @@ def main():
     # set cudnn benchmark if needed
     if config['cudnn']:
         cudnn.benchmark = True
+    print(f"cudnn.benchmark: {cudnn.benchmark}")
     if config['ddp']:
         # dist.init_process_group(backend='gloo')
         dist.init_process_group(
@@ -292,6 +320,60 @@ def main():
     print("model_name:",config['model_name'])
     model_class = DETECTOR[config['model_name']]
     model = model_class(config)
+    
+    # Enable torch.compile if available and configured
+    if hasattr(torch, 'compile') and config.get('use_compile', False):
+        # Check if we're using PEFT
+        if hasattr(model, 'feature_extractor') and hasattr(model.feature_extractor, 'peft_config'):
+            print("Disabling torch.compile as it's not compatible with PEFT models")
+        else:
+            try:
+                print("Enabling torch.compile...")
+                model = torch.compile(
+                    model,
+                    mode=config.get('compile_mode', 'max-autotune'),
+                    fullgraph=config.get('compile_fullgraph', True),
+                    dynamic=config.get('compile_dynamic', True)
+                )
+                print("torch.compile enabled successfully")
+            except Exception as e:
+                print(f"Failed to enable torch.compile: {e}")
+                print("Continuing without torch.compile")
+
+    # Load checkpoint if provided
+    if args.checkpoint:
+        checkpoint_path = args.checkpoint
+        if os.path.exists(checkpoint_path):
+            print(f"Loading checkpoint from {checkpoint_path}")
+            checkpoint = torch.load(checkpoint_path, map_location='cuda:{}'.format(args.local_rank))
+            
+            # Load model state
+            if 'model_state_dict' in checkpoint:
+                model.load_state_dict(checkpoint['model_state_dict'])
+            else:
+                model.load_state_dict(checkpoint)
+            
+            # Load optimizer state if available
+            if 'optimizer_state_dict' in checkpoint and optimizer is not None:
+                optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+            
+            # Load scheduler state if available
+            if 'scheduler_state_dict' in checkpoint and scheduler is not None:
+                scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
+            
+            # Load epoch if available
+            if 'epoch' in checkpoint:
+                config['start_epoch'] = checkpoint['epoch'] + 1
+                print(f"Resuming from epoch {config['start_epoch']}")
+            
+            # Load best metric if available
+            if 'best_metric' in checkpoint:
+                trainer.best_metric = checkpoint['best_metric']
+                print(f"Loaded best metric: {trainer.best_metric}")
+            
+            print("Checkpoint loaded successfully")
+        else:
+            print(f"Checkpoint file {checkpoint_path} does not exist. Starting training from scratch.")
 
     # prepare the optimizer
     optimizer = choose_optimizer(model, config)
@@ -304,23 +386,6 @@ def main():
 
     # prepare the trainer
     trainer = Trainer(config, model, optimizer, scheduler, logger, metric_scoring, time_now=timenow)
-
-    #if os.path.exists(args.checkpoint):
-    #    trainer.load_ckpt(args.checkpoint)
-
-    """
-    # Load checkpoint if provided
-    if args.checkpoint:
-        checkpoint_path = args.checkpoint
-        if os.path.exists(checkpoint_path):
-            checkpoint = torch.load(checkpoint_path)
-            model.load_state_dict(checkpoint['model_state_dict'])
-            optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-            config['start_epoch'] = checkpoint['epoch'] + 1  # Start from the next epoch
-            logger.info(f"Loaded checkpoint from {checkpoint_path}, starting from epoch {config['start_epoch']}")
-        else:
-            logger.warning(f"Checkpoint file {checkpoint_path} does not exist. Starting training from scratch.")
-    """
 
     # start training
     for epoch in range(config['start_epoch'], config['nEpochs'] + 1):

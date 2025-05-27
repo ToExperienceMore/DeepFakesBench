@@ -361,6 +361,15 @@ class DeepfakeAbstractBaseDataset(data.Dataset):
                 tmp_image, tmp_label, tmp_name = self.collect_img_and_label(one_data)
                 image_list.extend(tmp_image)
                 label_list.extend(tmp_label)
+            
+            # Limit the number of training images if specified
+            if config.get('max_train_images') is not None:
+                max_images = config['max_train_images']
+                if len(image_list) > max_images:
+                    print(f"Limiting training dataset from {len(image_list)} to {max_images} images")
+                    image_list = image_list[:max_images]
+                    label_list = label_list[:max_images]
+            
             if self.lmdb:
                 if len(dataset_list)>1:
                     if all_in_pool(dataset_list,FFpp_pool):
@@ -375,6 +384,17 @@ class DeepfakeAbstractBaseDataset(data.Dataset):
             one_data = config['test_dataset']
             # Test dataset should be evaluated separately. So collect only one dataset each time
             image_list, label_list, name_list = self.collect_img_and_label(one_data)
+            
+            # Limit the number of test images if specified
+            if config.get('max_test_images') is not None:
+                max_images = config['max_test_images']
+                if len(image_list) > max_images:
+                    print(f"Limiting test dataset from {len(image_list)} to {max_images} images")
+                    image_list = image_list[:max_images]
+                    label_list = label_list[:max_images]
+                    if name_list:
+                        name_list = name_list[:max_images]
+            
             if self.lmdb:
                 lmdb_path = os.path.join(config['lmdb_dir'], f"{one_data}_lmdb" if one_data not in FFpp_pool else 'FaceForensics++_lmdb')
                 self.env = lmdb.open(lmdb_path, create=False, subdir=True, readonly=True, lock=False)
