@@ -136,9 +136,6 @@ def test_one_dataset(model, data_loader):
         # model forward without considering gradient computation
         # predictions: dict containing 'prob' tensor [B] with probabilities
         predictions = inference(model, data_dict)
-        if predictions is None:
-            continue
-            
         # Collect predictions and labels
         label_lists += list(data_dict['label'].cpu().detach().numpy())
         prediction_lists += list(predictions['prob'].cpu().detach().numpy())
@@ -233,27 +230,8 @@ def test_epoch(model, test_data_loaders):
 
 @torch.no_grad()
 def inference(model, data_dict):
-    try:
-        if use_amp and amp_context is not None:
-            with amp_context:
-                predictions = model(data_dict, inference=True)
-        else:
-            predictions = model(data_dict, inference=True)
-        
-        # 检查预测结果是否有效
-        if not all(torch.isfinite(v).all() for v in predictions.values() if isinstance(v, torch.Tensor)):
-            print("Found inf/nan in predictions")
-            return None
-            
-        return predictions
-    except RuntimeError as e:
-        if "out of memory" in str(e):
-            print("GPU OOM in inference, trying to recover...")
-            if torch.cuda.is_available():
-                torch.cuda.empty_cache()
-        else:
-            print(f"Error in inference: {str(e)}")
-        return None
+    predictions = model(data_dict, inference=True)
+    return predictions
 
 
 def main():
@@ -280,32 +258,6 @@ def main():
     if config['cudnn']:
         cudnn.benchmark = True
 
-    # 初始化 AMP（如果配置了的话）
-    use_amp = False  # 默认不使用 AMP
-    amp_context = None
-    if 'use_amp' in config and config['use_amp']:
-        try:
-            amp_dtype = config.get('amp_dtype', 'bf16')
-            amp_level = config.get('amp_level', 'O1')
-            
-            # 检查 GPU 是否支持 AMP
-            if not torch.cuda.is_available():
-                print("CUDA not available, AMP will not be used")
-            else:
-                if amp_dtype == 'bf16':
-                    if not torch.cuda.is_bf16_supported():
-                        print("Current GPU does not support bf16, falling back to float16")
-                        amp_dtype = 'float16'
-                    amp_context = torch.cuda.amp.autocast(dtype=torch.bfloat16)
-                else:  # float16
-                    amp_context = torch.cuda.amp.autocast(dtype=torch.float16)
-                
-                use_amp = True
-                print(f"AMP enabled with dtype={amp_dtype}, level={amp_level}")
-        except Exception as e:
-            print(f"Failed to initialize AMP: {str(e)}")
-            print("AMP will not be used")
-
     # prepare the testing data loader
     test_data_loaders = prepare_testing_data(config)
     
@@ -323,6 +275,10 @@ def main():
         # Initialize model with updated config
         model_class = DETECTOR[config['model_name']]
         model = model_class(config).to(device)
+        #print("model keys:")
+        #print(list(model.state_dict().keys()))
+        #print("ckpt keys:")
+        #print(list(ckpt['state_dict'].keys()))
         
         # Load state dict
         if 'state_dict' in ckpt:

@@ -3,16 +3,9 @@ from sklearn import metrics
 from collections import defaultdict
 import torch
 import torch.nn as nn
-from sklearn.metrics import roc_auc_score, accuracy_score, average_precision_score
 
 
 def get_accracy(output, label):
-    # 确保输入是 float 类型
-    if output.dtype == torch.bfloat16:
-        output = output.float()
-    if label.dtype == torch.bfloat16:
-        label = label.float()
-        
     _, prediction = torch.max(output, 1)    # argmax
     correct = (prediction == label).sum().item()
     accuracy = correct / prediction.size(0)
@@ -20,12 +13,6 @@ def get_accracy(output, label):
 
 
 def get_prediction(output, label):
-    # 确保输入是 float 类型
-    if output.dtype == torch.bfloat16:
-        output = output.float()
-    if label.dtype == torch.bfloat16:
-        label = label.float()
-        
     prob = nn.functional.softmax(output, dim=1)[:, 1]
     prob = prob.view(prob.size(0), 1)
     label = label.view(label.size(0), 1)
@@ -34,33 +21,42 @@ def get_prediction(output, label):
     return datas
 
 
-def calculate_eer(y_true, y_pred):
-    """Calculate Equal Error Rate (EER)"""
-    fpr, tpr, thresholds = metrics.roc_curve(y_true, y_pred, pos_label=1)
-    fnr = 1 - tpr
-    eer = fpr[np.nanargmin(np.absolute((fnr - fpr)))]
-    return eer
+def calculate_metrics_for_train(label, output):
+    #print("output", output.shape)
+    #print("output", output.size(1))
+    if output.size(1) == 2:
+        prob = torch.softmax(output, dim=1)[:, 1]
+    else:
+        prob = output
 
+    # Accuracy
+    _, prediction = torch.max(output, 1)
+    correct = (prediction == label).sum().item()
+    accuracy = correct / prediction.size(0)
 
-def calculate_metrics_for_train(label, pred):
-    """Calculate metrics for training"""
-    # 确保输入是 float 类型
-    if pred.dtype == torch.bfloat16:
-        pred = pred.float()
-    if label.dtype == torch.bfloat16:
-        label = label.float()
-        
-    # 转换为 numpy 数组
-    y_pred = pred.cpu().detach().numpy()
+    # Average Precision
     y_true = label.cpu().detach().numpy()
-    
-    # 计算指标
-    auc = roc_auc_score(y_true, y_pred)
-    eer = calculate_eer(y_true, y_pred)
-    acc = accuracy_score(y_true, y_pred > 0.5)
-    ap = average_precision_score(y_true, y_pred)
-    
-    return auc, eer, acc, ap
+    y_pred = prob.cpu().detach().numpy()
+    ap = metrics.average_precision_score(y_true, y_pred)
+
+    # AUC and EER
+    try:
+        fpr, tpr, thresholds = metrics.roc_curve(label.squeeze().cpu().numpy(),
+                                                 prob.squeeze().cpu().numpy(),
+                                                 pos_label=1)
+    except:
+        # for the case when we only have one sample
+        return None, None, accuracy, ap
+
+    if np.isnan(fpr[0]) or np.isnan(tpr[0]):
+        # for the case when all the samples within a batch is fake/real
+        auc, eer = None, None
+    else:
+        auc = metrics.auc(fpr, tpr)
+        fnr = 1 - tpr
+        eer = fpr[np.nanargmin(np.absolute((fnr - fpr)))]
+
+    return auc, eer, accuracy, ap
 
 
 # ------------ compute average metrics of batches---------------------
@@ -77,12 +73,6 @@ class Metrics_batch():
         self.losses = []
 
     def update(self, label, output):
-        # 确保输入是 float 类型
-        if output.dtype == torch.bfloat16:
-            output = output.float()
-        if label.dtype == torch.bfloat16:
-            label = label.float()
-            
         acc = self._update_acc(label, output)
         if output.size(1) == 2:
             prob = torch.softmax(output, dim=1)[:, 1]
@@ -96,12 +86,6 @@ class Metrics_batch():
         return acc, auc, eer, ap
 
     def _update_auc(self, lab, prob):
-        # 确保输入是 float 类型
-        if lab.dtype == torch.bfloat16:
-            lab = lab.float()
-        if prob.dtype == torch.bfloat16:
-            prob = prob.float()
-            
         fpr, tpr, thresholds = metrics.roc_curve(lab.squeeze().cpu().numpy(),
                                                  prob.squeeze().cpu().numpy(),
                                                  pos_label=1)
@@ -124,12 +108,6 @@ class Metrics_batch():
         return auc, eer
 
     def _update_acc(self, lab, output):
-        # 确保输入是 float 类型
-        if lab.dtype == torch.bfloat16:
-            lab = lab.float()
-        if output.dtype == torch.bfloat16:
-            output = output.float()
-            
         _, prediction = torch.max(output, 1)    # argmax
         correct = (prediction == lab).sum().item()
         accuracy = correct / prediction.size(0)
@@ -139,12 +117,6 @@ class Metrics_batch():
         return accuracy
 
     def _update_ap(self, label, prob):
-        # 确保输入是 float 类型
-        if label.dtype == torch.bfloat16:
-            label = label.float()
-        if prob.dtype == torch.bfloat16:
-            prob = prob.float()
-            
         y_true = label.cpu().detach().numpy()
         y_pred = prob.cpu().detach().numpy()
         ap = metrics.average_precision_score(y_true,y_pred)
@@ -187,12 +159,6 @@ class Metrics_all():
         self.total = 0
 
     def store(self, label, output):
-        # 确保输入是 float 类型
-        if label.dtype == torch.bfloat16:
-            label = label.float()
-        if output.dtype == torch.bfloat16:
-            output = output.float()
-            
         prob = torch.softmax(output, dim=1)[:, 1]
         _, prediction = torch.max(output, 1)    # argmax
         correct = (prediction == label).sum().item()

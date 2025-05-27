@@ -82,33 +82,6 @@ class Trainer(object):
             )
         os.makedirs(self.log_dir, exist_ok=True)
 
-        # 初始化 AMP（如果配置了的话）
-        self.use_amp = False  # 默认不使用 AMP
-        if 'use_amp' in config and config['use_amp']:
-            try:
-                self.amp_dtype = config.get('amp_dtype', 'bf16')
-                self.amp_level = config.get('amp_level', 'O1')
-                
-                # 检查 GPU 是否支持 AMP
-                if not torch.cuda.is_available():
-                    self.logger.warning("CUDA not available, AMP will not be used")
-                else:
-                    if self.amp_dtype == 'bf16':
-                        if not torch.cuda.is_bf16_supported():
-                            self.logger.warning("Current GPU does not support bf16, falling back to float16")
-                            self.amp_dtype = 'float16'
-                        self.scaler = torch.cuda.amp.GradScaler()
-                        self.amp_context = torch.cuda.amp.autocast(dtype=torch.bfloat16)
-                    else:  # float16
-                        self.scaler = torch.cuda.amp.GradScaler()
-                        self.amp_context = torch.cuda.amp.autocast(dtype=torch.float16)
-                    
-                    self.use_amp = True
-                    self.logger.info(f"AMP enabled with dtype={self.amp_dtype}, level={self.amp_level}")
-            except Exception as e:
-                self.logger.error(f"Failed to initialize AMP: {str(e)}")
-                self.logger.warning("AMP will not be used")
-
     def get_writer(self, phase, dataset_key, metric_key):
         writer_key = f"{phase}-{dataset_key}-{metric_key}"
         if writer_key not in self.writers:
@@ -208,52 +181,33 @@ class Trainer(object):
         self.logger.info(f"Metrics saved to {file_path}")
 
     def train_step(self,data_dict):
-        """Single training step"""
-        self.optimizer.zero_grad()
-        
-        if self.use_amp:
-            try:
-                with self.amp_context:
-                    predictions = self.model(data_dict)
-                    losses = self.model.get_losses(data_dict, predictions)
-                    loss = losses['overall']
-                
-                # 检查损失值是否有效
-                if not torch.isfinite(loss):
-                    self.logger.warning(f"Loss is {loss.item()}, skipping this batch")
-                    return None, None
-                
-                self.scaler.scale(loss).backward()
-                
-                # 检查梯度是否有效
-                if self.scaler.is_enabled():
-                    self.scaler.unscale_(self.optimizer)
-                    for param in self.model.parameters():
-                        if param.grad is not None:
-                            if not torch.isfinite(param.grad).all():
-                                self.logger.warning("Found inf/nan in gradients, skipping this batch")
-                                return None, None
-                
-                self.scaler.step(self.optimizer)
-                self.scaler.update()
-            except RuntimeError as e:
-                if "out of memory" in str(e):
-                    self.logger.error("GPU OOM in AMP training, trying to recover...")
-                    if torch.cuda.is_available():
-                        torch.cuda.empty_cache()
-                    return None, None
+        if self.config['optimizer']['type']=='sam':
+            for i in range(2):
+                predictions = self.model(data_dict)
+                losses = self.model.get_losses(data_dict, predictions)
+                if i == 0:
+                    pred_first = predictions
+                    losses_first = losses
+                self.optimizer.zero_grad()
+                losses['overall'].backward()
+                if i == 0:
+                    self.optimizer.first_step(zero_grad=True)
                 else:
-                    self.logger.error(f"Error in AMP training step: {str(e)}")
-                    return None, None
+                    self.optimizer.second_step(zero_grad=True)
+            return losses_first, pred_first
         else:
-            # 原有的训练逻辑
+
             predictions = self.model(data_dict)
-            losses = self.model.get_losses(data_dict, predictions)
-            loss = losses['overall']
-            loss.backward()
+            if type(self.model) is DDP:
+                losses = self.model.module.get_losses(data_dict, predictions)
+            else:
+                losses = self.model.get_losses(data_dict, predictions)
+            self.optimizer.zero_grad()
+            losses['overall'].backward()
             self.optimizer.step()
-        
-        return losses, predictions
+
+
+            return losses,predictions
 
 
     def train_epoch(
@@ -398,19 +352,11 @@ class Trainer(object):
             for key in data_dict.keys():
                 if data_dict[key]!=None:
                     data_dict[key]=data_dict[key].cuda()
-            
             # model forward without considering gradient computation
-            with torch.no_grad():
-                if self.use_amp:
-                    with self.amp_context:
-                        predictions = self.model(data_dict, inference=True)
-                else:
-                    predictions = self.model(data_dict, inference=True)
-            
+            predictions = self.inference(data_dict)
             label_lists += list(data_dict['label'].cpu().detach().numpy())
             prediction_lists += list(predictions['prob'].cpu().detach().numpy())
             feature_lists += list(predictions['feat'].cpu().detach().numpy())
-            
             if type(self.model) is not AveragedModel:
                 # compute all losses for each batch data
                 if type(self.model) is DDP:
@@ -469,56 +415,39 @@ class Trainer(object):
             writer.add_scalar(f'test_metrics/acc_fake', acc_fake, global_step=step)
         self.logger.info(metric_str)
     def test_epoch(self, epoch, iteration, test_data_loaders, step):
-        """Test the model"""
-        self.model.eval()
-        
+        # set model to eval mode
+        self.setEval()
+
         # define test recorder
         losses_all_datasets = {}
         metrics_all_datasets = {}
-        best_metrics_per_dataset = defaultdict(dict)
+        best_metrics_per_dataset = defaultdict(dict)  # best metric for each dataset, for each metric
         avg_metric = {'acc': 0, 'auc': 0, 'eer': 0, 'ap': 0,'video_auc': 0,'dataset_dict':{}}
-        
         # testing for all test data
         keys = test_data_loaders.keys()
         for key in keys:
-            try:
-                # save the testing data_dict
-                data_dict = test_data_loaders[key].dataset.data_dict
-                self.save_data_dict('test', data_dict, key)
+            # save the testing data_dict
+            data_dict = test_data_loaders[key].dataset.data_dict
+            self.save_data_dict('test', data_dict, key)
 
-                # compute loss for each dataset
-                losses_one_dataset_recorder, predictions_nps, label_nps, feature_nps = self.test_one_dataset(test_data_loaders[key])
-                
-                # 检查预测结果是否有效
-                if not np.all(np.isfinite(predictions_nps)):
-                    self.logger.warning(f"Found inf/nan in predictions for dataset {key}, skipping metrics calculation")
-                    continue
-                
-                losses_all_datasets[key] = losses_one_dataset_recorder
-                metric_one_dataset = get_test_metrics(y_pred=predictions_nps, y_true=label_nps, img_names=data_dict['image'])
-                
-                # 检查指标是否有效
-                if not all(np.isfinite(v) for v in metric_one_dataset.values() if isinstance(v, (int, float))):
-                    self.logger.warning(f"Found inf/nan in metrics for dataset {key}")
-                    continue
-                
-                for metric_name, value in metric_one_dataset.items():
-                    if metric_name in avg_metric:
-                        avg_metric[metric_name] += value
-                avg_metric['dataset_dict'][key] = metric_one_dataset[self.metric_scoring]
-                
-                if type(self.model) is AveragedModel:
-                    metric_str = f"Iter Final for SWA:    "
-                    for k, v in metric_one_dataset.items():
-                        metric_str += f"testing-metric, {k}: {v}    "
-                    self.logger.info(metric_str)
-                    continue
-                self.save_best(epoch, iteration, step, losses_one_dataset_recorder, key, metric_one_dataset)
-            except Exception as e:
-                self.logger.error(f"Error testing dataset {key}: {str(e)}")
+            # compute loss for each dataset
+            losses_one_dataset_recorder, predictions_nps, label_nps, feature_nps = self.test_one_dataset(test_data_loaders[key])
+            # print(f'stack len:{predictions_nps.shape};{label_nps.shape};{len(data_dict["image"])}')
+            losses_all_datasets[key] = losses_one_dataset_recorder
+            metric_one_dataset=get_test_metrics(y_pred=predictions_nps,y_true=label_nps,img_names=data_dict['image'])
+            for metric_name, value in metric_one_dataset.items():
+                if metric_name in avg_metric:
+                    avg_metric[metric_name]+=value
+            avg_metric['dataset_dict'][key] = metric_one_dataset[self.metric_scoring]
+            if type(self.model) is AveragedModel:
+                metric_str = f"Iter Final for SWA:    "
+                for k, v in metric_one_dataset.items():
+                    metric_str += f"testing-metric, {k}: {v}    "
+                self.logger.info(metric_str)
                 continue
+            self.save_best(epoch,iteration,step,losses_one_dataset_recorder,key,metric_one_dataset)
 
-        if len(keys) > 0 and self.config.get('save_avg', False):
+        if len(keys)>0 and self.config.get('save_avg',False):
             # calculate avg value
             for key in avg_metric:
                 if key != 'dataset_dict':
@@ -526,28 +455,9 @@ class Trainer(object):
             self.save_best(epoch, iteration, step, None, 'avg', avg_metric)
 
         self.logger.info('===> Test Done!')
-        return self.best_metrics_all_time
+        return self.best_metrics_all_time  # return all types of mean metrics for determining the best ckpt
 
     @torch.no_grad()
     def inference(self, data_dict):
-        try:
-            if self.use_amp:
-                with self.amp_context:
-                    predictions = self.model(data_dict, inference=True)
-            else:
-                predictions = self.model(data_dict, inference=True)
-            
-            # 检查预测结果是否有效
-            if not all(torch.isfinite(v).all() for v in predictions.values() if isinstance(v, torch.Tensor)):
-                self.logger.warning("Found inf/nan in predictions")
-                return None
-                
-            return predictions
-        except RuntimeError as e:
-            if "out of memory" in str(e):
-                self.logger.error("GPU OOM in inference, trying to recover...")
-                if torch.cuda.is_available():
-                    torch.cuda.empty_cache()
-            else:
-                self.logger.error(f"Error in inference: {str(e)}")
-            return None
+        predictions = self.model(data_dict, inference=True)
+        return predictions

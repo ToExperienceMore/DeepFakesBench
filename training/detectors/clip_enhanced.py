@@ -122,14 +122,9 @@ class CLIPEnhanced(AbstractDetector):
     def get_train_metrics(self, data_dict: dict, pred_dict: dict) -> dict:
         """Compute training metrics"""
         label = data_dict['label']
-        pred = pred_dict['prob']  # 使用已经计算好的概率值
+        #pred = pred_dict['prob']  # 使用已经计算好的概率值
+        pred = pred_dict['cls']  
         
-        # 确保张量类型正确
-        if pred.dtype == torch.bfloat16:
-            pred = pred.float()
-        if label.dtype == torch.bfloat16:
-            label = label.float()
-            
         auc, eer, acc, ap = calculate_metrics_for_train(label.detach(), pred.detach())
         metric_batch_dict = {'acc': acc, 'auc': auc, 'eer': eer, 'ap': ap}
         return metric_batch_dict
