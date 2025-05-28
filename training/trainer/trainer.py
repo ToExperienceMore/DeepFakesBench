@@ -30,6 +30,7 @@ from torch import distributed as dist
 from torch.nn.parallel import DistributedDataParallel as DDP
 from sklearn import metrics
 from metrics.utils import get_test_metrics
+from torch.cuda.amp import autocast
 
 FFpp_pool=['FaceForensics++','FF-DF','FF-F2F','FF-FS','FF-NT']#
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -45,7 +46,8 @@ class Trainer(object):
         logger,
         metric_scoring='auc',
         time_now = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'),
-        swa_model=None
+        swa_model=None,
+        scaler=None
         ):
         # check if all the necessary components are implemented
         if config is None or model is None or optimizer is None or logger is None:
@@ -59,6 +61,7 @@ class Trainer(object):
         self.writers = {}  # dict to maintain different tensorboard writers for each dataset and metric
         self.logger = logger
         self.metric_scoring = metric_scoring
+        self.scaler = scaler
         # maintain the best metric of all epochs
         self.best_metrics_all_time = defaultdict(
             lambda: defaultdict(lambda: float('-inf')
@@ -183,29 +186,51 @@ class Trainer(object):
     def train_step(self,data_dict):
         if self.config['optimizer']['type']=='sam':
             for i in range(2):
-                predictions = self.model(data_dict)
-                losses = self.model.get_losses(data_dict, predictions)
-                if i == 0:
-                    pred_first = predictions
-                    losses_first = losses
-                self.optimizer.zero_grad()
-                losses['overall'].backward()
+                if self.scaler is not None:
+                    with autocast():
+                        predictions = self.model(data_dict)
+                        losses = self.model.get_losses(data_dict, predictions)
+                        if i == 0:
+                            pred_first = predictions
+                            losses_first = losses
+                    self.optimizer.zero_grad()
+                    self.scaler.scale(losses['overall']).backward()
+                else:
+                    predictions = self.model(data_dict)
+                    losses = self.model.get_losses(data_dict, predictions)
+                    if i == 0:
+                        pred_first = predictions
+                        losses_first = losses
+                    self.optimizer.zero_grad()
+                    losses['overall'].backward()
+                
                 if i == 0:
                     self.optimizer.first_step(zero_grad=True)
                 else:
                     self.optimizer.second_step(zero_grad=True)
             return losses_first, pred_first
         else:
-
-            predictions = self.model(data_dict)
-            if type(self.model) is DDP:
-                losses = self.model.module.get_losses(data_dict, predictions)
+            if self.scaler is not None:
+                with autocast():
+                    predictions = self.model(data_dict)
+                    if type(self.model) is DDP:
+                        losses = self.model.module.get_losses(data_dict, predictions)
+                    else:
+                        losses = self.model.get_losses(data_dict, predictions)
+                
+                self.optimizer.zero_grad()
+                self.scaler.scale(losses['overall']).backward()
+                self.scaler.step(self.optimizer)
+                self.scaler.update()
             else:
-                losses = self.model.get_losses(data_dict, predictions)
-            self.optimizer.zero_grad()
-            losses['overall'].backward()
-            self.optimizer.step()
-
+                predictions = self.model(data_dict)
+                if type(self.model) is DDP:
+                    losses = self.model.module.get_losses(data_dict, predictions)
+                else:
+                    losses = self.model.get_losses(data_dict, predictions)
+                self.optimizer.zero_grad()
+                losses['overall'].backward()
+                self.optimizer.step()
 
             return losses,predictions
 
@@ -460,5 +485,9 @@ class Trainer(object):
 
     @torch.no_grad()
     def inference(self, data_dict):
-        predictions = self.model(data_dict, inference=True)
+        if self.scaler is not None:
+            with autocast():
+                predictions = self.model(data_dict, inference=True)
+        else:
+            predictions = self.model(data_dict, inference=True)
         return predictions

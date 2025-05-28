@@ -69,7 +69,6 @@ def prepare_testing_data(config):
                 mode='test', 
             )
         # Calculate number of batches needed for 200 images
-        batch_size = config['test_batchSize']
         
         test_data_loader = \
             torch.utils.data.DataLoader(
@@ -82,6 +81,9 @@ def prepare_testing_data(config):
             )
         return test_data_loader
 
+    if config['test_batchSize']< 32
+        config['test_batchSize'] = 128 
+    print(f"batch_size: {config['test_batchSize']}")
     test_data_loaders = {}
     for one_test_name in config['test_dataset']:
         test_data_loaders[one_test_name] = get_test_data_loader(config, one_test_name)
@@ -109,17 +111,14 @@ def test_one_dataset(model, data_loader):
     
     # Calculate number of batches needed for 200 images
     batch_size = data_loader.batch_size
-    num_batches = 10
+    #num_batches = 10
+    print(f"test images: {len(data_loader.dataset)}")
     
-    for i, data_dict in tqdm(enumerate(data_loader), total=num_batches):
-        if i >= num_batches:
-            break
+    for i, data_dict in tqdm(enumerate(data_loader), total=len(data_loader)):
+        #if i >= num_batches:
+        #    break
             
         # get data
-        # data: torch.Tensor, shape [B, C, H, W] where B=batch_size, C=3 (RGB), H=height, W=width
-        # label: torch.Tensor, shape [B] containing binary labels (0 or 1)
-        # mask: torch.Tensor or None, shape [B, 1, H, W] if present
-        # landmark: torch.Tensor or None, shape [B, 81, 2] if present
         data, label, mask, landmark = \
         data_dict['image'], data_dict['label'], data_dict['mask'], data_dict['landmark']
         
@@ -275,21 +274,15 @@ def main():
         # Initialize model with updated config
         model_class = DETECTOR[config['model_name']]
         model = model_class(config).to(device)
-        #print("model keys:")
-        #print(list(model.state_dict().keys()))
-        #print("ckpt keys:")
-        #print(list(ckpt['state_dict'].keys()))
         
-        # Load state dict
-        if 'state_dict' in ckpt:
+        # Load state dict - handle both direct state_dict and wrapped state_dict
+        if isinstance(ckpt, dict) and 'state_dict' in ckpt:
             state_dict = ckpt['state_dict']
-            # 转换键值
-            new_state_dict = {}
-            for k, v in state_dict.items():
-                new_key = k.replace('feature_extractor.base_model.model.', 'feature_extractor.')
-                new_state_dict[new_key] = v
-            model.load_state_dict(new_state_dict, strict=True)
-            print('===> Load checkpoint done!')
+        else:
+            state_dict = ckpt
+            
+        model.load_state_dict(state_dict, strict=True)
+        print('===> Load checkpoint done!')
     else:
         print('Fail to load the pre-trained weights')
         model_class = DETECTOR[config['model_name']]

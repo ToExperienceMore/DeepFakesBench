@@ -32,7 +32,9 @@
 config=./training/config/detector/clip_enhanced.yaml
 # 使用deepfake-detection的权重
 #weight=../deepfake-detection/weights/model.ckpt
-weight=../deepfake-detection/models_epoch9/checkpoints/best_mAP.ckpt
+#weight=../deepfake-detection/models_epoch9/checkpoints/best_mAP.ckpt
+weight=./logs/training/clip_enhanced_2025-05-28-07-03-43/test/avg/ckpt_best.pth
+
 set -x
 
 #python3 training/test.py --detector_path $config --test_dataset   "FF-DF"  "FF-F2F"  "FF-FS"  "FF-NT" "DeepFakeDetection"  "FaceShifter"  --weights_path $weight
@@ -48,7 +50,10 @@ set -x
 #python3 training/test.py --detector_path $config --test_dataset  "FaceForensics++" --weights_path $weight
 #python3 training/test.py --detector_path $config --test_dataset  "FMFCC-V" "UADFV" "Celeb-DF-v2" "DeepFakeDetection" "FF-F2F" "FF-DF" "FF-FS" "FF-NT" "FaceShifter" --weights_path $weight
 
-python3 training/test.py --detector_path $config --test_dataset  "FaceForensics++" --weights_path $weight
+#python3 training/test.py --detector_path $config --test_dataset  "FaceForensics++" --weights_path $weight
+#python3 training/test.py --detector_path $config --test_dataset  "DFDC" "DFDCP" "Celeb-DF-v2" "UADFV" --weights_path $weight
+#python3 training/test.py --detector_path $config --test_dataset  "FaceShifter" "DeepFakeDetection" --weights_path $weight
+python3 training/test.py --detector_path $config --test_dataset  "DeepFakeDetection" --weights_path $weight
 
 # 示例命令
 

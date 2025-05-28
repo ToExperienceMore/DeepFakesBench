@@ -88,7 +88,7 @@ class CLIPEnhanced(AbstractDetector):
         # Initialize loss function
         self.loss_func = self.build_loss(config)
         
-        self.print_trainable_parameters()
+        #self.print_trainable_parameters()
     
     def build_backbone(self, config):
         """Build the backbone network"""

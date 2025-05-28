@@ -25,6 +25,7 @@ import torch.utils.data
 import torch.optim as optim
 from torch.utils.data.distributed import DistributedSampler
 import torch.distributed as dist
+from torch.cuda.amp import autocast, GradScaler
 
 from optimizor.SAM import SAM
 from optimizor.LinearLR import LinearDecayLR
@@ -384,8 +385,11 @@ def main():
     # prepare the metric
     metric_scoring = choose_metric(config)
 
+    # Initialize gradient scaler for mixed precision training
+    scaler = GradScaler()
+
     # prepare the trainer
-    trainer = Trainer(config, model, optimizer, scheduler, logger, metric_scoring, time_now=timenow)
+    trainer = Trainer(config, model, optimizer, scheduler, logger, metric_scoring, time_now=timenow, scaler=scaler)
 
     # start training
     for epoch in range(config['start_epoch'], config['nEpochs'] + 1):

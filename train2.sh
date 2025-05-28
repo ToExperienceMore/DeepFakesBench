@@ -45,8 +45,9 @@ nohup python training/train.py \
 --train_dataset "FaceForensics++" \
 --test_dataset "DFDC" \
 --task_target $task_name \
+--amp \
 ${checkpoint:+--checkpoint $checkpoint} \
-> train_FF++_${task_name}.log 2>&1 &
+> train_FF++_${task_name}-0528.log 2>&1 &
 
 #python training/train.py \
 #--detector_path $config \

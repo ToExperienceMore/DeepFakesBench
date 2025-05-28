@@ -32,7 +32,8 @@ import albumentations as A
 from .albu import IsotropicResize
 from abc import ABC, abstractmethod
 
-FFpp_pool=['FaceForensics++','FaceShifter','DeepFakeDetection','FF-DF','FF-F2F','FF-FS','FF-NT']#
+#FFpp_pool=['FaceForensics++','FaceShifter','DeepFakeDetection','FF-DF','FF-F2F','FF-FS','FF-NT','DFDCP','UADFV', 'Celeb-DF-V2', 'FaceShifter']
+FFpp_pool=['FaceForensics++','FaceShifter','DeepFakeDetection','FF-DF','FF-F2F','FF-FS','FF-NT']
 
 def all_in_pool(inputs,pool):
     for each in inputs:
@@ -449,7 +450,7 @@ class DeepfakeAbstractBaseDataset(data.Dataset):
         Returns:
             tuple: (frame_path_list, label_list, video_name_list)
         """
-        if dataset_name in FFpp_pool or dataset_name in ['DFDC', 'FMFCC-V']:
+        if dataset_name in FFpp_pool or dataset_name in ['DFDC', 'FMFCC-V', 'DFDCP', 'UADFV', 'Celeb-DF-v2', 'FaceShifter']:
             loader = DefaultDatasetLoader(self.config, self.mode)
         elif dataset_name in ['ForgeryNet']:
             loader = ForgeryDatasetLoader(self.config, self.mode)

@@ -38,7 +38,7 @@ resolution: 224
 
 # Batch size settings
 train_batchSize: 32
-test_batchSize: 32
+test_batchSize: 8 
 workers: 24
 
 # Model settings
