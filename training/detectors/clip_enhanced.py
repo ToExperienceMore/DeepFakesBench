@@ -57,7 +57,10 @@ class CLIPEnhanced(AbstractDetector):
         self.config = config
         
         # Initialize feature extractor (CLIP)
-        self.clip_path = "../deepfake-detection/weights/clip-vit-large-patch14"
+        #self.clip_path = "../deepfake-detection/weights/clip-vit-large-patch14"
+        self.clip_path = config.get('clip_path', "weights/clip-vit-base-patch16")
+        print(f"clip_path: {self.clip_path}")
+
         if not os.path.exists(self.clip_path):
             raise ValueError(f"本地模型文件不存在: {self.clip_path}，请确保模型文件已下载到正确位置")
         

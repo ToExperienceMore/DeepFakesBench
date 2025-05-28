@@ -11,6 +11,7 @@ metric_margin: 0.3
 use_l2_norm: true
 temperature: 0.07
 use_contrastive_loss: true
+clip_path: "weights/clip-vit-base-patch16"
 
 # Basic settings
 manualSeed: 1024
