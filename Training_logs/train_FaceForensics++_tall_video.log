@@ -1,9 +1,10 @@
-2025-05-18 19:26:25,843 - INFO - Save log to ./logs/training/tall_video_2025-05-18-19-26-25
-2025-05-18 19:26:25,844 - INFO - --------------- Configuration ---------------
-2025-05-18 19:26:25,844 - INFO - Parameters: 
+2025-05-18 20:02:54,347 - INFO - Save log to ./logs/training/tall_video_2025-05-18-20-02-54
+2025-05-18 20:02:54,347 - INFO - --------------- Configuration ---------------
+2025-05-18 20:02:54,347 - INFO - Parameters: 
 pretrained: True
 model_name: tall_video
 backbone_name: dinov2
+backbone_config: {'num_classes': 2, 'pretrained': True, 'dropout': 0.1}
 dinov2: {'pretrained': True, 'freeze_backbone': True}
 transformer: {'input_dim': 1024, 'hidden_dim': 2048, 'num_layers': 4, 'num_heads': 8, 'dropout': 0.1}
 classifier: {'hidden_dim': 512, 'dropout': 0.1, 'num_classes': 2}
