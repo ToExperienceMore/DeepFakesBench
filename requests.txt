@@ -1,1 +1,7 @@
 @https://github.com/yermandy/deepfake-detection 将这个实现，移动到 本工程。目前已经移植了3个新文件，  training/config/detector/clip_enhanced.yaml, training/dataset/clip_enhanced_dataset.py, training/detectors/clip_enhanced.py
+
+
+实现一新的 detector, clip_stan.py.论文Revisiting Temporal Modeling for CLIP-based Image-to-Video
+Knowledge Transferring 中的网络.
+1.网络结构实现参考clip_stan_hf.py, 但代码接口要兼容到本工程。配置文件
+2.参数冻结保持clip_enhaned.py这一套。先理解clip_stan_hf.py, 再梳理好我的需求，后面再来coding.

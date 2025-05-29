@@ -1,0 +1,193 @@
+/root/autodl-tmp/envs/DeepfakeBench-torch2.0/lib/python3.9/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: '/root/autodl-tmp/envs/DeepfakeBench-torch2.0/lib/python3.9/site-packages/torchvision/image.so: undefined symbol: _ZN3c1017RegisterOperatorsD1Ev'If you don't plan on using image functionality from `torchvision.io`, you can ignore this warning. Otherwise, there might be something wrong with your environment. Did you have `libjpeg` or `libpng` installed before building `torchvision` from source?
+  warn(
+2025-05-29 08:10:27,136 - INFO - Save log to ./logs/training/clip_stan_2025-05-29-08-10-27
+2025-05-29 08:10:27,137 - INFO - --------------- Configuration ---------------
+2025-05-29 08:10:27,137 - INFO - Parameters: 
+name: clip_stan
+type: clip
+model_name: clip_stan
+backbone: ViT-L/14
+pretrained: True
+freeze_backbone: False
+use_peft: True
+peft_type: ln_tuning
+use_metric_learning: True
+metric_margin: 0.3
+use_l2_norm: True
+temperature: 0.07
+use_contrastive_loss: True
+clip_path: weights/clip-vit-base-patch16
+depth: 4
+time_module: selfattn
+cls_residue: False
+gradient_checkpointing: True
+video_mode: True
+clip_size: 8
+frame_num: {'train': 32, 'test': 32}
+manualSeed: 1024
+cuda: True
+cudnn: True
+cudnn_benchmark: True
+cudnn_deterministic: False
+use_compile: True
+compile_mode: max-autotune
+compile_fullgraph: True
+compile_dynamic: True
+log_dir: ./logs/training/
+save_ckpt: True
+save_feat: True
+all_dataset: ['FaceForensics++', 'FF-F2F', 'FF-DF', 'FF-FS', 'FF-NT', 'FaceShifter', 'DeepFakeDetection', 'Celeb-DF-v1', 'Celeb-DF-v2', 'DFDCP', 'DFDC', 'DeeperForensics-1.0', 'UADFV']
+train_dataset: ['FaceForensics++']
+test_dataset: ['DFDC']
+compression: c23
+with_mask: False
+with_landmark: False
+resolution: 224
+train_batchSize: 32
+test_batchSize: 8
+workers: 24
+classifier: {'type': 'linear', 'in_features': 768, 'out_features': 2, 'bias': True}
+optimizer: {'type': 'AdamW', 'lr': '8e-5', 'weight_decay': 0.0, 'betas': [0.9, 0.999]}
+lr_scheduler: cosine
+min_lr: 5e-5
+nEpochs: 10
+start_epoch: 0
+save_epoch: 1
+rec_iter: 100
+loss: {'type': 'combined', 'ce_weight': 1.0, 'label_smoothing': 0.0, 'bce_labels': 0.0, 'uniformity': 0.0, 'alignment_labels': 0.0}
+data: {'img_size': 224, 'batch_size': 128, 'num_workers': 12, 'use_face_detection': True}
+use_data_augmentation: True
+data_aug: {'flip_prob': 0.5, 'rotate_prob': 0.5, 'rotate_limit': [-10, 10], 'blur_prob': 0.5, 'blur_limit': [3, 7], 'brightness_prob': 0.5, 'brightness_limit': [-0.1, 0.1], 'contrast_limit': [-0.1, 0.1], 'quality_lower': 40, 'quality_upper': 100, 'random_resized_crop': {'size': 224, 'scale': [0.8, 1.0]}, 'color_jitter': {'brightness': 0.2, 'contrast': 0.2, 'saturation': 0.2, 'hue': 0.1}, 'random_erasing': {'p': 0.2}}
+mean: [0.48145466, 0.4578275, 0.40821073]
+std: [0.26862954, 0.26130258, 0.27577711]
+metric_scoring: auc
+loss_func: cross_entropy
+mode: train
+lmdb: False
+dry_run: False
+rgb_dir: ./datasets/rgb
+lmdb_dir: ./datasets/lmdb
+dataset_json_folder: ./preprocessing/dataset_json
+SWA: False
+save_avg: True
+label_dict: {'DFD_fake': 1, 'DFD_real': 0, 'FF-SH': 1, 'FF-F2F': 1, 'FF-DF': 1, 'FF-FS': 1, 'FF-NT': 1, 'FF-FH': 1, 'FF-real': 0, 'CelebDFv1_real': 0, 'CelebDFv1_fake': 1, 'CelebDFv2_real': 0, 'CelebDFv2_fake': 1, 'DFDCP_Real': 0, 'DFDCP_FakeA': 1, 'DFDCP_FakeB': 1, 'DFDC_Fake': 1, 'DFDC_Real': 0, 'DF_fake': 1, 'DF_real': 0, 'UADFV_Fake': 1, 'UADFV_Real': 0, 'roop_Real': 0, 'roop_Fake': 1, 'real': 0, 'fake': 1}
+local_rank: 0
+max_train_images: 100
+max_test_images: 100
+ddp: False
+
+2025-05-29 08:10:28,533 - INFO - ===> Epoch[0] start!
+2025-05-29 08:10:28,533 - INFO - data_dict saved to ./logs/training/clip_stan_2025-05-29-08-10-27/train/FaceForensics++/data_dict_train.pickle
+['in_channels', 'out_channels', 'kernel_size', 'stride', 'padding', 'dilation', 'groups', 'bias', 'padding_mode', 'device', 'dtype']
+spatial_count=0 keep_stride_count=0
+Setting maximum training images to 100
+Setting maximum test images to 100
+cudnn.benchmark: True
+Limiting training dataset from 14313 to 100 images
+Skipping video DFDC_Real_hmvjiodnxy because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_zffenlgire because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_mpwoskwuuk because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Real_hqfpcnnxuj because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_iyfwndboqs because it has less than clip_size (8) frames (3).
+Skipping video DFDC_Real_issioyofmn because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_xgtelcltvg because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_vytzcppkpg because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Real_gqqhtdjoha because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_nodoppwmyj because it has less than clip_size (8) frames (3).
+Skipping video DFDC_Real_bsduhevcwg because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Real_pgbtmrrmrq because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_dxuxornpue because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Real_rpqkwlaasy because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Real_usrimdndpz because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_rodpvqvdxm because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_fagregozex because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_aalscayrfi because it has less than clip_size (8) frames (3).
+Skipping video DFDC_Real_sygzijgurs because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_qvpjagljpr because it has less than clip_size (8) frames (3).
+Skipping video DFDC_Real_puhcxsfnde because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_rafzcxkbsh because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Real_olanckxfdx because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Real_cemvsipmew because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_egxsckqubp because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_hmmnljhtom because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_gdnacoubws because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Real_xvkflltlbg because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_ejunkkahbw because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_snsnifxref because it has less than clip_size (8) frames (3).
+Skipping video DFDC_Real_zztotvpkjc because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_eppwzalgil because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_xnwmohspsh because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_pwfhdwzxqm because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Real_igbpkykmrz because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Real_apmxeenhpt because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Real_sfuddhcgmz because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_kdiezumwzi because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Real_vxvqnhakrk because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Real_bzqohcbrip because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_ovyikmbbdr because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_nuhvoaxqtn because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Real_ovbvtbmuxo because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_knamsitmul because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_mipljmaefr because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_hswqufrqdq because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_ljaedxbwki because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_gkhhhvjkmr because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Fake_xirozlwlpd because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Fake_noodanjabq because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Fake_ydiydkhofb because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Fake_nrzayygpza because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Fake_wpotxtrxtj because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Fake_eboyboyzis because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Fake_jqfpwtawdw because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Fake_zfbfgatuvk because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Fake_ejhumipcge because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Fake_pcnvtisyms because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_hmwdlvrwbe because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Fake_bxgfrpxpyp because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_wxorluvmvm because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Fake_jgmmablvoo because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_gneonsmngz because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Fake_okogoesrwg because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_wuzzdfwxlv because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Fake_jarlmlkfam because it has less than clip_size (8) frames (3).
+Skipping video DFDC_Fake_shjmzxlkgk because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Fake_hrijskleak because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Fake_mzldnycwvi because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Fake_szkejtkgqq because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Fake_gowytswfqh because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_ikgvwddrng because it has less than clip_size (8) frames (7).
+Limiting test dataset from 3151 to 100 images
+model_name: clip_stan
+clip_path: weights/clip-vit-base-patch16
+features_dim: 768
+Disabling torch.compile as it's not compatible with PEFT models
+  0%|          | 0/4 [00:00<?, ?it/s]  0%|          | 0/4 [00:02<?, ?it/s]
+x.shape: torch.Size([32, 8, 3, 224, 224])
+x.ndim: 5
+input_ini - x shape before view: torch.Size([32, 8, 196, 768])
+input_ini - x shape after first reshape: torch.Size([256, 196, 768])
+input_ini - x shape after cat: torch.Size([256, 197, 768])
+input_ini - x shape before final reshape: torch.Size([256, 196, 768])
+input_ini - x shape after final reshape: torch.Size([32, 196, 8, 768])
+Traceback (most recent call last):
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/train.py", line 418, in <module>
+    main()
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/train.py", line 397, in main
+    best_metric = trainer.train_epoch(
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/trainer/trainer.py", line 271, in train_epoch
+    losses,predictions=self.train_step(data_dict)
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/trainer/trainer.py", line 215, in train_step
+    predictions = self.model(data_dict)
+  File "/root/autodl-tmp/envs/DeepfakeBench-torch2.0/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/autodl-tmp/envs/DeepfakeBench-torch2.0/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/detectors/clip_stan.py", line 311, in forward
+    features = self.features(data_dict)
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/detectors/clip_stan.py", line 194, in features
+    x2 = self.forward_time_module(x, x2, num_layer, self.T)
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/detectors/clip_stan.py", line 242, in forward_time_module
+    x = self.input_ini(x)
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/detectors/clip_stan.py", line 280, in input_ini
+    x = x + time_embed
+RuntimeError: The size of tensor a (196) must match the size of tensor b (8) at non-singleton dimension 1

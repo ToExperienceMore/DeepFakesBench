@@ -46,3 +46,4 @@ from .sia_detector import SIADetector
 from .tall_detector import TALLDetector
 from .tall_video_detector import TALLVideoDetector
 from .clip_enhanced import CLIPEnhanced
+from .clip_stan import CLIPSTANDetector
