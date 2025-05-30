@@ -215,6 +215,7 @@ class CLIPSTANDetector(AbstractDetector):
         x = self.feature_extractor.vision_model.pre_layrnorm(embeddings)
         x2 = None
         
+        #x.shape: (B*T, num_patches + 1, dim)
         for idx, encoder_layer in enumerate(self.feature_extractor.vision_model.encoder.layers):
             if self.gradient_checkpointing and self.training:
                 layer_outputs = torch.utils.checkpoint.checkpoint(encoder_layer, x, None, None)
@@ -225,6 +226,29 @@ class CLIPSTANDetector(AbstractDetector):
             if idx >= len(self.feature_extractor.vision_model.encoder.layers) - self.depth: 
                 num_layer = idx + self.depth - len(self.feature_extractor.vision_model.encoder.layers)
                 x2 = self.forward_time_module(x, x2, num_layer, self.T)
+                # x2.shape = (B, T*num_patches + 1, embed_dim)
+
+        #x2-> B*T, num_patches+1, embed_dim
+        B, full_len, embed_dim = x2.shape
+        num_patches = (full_len - 1) // T  # 推算每帧的patch数量
+
+        # 分离 [CLS] token 和 patch tokens
+        cls_token = x2[:, 0:1, :]  # (B, 1, embed_dim)
+        patch_tokens = x2[:, 1:, :]  # (B, T*num_patches, embed_dim)
+
+        # reshape patch tokens 为 (B, T, num_patches, embed_dim)
+        patch_tokens = patch_tokens.view(B, T, num_patches, embed_dim)
+
+        # reshape cls token 为 (B, T, 1, embed_dim)，将每帧都复制一个
+        cls_token = cls_token.expand(-1, T, -1).unsqueeze(2)  # (B, T, 1, embed_dim)
+        print("cls_token.shape:", cls_token.shape)
+        print("patch_token.shape:", patch_tokens.shape)
+
+        # 拼接 CLS + patch → (B, T, num_patches + 1, embed_dim)
+        x2 = torch.cat([cls_token, patch_tokens], dim=2)
+
+        # reshape 为 (B*T, num_patches + 1, embed_dim)
+        x2 = x2.view(B * T, num_patches + 1, embed_dim)
         
         # x: (B*T, num_patches + 1, embed_dim)
         # x2: (B*T, num_patches + 1, embed_dim)
@@ -244,10 +268,11 @@ class CLIPSTANDetector(AbstractDetector):
         spatial_cls = x[:, 0]  # (B*T, embed_dim)
         
         # 4.2 时间CLS token
+        #x2.shape, B*T, num_patch+1, embed_dim
         temporal_cls = x2[:, 0]  # (B*T, embed_dim)
         print("temporal.shape:", temporal_cls.shape)
-        temporal_cls = temporal_cls.repeat(1, self.T)  # (B*T, T, embed_dim)
-        temporal_cls = temporal_cls.view(x2.size(0) * self.T, -1)  # (B*T, embed_dim)
+        #temporal_cls = temporal_cls.repeat(1, self.T)  # (B*T, T, embed_dim)
+        #temporal_cls = temporal_cls.view(x2.size(0) * self.T, -1)  # (B*T, embed_dim)
         
         # 4.3 融合CLS token
         cls_token = spatial_cls + temporal_cls  # (B*T, embed_dim)
@@ -287,6 +312,7 @@ class CLIPSTANDetector(AbstractDetector):
         x1 = x1.reshape(B, T, x1.size(1), x1.size(2))
 
         if x2 is not None:
+            print("x2.shape):", x2.shape)
             cls_token_ori = x1[:, :, 0, :]
             cls_token = cls_token_ori.mean(dim=1).unsqueeze(1)
             x1 = x1[:, :, 1:, :]
@@ -294,10 +320,11 @@ class CLIPSTANDetector(AbstractDetector):
             # 输入: (B, T, num_patches, embed_dim)
             # 输出: (B, T*num_patches, embed_dim)
             x1 = x1.reshape(x1.size(0), -1, x1.size(-1))
-            print("(B, T*num_patches, embed_dim):", x1.shape)
             x1 = torch.cat((cls_token, x1), dim=1)
+            print("(x1.shape):", x1.shape)
 
             if not self.cls_residue:
+                print("(x2.shape):", x2.shape)
                 x = x2 + x1
             else:
                 if self.training:
@@ -319,6 +346,10 @@ class CLIPSTANDetector(AbstractDetector):
         else: 
             x = self.STAN_T_layers[num_layer](x)
             x = self.STAN_S_layers[num_layer](x, None, None)
+        
+
+        # 假设输入张量 x
+        # x.shape = (B, T*num_patches + 1, embed_dim)
         return x
     
     def input_ini(self, x):
