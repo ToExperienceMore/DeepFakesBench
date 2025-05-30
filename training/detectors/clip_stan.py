@@ -77,7 +77,7 @@ class CLIPSTANDetector(AbstractDetector):
         """
         
         # Initialize STAN components from config
-        self.depth = config.get('depth', 4)
+        self.depth = config.get('depth', 2)
         self.time_module = config.get('time_module', 'selfattn')
         self.cls_residue = config.get('cls_residue', False)
         self.gradient_checkpointing = config.get('gradient_checkpointing', True)
@@ -139,40 +139,27 @@ class CLIPSTANDetector(AbstractDetector):
         """Freeze specific stages of the model based on the freezing strategy."""
         if self.frozen_layers:
             for name, param in self.named_parameters():
-                # 1. 保留 STAN 相关参数
-                if "STAN" in name:
+                # 1. Make all layer norm parameters trainable in CLIP and STAN_S_layers
+                if any(norm in name for norm in ['pre_layrnorm', 'layer_norm1', 'layer_norm2', 'post_layernorm', 'layernorm']):
                     param.requires_grad = True
                     continue
                     
-                # 2. 冻结文本编码器
-                elif 'text_backbone' in name:
+                # 2. Make all STAN_T_layers trainable
+                elif 'STAN_T_layers' in name:
+                    param.requires_grad = True
+                    continue
+                # 2. Make all STAN_S_layers not trainable
+                elif 'STAN_S_layers' in name:
+                    param.requires_grad = False
+                    continue
+                    
+                # 3. Freeze CLIP parameters (except layer norms which are handled above)
+                elif 'feature_extractor' in name:
                     param.requires_grad = False
                     
-                # 3. 保留额外投影层
-                elif 'extra_proj' in name:
-                    param.requires_grad = True
-                    continue
-                    
-                # 4. 保留平衡参数
-                elif 'balance' in name:
-                    param.requires_grad = True
-                    continue
-                    
-                # 5. 处理视觉编码器层
-                elif 'backbone.layers' in name:
-                    layer_n = int(name.split('.')[2])
-                    if layer_n >= 20:  # 只冻结前20层
-                        param.requires_grad = True
-                    else:
-                        param.requires_grad = False
-                    
-                # 6. 确保分类器参数可训练
-                elif 'model.linear' in name:
-                    param.requires_grad = True
-                    
-                # 7. 冻结其他所有参数
+                # 4. Make all other parameters trainable
                 else:
-                    param.requires_grad = False
+                    param.requires_grad = True
 
     def build_backbone(self, config):
         """Build the backbone network"""

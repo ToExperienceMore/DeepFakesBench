@@ -14,7 +14,7 @@
 config=./training/config/detector/clip_stan.yaml
 
 # 设置检查点路径（如果有的话）
-checkpoint=""
+checkpoint="./logs/training/clip_stan_2025-05-30-23-08-08/test/avg/ckpt_best.pth"
 #checkpoint="/path/to/your/checkpoint.pth"
 
 # 设置任务名称
@@ -50,7 +50,7 @@ nohup python training/train.py \
 --test_dataset "DFDC" \
 --task_target $task_name \
 ${checkpoint:+--checkpoint $checkpoint} \
-> train_FF++_${task_name}-0529.log 2>&1 &
+> train_FF++_${task_name}-0530-frozen.log 2>&1 &
 
 #python training/train.py \
 #--detector_path $config \
