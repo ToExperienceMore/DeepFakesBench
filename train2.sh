@@ -42,12 +42,12 @@ set -x
 
 #--max_train_images 100 \
 #--max_test_images 100 \
+#--max_train_images 100 \
+#--max_test_images 100 \
 nohup python training/train.py \
 --detector_path $config \
 --train_dataset "FaceForensics++" \
 --test_dataset "DFDC" \
---max_train_images 100 \
---max_test_images 100 \
 --task_target $task_name \
 ${checkpoint:+--checkpoint $checkpoint} \
 > train_FF++_${task_name}-0529.log 2>&1 &

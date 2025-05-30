@@ -133,6 +133,7 @@ class CLIPSTANDetector(AbstractDetector):
         # Apply freezing strategy
         self.frozen_layers = config.get('frozen_layers', True)
         self._freeze_stages()
+        self.print_trainable_parameters()
 
     def _freeze_stages(self) -> None:
         """Freeze specific stages of the model based on the freezing strategy."""
@@ -187,8 +188,8 @@ class CLIPSTANDetector(AbstractDetector):
     def features(self, data_dict: dict) -> torch.tensor:
         """Extract features from the input data"""
         x = data_dict['image']
-        print("x.shape:", x.shape)
-        print("x.ndim:", x.ndim)
+        #print("x.shape:", x.shape)
+        #print("x.ndim:", x.ndim)
         
         # Handle video input
         if x.ndim == 5:
@@ -207,9 +208,8 @@ class CLIPSTANDetector(AbstractDetector):
         # Get embeddings
         #(B*T, num_patches + 1, embed_dim)
         #x.shape: torch.Size([256, 3, 224, 224])
-        print("x.shape:", x.shape)
         embeddings = self.forward_embedding(x)
-        print("embeddings.shape:", embeddings.shape)
+        #print("embeddings.shape:", embeddings.shape)
         
         # Forward through STAN layers
         x = self.feature_extractor.vision_model.pre_layrnorm(embeddings)
@@ -241,8 +241,8 @@ class CLIPSTANDetector(AbstractDetector):
 
         # reshape cls token 为 (B, T, 1, embed_dim)，将每帧都复制一个
         cls_token = cls_token.expand(-1, T, -1).unsqueeze(2)  # (B, T, 1, embed_dim)
-        print("cls_token.shape:", cls_token.shape)
-        print("patch_token.shape:", patch_tokens.shape)
+        #print("cls_token.shape:", cls_token.shape)
+        #print("patch_token.shape:", patch_tokens.shape)
 
         # 拼接 CLS + patch → (B, T, num_patches + 1, embed_dim)
         x2 = torch.cat([cls_token, patch_tokens], dim=2)
@@ -252,8 +252,8 @@ class CLIPSTANDetector(AbstractDetector):
         
         # x: (B*T, num_patches + 1, embed_dim)
         # x2: (B*T, num_patches + 1, embed_dim)
-        print("x.shape:", x.shape)
-        print("x2.shape:", x2.shape)
+        #print("x.shape:", x.shape)
+        #print("x2.shape:", x2.shape)
         #x.shape: torch.Size([256, 197, 768])
         #x2.shape: torch.Size([32, 1569, 768]) #TODO: x2.shape is wroing
 
@@ -270,7 +270,7 @@ class CLIPSTANDetector(AbstractDetector):
         # 4.2 时间CLS token
         #x2.shape, B*T, num_patch+1, embed_dim
         temporal_cls = x2[:, 0]  # (B*T, embed_dim)
-        print("temporal.shape:", temporal_cls.shape)
+        #print("temporal.shape:", temporal_cls.shape)
         #temporal_cls = temporal_cls.repeat(1, self.T)  # (B*T, T, embed_dim)
         #temporal_cls = temporal_cls.view(x2.size(0) * self.T, -1)  # (B*T, embed_dim)
         
@@ -280,18 +280,18 @@ class CLIPSTANDetector(AbstractDetector):
         # 4.4 后处理
         #cls_token = self.post_layernorm(cls_token)  # (B*T, embed_dim)
         cls_token = self.feature_extractor.vision_model.post_layernorm(cls_token)
-        print("cls_token.shape:", cls_token.shape)
+        #print("cls_token.shape:", cls_token.shape)
 
         cls_token = rearrange(cls_token, '(b t) d -> b t d', t=self.T)
         cls_token = cls_token.mean(1) #b, d
-        print("### cls_token.shape:", cls_token.shape)
+        #print("### cls_token.shape:", cls_token.shape)
         
         return cls_token
     
     def forward_embedding(self, x):
         """Forward pass through embedding layers"""
         batch_size = x.shape[0] #should be B*T
-        print("batch_size:", batch_size)
+        #print("batch_size:", batch_size)
         patch_embeds = self.patch_embeds(x)
         patch_embeds = patch_embeds.flatten(2).transpose(1, 2)
 
@@ -312,7 +312,7 @@ class CLIPSTANDetector(AbstractDetector):
         x1 = x1.reshape(B, T, x1.size(1), x1.size(2))
 
         if x2 is not None:
-            print("x2.shape):", x2.shape)
+            #print("x2.shape):", x2.shape)
             cls_token_ori = x1[:, :, 0, :]
             cls_token = cls_token_ori.mean(dim=1).unsqueeze(1)
             x1 = x1[:, :, 1:, :]
@@ -321,10 +321,10 @@ class CLIPSTANDetector(AbstractDetector):
             # 输出: (B, T*num_patches, embed_dim)
             x1 = x1.reshape(x1.size(0), -1, x1.size(-1))
             x1 = torch.cat((cls_token, x1), dim=1)
-            print("(x1.shape):", x1.shape)
+            #print("(x1.shape):", x1.shape)
 
             if not self.cls_residue:
-                print("(x2.shape):", x2.shape)
+                #print("(x2.shape):", x2.shape)
                 x = x2 + x1
             else:
                 if self.training:
@@ -353,48 +353,29 @@ class CLIPSTANDetector(AbstractDetector):
         return x
     
     def input_ini(self, x):
-        """Initialize input for first layer"""
         cls_old = x[:, :, 0, :].mean(dim=1).unsqueeze(1)
         x = x[:,:,1:,:]
         B,T,L,D = x.size()
-        print(f"input_ini - x shape before view: {x.shape}")
+        x = rearrange(x, 'b t l d -> (b t) l d')
         
-        # 修改维度变换顺序
-        x = x.permute(0, 2, 1, 3).contiguous()  # [B, L, T, D]
-        x = x.reshape(-1, T, D)    # [B*L, T, D]
-        print(f"input_ini - x shape after first reshape: {x.shape}")
+        cls_tokens = self.class_embedding.expand(x.size(0), 1, -1)
         
-        cls_tokens = self.cls_token.expand(x.size(0), 1, -1)
         x = torch.cat((cls_tokens, x), dim=1)
-        print(f"input_ini - x shape after cat: {x.shape}")
-        
         position_ids = torch.arange(x.size(1), dtype=torch.long, device=x.device).unsqueeze(0).expand(x.size(0), -1)
         pos_embed = self.pos_embed(position_ids)
         x = x + pos_embed
         x = self.drop_after_pos(x)
-        
         cls = x[:B, 0, :].unsqueeze(1)
-        x = x[:, 1:, :]
-        print(f"input_ini - x shape before final reshape: {x.shape}")
-        
-        # 修改维度变换顺序
-        x = x.reshape(B, L, T, D)  # [B, L, T, D]
-        print(f"input_ini - x shape after final reshape: {x.shape}")
-        
-        position_ids = torch.arange(T, dtype=torch.long, device=x.device).unsqueeze(0).expand(B, -1)
-        time_embed = self.time_embed(position_ids)  # [B, T, D]
-        time_embed = time_embed.unsqueeze(2)  # [B, T, 1, D]
-        time_embed = time_embed.expand(-1, -1, L, -1)  # [B, T, L, D]
-        time_embed = time_embed.permute(0, 2, 1, 3)  # [B, L, T, D]
+        x = rearrange(x[:, 1:, :], '(b t) l d -> (b l) t d', b=B)
+        position_ids = torch.arange(x.size(1), dtype=torch.long, device=x.device).unsqueeze(0).expand(x.size(0), -1)
+        time_embed = self.time_embed(position_ids)
         x = x + time_embed
         x = self.drop_after_time(x)
-        x = x.reshape(B, -1, D)
-        print(f"input_ini - x shape at end: {x.shape}")
-        
+        x = rearrange(x, '(b l) t d -> b (l t) d', b=B)
         cls = (cls_old + cls) / 2
         x = torch.cat((cls, x), dim=1)
-        return x
-    
+        return x  
+
     def classifier(self, features: torch.tensor) -> torch.tensor:
         """Classify the features"""
         return self.model.linear(features)
@@ -403,8 +384,8 @@ class CLIPSTANDetector(AbstractDetector):
         """Compute the losses"""
         label = data_dict['label']
         pred = pred_dict['cls']
-        print("label.shape:", label.shape)
-        print("pred.shape:", pred.shape)
+        #print("label.shape:", label.shape)
+        #print("pred.shape:", pred.shape)
         loss = self.loss_func(pred, label)
         return {'overall': loss}
     
@@ -421,9 +402,9 @@ class CLIPSTANDetector(AbstractDetector):
         """Forward pass through the model"""
         features = self.features(data_dict)
         features = F.normalize(features, dim=1)
-        print("features.shape:", features.shape)
+        #print("features.shape:", features.shape)
         pred = self.classifier(features)
-        print("pred.shape:", pred.shape)
+        #print("pred.shape:", pred.shape)
         prob = torch.softmax(pred, dim=1)[:, 1]
         
         pred_dict = {
@@ -450,6 +431,22 @@ class CLIPSTANDetector(AbstractDetector):
             weight_3d = weight_2d.unsqueeze(2).repeat(1, 1, time_dim, 1, 1)
             weight_3d = weight_3d / time_dim
         return weight_3d
+
+    def print_trainable_parameters(self):
+        print("\nAll parameters:")
+        for name, param in self.named_parameters():
+            print(f"{name} shape = {tuple(param.shape)}")
+
+        print("\n🔥 Trainable parameters:")
+        for name, param in self.named_parameters():
+            if param.requires_grad:
+                print(f"{name} shape = {tuple(param.shape)}")
+
+        all_params = sum(p.numel() for p in self.parameters())
+        trainable_params = sum(p.numel() for p in self.parameters() if p.requires_grad)
+        print(
+            f"Total parameters: {all_params}, trainable: {trainable_params}, %: {trainable_params / all_params * 100:.4f}"
+        )
 
 class CLIPLayer_Spatial(nn.Module):
     def __init__(self, config, T, layer_num=0.1):
