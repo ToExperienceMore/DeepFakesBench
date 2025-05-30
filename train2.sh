@@ -50,7 +50,7 @@ nohup python training/train.py \
 --max_test_images 100 \
 --task_target $task_name \
 ${checkpoint:+--checkpoint $checkpoint} \
-> train_FF++_${task_name}-0528.log 2>&1 &
+> train_FF++_${task_name}-0529.log 2>&1 &
 
 #python training/train.py \
 #--detector_path $config \

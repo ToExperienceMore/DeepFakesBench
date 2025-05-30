@@ -1,8 +1,8 @@
 /root/autodl-tmp/envs/DeepfakeBench-torch2.0/lib/python3.9/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: '/root/autodl-tmp/envs/DeepfakeBench-torch2.0/lib/python3.9/site-packages/torchvision/image.so: undefined symbol: _ZN3c1017RegisterOperatorsD1Ev'If you don't plan on using image functionality from `torchvision.io`, you can ignore this warning. Otherwise, there might be something wrong with your environment. Did you have `libjpeg` or `libpng` installed before building `torchvision` from source?
   warn(
-2025-05-29 08:10:27,136 - INFO - Save log to ./logs/training/clip_stan_2025-05-29-08-10-27
-2025-05-29 08:10:27,137 - INFO - --------------- Configuration ---------------
-2025-05-29 08:10:27,137 - INFO - Parameters: 
+2025-05-30 08:42:11,351 - INFO - Save log to ./logs/training/clip_stan_2025-05-30-08-42-11
+2025-05-30 08:42:11,351 - INFO - --------------- Configuration ---------------
+2025-05-30 08:42:11,351 - INFO - Parameters: 
 name: clip_stan
 type: clip
 model_name: clip_stan
@@ -29,10 +29,7 @@ cuda: True
 cudnn: True
 cudnn_benchmark: True
 cudnn_deterministic: False
-use_compile: True
-compile_mode: max-autotune
-compile_fullgraph: True
-compile_dynamic: True
+use_compile: False
 log_dir: ./logs/training/
 save_ckpt: True
 save_feat: True
@@ -76,8 +73,8 @@ max_train_images: 100
 max_test_images: 100
 ddp: False
 
-2025-05-29 08:10:28,533 - INFO - ===> Epoch[0] start!
-2025-05-29 08:10:28,533 - INFO - data_dict saved to ./logs/training/clip_stan_2025-05-29-08-10-27/train/FaceForensics++/data_dict_train.pickle
+2025-05-30 08:42:12,712 - INFO - ===> Epoch[0] start!
+2025-05-30 08:42:12,713 - INFO - data_dict saved to ./logs/training/clip_stan_2025-05-30-08-42-11/train/FaceForensics++/data_dict_train.pickle
 ['in_channels', 'out_channels', 'kernel_size', 'stride', 'padding', 'dilation', 'groups', 'bias', 'padding_mode', 'device', 'dtype']
 spatial_count=0 keep_stride_count=0
 Setting maximum training images to 100
@@ -160,15 +157,30 @@ Limiting test dataset from 3151 to 100 images
 model_name: clip_stan
 clip_path: weights/clip-vit-base-patch16
 features_dim: 768
-Disabling torch.compile as it's not compatible with PEFT models
-  0%|          | 0/4 [00:00<?, ?it/s]  0%|          | 0/4 [00:02<?, ?it/s]
+  0%|          | 0/4 [00:00<?, ?it/s]  0%|          | 0/4 [00:03<?, ?it/s]
 x.shape: torch.Size([32, 8, 3, 224, 224])
 x.ndim: 5
+x.shape: torch.Size([256, 3, 224, 224])
+batch_size: 256
+embeddings.shape: torch.Size([256, 197, 768])
 input_ini - x shape before view: torch.Size([32, 8, 196, 768])
-input_ini - x shape after first reshape: torch.Size([256, 196, 768])
-input_ini - x shape after cat: torch.Size([256, 197, 768])
-input_ini - x shape before final reshape: torch.Size([256, 196, 768])
+input_ini - x shape after first reshape: torch.Size([6272, 8, 768])
+input_ini - x shape after cat: torch.Size([6272, 9, 768])
+input_ini - x shape before final reshape: torch.Size([6272, 8, 768])
 input_ini - x shape after final reshape: torch.Size([32, 196, 8, 768])
+input_ini - x shape at end: torch.Size([32, 1568, 768])
+(B, T*num_patches, embed_dim): torch.Size([32, 1568, 768])
+(B, T*num_patches, embed_dim): torch.Size([32, 1568, 768])
+(B, T*num_patches, embed_dim): torch.Size([32, 1568, 768])
+x.shape: torch.Size([256, 197, 768])
+x2.shape: torch.Size([32, 1569, 768])
+temporal.shape: torch.Size([32, 768])
+cls_token.shape: torch.Size([256, 768])
+### cls_token.shape: torch.Size([32, 768])
+features.shape: torch.Size([32, 768])
+pred.shape: torch.Size([32, 2])
+label.shape: torch.Size([32])
+pred.shape: torch.Size([32, 2])
 Traceback (most recent call last):
   File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/train.py", line 418, in <module>
     main()
@@ -176,18 +188,12 @@ Traceback (most recent call last):
     best_metric = trainer.train_epoch(
   File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/trainer/trainer.py", line 271, in train_epoch
     losses,predictions=self.train_step(data_dict)
-  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/trainer/trainer.py", line 215, in train_step
-    predictions = self.model(data_dict)
-  File "/root/autodl-tmp/envs/DeepfakeBench-torch2.0/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/root/autodl-tmp/envs/DeepfakeBench-torch2.0/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/detectors/clip_stan.py", line 311, in forward
-    features = self.features(data_dict)
-  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/detectors/clip_stan.py", line 194, in features
-    x2 = self.forward_time_module(x, x2, num_layer, self.T)
-  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/detectors/clip_stan.py", line 242, in forward_time_module
-    x = self.input_ini(x)
-  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/detectors/clip_stan.py", line 280, in input_ini
-    x = x + time_embed
-RuntimeError: The size of tensor a (196) must match the size of tensor b (8) at non-singleton dimension 1
+  File "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/trainer/trainer.py", line 222, in train_step
+    self.scaler.scale(losses['overall']).backward()
+  File "/root/autodl-tmp/envs/DeepfakeBench-torch2.0/lib/python3.9/site-packages/torch/_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "/root/autodl-tmp/envs/DeepfakeBench-torch2.0/lib/python3.9/site-packages/torch/autograd/__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "/root/autodl-tmp/envs/DeepfakeBench-torch2.0/lib/python3.9/site-packages/torch/autograd/graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+RuntimeError: element 0 of tensors does not require grad and does not have a grad_fn

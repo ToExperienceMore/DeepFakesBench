@@ -30,10 +30,10 @@ cuda: true
 cudnn: true
 cudnn_benchmark: true
 cudnn_deterministic: false
-use_compile: true
-compile_mode: max-autotune
-compile_fullgraph: true
-compile_dynamic: true
+use_compile: false
+#compile_mode: max-autotune
+#compile_fullgraph: true
+#compile_dynamic: true
 log_dir: ./logs/training/
 save_ckpt: true
 save_feat: true
