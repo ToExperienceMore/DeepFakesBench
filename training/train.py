@@ -386,7 +386,8 @@ def main():
     metric_scoring = choose_metric(config)
 
     # Initialize gradient scaler for mixed precision training
-    scaler = GradScaler()
+    #scaler = GradScaler()
+    scaler = None
 
     # prepare the trainer
     trainer = Trainer(config, model, optimizer, scheduler, logger, metric_scoring, time_now=timenow, scaler=scaler)

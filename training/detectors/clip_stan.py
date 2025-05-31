@@ -80,7 +80,7 @@ class CLIPSTANDetector(AbstractDetector):
         self.depth = config.get('depth', 2)
         self.time_module = config.get('time_module', 'selfattn')
         self.cls_residue = config.get('cls_residue', False)
-        self.gradient_checkpointing = config.get('gradient_checkpointing', True)
+        self.gradient_checkpointing = config.get('gradient_checkpointing', False)
         
         # Calculate dimensions
         self.num_patches = (self.feature_extractor.vision_model.config.image_size // self.feature_extractor.vision_model.config.patch_size) ** 2
@@ -371,8 +371,10 @@ class CLIPSTANDetector(AbstractDetector):
         """Compute the losses"""
         label = data_dict['label']
         pred = pred_dict['cls']
-        #print("label.shape:", label.shape)
-        #print("pred.shape:", pred.shape)
+        print("label.shape:", label.shape)
+        print("pred.shape:", pred.shape)
+        print("logits:", pred)
+        print("pred:", pred_dict['prob'])
         loss = self.loss_func(pred, label)
         return {'overall': loss}
     
@@ -388,8 +390,7 @@ class CLIPSTANDetector(AbstractDetector):
     def forward(self, data_dict: dict, inference=False) -> dict:
         """Forward pass through the model"""
         features = self.features(data_dict)
-        features = F.normalize(features, dim=1)
-        #print("features.shape:", features.shape)
+        features = F.normalize(features, dim=1)  # Keep L2 normalization for feature stability
         pred = self.classifier(features)
         #print("pred.shape:", pred.shape)
         prob = torch.softmax(pred, dim=1)[:, 1]

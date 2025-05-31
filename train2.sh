@@ -50,7 +50,7 @@ nohup python training/train.py \
 --test_dataset "DFDC" \
 --task_target $task_name \
 ${checkpoint:+--checkpoint $checkpoint} \
-> train_FF++_${task_name}-0530-frozen.log 2>&1 &
+> train_FF++_${task_name}-0530-frozen_debug.log 2>&1 &
 
 #python training/train.py \
 #--detector_path $config \

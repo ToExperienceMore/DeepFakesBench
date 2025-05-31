@@ -82,7 +82,7 @@ def prepare_testing_data(config):
         return test_data_loader
 
     if config['test_batchSize']< 32:
-        config['test_batchSize'] = 128 
+        config['test_batchSize'] = 32
     print(f"batch_size: {config['test_batchSize']}")
     test_data_loaders = {}
     for one_test_name in config['test_dataset']:

@@ -201,6 +201,11 @@ class Trainer(object):
                     if i == 0:
                         pred_first = predictions
                         losses_first = losses
+                    if torch.isnan(losses['overall']):
+                        print("❗ Detected NaN in loss")
+                        print("Logits:", predictions)
+                        print("Labels:", data_dict)
+                        exit()
                     self.optimizer.zero_grad()
                     losses['overall'].backward()
                 

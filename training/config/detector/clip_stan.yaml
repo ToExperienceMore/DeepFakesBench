@@ -14,7 +14,7 @@ use_contrastive_loss: true
 clip_path: "weights/clip-vit-base-patch16"
 
 # STAN specific settings
-depth: 4
+depth: 2
 time_module: "selfattn"  # or "conv"
 cls_residue: false
 gradient_checkpointing: true
