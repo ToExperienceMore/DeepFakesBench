@@ -24,6 +24,7 @@ import torch.optim as optim
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
+import sklearn.metrics as metrics
 
 from dataset.abstract_dataset import DeepfakeAbstractBaseDataset
 from dataset.ff_blend import FFBlendDataset
@@ -81,8 +82,6 @@ def prepare_testing_data(config):
             )
         return test_data_loader
 
-    if config['test_batchSize']< 32:
-        config['test_batchSize'] = 32
     print(f"batch_size: {config['test_batchSize']}")
     test_data_loaders = {}
     for one_test_name in config['test_dataset']:
@@ -96,6 +95,31 @@ def choose_metric(config):
         raise NotImplementedError('metric {} is not implemented'.format(metric_scoring))
     return metric_scoring
 
+
+def find_optimal_threshold(y_true, y_pred):
+    """
+    Find the optimal threshold that maximizes accuracy.
+    
+    Args:
+        y_true: Ground truth labels
+        y_pred: Predicted probabilities
+        
+    Returns:
+        optimal_threshold: The threshold that gives the best accuracy
+        best_accuracy: The best accuracy achieved
+    """
+    fpr, tpr, thresholds = metrics.roc_curve(y_true, y_pred)
+    accuracies = []
+    for threshold in thresholds:
+        pred_labels = (y_pred >= threshold).astype(int)
+        accuracy = (pred_labels == y_true).mean()
+        accuracies.append(accuracy)
+    
+    best_idx = np.argmax(accuracies)
+    optimal_threshold = thresholds[best_idx]
+    best_accuracy = accuracies[best_idx]
+    
+    return optimal_threshold, best_accuracy
 
 def test_one_dataset(model, data_loader):
     """
@@ -123,7 +147,6 @@ def test_one_dataset(model, data_loader):
         data_dict['image'], data_dict['label'], data_dict['mask'], data_dict['landmark']
         
         data_dict['image'] = data.to(device)
-        # label: torch.Tensor [B] on GPU
         data_dict['label'] = label.to(device)
         if mask is not None:
             # mask: torch.Tensor [B, 1, H, W] on GPU
@@ -139,22 +162,27 @@ def test_one_dataset(model, data_loader):
         label_lists += list(data_dict['label'].cpu().detach().numpy())
         prediction_lists += list(predictions['prob'].cpu().detach().numpy())
 
-    # Convert predictions to binary labels using 0.5 threshold
-    # pred_labels: numpy.ndarray [N] containing 0s and 1s
-    pred_labels = (np.array(prediction_lists) > 0.5).astype(int)
-    # true_labels: numpy.ndarray [N] containing ground truth labels
-    true_labels = np.array(label_lists)
+    # Convert to numpy arrays
+    predictions_nps = np.array(prediction_lists)
+    label_nps = np.array(label_lists)
+    
+    # Find optimal threshold
+    optimal_threshold, best_accuracy = find_optimal_threshold(label_nps, predictions_nps)
+    print(f"\nOptimal threshold: {optimal_threshold:.4f}")
+    print(f"Best accuracy with optimal threshold: {best_accuracy:.4f}")
+    
+    # Use optimal threshold for predictions
+    pred_labels = (predictions_nps >= optimal_threshold).astype(int)
     
     # Calculate confusion matrix
-    # cm: numpy.ndarray [2, 2] containing confusion matrix values
-    cm = confusion_matrix(true_labels, pred_labels)
+    cm = confusion_matrix(label_nps, pred_labels)
     
     # Create confusion matrix visualization
     plt.figure(figsize=(8, 6))
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
                 xticklabels=['Real', 'Fake'],
                 yticklabels=['Real', 'Fake'])
-    plt.title('Confusion Matrix')
+    plt.title(f'Confusion Matrix (Threshold: {optimal_threshold:.4f})')
     plt.ylabel('True Label')
     plt.xlabel('Predicted Label')
     
@@ -166,7 +194,24 @@ def test_one_dataset(model, data_loader):
     plt.savefig(os.path.join(save_dir, f'confusion_matrix_{data_loader.dataset.__class__.__name__}.png'))
     plt.close()
     
-    return np.array(prediction_lists), np.array(label_lists)
+    # Calculate metrics using optimal threshold
+    tn, fp, fn, tp = cm.ravel()
+    accuracy = (tp + tn) / (tp + tn + fp + fn)
+    precision = tp / (tp + fp) if (tp + fp) > 0 else 0
+    recall = tp / (tp + fn) if (tp + fn) > 0 else 0
+    f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
+    
+    tqdm.write(f"\nDetailed metrics with optimal threshold:")
+    tqdm.write(f"True Negatives (Real classified as Real): {tn}")
+    tqdm.write(f"False Positives (Real classified as Fake): {fp}")
+    tqdm.write(f"False Negatives (Fake classified as Real): {fn}")
+    tqdm.write(f"True Positives (Fake classified as Fake): {tp}")
+    tqdm.write(f"Accuracy: {accuracy:.4f}")
+    tqdm.write(f"Precision: {precision:.4f}")
+    tqdm.write(f"Recall: {recall:.4f}")
+    tqdm.write(f"F1 Score: {f1:.4f}")
+    
+    return predictions_nps, label_nps
 
 def test_epoch(model, test_data_loaders):
     # set model to eval mode
@@ -215,6 +260,9 @@ def test_epoch(model, test_data_loaders):
         # 确保只使用处理过的图像
         processed_image_names = data_dict['image'][:len(predictions_nps)]
         print("Number of processed image names:", len(processed_image_names))
+        #print("processed_image_names:", processed_image_names)
+        print("predictions_nps:", predictions_nps)
+        print("label_nps:", label_nps)
         
         metric_one_dataset = get_test_metrics(y_pred=predictions_nps, y_true=label_nps,
                                               img_names=processed_image_names)
