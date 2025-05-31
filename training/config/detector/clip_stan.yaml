@@ -21,7 +21,7 @@ gradient_checkpointing: true
 
 # Video settings
 video_mode: true
-clip_size: 32
+clip_size: 8
 frame_num: {'train': 32, 'test': 32}
 
 # Basic settings

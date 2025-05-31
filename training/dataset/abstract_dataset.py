@@ -310,11 +310,14 @@ class DefaultDatasetLoader(DatasetLoader):
                 
                 # Otherwise, extend the label and frame paths to the lists according to the number of frames
                 else:
-                    # Extend the label and frame paths to the lists according to the number of frames
-                    label_list.extend([label] * total_frames)
-                    frame_path_list.extend(frame_paths)
-                    # video name save
-                    video_name_list.extend([unique_video_name] * len(frame_paths))
+                    if total_frames >= self.clip_size:
+                        # Extend the label and frame paths to the lists according to the number of frames
+                        label_list.extend([label] * total_frames)
+                        frame_path_list.extend(frame_paths)
+                        # video name save
+                        video_name_list.extend([unique_video_name] * len(frame_paths))
+                    else:
+                        print(f"Skipping video {unique_video_name} Less than clip_size ({self.clip_size}) frames ({total_frames}).")
             
         # Shuffle the label and frame path lists in the same order
         shuffled = list(zip(label_list, frame_path_list, video_name_list))
