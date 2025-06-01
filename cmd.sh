@@ -35,7 +35,10 @@ config=./training/config/detector/clip_enhanced.yaml
 #weight=../deepfake-detection/weights/model.ckpt
 #weight=../deepfake-detection/models_epoch9/checkpoints/best_mAP.ckpt
 #weight=./logs/training/clip_enhanced_2025-05-28-07-03-43/test/avg/ckpt_best.pth
-weight=/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/logs/clip_enhanced_2025-05-29-02-22-27/test/avg/ckpt_best.pth
+# mlp1
+#weight=/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/logs/clip_enhanced_2025-05-29-02-22-27/test/avg/ckpt_best.pth
+# mlp2
+weight=./logs/training/clip_enhanced_2025-06-01-19-22-52/test/avg/ckpt_best.pth
 #depth=4
 #weight=./logs/training/clip_stan_2025-05-30-23-08-08/test/avg/ckpt_best.pth
 #depth=2
@@ -59,8 +62,9 @@ set -x
 #python3 training/test.py --detector_path $config --test_dataset  "FaceForensics++" --weights_path $weight
 #python3 training/test.py --detector_path $config --test_dataset  "FMFCC-V" "UADFV" "Celeb-DF-v2" "DeepFakeDetection" "FF-F2F" "FF-DF" "FF-FS" "FF-NT" "FaceShifter" --weights_path $weight
 
-#python3 training/test.py --detector_path $config --test_dataset  "DFDC" --weights_path $weight
-python3 training/test.py --detector_path $config --test_dataset  "DFDC" "FaceForensics++" "DFDCP" "Celeb-DF-v2" "UADFV"  "FaceShifter" "DeepFakeDetection" --weights_path $weight
+#python3 training/test.py --detector_path $config --test_dataset  "UADFV" --weights_path $weight --model_name clip_enhanced
+#python3 training/test.py --detector_path $config --test_dataset  "DFDC" "FaceForensics++" "DFDCP" "Celeb-DF-v2" "UADFV"  "FaceShifter" "DeepFakeDetection" --weights_path $weight
+python3 training/test.py --detector_path $config --test_dataset  "DFDC" --weights_path $weight
 #python3 training/test.py --detector_path $config --test_dataset  "DFDC" "DFDCP" "Celeb-DF-v2" "UADFV" --weights_path $weight
 #python3 training/test.py --detector_path $config --test_dataset  "FaceShifter" "DeepFakeDetection" --weights_path $weight
 #python3 training/test.py --detector_path $config --test_dataset  "FaceForensics++" --weights_path $weight

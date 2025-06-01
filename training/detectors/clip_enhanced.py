@@ -12,44 +12,6 @@ import os
 from peft import get_peft_model
 from peft import LNTuningConfig
 
-@dataclass
-class Batch:
-    images: Optional[torch.Tensor]
-    labels: Optional[torch.Tensor]
-    identity: Optional[torch.Tensor]
-    source: Optional[torch.Tensor]
-    idx: Optional[torch.Tensor]
-    paths: Optional[list[str]]
-
-    def __getitem__(self, key):
-        return getattr(self, key)
-
-    @staticmethod
-    def from_dict(batch: dict):
-        return Batch(
-            images=batch.get("image"),
-            labels=batch.get("label"),
-            identity=batch.get("identity"),
-            source=batch.get("source"),
-            idx=batch.get("idx"),
-            paths=batch.get("path"),
-        )
-
-"""
-class LayerNormWithTuning(nn.Module):
-    def __init__(self, hidden_size):
-        super().__init__()
-        self.base_layer = nn.LayerNorm(hidden_size)
-        self.ln_tuning_layers = nn.ModuleDict({
-            'default': nn.LayerNorm(hidden_size)
-        })
-
-    def forward(self, x):
-        #return self.base_layer(x) + self.ln_tuning_layers['default'](x)
-        #x = self.base_layer(x)
-        return self.ln_tuning_layers['default'](x)
-"""
-
 @DETECTOR.register_module(module_name='clip_enhanced')
 class CLIPEnhanced(AbstractDetector):
     def __init__(self, config):
@@ -57,7 +19,6 @@ class CLIPEnhanced(AbstractDetector):
         self.config = config
         
         # Initialize feature extractor (CLIP)
-        #self.clip_path = "../deepfake-detection/weights/clip-vit-large-patch14"
         self.clip_path = config.get('clip_path', "weights/clip-vit-base-patch16")
         print(f"clip_path: {self.clip_path}")
 
@@ -86,12 +47,18 @@ class CLIPEnhanced(AbstractDetector):
         features_dim = self.feature_extractor.config.hidden_size
         print(f"features_dim: {features_dim}")
         self.model = nn.Module()
-        self.model.linear = nn.Linear(features_dim, 2, bias=True)
+        #hidden_dim = features_dim // 2  # Using half of the input dimension as hidden size
+        hidden_dim = 512
+        self.model.mlp = nn.Sequential(
+            nn.Linear(features_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Linear(hidden_dim, 2)
+        )
         
         # Initialize loss function
         self.loss_func = self.build_loss(config)
         
-        #self.print_trainable_parameters()
+        self.print_trainable_parameters()
     
     def build_backbone(self, config):
         """Build the backbone network"""
@@ -113,7 +80,7 @@ class CLIPEnhanced(AbstractDetector):
     
     def classifier(self, features: torch.tensor) -> torch.tensor:
         """Classify the features"""
-        return self.model.linear(features)
+        return self.model.mlp(features)
     
     def get_losses(self, data_dict: dict, pred_dict: dict) -> dict:
         """Compute the losses"""
@@ -141,7 +108,8 @@ class CLIPEnhanced(AbstractDetector):
         
         pred_dict = {
             'cls': pred,
-            'prob': prob
+            'prob': prob,
+            'feat': features
         }
         return pred_dict
     

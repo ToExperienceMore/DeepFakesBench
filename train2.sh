@@ -19,7 +19,7 @@ config=./training/config/detector/clip_enhanced.yaml
 
 # 设置任务名称
 #task_name="clip_stan_debug"
-task_name="clip_clip32"
+task_name="clip_mlp2"
 #task_name="clip_enhanced_prompt"
 
 #nohup python training/train.py \
@@ -44,15 +44,13 @@ set -x
 
 #--max_train_images 100 \
 #--max_test_images 100 \
-#--max_train_images 100 \
-#--max_test_images 100 \
 #${checkpoint:+--checkpoint $checkpoint} \
 nohup python training/train.py \
 --detector_path $config \
 --train_dataset "FaceForensics++" \
 --test_dataset "DFDC" \
 --task_target $task_name \
-> train_FF++_${task_name}.log 2>&1 &
+> train_FF++_${task_name}-0601.log 2>&1 &
 
 #python training/train.py \
 #--detector_path $config \

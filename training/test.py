@@ -44,6 +44,8 @@ parser.add_argument('--detector_path', type=str,
                     default='/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/config/detector/resnet34.yaml',
                     help='path to detector YAML file')
 parser.add_argument("--test_dataset", nargs="+")
+parser.add_argument("--model_name", type=str,
+                    default='clip_enhanced')
 parser.add_argument('--weights_path', type=str, 
                     default='/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/FaceForensics++/ckpt_epoch_9_best.pth')
 #parser.add_argument("--lmdb", action='store_true', default=False)
@@ -161,6 +163,8 @@ def test_one_dataset(model, data_loader):
         # Collect predictions and labels
         label_lists += list(data_dict['label'].cpu().detach().numpy())
         prediction_lists += list(predictions['prob'].cpu().detach().numpy())
+        feature_lists += list(predictions['feat'].cpu().detach().numpy())
+    
 
     # Convert to numpy arrays
     predictions_nps = np.array(prediction_lists)
@@ -211,7 +215,8 @@ def test_one_dataset(model, data_loader):
     tqdm.write(f"Recall: {recall:.4f}")
     tqdm.write(f"F1 Score: {f1:.4f}")
     
-    return predictions_nps, label_nps
+    #return np.array(prediction_lists), np.array(label_lists),np.array(feature_lists)
+    return predictions_nps, label_nps, np.array(feature_lists)
 
 def test_epoch(model, test_data_loaders):
     # set model to eval mode
@@ -228,7 +233,7 @@ def test_epoch(model, test_data_loaders):
         #print("Number of images:", len(data_dict['image']))
         #print("Number of labels:", len(data_dict['label']))
         
-        predictions_nps, label_nps = test_one_dataset(model, test_data_loaders[key])
+        predictions_nps, label_nps, feat_nps = test_one_dataset(model, test_data_loaders[key])
         
         # 计算并打印混淆矩阵的详细指标
         pred_labels = (predictions_nps > 0.5).astype(int)
@@ -263,10 +268,17 @@ def test_epoch(model, test_data_loaders):
         #print("processed_image_names:", processed_image_names)
         #print("predictions_nps:", predictions_nps)
         #print("label_nps:", label_nps)
+        binary_label = np.where(label_nps != 0, 1, 0)
         
         metric_one_dataset = get_test_metrics(y_pred=predictions_nps, y_true=label_nps,
                                               img_names=processed_image_names)
         metrics_all_datasets[key] = metric_one_dataset
+
+        save_path = join('features', args.model_name, key)
+        os.makedirs(save_path, exist_ok=True)
+        tsne_dict = {'feat': feat_nps, 'label': binary_label}
+        with open(join(save_path, 'tsne.pkl'), 'wb') as f:
+            pickle.dump(tsne_dict, f)
         
         # info for each dataset
         tqdm.write(f"\ndataset: {key}")
