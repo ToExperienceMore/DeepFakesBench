@@ -1,4 +1,4 @@
-weight=./training/weights/xception_best.pth
+#weight=./training/weights/xception_best.pth
 #test_list=/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/ssl_vits_df/val_list-n.txt
 #test_list=/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/ssl_vits_df/test_lists/FaceForensics++_test_list.txt
 #test_list=/root/autodl-tmp/benchmark_deepfakes/ssl_vits_df/Py_data/ForgeryNet_test_list.txt
@@ -29,20 +29,20 @@ weight=./training/weights/xception_best.pth
 #config=./training/config/detector/xception.yaml
 #config=./training/config/detector/timesformer.yaml
 #config=./training/config/detector/efficientnet.yaml
-#config=./training/config/detector/clip_enhanced.yaml
-config=./training/config/detector/clip_stan.yaml
+config=./training/config/detector/clip_enhanced.yaml
+#config=./training/config/detector/clip_stan.yaml
 # 使用deepfake-detection的权重
 #weight=../deepfake-detection/weights/model.ckpt
 #weight=../deepfake-detection/models_epoch9/checkpoints/best_mAP.ckpt
 #weight=./logs/training/clip_enhanced_2025-05-28-07-03-43/test/avg/ckpt_best.pth
-#weight=/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/logs/clip_enhanced_2025-05-29-02-22-27/test/avg/ckpt_best.pth
+weight=/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/logs/clip_enhanced_2025-05-29-02-22-27/test/avg/ckpt_best.pth
 #depth=4
 #weight=./logs/training/clip_stan_2025-05-30-23-08-08/test/avg/ckpt_best.pth
 #depth=2
 #weight=/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/logs/clip_stan_2025-05-31-05-25-02/test/avg/ckpt_best.pth
 #weight=/root/autodl-tmp/clip_stan_2025-05-31-20-11-26/test/avg/ckpt_best.pth
 #weight=/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/logs/training/tall_2025-05-17-06-17-38/test/DFDC/ckpt_best.pth
-weight=/root/autodl-tmp/ckpt_epoch_10.pth
+#weight=/root/autodl-tmp/ckpt_epoch_10.pth
 
 set -x
 

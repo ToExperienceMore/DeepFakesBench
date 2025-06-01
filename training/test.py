@@ -225,8 +225,8 @@ def test_epoch(model, test_data_loaders):
     for key in keys:
         data_dict = test_data_loaders[key].dataset.data_dict
         print(f"\nDataset: {key}")
-        print("Number of images:", len(data_dict['image']))
-        print("Number of labels:", len(data_dict['label']))
+        #print("Number of images:", len(data_dict['image']))
+        #print("Number of labels:", len(data_dict['label']))
         
         predictions_nps, label_nps = test_one_dataset(model, test_data_loaders[key])
         
@@ -261,8 +261,8 @@ def test_epoch(model, test_data_loaders):
         processed_image_names = data_dict['image'][:len(predictions_nps)]
         print("Number of processed image names:", len(processed_image_names))
         #print("processed_image_names:", processed_image_names)
-        print("predictions_nps:", predictions_nps)
-        print("label_nps:", label_nps)
+        #print("predictions_nps:", predictions_nps)
+        #print("label_nps:", label_nps)
         
         metric_one_dataset = get_test_metrics(y_pred=predictions_nps, y_true=label_nps,
                                               img_names=processed_image_names)

@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from transformers import CLIPVisionModel, CLIPTextModel, CLIPTokenizer, CLIPImageProcessor
-from typing import Optional, Tuple, Dict, Any, List
+from transformers import CLIPVisionModel, CLIPImageProcessor
+from typing import Optional, Tuple, Dict, Any
 from metrics.registry import DETECTOR
 from dataclasses import dataclass
 from .base_detector import AbstractDetector
@@ -12,6 +12,43 @@ import os
 from peft import get_peft_model
 from peft import LNTuningConfig
 
+@dataclass
+class Batch:
+    images: Optional[torch.Tensor]
+    labels: Optional[torch.Tensor]
+    identity: Optional[torch.Tensor]
+    source: Optional[torch.Tensor]
+    idx: Optional[torch.Tensor]
+    paths: Optional[list[str]]
+
+    def __getitem__(self, key):
+        return getattr(self, key)
+
+    @staticmethod
+    def from_dict(batch: dict):
+        return Batch(
+            images=batch.get("image"),
+            labels=batch.get("label"),
+            identity=batch.get("identity"),
+            source=batch.get("source"),
+            idx=batch.get("idx"),
+            paths=batch.get("path"),
+        )
+
+"""
+class LayerNormWithTuning(nn.Module):
+    def __init__(self, hidden_size):
+        super().__init__()
+        self.base_layer = nn.LayerNorm(hidden_size)
+        self.ln_tuning_layers = nn.ModuleDict({
+            'default': nn.LayerNorm(hidden_size)
+        })
+
+    def forward(self, x):
+        #return self.base_layer(x) + self.ln_tuning_layers['default'](x)
+        #x = self.base_layer(x)
+        return self.ln_tuning_layers['default'](x)
+"""
 
 @DETECTOR.register_module(module_name='clip_enhanced')
 class CLIPEnhanced(AbstractDetector):
@@ -19,146 +56,103 @@ class CLIPEnhanced(AbstractDetector):
         super().__init__()
         self.config = config
         
+        # Initialize feature extractor (CLIP)
+        #self.clip_path = "../deepfake-detection/weights/clip-vit-large-patch14"
         self.clip_path = config.get('clip_path', "weights/clip-vit-base-patch16")
         print(f"clip_path: {self.clip_path}")
+
         if not os.path.exists(self.clip_path):
             raise ValueError(f"本地模型文件不存在: {self.clip_path}，请确保模型文件已下载到正确位置")
         
-        self.vision_encoder = CLIPVisionModel.from_pretrained(self.clip_path)
-        self.text_encoder = CLIPTextModel.from_pretrained(self.clip_path)
-        self.tokenizer = CLIPTokenizer.from_pretrained(self.clip_path)
+        self.feature_extractor = CLIPVisionModel.from_pretrained(self.clip_path)
 
-        for param in self.vision_encoder.parameters():
-            param.requires_grad = False
-        for param in self.text_encoder.parameters():
+        # 首先冻结所有参数
+        for param in self.feature_extractor.parameters():
             param.requires_grad = False
 
         target_modules_list=['pre_layrnorm', 'layer_norm1', 'layer_norm2', 'post_layernorm', 'layernorm']
         peft_config = LNTuningConfig(target_modules=target_modules_list)
-        self.vision_encoder = get_peft_model(self.vision_encoder, peft_config)
 
-        self.n_ctx = config.get('n_ctx', 5)
-        self.ctx_dim = self.text_encoder.config.hidden_size
-        self.classnames = ["a photo of a real face", "a photo of a fake face"]
-        self.n_classes = len(self.classnames)
+        backbone = self.feature_extractor
+        training_parameters = {name for name, param in backbone.named_parameters() if param.requires_grad}
+
+        self.feature_extractor = get_peft_model(self.feature_extractor, peft_config)
+
+        for name, param in backbone.named_parameters():
+            if name in training_parameters:
+                param.requires_grad = True
         
-        self.ctx = nn.Parameter(torch.randn(self.n_ctx, self.ctx_dim))
-        self.ctx.requires_grad = True
-
-        self.prompts = [" ".join(["X"] * self.n_ctx) + " " + name for name in self.classnames]
-        tokenized = self.tokenizer(self.prompts, return_tensors="pt", padding=True, truncation=True)
-        self.prompt_ids = tokenized["input_ids"]
-        self.prompt_attention_mask = tokenized["attention_mask"]
-
-        self.projection = nn.Linear(self.vision_encoder.config.hidden_size, self.text_encoder.config.hidden_size)
+        # Initialize head (classifier)
+        features_dim = self.feature_extractor.config.hidden_size
+        print(f"features_dim: {features_dim}")
+        self.model = nn.Module()
+        self.model.linear = nn.Linear(features_dim, 2, bias=True)
+        
+        # Initialize loss function
         self.loss_func = self.build_loss(config)
-
-        self.print_trainable_parameters()
-        self._debug_step = 0
-
-    def encode_text_with_prompt(self):
-        tokenized = self.tokenizer(self.prompts, return_tensors="pt", padding=True, truncation=True)
-        tokenized = {k: v.to(self.ctx.device) for k, v in tokenized.items()}
-        inputs = self.text_encoder.get_input_embeddings()(tokenized["input_ids"]).clone()
-
-        x_token_id = self.tokenizer.encode("X", add_special_tokens=False)[0]
-        for i in range(self.n_classes):
-            x_positions = (tokenized["input_ids"][i] == x_token_id).nonzero(as_tuple=True)[0]
-            if len(x_positions) >= self.n_ctx:
-                start = x_positions[0]
-                inputs[i, start:start+self.n_ctx] = self.ctx
-
-        outputs = self.text_encoder(
-            input_ids=tokenized["input_ids"],
-            attention_mask=tokenized["attention_mask"]
-        )
-        return F.normalize(outputs.last_hidden_state[:, 0, :], dim=-1)
-
-    def features(self, data_dict: dict) -> torch.tensor:
-        x = data_dict['image']
-        device = next(self.parameters()).device
-        x = x.to(device)
         
-        image_output = self.vision_encoder(x)
-        image_features = image_output.last_hidden_state[:, 0, :]
-        image_features = self.projection(image_features)
-        return F.normalize(image_features, dim=-1)
-
-    def classifier(self, features: torch.tensor) -> torch.tensor:
-        text_features = self.encode_text_with_prompt()
-        logits = features @ text_features.T
-        return logits
-
-    def forward(self, data_dict: dict, inference=False) -> dict:
-        image_features = self.features(data_dict)
-        text_features = self.encode_text_with_prompt()
-        logits = image_features @ text_features.T
-        prob = torch.softmax(logits, dim=1)[:, 1]
-
-        pred_dict = {
-            'cls': logits,
-            'prob': prob
-        }
-
-        if not inference:
-            self._debug_step += 1
-            if self._debug_step % 100 == 0:
-                print("\n[DEBUG] ctx value (first 5 elements):", self.ctx.flatten()[:5].data.cpu().numpy())
-                print("[DEBUG] ctx mean/std:", self.ctx.mean().item(), self.ctx.std().item())
-                print("[DEBUG] ctx requires_grad:", self.ctx.requires_grad)
-                print("[DEBUG] ctx grad (first 5 elements):", None if self.ctx.grad is None else self.ctx.grad.flatten()[:5].data.cpu().numpy())
-                print("[DEBUG] ctx param id:", id(self.ctx))
-                found = False
-                for name, param in self.named_parameters():
-                    if id(param) == id(self.ctx):
-                        print(f"[DEBUG] ctx is in model.named_parameters() as: {name}")
-                        found = True
-                if not found:
-                    print("[DEBUG] ctx is NOT in model.named_parameters()!")
-                if hasattr(self, 'optimizer') and self.optimizer is not None:
-                    found_opt = False
-                    for group in self.optimizer.param_groups:
-                        for p in group['params']:
-                            if id(p) == id(self.ctx):
-                                print("[DEBUG] ctx is in optimizer param_groups!")
-                                found_opt = True
-                    if not found_opt:
-                        print("[DEBUG] ctx is NOT in optimizer param_groups!")
-        return pred_dict
-
-    def get_preprocessing(self):
-        processor = CLIPImageProcessor.from_pretrained(self.clip_path)
-        def preprocess(image):
-            return processor(images=image, return_tensors="pt")["pixel_values"][0]
-        return preprocess
-
+        #self.print_trainable_parameters()
+    
     def build_backbone(self, config):
-        return self.vision_encoder
-
+        """Build the backbone network"""
+        return self.feature_extractor
+    
     def build_loss(self, config):
+        """Build the loss function"""
         loss_name = config.get('loss_func', 'CrossEntropyLoss')
         loss_class = LOSSFUNC[loss_name]
         loss_func = loss_class()
         return loss_func
-
+    
+    def features(self, data_dict: dict) -> torch.tensor:
+        """Extract features from the input data"""
+        x = data_dict['image']
+        #features = self.feature_extractor(x).last_hidden_state[:, 0, :]  # [B, 768]
+        features = self.feature_extractor(x).pooler_output  # [B, 768]
+        return features
+    
+    def classifier(self, features: torch.tensor) -> torch.tensor:
+        """Classify the features"""
+        return self.model.linear(features)
+    
     def get_losses(self, data_dict: dict, pred_dict: dict) -> dict:
+        """Compute the losses"""
         label = data_dict['label']
         pred = pred_dict['cls']
         loss = self.loss_func(pred, label)
         return {'overall': loss}
-
+    
     def get_train_metrics(self, data_dict: dict, pred_dict: dict) -> dict:
+        """Compute training metrics"""
         label = data_dict['label']
+        #pred = pred_dict['prob']  # 使用已经计算好的概率值
         pred = pred_dict['cls']  
+        
         auc, eer, acc, ap = calculate_metrics_for_train(label.detach(), pred.detach())
         metric_batch_dict = {'acc': acc, 'auc': auc, 'eer': eer, 'ap': ap}
         return metric_batch_dict
+    
+    def forward(self, data_dict: dict, inference=False) -> dict:
+        """Forward pass through the model"""
+        features = self.features(data_dict)
+        features = F.normalize(features, dim=1)
+        pred = self.classifier(features)
+        prob = torch.softmax(pred, dim=1)[:, 1]
+        
+        pred_dict = {
+            'cls': pred,
+            'prob': prob
+        }
+        return pred_dict
+    
+    def get_preprocessing(self):
+        """Get preprocessing function for inference"""
+        processor = CLIPImageProcessor.from_pretrained(self.clip_path)
+        def preprocess(image):
+            return processor(images=image, return_tensors="pt")["pixel_values"][0]
+        return preprocess 
 
     def print_trainable_parameters(self):
-        print("\nAll parameters:")
-        for name, param in self.named_parameters():
-            print(f"{name} shape = {tuple(param.shape)}")
-
         print("\n🔥 Trainable parameters:")
         for name, param in self.named_parameters():
             if param.requires_grad:

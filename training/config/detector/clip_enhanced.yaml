@@ -24,11 +24,13 @@ log_dir: ./logs/training/
 save_ckpt: true
 save_feat: true
 
+
 # Dataset settings
 all_dataset: [FaceForensics++, FF-F2F, FF-DF, FF-FS, FF-NT, FaceShifter, DeepFakeDetection, Celeb-DF-v1, Celeb-DF-v2, DFDCP, DFDC, DeeperForensics-1.0, UADFV]
 train_dataset: [FaceForensics++]
 test_dataset: [DFDC]
 compression: c23
+clip_size: 32
 frame_num: {'train': 32, 'test': 32}
 with_mask: false
 with_landmark: false
