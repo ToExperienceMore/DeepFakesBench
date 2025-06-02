@@ -4,6 +4,7 @@ model_name: clip_enhanced
 backbone: ViT-L/14
 pretrained: true
 freeze_backbone: false
+mlp_layer: 2
 use_peft: true
 peft_type: ln_tuning
 use_metric_learning: true

@@ -46,6 +46,8 @@ def get_test_metrics(y_pred, y_true, img_names):
 
         # 将三个列表堆叠并转置，使得每个元素包含[图像路径, 预测值, 标签]
         # np.stack将三个列表垂直堆叠，np.transpose转置后，每行包含一个样本的完整信息
+        #original_sequences\\youtube\\c23\\frames\\001\\088.png
+        #manipulated_sequences\\Deepfakes\\c23\\masks\\992_980\\670.png
         for item in np.transpose(np.stack((image, pred, label)), (1, 0)):
             # item[0]是图像路径
             s = item[0]
@@ -54,16 +56,19 @@ def get_test_metrics(y_pred, y_true, img_names):
                 parts = s.split('\\')
             else:
                 parts = s.split('/')
-            # 获取视频ID（路径中的倒数第二个部分）
-            a = parts[-2]  # 视频ID
-            b = parts[-1]  # 帧ID
+            # 获取视频ID和fake_type
+            video_id = parts[-2]  # 视频ID
+            fake_type = parts[-5]  # fake_type (Deepfakes, Face2Face, FaceSwap, NeuralTextures, youtube)
+            
+            # 创建唯一的视频标识符，结合fake_type和video_id
+            unique_video_id = f"{fake_type}_{video_id}"
 
-            # 如果这个视频ID还没有在字典中，创建一个新的列表
-            if a not in result_dict:
-                result_dict[a] = []
+            # 如果这个唯一视频ID还没有在字典中，创建一个新的列表
+            if unique_video_id not in result_dict:
+                result_dict[unique_video_id] = []
 
             # 将当前帧的信息添加到对应视频的列表中
-            result_dict[a].append(item)
+            result_dict[unique_video_id].append(item)
 
         # 获取所有视频的帧列表
         image_arr = list(result_dict.values())

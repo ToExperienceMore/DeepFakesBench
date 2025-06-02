@@ -48,12 +48,16 @@ class CLIPEnhanced(AbstractDetector):
         print(f"features_dim: {features_dim}")
         self.model = nn.Module()
         #hidden_dim = features_dim // 2  # Using half of the input dimension as hidden size
-        hidden_dim = 512
-        self.model.mlp = nn.Sequential(
-            nn.Linear(features_dim, hidden_dim),
-            nn.ReLU(),
-            nn.Linear(hidden_dim, 2)
-        )
+        print(f"mlp_layer: {self.config.get('mlp_layer', 1)}")
+        if self.config.get('mlp_layer', 1) == 2:
+            hidden_dim = 512
+            self.model.mlp = nn.Sequential(
+                nn.Linear(features_dim, hidden_dim),
+                nn.ReLU(),
+                nn.Linear(hidden_dim, 2)
+            )
+        else:
+            self.model.linear = nn.Linear(features_dim, 2, bias=True)
         
         # Initialize loss function
         self.loss_func = self.build_loss(config)
@@ -80,7 +84,11 @@ class CLIPEnhanced(AbstractDetector):
     
     def classifier(self, features: torch.tensor) -> torch.tensor:
         """Classify the features"""
-        return self.model.mlp(features)
+
+        if self.config.get('mlp_layer', 1) == 2:
+            return self.model.mlp(features)
+        else:
+            return self.model.linear(features)
     
     def get_losses(self, data_dict: dict, pred_dict: dict) -> dict:
         """Compute the losses"""

@@ -27,6 +27,12 @@ def generate_dataset_lists(json_path, dataset_name, output_dir='.'):
     train_video_count = 0
     test_video_count = 0
     val_video_count = 0
+    train_real_videos = 0
+    train_fake_videos = 0
+    test_real_videos = 0
+    test_fake_videos = 0
+    val_real_videos = 0
+    val_fake_videos = 0
     
     # 根据数据集名称确定类别
     if dataset_name == 'DFDC':
@@ -63,6 +69,10 @@ def generate_dataset_lists(json_path, dataset_name, output_dir='.'):
                     for video_id, video_info in data[dataset_key][category]['test'].items():
                         label = 0 if 'Real' in category or 'real' in category else 1
                         test_video_count += 1
+                        if label == 0:
+                            test_real_videos += 1
+                        else:
+                            test_fake_videos += 1
                         for frame_path in video_info['frames']:
                             frame_path = frame_path.replace('\\', '/')
                             test_samples.append((frame_path, label))
@@ -72,15 +82,21 @@ def generate_dataset_lists(json_path, dataset_name, output_dir='.'):
                     for video_id, video_info in data[dataset_key][category]['train'].items():
                         label = 0 if 'Real' in category or 'real' in category else 1
                         train_video_count += 1
+                        if label == 0:
+                            train_real_videos += 1
+                        else:
+                            train_fake_videos += 1
                         for frame_path in video_info['frames']:
                             frame_path = frame_path.replace('\\', '/')
                             train_samples.append((frame_path, label))
                             video_count[video_id] += 1
                             total_files += 1
-                if 'val' in data[dataset_key][category]:
+                if 'val' in data[dataset_key][category] and dataset_name != 'DFDC':
                     for video_id, video_info in data[dataset_key][category]['val'].items():
+                        #print("video_id: ", video_id)
                         label = 0 if 'Real' in category or 'real' in category else 1
                         val_video_count += 1
+                        #print("video_info: ", video_info)
                         for frame_path in video_info['frames']:
                             frame_path = frame_path.replace('\\', '/')
                             val_samples.append((frame_path, label))
@@ -101,6 +117,10 @@ def generate_dataset_lists(json_path, dataset_name, output_dir='.'):
                             for video_id, video_info in train_data[quality].items():
                                 label = 0 if 'real' in category else 1
                                 train_video_count += 1 
+                                if label == 0:
+                                    train_real_videos += 1
+                                else:
+                                    train_fake_videos += 1
                                 for frame_path in video_info['frames']:
                                     frame_path = frame_path.replace('\\', '/')
                                     train_samples.append((frame_path, label))
@@ -114,6 +134,10 @@ def generate_dataset_lists(json_path, dataset_name, output_dir='.'):
                             for video_id, video_info in test_data[quality].items():
                                 test_video_count += 1 
                                 label = 0 if 'real' in category else 1
+                                if label == 0:
+                                    test_real_videos += 1
+                                else:
+                                    test_fake_videos += 1
                                 for frame_path in video_info['frames']:
                                     frame_path = frame_path.replace('\\', '/')
                                     test_samples.append((frame_path, label))
@@ -128,6 +152,7 @@ def generate_dataset_lists(json_path, dataset_name, output_dir='.'):
     test_file = os.path.join(output_dir, f'{dataset_name}_test_list.txt')
     val_file = os.path.join(output_dir, f'{dataset_name}_val_list.txt')
     
+    """
     # 写入训练列表文件
     with open(train_file, 'w') as f:
         for file_path, label in train_samples:
@@ -148,12 +173,13 @@ def generate_dataset_lists(json_path, dataset_name, output_dir='.'):
     with open(val_file, 'w') as f:
         for file_path, label in val_samples:
             f.write(f'{file_path} {label}\n')
+    """
     
     # 打印统计信息
     print(f'\nGenerated {train_file} with {len(train_samples)} training samples')
     print(f'Generated {test_file} with {len(test_samples)} test samples')
     print(f'Total number of videos: {len(video_count)}')
-    print(f'Total number of files: {total_files}')
+    print(f'Total number of images: {total_files}')
     
     # 统计真实和伪造的数量
     train_real = sum(1 for _, label in train_samples if label == 0)
@@ -165,16 +191,22 @@ def generate_dataset_lists(json_path, dataset_name, output_dir='.'):
     
     print(f'\nTraining set:')
     print(f'train videos: {train_video_count}')
+    print(f'Real videos: {train_real_videos}')
+    print(f'Fake videos: {train_fake_videos}')
     print(f'Real samples: {train_real}')
     print(f'Fake samples: {train_fake}')
     
     print(f'\nTest set:')
     print(f'test videos: {test_video_count}')
+    print(f'Real videos: {test_real_videos}')
+    print(f'Fake videos: {test_fake_videos}')
     print(f'Real samples: {test_real}')
     print(f'Fake samples: {test_fake}')
     
     print(f'\nValidation set:')
     print(f'val videos: {val_video_count}')
+    print(f'Real videos: {val_real_videos}')
+    print(f'Fake videos: {val_fake_videos}')
     print(f'Real samples: {val_real}')
     print(f'Fake samples: {val_fake}')
     
@@ -190,14 +222,33 @@ if __name__ == '__main__':
     # 示例用法
     json_dir = '/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/preprocessing/dataset_json'
     output_dir = 'test_lists'
-    #dataset_name = 'Celeb-DF-v2'
-    #dataset_name = 'DFDCP'
-    #dataset_name = 'FaceShifter'
-    dataset_name = 'DeepFakeDetection'
-
-    # 处理UADFV数据集
-    dataset_json = os.path.join(json_dir, dataset_name + '.json')
-    if not os.path.exists(dataset_json):
-        print(f"Error: {dataset_json} does not exist")
-        exit(1)
-    train_file, test_file = generate_dataset_lists(dataset_json, dataset_name, output_dir)
+    
+    # 所有数据集列表
+    datasets = [
+        'DFDC',
+        'DFDCP',
+        'UADFV',
+        'Celeb-DF-v2',
+        'FaceShifter',
+        'DeepFakeDetection',
+        'FaceForensics++'
+    ]
+    
+    # 遍历处理每个数据集
+    for dataset_name in datasets:
+        print("\n" + "="*50)
+        print(f"Processing dataset: {dataset_name}")
+        print("="*50)
+        
+        # 处理数据集
+        dataset_json = os.path.join(json_dir, dataset_name + '.json')
+        if not os.path.exists(dataset_json):
+            print(f"Error: {dataset_json} does not exist")
+            continue
+            
+        try:
+            train_file, test_file = generate_dataset_lists(dataset_json, dataset_name, output_dir)
+            print(f"Successfully processed {dataset_name}")
+        except Exception as e:
+            print(f"Error processing {dataset_name}: {str(e)}")
+            continue

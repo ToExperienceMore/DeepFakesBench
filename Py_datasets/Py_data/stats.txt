@@ -1,0 +1,217 @@
+
+==================================================
+Processing dataset: DFDC
+==================================================
+
+Generated test_lists/DFDC_train_list.txt with 0 training samples
+Generated test_lists/DFDC_test_list.txt with 132116 test samples
+Total number of videos: 4704
+Total number of images: 132116
+
+Training set:
+train videos: 0
+Real videos: 0
+Fake videos: 0
+Real samples: 0
+Fake samples: 0
+
+Test set:
+test videos: 4704
+Real videos: 2315
+Fake videos: 2389
+Real samples: 63265
+Fake samples: 68851
+
+Validation set:
+val videos: 0
+Real videos: 0
+Fake videos: 0
+Real samples: 0
+Fake samples: 0
+Successfully processed DFDC
+
+==================================================
+Processing dataset: DFDCP
+==================================================
+
+Generated test_lists/DFDCP_train_list.txt with 126056 training samples
+Generated test_lists/DFDCP_test_list.txt with 17222 test samples
+Total number of videos: 5047
+Total number of images: 160500
+
+Training set:
+train videos: 4407
+Real videos: 822
+Fake videos: 3585
+Real samples: 22425
+Fake samples: 103631
+
+Test set:
+test videos: 654
+Real videos: 230
+Fake videos: 424
+Real samples: 5901
+Fake samples: 11321
+
+Validation set:
+val videos: 654
+Real videos: 0
+Fake videos: 0
+Real samples: 5901
+Fake samples: 11321
+Successfully processed DFDCP
+
+==================================================
+Processing dataset: UADFV
+==================================================
+
+Generated test_lists/UADFV_train_list.txt with 3099 training samples
+Generated test_lists/UADFV_test_list.txt with 3099 test samples
+Total number of videos: 98
+Total number of images: 9297
+
+Training set:
+train videos: 98
+Real videos: 49
+Fake videos: 49
+Real samples: 1548
+Fake samples: 1551
+
+Test set:
+test videos: 98
+Real videos: 49
+Fake videos: 49
+Real samples: 1548
+Fake samples: 1551
+
+Validation set:
+val videos: 98
+Real videos: 0
+Fake videos: 0
+Real samples: 1548
+Fake samples: 1551
+Successfully processed UADFV
+
+==================================================
+Processing dataset: Celeb-DF-v2
+==================================================
+
+Generated test_lists/Celeb-DF-v2_train_list.txt with 189301 training samples
+Generated test_lists/Celeb-DF-v2_test_list.txt with 16420 test samples
+Total number of videos: 6047
+Total number of images: 222141
+
+Training set:
+train videos: 5939
+Real videos: 300
+Fake videos: 5639
+Real samples: 9524
+Fake samples: 179777
+
+Test set:
+test videos: 518
+Real videos: 178
+Fake videos: 340
+Real samples: 5620
+Fake samples: 10800
+
+Validation set:
+val videos: 518
+Real videos: 0
+Fake videos: 0
+Real samples: 5620
+Fake samples: 10800
+Successfully processed Celeb-DF-v2
+
+==================================================
+Processing dataset: FaceShifter
+==================================================
+
+Generated test_lists/FaceShifter_train_list.txt with 45961 training samples
+Generated test_lists/FaceShifter_test_list.txt with 8958 test samples
+Total number of videos: 1718
+Total number of images: 54919
+
+Training set:
+train videos: 1438
+Real videos: 719
+Fake videos: 719
+Real samples: 22993
+Fake samples: 22968
+
+Test set:
+test videos: 280
+Real videos: 140
+Fake videos: 140
+Real samples: 4479
+Fake samples: 4479
+
+Validation set:
+val videos: 0
+Real videos: 0
+Fake videos: 0
+Real samples: 0
+Fake samples: 0
+Successfully processed FaceShifter
+
+==================================================
+Processing dataset: DeepFakeDetection
+==================================================
+
+Generated test_lists/DeepFakeDetection_train_list.txt with 102541 training samples
+Generated test_lists/DeepFakeDetection_test_list.txt with 102541 test samples
+Total number of videos: 3429
+Total number of images: 205082
+
+Training set:
+train videos: 3429
+Real videos: 363
+Fake videos: 3066
+Real samples: 10741
+Fake samples: 91800
+
+Test set:
+test videos: 3429
+Real videos: 363
+Fake videos: 3066
+Real samples: 10741
+Fake samples: 91800
+
+Validation set:
+val videos: 0
+Real videos: 0
+Fake videos: 0
+Real samples: 0
+Fake samples: 0
+Successfully processed DeepFakeDetection
+
+==================================================
+Processing dataset: FaceForensics++
+==================================================
+
+Generated test_lists/FaceForensics++_train_list.txt with 114884 training samples
+Generated test_lists/FaceForensics++_test_list.txt with 22388 test samples
+Total number of videos: 1719
+Total number of images: 137272
+
+Training set:
+train videos: 3596
+Real videos: 719
+Fake videos: 2877
+Real samples: 22993
+Fake samples: 91891
+
+Test set:
+test videos: 700
+Real videos: 140
+Fake videos: 560
+Real samples: 4479
+Fake samples: 17909
+
+Validation set:
+val videos: 0
+Real videos: 0
+Fake videos: 0
+Real samples: 0
+Fake samples: 0
+Successfully processed FaceForensics++
