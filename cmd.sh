@@ -61,7 +61,7 @@ set -x
 #python3 training/test.py --detector_path $config --test_dataset  "DFDC" "FaceForensics++" "DFDCP" "Celeb-DF-v2" "UADFV"  "FaceShifter" "DeepFakeDetection" --weights_path $weight
 #python3 training/test.py --detector_path $config --test_dataset  "DFDC" "DFDCP" "Celeb-DF-v2" "UADFV" --weights_path $weight
 #python3 training/test.py --detector_path $config --test_dataset  "FaceShifter" "DeepFakeDetection" --weights_path $weight
-python3 training/test.py --detector_path $config --test_dataset  "FaceForensics++" --weights_path $weight
+python3 training/test.py --detector_path $config --test_dataset  "FaceShifter" --weights_path $weight
 
 # 示例命令
 

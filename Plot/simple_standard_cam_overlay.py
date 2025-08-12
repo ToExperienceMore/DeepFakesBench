@@ -98,9 +98,9 @@ def simple_cam_overlay():
         col += 1
     
     plt.tight_layout()
-    os.makedirs('./simple_results', exist_ok=True)
-    plt.savefig('./simple_results/simple_standard_cam_overlay.png', dpi=150, bbox_inches='tight')
-    print("💾 Simple overlay saved to: ./simple_results/simple_standard_cam_overlay.png")
+    os.makedirs('./gradcam_examples', exist_ok=True)
+    plt.savefig('./gradcam_examples/simple_standard_cam_overlay.png', dpi=150, bbox_inches='tight')
+    print("💾 Simple overlay saved to: ./gradcam_examples/simple_standard_cam_overlay.png")
     plt.show()
 
 def create_direct_overlay(img_array, cam_resized, alpha=0.4):
@@ -213,8 +213,8 @@ def compare_with_input_gradient():
     axes[1, 2].axis('off')
     
     plt.tight_layout()
-    plt.savefig('./simple_results/standard_vs_input_simple.png', dpi=150, bbox_inches='tight')
-    print("💾 Simple comparison saved to: ./simple_results/standard_vs_input_simple.png")
+    plt.savefig('./gradcam_examples/standard_vs_input_simple.png', dpi=150, bbox_inches='tight')
+    print("💾 Simple comparison saved to: ./gradcam_examples/standard_vs_input_simple.png")
     plt.show()
     
     # Print statistics

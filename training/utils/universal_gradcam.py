@@ -92,7 +92,7 @@ class BaseGradCAM(ABC):
 class XceptionGradCAM(BaseGradCAM):
     """Xception专用Grad-CAM"""
     
-    def __init__(self, model, target_layer_name='conv4', **kwargs):
+    def __init__(self, model, target_layer_name='block3', **kwargs):
         super().__init__(model, **kwargs)
         self.target_layer_name = target_layer_name
         self.target_layer = None
@@ -439,17 +439,32 @@ def load_model_and_create_gradcam(config_path: str, weights_path: str, model_typ
     elif 'weight' in config:
         config['weight'] = weights_path
     
-    # 创建模型
+    # Create model
     detector_class = DETECTOR[config['model_name']]
     model = detector_class(config)
     
-    # 创建Grad-CAM
+    # Print model structure
+    print("\n" + "="*80)
+    print(f"🏗️ {config['model_name']} Model Architecture:")
+    print("="*80)
+    print(model)
+    
+    # Print parameter statistics
+    total_params = sum(p.numel() for p in model.parameters())
+    trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    print(f"\n📊 Parameter Statistics:")
+    print(f"  - Total parameters: {total_params:,}")
+    print(f"  - Trainable parameters: {trainable_params:,}")
+    print(f"  - Model size: {total_params * 4 / 1024 / 1024:.2f} MB")
+    print("="*80 + "\n")
+    
+    # Create Grad-CAM
     gradcam = create_gradcam(model, model_type)
     
     return model, gradcam
 
-# 使用示例
+# Usage example
 if __name__ == "__main__":
-    print("🔧 统一Grad-CAM工具")
-    print("支持的模型类型: Xception, CLIP Enhanced")
-    print("请在实际使用时导入此模块并加载训练好的模型")
+    print("🔧 Universal Grad-CAM Tool")
+    print("Supported model types: Xception, CLIP Enhanced")
+    print("Please import this module and load trained models in actual usage")

@@ -10,10 +10,13 @@ import os
 import argparse
 
 # Add necessary paths
-sys.path.append('training')
-sys.path.append('training/utils')
+sys.path.append('/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training')
+sys.path.append('/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench')
+sys.path.append('/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/training/utils')
 
 from training.utils.universal_gradcam import UniversalGradCAM, load_model_and_create_gradcam
+import torch
+import numpy as np
 
 def example_xception_gradcam():
     """Xception Grad-CAM example"""
@@ -33,37 +36,164 @@ def example_xception_gradcam():
         print("📂 Loading Xception model...")
         model, gradcam = load_model_and_create_gradcam(config_path, weights_path, 'auto')
         
+        # Test different layer resolutions
+        print("\n🔍 Testing feature map resolutions for different layers:")
+        test_input = torch.randn(1, 3, 256, 256).to(next(model.parameters()).device)
+        
+        # Test some intermediate layers
+        test_layers = ['conv1', 'conv2', 'block3', 'block12', 'conv3', 'conv4']
+        for layer_name in test_layers:
+            if hasattr(model.backbone, layer_name):
+                try:
+                    # Create a temporary forward hook
+                    layer = getattr(model.backbone, layer_name)
+                    activation = None
+                    
+                    def temp_hook(module, input, output):
+                        nonlocal activation
+                        activation = output
+                    
+                    handle = layer.register_forward_hook(temp_hook)
+                    
+                    with torch.no_grad():
+                        _ = model.backbone.features(test_input)
+                    
+                    if activation is not None:
+                        print(f"  {layer_name}: {activation.shape[2:]} (channels: {activation.shape[1]})")
+                    
+                    handle.remove()
+                except Exception as e:
+                    print(f"  {layer_name}: Error - {e}")
+        print("="*60)
+        
         # Find test images
         #test_image_paths = [
         #     "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/datasets/rgb/Celeb-DF-v2/Celeb-real/frames/id0_0000/000.png",
         #     "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/datasets/rgb/Celeb-DF-v2/Celeb-real/frames/id0_0000/015.png"
         # ]
 
-        test_image_paths = [
-            "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/datasets/rgb/FaceForensics++/manipulated_sequences/Face2Face/c23/frames/000_003/000.png",
-            "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/datasets/rgb/FaceForensics++/original_sequences/youtube/c23/frames/000/000.png"
+        # Image paths and corresponding labels (first is fake, second is real)
+        test_image_info = [
+            {
+                "path": "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/datasets/rgb/FaceForensics++/manipulated_sequences/Face2Face/c23/frames/000_003/000.png",
+                "label": "Fake",
+                "target_class": 1,
+                "description": "Fake image"
+            },
+            {
+                "path": "/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/datasets/rgb/FaceForensics++/original_sequences/youtube/c23/frames/000/000.png", 
+                "label": "Real",
+                "target_class": 0,
+                "description": "Real image"
+            }
         ]
+
+        #/root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/datasets/rgb/FaceForensics++/manipulated_sequences/FaceShifter/c23/frames/000_003/000.png
         
-        test_image_path = None
-        for path in test_image_paths:
-            if os.path.exists(path):
-                test_image_path = path
-                break
+        # Check if images exist
+        available_images = []
+        for img_info in test_image_info:
+            if os.path.exists(img_info["path"]):
+                available_images.append(img_info)
+            else:
+                print(f"⚠️  Image not found: {img_info['path']}")
         
-        if test_image_path is None:
-            print("⚠️  Cannot find test images")
+        if not available_images:
+            print("❌ No available test images found")
             return
         
-        print(f"🖼️  Analyzing image: {os.path.basename(test_image_path)}")
+        print(f"📊 Found {len(available_images)} available images for analysis")
         
-        # Generate and visualize Grad-CAM
-        print("🔥 Generating Grad-CAM heatmaps...")
-        
-        # Analyze Real class (0) and Fake class (1) separately
-        for target_class, class_name in [(0, 'Real'), (1, 'Fake')]:
-            print(f"\n📊 Analyzing target class: {class_name} (class {target_class})")
+        # Perform Grad-CAM analysis for each image
+        for i, img_info in enumerate(available_images, 1):
+            print(f"\n{'='*60}")
+            print(f"🖼️  Analyzing image {i}/{len(available_images)}: {os.path.basename(img_info['path'])}")
+            print(f"📋 Image type: {img_info['description']}")
+            print(f"🎯 Target class: {img_info['label']} (class {img_info['target_class']})")
+            print('='*60)
+            
+            test_image_path = img_info["path"]
+            target_class = img_info["target_class"] 
+            class_name = img_info["label"]
+            
+            # First, get model prediction
+            print("🔍 Getting model prediction...")
+            try:
+                # Load and preprocess image exactly like the dataset
+                import cv2
+                import numpy as np
+                from PIL import Image
+                import torchvision.transforms as transforms
+                
+                # Load image using the same method as dataset.load_rgb()
+                img = cv2.imread(test_image_path)
+                if img is None:
+                    raise ValueError(f'Loaded image is None: {test_image_path}')
+                img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+                size = 256  # Same as config['resolution']
+                img = cv2.resize(img, (size, size), interpolation=cv2.INTER_CUBIC)
+                pil_image = Image.fromarray(np.array(img, dtype=np.uint8))
+                
+                # Apply the same preprocessing as dataset
+                transform = transforms.Compose([
+                    transforms.ToTensor(),  # No additional resize needed
+                    transforms.Normalize(mean=[0.5, 0.5, 0.5], 
+                                       std=[0.5, 0.5, 0.5])
+                ])
+                
+                # Prepare input
+                input_tensor = transform(pil_image).unsqueeze(0).to(next(model.parameters()).device)
+                
+                # Debug: Print tensor stats to verify different inputs
+                print(f"🔍 Input tensor stats: mean={input_tensor.mean().item():.6f}, std={input_tensor.std().item():.6f}")
+                print(f"🔍 Input tensor range: [{input_tensor.min().item():.6f}, {input_tensor.max().item():.6f}]")
+                print(f"🔍 Image path: {test_image_path}")
+                
+                # Clear any potential cache
+                if torch.cuda.is_available():
+                    torch.cuda.empty_cache()
+                
+                # Get model prediction
+                model.eval()
+                with torch.no_grad():
+                    if hasattr(model, 'backbone'):
+                        # If using detector wrapper
+                        data_dict = {'image': input_tensor}
+                        pred_dict = model(data_dict)
+                        logits = pred_dict['cls']
+                    else:
+                        # Direct model call
+                        logits = model(input_tensor)
+                        if isinstance(logits, tuple):
+                            logits = logits[0]
+                
+                # Calculate probabilities
+                probabilities = torch.softmax(logits, dim=1)
+                pred_class = torch.argmax(logits, dim=1).item()
+                confidence = probabilities[0][pred_class].item()
+                
+                # Class names
+                class_names = ['Real', 'Fake']
+                predicted_label = class_names[pred_class]
+                true_label = class_names[target_class]
+                
+                print(f"📊 Model Prediction Results:")
+                print(f"  - True Label: {true_label} (class {target_class})")
+                print(f"  - Predicted: {predicted_label} (class {pred_class})")
+                print(f"  - Confidence: {confidence:.4f} ({confidence*100:.2f}%)")
+                print(f"  - Raw Logits: Real={logits[0][0].item():.4f}, Fake={logits[0][1].item():.4f}")
+                print(f"  - Probabilities: Real={probabilities[0][0].item():.4f}, Fake={probabilities[0][1].item():.4f}")
+                
+                # Check if prediction is correct
+                is_correct = (pred_class == target_class)
+                status = "✅ CORRECT" if is_correct else "❌ INCORRECT"
+                print(f"  - Prediction Status: {status}")
+                
+            except Exception as e:
+                print(f"⚠️ Error getting model prediction: {e}")
             
             # Generate both heatmaps
+            print("\n🔥 Generating Grad-CAM heatmaps...")
             input_heatmap, original_image = gradcam.generate_gradcam(
                 test_image_path, 
                 target_class=target_class, 
@@ -83,7 +213,7 @@ def example_xception_gradcam():
             if standard_heatmap is not None:
                 print(f"✅ Standard CAM: shape {standard_heatmap.shape}, range [{standard_heatmap.min():.3f}, {standard_heatmap.max():.3f}]")
             
-            # Create simple comparison visualization
+            # Create visualization
             import matplotlib.pyplot as plt
             import cv2
             import numpy as np
@@ -93,7 +223,7 @@ def example_xception_gradcam():
             
             # Original
             axes[0].imshow(img_array)
-            axes[0].set_title('Original')
+            axes[0].set_title(f'Original\n({class_name})')
             axes[0].axis('off')
             
             # Input gradient overlay
@@ -102,21 +232,30 @@ def example_xception_gradcam():
             input_colored = plt.cm.Reds(input_resized)[:, :, :3] * 255
             input_overlay = cv2.addWeighted(img_array, 0.7, input_colored.astype(np.uint8), 0.3, 0)
             axes[1].imshow(input_overlay)
-            axes[1].set_title('Input Gradient')
+            axes[1].set_title('Input Gradient\nOverlay')
             axes[1].axis('off')
             
             # Standard CAM pure
             if standard_heatmap is not None:
-                standard_resized = cv2.resize(standard_heatmap, (w, h), interpolation=cv2.INTER_NEAREST)
-                axes[2].imshow(standard_resized, cmap='Reds')
-                axes[2].set_title('Standard CAM')
+                # Use better interpolation for smoother heatmap
+                standard_resized = cv2.resize(standard_heatmap, (w, h), interpolation=cv2.INTER_CUBIC)
+                
+                # Apply stronger normalization for better visibility
+                standard_norm = (standard_resized - standard_resized.min()) / (standard_resized.max() - standard_resized.min() + 1e-8)
+                
+                # Use a more vibrant colormap
+                axes[2].imshow(standard_norm, cmap='jet', vmin=0, vmax=1)
+                axes[2].set_title('Standard CAM\nHeatmap (16x16)')
                 axes[2].axis('off')
                 
-                # Standard CAM overlay - simple and direct
-                standard_colored = plt.cm.Reds(standard_resized)[:, :, :3] * 255
-                standard_overlay = cv2.addWeighted(img_array, 0.7, standard_colored.astype(np.uint8), 0.3, 0)
+                # Standard CAM overlay with enhanced visibility
+                # Use jet colormap for better visibility
+                standard_colored = plt.cm.jet(standard_norm)[:, :, :3] * 255
+                
+                # Increase overlay strength for better visibility
+                standard_overlay = cv2.addWeighted(img_array, 0.6, standard_colored.astype(np.uint8), 0.4, 0)
                 axes[3].imshow(standard_overlay)
-                axes[3].set_title('Standard CAM Overlay')
+                axes[3].set_title('Enhanced CAM\nOverlay')
                 axes[3].axis('off')
             else:
                 axes[2].text(0.5, 0.5, 'Standard CAM\nNot Available', ha='center', va='center')
@@ -125,11 +264,25 @@ def example_xception_gradcam():
                 axes[3].axis('off')
             
             plt.tight_layout()
-            save_path = f"./gradcam_examples/xception_{class_name.lower()}_comparison.png"
+            
+            # Use image index and class name for file naming
+            save_path = f"./gradcam_examples/xception_{class_name.lower()}_image{i}_analysis.png"
             os.makedirs(os.path.dirname(save_path), exist_ok=True)
             plt.savefig(save_path, dpi=150, bbox_inches='tight')
             print(f"💾 Saved to: {save_path}")
             plt.show()
+            
+            print(f"✅ Grad-CAM analysis for {class_name} image completed!")
+        
+        print(f"\n🎉 All image Grad-CAM analysis completed!")
+        print(f"📊 Total analyzed {len(available_images)} images")
+        
+        # Display generated files
+        if os.path.exists('./gradcam_examples'):
+            print("\n📁 Generated files:")
+            for file in sorted(os.listdir('./gradcam_examples')):
+                if 'xception' in file and 'analysis' in file:
+                    print(f"  - ./gradcam_examples/{file}")
         
         print("🎉 Xception Grad-CAM analysis complete!")
         

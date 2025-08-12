@@ -25,6 +25,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 import sklearn.metrics as metrics
+import pandas as pd
 
 from dataset.abstract_dataset import DeepfakeAbstractBaseDataset
 from dataset.ff_blend import FFBlendDataset
@@ -123,6 +124,87 @@ def find_optimal_threshold(y_true, y_pred):
     
     return optimal_threshold, best_accuracy
 
+def save_predictions_to_csv(image_paths, predictions, true_labels, pred_labels, threshold, dataset_name):
+    """
+    Save prediction results to CSV file.
+    
+    Args:
+        image_paths: List of image file paths
+        predictions: Array of prediction probabilities 
+        true_labels: Array of true labels (0=Real, 1=Fake)
+        pred_labels: Array of predicted labels using threshold
+        threshold: Optimal threshold used for classification
+        dataset_name: Name of the dataset
+    """
+    # Create results directory
+    results_dir = 'prediction_results'
+    os.makedirs(results_dir, exist_ok=True)
+    
+    # Create DataFrame with all prediction information
+    df_data = []
+    for i in range(len(image_paths)):
+        img_path = image_paths[i]
+        pred_prob = predictions[i]
+        true_label = int(true_labels[i])
+        pred_label = int(pred_labels[i])
+        
+        # Check if prediction is correct
+        is_correct = (true_label == pred_label)
+        is_error = not is_correct
+        
+        # Convert labels to readable format
+        true_label_name = 'Real' if true_label == 0 else 'Fake'
+        pred_label_name = 'Real' if pred_label == 0 else 'Fake'
+        
+        # Calculate confidence (distance from 0.5)
+        confidence = abs(pred_prob - 0.5) * 2
+        
+        df_data.append({
+            'image_path': img_path,
+            'prediction_probability': f"{pred_prob:.6f}",
+            'true_label': true_label,
+            'true_label_name': true_label_name,
+            'predicted_label': pred_label,
+            'predicted_label_name': pred_label_name,
+            'is_correct': is_correct,
+            'is_error': is_error,
+            'confidence': f"{confidence:.6f}",
+            'threshold_used': f"{threshold:.6f}"
+        })
+    
+    # Create DataFrame
+    df = pd.DataFrame(df_data)
+    
+    # Save full results
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    csv_filename = f"{dataset_name}_predictions_{timestamp}.csv"
+    csv_path = os.path.join(results_dir, csv_filename)
+    df.to_csv(csv_path, index=False)
+    print(f"\n📊 Full prediction results saved to: {csv_path}")
+    
+    # Save only error cases
+    error_df = df[df['is_error'] == True].copy()
+    if len(error_df) > 0:
+        error_csv_filename = f"{dataset_name}_errors_only_{timestamp}.csv"
+        error_csv_path = os.path.join(results_dir, error_csv_filename)
+        error_df.to_csv(error_csv_path, index=False)
+        print(f"❌ Error cases only saved to: {error_csv_path}")
+        print(f"📈 Total errors: {len(error_df)} out of {len(df)} images ({len(error_df)/len(df)*100:.2f}%)")
+    else:
+        print("🎉 No prediction errors found!")
+    
+    # Print summary statistics
+    correct_count = df['is_correct'].sum()
+    total_count = len(df)
+    accuracy = correct_count / total_count
+    
+    print(f"\n📋 Prediction Summary:")
+    print(f"  - Total images: {total_count}")
+    print(f"  - Correct predictions: {correct_count}")
+    print(f"  - Incorrect predictions: {total_count - correct_count}")
+    print(f"  - Accuracy: {accuracy:.4f} ({accuracy*100:.2f}%)")
+    print(f"  - Threshold used: {threshold:.6f}")
+
 def test_one_dataset(model, data_loader):
     """
     Test the model on a dataset.
@@ -134,6 +216,7 @@ def test_one_dataset(model, data_loader):
     prediction_lists = []  # List to store prediction probabilities
     feature_lists = []    # List to store features (if needed)
     label_lists = []      # List to store ground truth labels
+    image_path_lists = [] # List to store image paths
     
     # Calculate number of batches needed for 200 images
     batch_size = data_loader.batch_size
@@ -160,10 +243,21 @@ def test_one_dataset(model, data_loader):
         # model forward without considering gradient computation
         # predictions: dict containing 'prob' tensor [B] with probabilities
         predictions = inference(model, data_dict)
-        # Collect predictions and labels
+        
+        # Collect predictions, labels, and image paths
         label_lists += list(data_dict['label'].cpu().detach().numpy())
         prediction_lists += list(predictions['prob'].cpu().detach().numpy())
         feature_lists += list(predictions['feat'].cpu().detach().numpy())
+        
+        # Get image paths for this batch
+        if 'image_name' in data_dict:
+            image_path_lists += data_dict['image_name']
+        else:
+            # Fallback: try to get from dataset
+            batch_start = i * batch_size
+            batch_end = min(batch_start + data.size(0), len(data_loader.dataset.data_dict['image']))
+            batch_paths = data_loader.dataset.data_dict['image'][batch_start:batch_end]
+            image_path_lists += batch_paths
     
 
     # Convert to numpy arrays
@@ -214,6 +308,11 @@ def test_one_dataset(model, data_loader):
     tqdm.write(f"Precision: {precision:.4f}")
     tqdm.write(f"Recall: {recall:.4f}")
     tqdm.write(f"F1 Score: {f1:.4f}")
+    
+    # Save predictions to CSV file
+    dataset_name = data_loader.dataset.__class__.__name__
+    save_predictions_to_csv(image_path_lists, predictions_nps, label_nps, 
+                           pred_labels, optimal_threshold, dataset_name)
     
     #return np.array(prediction_lists), np.array(label_lists),np.array(feature_lists)
     return predictions_nps, label_nps, np.array(feature_lists)
