@@ -23,11 +23,11 @@ class CLIPEnhanced(AbstractDetector):
         print(f"clip_path: {self.clip_path}")
 
         if not os.path.exists(self.clip_path):
-            raise ValueError(f"本地模型文件不存在: {self.clip_path}，请确保模型文件已下载到正确位置")
+            raise ValueError(f"Local model file does not exist: {self.clip_path}, please ensure the model file is downloaded to the correct location")
         
         self.feature_extractor = CLIPVisionModel.from_pretrained(self.clip_path)
 
-        # 首先冻结所有参数
+        # First freeze all parameters
         for param in self.feature_extractor.parameters():
             param.requires_grad = False
 
@@ -100,7 +100,7 @@ class CLIPEnhanced(AbstractDetector):
     def get_train_metrics(self, data_dict: dict, pred_dict: dict) -> dict:
         """Compute training metrics"""
         label = data_dict['label']
-        #pred = pred_dict['prob']  # 使用已经计算好的概率值
+        #pred = pred_dict['prob']  # Use pre-computed probability values
         pred = pred_dict['cls']  
         
         auc, eer, acc, ap = calculate_metrics_for_train(label.detach(), pred.detach())
@@ -129,7 +129,7 @@ class CLIPEnhanced(AbstractDetector):
         return preprocess 
 
     def print_trainable_parameters(self):
-        print("\n🔥 Trainable parameters:")
+        print("\nTrainable parameters:")
         for name, param in self.named_parameters():
             if param.requires_grad:
                 print(f"{name} shape = {tuple(param.shape)}")

@@ -1,0 +1,13 @@
+flowchart TD
+    A[Video Input: B x T x 3 x H x W] --> B1[Patch Embedding per Frame]
+    B1 --> C1[ViT Blocks 1 to 5 Shared]
+    C1 --> D1[Token Embeddings: B x T x N x D]
+
+    D1 --> E[Temporal Self-Attention Module
+    B x N x T x D → B x N x D]
+
+    E --> C2[ViT Blocks 6 to 12 Shared]
+    C2 --> F[CLS Tokens per Frame: B x T x D]
+    F --> G[Temporal Aggregation ,Mean or Attention]
+    G --> H[MLP Classifier]
+    H --> I[Prediction: Real / Fake]

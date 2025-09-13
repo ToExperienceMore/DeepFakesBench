@@ -1,0 +1,82 @@
+---
+config:
+  layout: dagre
+---
+flowchart TD
+    %% STAN详细结构图
+    subgraph STAN_Detail["STAN Layer Detail"]
+        subgraph Spatial_Processing["Spatial Processing"]
+            S1["Reshape CLS: B,T,1,768"]
+            S2["Reshape Patches: B,T,num_patches,768"]
+            S3["Concat CLS + Patches"]
+            S4["LN"]
+            S5["Self Attention"]
+            S6["LN"]
+            S7["MLP"]
+        end
+
+        subgraph Temporal_Processing["Temporal Processing"]
+            T1["CLS Token"]
+            T2["Patch Tokens"]
+            T3["LN"]
+            T4["Self Attention"]
+            T5["Temporal FC"]
+            T6["Concat"]
+        end
+
+        S1 --> S3
+        S2 --> S3
+        S3 --> S4
+        S4 --> S5
+        S5 --> S6
+        S6 --> S7
+        S7 --> T1
+        S7 --> T2
+        T2 --> T3
+        T3 --> T4
+        T4 --> T5
+        T5 --> T6
+        T1 --> T6
+    end
+
+    %% 整体框架图
+    subgraph Main_Network["Main Network"]
+        subgraph Input["Input"]
+            B["Resize to B,T,3,224,224"]
+            A["Input: B,T,3,W,H"]
+        end
+
+        subgraph CLIP_Backbone["CLIP_Backbone"]
+            C["Patch Embedding"]
+            D["CLIP Encoder Layers 0-11"]
+        end
+
+        subgraph STAN_Layers["STAN_Layers"]
+            H["STAN Layer 0"]
+            I["STAN Layer 1"]
+        end
+
+        subgraph Output["Output"]
+            L["Linear Classifier"]
+            M["Output: B,2"]
+        end
+
+        A --> B
+        B --> C
+        C --> D
+        D -.-> H
+        H -.-> I
+        I -.-> L
+        L --> M
+    end
+
+    style Input fill:#f9f,stroke:#333,stroke-width:2px
+    style CLIP_Backbone fill:#bbf,stroke:#333,stroke-width:2px
+    style STAN_Layers fill:#bfb,stroke:#333,stroke-width:2px
+    style Output fill:#f9f,stroke:#333,stroke-width:2px
+    style STAN_Detail fill:#bfb,stroke:#333,stroke-width:2px
+    style Spatial_Processing fill:#bbf,stroke:#333,stroke-width:2px
+    style Temporal_Processing fill:#bfb,stroke:#333,stroke-width:2px
+    
+    classDef default font-size:20px
+    classDef subgraphTitle font-size:24px

@@ -60,9 +60,9 @@ class SpatialAttention(nn.Module):
     def forward(self, x, T, P):
         # x: (B, T*P, D) → (B*T, P, D)
         B, TP, D = x.shape
-        x = x.reshape(B, T, P, D).reshape(B * T, P, D)  # 使用reshape替代view
+        x = x.reshape(B, T, P, D).reshape(B * T, P, D)  # Use reshape instead of view
         out, _ = self.attn(x, x, x)
-        out = out.reshape(B, T, P, D).reshape(B, T * P, D)  # 使用reshape替代view
+        out = out.reshape(B, T, P, D).reshape(B, T * P, D)  # Use reshape instead of view
         return out
 
 @DETECTOR.register_module(module_name='timesformer')
@@ -76,13 +76,13 @@ class TimeSformerDetector(AbstractDetector):
         self.patch_per_frame = 49
         self.num_heads = 8
 
-        # 可分离的时空注意力模块
+        # Separable spatio-temporal attention module
         self.temporal_attn = TemporalAttention(self.embed_dim, self.num_heads)
         self.spatial_attn = SpatialAttention(self.embed_dim, self.num_heads)
         self.norm = nn.LayerNorm(self.embed_dim)
         self.dropout = nn.Dropout(0.1)
         
-        # 分类头
+        # Classification head
         self.fc = nn.Linear(self.embed_dim, 2)
         self.loss_func = self.build_loss(config)
 
@@ -94,7 +94,7 @@ class TimeSformerDetector(AbstractDetector):
         return efficientnet
 
     def build_backbone(self, config):
-        # 为了满足抽象类的要求，返回一个空模块
+        # Return an empty module to satisfy abstract class requirements
         return nn.Identity()
 
     def build_loss(self, config):
@@ -109,34 +109,34 @@ class TimeSformerDetector(AbstractDetector):
         video_faces = video_faces.view(-1, c, h, w)
         #print("video_faces shape:", video_faces.shape)
         
-        # 1. 通过EfficientNet提取空间特征
+        # 1. Extract spatial features through EfficientNet
         efficientnet_features = self.efficientnet(video_faces)
         #print("efficientnet_features shape:", efficientnet_features.shape)
         eff_features = efficientnet_features.view(b, t, 1280, 7, 7)  # (B, T, 1280, 7, 7)
         #print("eff_features shape:", eff_features.shape)
 
-        # Step 1: reshape 每帧 7x7 patch → 49 patch
+        # Step 1: reshape each frame 7x7 patch → 49 patch
         patch_tokens = eff_features.view(b, t, 1280, 49)        # (B, T, 1280, 49)
         #print("patch_tokens shape:", patch_tokens.shape)
 
-        # Step 2: 转置 → patch 在时间维度之前
+        # Step 2: transpose → patch before time dimension
         patch_tokens = patch_tokens.permute(0, 1, 3, 2)         # (B, T, 49, 1280)
         #print("patch_tokens permuted shape:", patch_tokens.shape)
 
-        # Step 3: 合并 T × 49 作为 token 序列
+        # Step 3: merge T × 49 as token sequence
         patch_tokens = patch_tokens.reshape(b, t * 49, 1280)    # (B, 392, 1280)
         #print("patch_tokens reshaped shape:", patch_tokens.shape)
 
-        # 4. 应用可分离的时空注意力
-        # 首先应用时间注意力
+        # 4. Apply separable spatio-temporal attention
+        # First apply temporal attention
         tokens = self.temporal_attn(patch_tokens, t, self.patch_per_frame)
         #print("after temporal attention shape:", tokens.shape)
         
-        # 然后应用空间注意力
+        # Then apply spatial attention
         tokens = self.spatial_attn(tokens, t, self.patch_per_frame)
         #print("after spatial attention shape:", tokens.shape)
         
-        # 5. 取第一个token作为序列表示
+        # 5. Take the first token as sequence representation
         features = self.norm(tokens[:, 0, :])  # (B, 1280)
         #print("final features shape:", features.shape)
         

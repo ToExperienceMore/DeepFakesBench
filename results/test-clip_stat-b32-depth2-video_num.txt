@@ -1,0 +1,1562 @@
++ python3 training/test.py --detector_path ./training/config/detector/clip_stan.yaml --test_dataset DFDC DFDCP Celeb-DF-v2 UADFV --weights_path /root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/logs/clip_stan_2025-05-31-05-25-02/test/avg/ckpt_best.pth
+/root/autodl-tmp/envs/DeepfakeBench-torch2.0/lib/python3.9/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: '/root/autodl-tmp/envs/DeepfakeBench-torch2.0/lib/python3.9/site-packages/torchvision/image.so: undefined symbol: _ZN3c1017RegisterOperatorsD1Ev'If you don't plan on using image functionality from `torchvision.io`, you can ignore this warning. Otherwise, there might be something wrong with your environment. Did you have `libjpeg` or `libpng` installed before building `torchvision` from source?
+  warn(
+['in_channels', 'out_channels', 'kernel_size', 'stride', 'padding', 'dilation', 'groups', 'bias', 'padding_mode', 'device', 'dtype']
+spatial_count=0 keep_stride_count=0
+batch_size: 32
+Skipping video DFDC_Real_hmvjiodnxy because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_zffenlgire because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_mpwoskwuuk because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Real_hqfpcnnxuj because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_iyfwndboqs because it has less than clip_size (8) frames (3).
+Skipping video DFDC_Real_issioyofmn because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_xgtelcltvg because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_vytzcppkpg because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Real_gqqhtdjoha because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_nodoppwmyj because it has less than clip_size (8) frames (3).
+Skipping video DFDC_Real_bsduhevcwg because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Real_pgbtmrrmrq because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_dxuxornpue because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Real_rpqkwlaasy because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Real_usrimdndpz because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_rodpvqvdxm because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_fagregozex because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_aalscayrfi because it has less than clip_size (8) frames (3).
+Skipping video DFDC_Real_sygzijgurs because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_qvpjagljpr because it has less than clip_size (8) frames (3).
+Skipping video DFDC_Real_puhcxsfnde because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_rafzcxkbsh because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Real_olanckxfdx because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Real_cemvsipmew because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_egxsckqubp because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_hmmnljhtom because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_gdnacoubws because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Real_xvkflltlbg because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_ejunkkahbw because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_snsnifxref because it has less than clip_size (8) frames (3).
+Skipping video DFDC_Real_zztotvpkjc because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_eppwzalgil because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_xnwmohspsh because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_pwfhdwzxqm because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Real_igbpkykmrz because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Real_apmxeenhpt because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Real_sfuddhcgmz because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_kdiezumwzi because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Real_vxvqnhakrk because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Real_bzqohcbrip because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_ovyikmbbdr because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Real_nuhvoaxqtn because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Real_ovbvtbmuxo because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Real_knamsitmul because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_mipljmaefr because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Real_hswqufrqdq because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_ljaedxbwki because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_gkhhhvjkmr because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Fake_xirozlwlpd because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Fake_noodanjabq because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Fake_ydiydkhofb because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Fake_nrzayygpza because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Fake_wpotxtrxtj because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Fake_eboyboyzis because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Fake_jqfpwtawdw because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Fake_zfbfgatuvk because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Fake_ejhumipcge because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Fake_pcnvtisyms because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_hmwdlvrwbe because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Fake_bxgfrpxpyp because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_wxorluvmvm because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Fake_jgmmablvoo because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_gneonsmngz because it has less than clip_size (8) frames (2).
+Skipping video DFDC_Fake_okogoesrwg because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_wuzzdfwxlv because it has less than clip_size (8) frames (5).
+Skipping video DFDC_Fake_jarlmlkfam because it has less than clip_size (8) frames (3).
+Skipping video DFDC_Fake_shjmzxlkgk because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Fake_hrijskleak because it has less than clip_size (8) frames (4).
+Skipping video DFDC_Fake_mzldnycwvi because it has less than clip_size (8) frames (1).
+Skipping video DFDC_Fake_szkejtkgqq because it has less than clip_size (8) frames (7).
+Skipping video DFDC_Fake_gowytswfqh because it has less than clip_size (8) frames (6).
+Skipping video DFDC_Fake_ikgvwddrng because it has less than clip_size (8) frames (7).
+Skipping video DFDCP_Real_1152039_B_002 because it has less than clip_size (8) frames (2).
+Skipping video DFDCP_Real_1152039_E_001 because it has less than clip_size (8) frames (5).
+Skipping video DFDCP_Real_1290777_C_002 because it has less than clip_size (8) frames (5).
+Skipping video DFDCP_Real_1433884_C_001 because it has less than clip_size (8) frames (6).
+Skipping video DFDCP_Real_1848521_E_001 because it has less than clip_size (8) frames (1).
+Skipping video DFDCP_Real_1851350_C_001 because it has less than clip_size (8) frames (7).
+Skipping video DFDCP_Real_1851350_C_002 because it has less than clip_size (8) frames (3).
+Skipping video DFDCP_Real_1869846_D_001 because it has less than clip_size (8) frames (6).
+Skipping video DFDCP_Real_1869846_D_002 because it has less than clip_size (8) frames (2).
+Skipping video DFDCP_Real_1869846_D_003 because it has less than clip_size (8) frames (3).
+Skipping video DFDCP_Real_1873849_B_001 because it has less than clip_size (8) frames (6).
+Skipping video DFDCP_Real_1873849_B_002 because it has less than clip_size (8) frames (7).
+Skipping video DFDCP_Real_1873849_B_003 because it has less than clip_size (8) frames (6).
+Skipping video DFDCP_Real_2005778_F_003 because it has less than clip_size (8) frames (5).
+Skipping video DFDCP_Real_2005778_I_002 because it has less than clip_size (8) frames (2).
+Skipping video DFDCP_Real_2005778_K_003 because it has less than clip_size (8) frames (2).
+Skipping video DFDCP_Real_2022094_A_001 because it has less than clip_size (8) frames (1).
+Skipping video DFDCP_Real_2022094_D_002 because it has less than clip_size (8) frames (4).
+Skipping video DFDCP_Real_2031720_A_003 because it has less than clip_size (8) frames (4).
+Skipping video DFDCP_Real_2090100_C_001 because it has less than clip_size (8) frames (1).
+Skipping video DFDCP_Real_643049_C_002 because it has less than clip_size (8) frames (5).
+Skipping video DFDCP_Real_643049_C_003 because it has less than clip_size (8) frames (2).
+Skipping video DFDCP_Real_643049_D_002 because it has less than clip_size (8) frames (1).
+Skipping video DFDCP_Real_643049_D_003 because it has less than clip_size (8) frames (1).
+Skipping video DFDCP_Real_643049_E_003 because it has less than clip_size (8) frames (1).
+Skipping video DFDCP_FakeA_1851350_1390015_A_003 because it has less than clip_size (8) frames (7).
+Skipping video DFDCP_FakeA_2040724_1441897_A_003 because it has less than clip_size (8) frames (1).
+Skipping video DFDCP_FakeA_1848521_1600085_A_003 because it has less than clip_size (8) frames (7).
+Skipping video DFDCP_FakeA_2031720_1600085_A_003 because it has less than clip_size (8) frames (6).
+Skipping video DFDCP_FakeA_1441897_1848521_B_000 because it has less than clip_size (8) frames (2).
+Skipping video DFDCP_FakeA_2040724_1848521_B_000 because it has less than clip_size (8) frames (2).
+Skipping video DFDCP_FakeA_2040724_1848521_B_002 because it has less than clip_size (8) frames (4).
+Skipping video DFDCP_FakeA_2090100_2005778_C_002 because it has less than clip_size (8) frames (1).
+Skipping video DFDCP_FakeA_1354471_2022094_A_003 because it has less than clip_size (8) frames (1).
+Skipping video DFDCP_FakeA_2084869_2022094_A_000 because it has less than clip_size (8) frames (1).
+Skipping video DFDCP_FakeA_2084869_2022094_A_003 because it has less than clip_size (8) frames (1).
+Skipping video DFDCP_FakeA_2090100_2022094_A_000 because it has less than clip_size (8) frames (1).
+Skipping video DFDCP_FakeA_1782722_2022094_C_002 because it has less than clip_size (8) frames (5).
+Skipping video DFDCP_FakeA_1828891_2022094_D_003 because it has less than clip_size (8) frames (7).
+Skipping video DFDCP_FakeA_2090100_2022094_D_000 because it has less than clip_size (8) frames (6).
+Skipping video DFDCP_FakeA_2090100_2022094_D_002 because it has less than clip_size (8) frames (7).
+Skipping video DFDCP_FakeA_1782722_2090100_A_003 because it has less than clip_size (8) frames (6).
+Skipping video DFDCP_FakeA_1782722_643049_C_000 because it has less than clip_size (8) frames (3).
+Skipping video DFDCP_FakeA_2005778_643049_C_000 because it has less than clip_size (8) frames (5).
+Skipping video DFDCP_FakeA_2084869_643049_C_003 because it has less than clip_size (8) frames (2).
+Skipping video DFDCP_FakeA_2090100_643049_C_000 because it has less than clip_size (8) frames (1).
+Skipping video DFDCP_FakeA_2090100_643049_C_003 because it has less than clip_size (8) frames (1).
+Skipping video CelebDFv2_real_id10_0001 because it has less than clip_size (8) frames (3).
+clip_path: weights/clip-vit-base-patch16
+features_dim: 768
+
+All parameters:
+class_embedding shape = (768,)
+cls_token shape = (1, 1, 768)
+feature_extractor.vision_model.embeddings.patch_embedding.weight shape = (768, 3, 16, 16)
+feature_extractor.vision_model.embeddings.position_embedding.weight shape = (197, 768)
+feature_extractor.vision_model.pre_layrnorm.weight shape = (768,)
+feature_extractor.vision_model.pre_layrnorm.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.0.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.0.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.0.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.0.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.0.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.0.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.0.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.1.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.1.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.1.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.1.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.1.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.1.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.1.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.2.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.2.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.2.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.2.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.2.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.2.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.2.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.3.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.3.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.3.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.3.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.3.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.3.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.3.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.4.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.4.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.4.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.4.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.4.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.4.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.4.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.5.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.5.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.5.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.5.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.5.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.5.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.5.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.6.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.6.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.6.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.6.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.6.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.6.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.6.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.7.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.7.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.7.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.7.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.7.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.7.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.7.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.8.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.8.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.8.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.8.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.8.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.8.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.8.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.9.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.9.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.9.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.9.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.9.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.9.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.9.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.10.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.10.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.10.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.10.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.10.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.10.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.10.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.11.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.11.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.11.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.11.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.11.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.11.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.11.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.post_layernorm.weight shape = (768,)
+feature_extractor.vision_model.post_layernorm.bias shape = (768,)
+STAN_S_layers.0.self_attn.k_proj.weight shape = (768, 768)
+STAN_S_layers.0.self_attn.k_proj.bias shape = (768,)
+STAN_S_layers.0.self_attn.v_proj.weight shape = (768, 768)
+STAN_S_layers.0.self_attn.v_proj.bias shape = (768,)
+STAN_S_layers.0.self_attn.q_proj.weight shape = (768, 768)
+STAN_S_layers.0.self_attn.q_proj.bias shape = (768,)
+STAN_S_layers.0.self_attn.out_proj.weight shape = (768, 768)
+STAN_S_layers.0.self_attn.out_proj.bias shape = (768,)
+STAN_S_layers.0.layer_norm1.weight shape = (768,)
+STAN_S_layers.0.layer_norm1.bias shape = (768,)
+STAN_S_layers.0.mlp.fc1.weight shape = (3072, 768)
+STAN_S_layers.0.mlp.fc1.bias shape = (3072,)
+STAN_S_layers.0.mlp.fc2.weight shape = (768, 3072)
+STAN_S_layers.0.mlp.fc2.bias shape = (768,)
+STAN_S_layers.0.layer_norm2.weight shape = (768,)
+STAN_S_layers.0.layer_norm2.bias shape = (768,)
+STAN_S_layers.1.self_attn.k_proj.weight shape = (768, 768)
+STAN_S_layers.1.self_attn.k_proj.bias shape = (768,)
+STAN_S_layers.1.self_attn.v_proj.weight shape = (768, 768)
+STAN_S_layers.1.self_attn.v_proj.bias shape = (768,)
+STAN_S_layers.1.self_attn.q_proj.weight shape = (768, 768)
+STAN_S_layers.1.self_attn.q_proj.bias shape = (768,)
+STAN_S_layers.1.self_attn.out_proj.weight shape = (768, 768)
+STAN_S_layers.1.self_attn.out_proj.bias shape = (768,)
+STAN_S_layers.1.layer_norm1.weight shape = (768,)
+STAN_S_layers.1.layer_norm1.bias shape = (768,)
+STAN_S_layers.1.mlp.fc1.weight shape = (3072, 768)
+STAN_S_layers.1.mlp.fc1.bias shape = (3072,)
+STAN_S_layers.1.mlp.fc2.weight shape = (768, 3072)
+STAN_S_layers.1.mlp.fc2.bias shape = (768,)
+STAN_S_layers.1.layer_norm2.weight shape = (768,)
+STAN_S_layers.1.layer_norm2.bias shape = (768,)
+STAN_T_layers.0.self_attn.k_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.k_proj.bias shape = (768,)
+STAN_T_layers.0.self_attn.v_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.v_proj.bias shape = (768,)
+STAN_T_layers.0.self_attn.q_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.q_proj.bias shape = (768,)
+STAN_T_layers.0.self_attn.out_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.out_proj.bias shape = (768,)
+STAN_T_layers.0.layer_norm1.weight shape = (768,)
+STAN_T_layers.0.layer_norm1.bias shape = (768,)
+STAN_T_layers.0.temporal_fc.weight shape = (768, 768)
+STAN_T_layers.0.temporal_fc.bias shape = (768,)
+STAN_T_layers.1.self_attn.k_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.k_proj.bias shape = (768,)
+STAN_T_layers.1.self_attn.v_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.v_proj.bias shape = (768,)
+STAN_T_layers.1.self_attn.q_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.q_proj.bias shape = (768,)
+STAN_T_layers.1.self_attn.out_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.out_proj.bias shape = (768,)
+STAN_T_layers.1.layer_norm1.weight shape = (768,)
+STAN_T_layers.1.layer_norm1.bias shape = (768,)
+STAN_T_layers.1.temporal_fc.weight shape = (768, 768)
+STAN_T_layers.1.temporal_fc.bias shape = (768,)
+time_embed.weight shape = (64, 768)
+model.linear.weight shape = (2, 768)
+model.linear.bias shape = (2,)
+
+🔥 Trainable parameters:
+class_embedding shape = (768,)
+cls_token shape = (1, 1, 768)
+feature_extractor.vision_model.pre_layrnorm.weight shape = (768,)
+feature_extractor.vision_model.pre_layrnorm.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.post_layernorm.weight shape = (768,)
+feature_extractor.vision_model.post_layernorm.bias shape = (768,)
+STAN_S_layers.0.layer_norm1.weight shape = (768,)
+STAN_S_layers.0.layer_norm1.bias shape = (768,)
+STAN_S_layers.0.layer_norm2.weight shape = (768,)
+STAN_S_layers.0.layer_norm2.bias shape = (768,)
+STAN_S_layers.1.layer_norm1.weight shape = (768,)
+STAN_S_layers.1.layer_norm1.bias shape = (768,)
+STAN_S_layers.1.layer_norm2.weight shape = (768,)
+STAN_S_layers.1.layer_norm2.bias shape = (768,)
+STAN_T_layers.0.self_attn.k_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.k_proj.bias shape = (768,)
+STAN_T_layers.0.self_attn.v_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.v_proj.bias shape = (768,)
+STAN_T_layers.0.self_attn.q_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.q_proj.bias shape = (768,)
+STAN_T_layers.0.self_attn.out_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.out_proj.bias shape = (768,)
+STAN_T_layers.0.layer_norm1.weight shape = (768,)
+STAN_T_layers.0.layer_norm1.bias shape = (768,)
+STAN_T_layers.0.temporal_fc.weight shape = (768, 768)
+STAN_T_layers.0.temporal_fc.bias shape = (768,)
+STAN_T_layers.1.self_attn.k_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.k_proj.bias shape = (768,)
+STAN_T_layers.1.self_attn.v_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.v_proj.bias shape = (768,)
+STAN_T_layers.1.self_attn.q_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.q_proj.bias shape = (768,)
+STAN_T_layers.1.self_attn.out_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.out_proj.bias shape = (768,)
+STAN_T_layers.1.layer_norm1.weight shape = (768,)
+STAN_T_layers.1.layer_norm1.bias shape = (768,)
+STAN_T_layers.1.temporal_fc.weight shape = (768, 768)
+STAN_T_layers.1.temporal_fc.bias shape = (768,)
+time_embed.weight shape = (64, 768)
+model.linear.weight shape = (2, 768)
+model.linear.bias shape = (2,)
+Total parameters: 105935618, trainable: 6007298, %: 5.6707
+===> Load checkpoint done!
+
+Dataset: DFDC
+Number of images: 3151
+Number of labels: 3151
+test images: 3151
+  0%|          | 0/99 [00:00<?, ?it/s]  1%|          | 1/99 [00:06<10:00,  6.13s/it]  2%|▏         | 2/99 [00:07<05:13,  3.23s/it]  3%|▎         | 3/99 [00:08<03:41,  2.30s/it]  4%|▍         | 4/99 [00:09<02:57,  1.87s/it]  5%|▌         | 5/99 [00:10<02:33,  1.63s/it]  6%|▌         | 6/99 [00:12<02:18,  1.49s/it]  7%|▋         | 7/99 [00:13<02:08,  1.39s/it]  8%|▊         | 8/99 [00:14<02:01,  1.33s/it]  9%|▉         | 9/99 [00:15<01:56,  1.29s/it] 10%|█         | 10/99 [00:16<01:52,  1.26s/it] 11%|█         | 11/99 [00:18<01:49,  1.25s/it] 12%|█▏        | 12/99 [00:19<01:47,  1.23s/it] 13%|█▎        | 13/99 [00:20<01:45,  1.23s/it] 14%|█▍        | 14/99 [00:21<01:43,  1.22s/it] 15%|█▌        | 15/99 [00:22<01:41,  1.21s/it] 16%|█▌        | 16/99 [00:24<01:40,  1.21s/it] 17%|█▋        | 17/99 [00:25<01:39,  1.21s/it] 18%|█▊        | 18/99 [00:26<01:38,  1.21s/it] 19%|█▉        | 19/99 [00:27<01:36,  1.21s/it] 20%|██        | 20/99 [00:29<01:35,  1.21s/it] 21%|██        | 21/99 [00:30<01:34,  1.21s/it] 22%|██▏       | 22/99 [00:31<01:33,  1.21s/it] 23%|██▎       | 23/99 [00:32<01:32,  1.21s/it] 24%|██▍       | 24/99 [00:33<01:30,  1.21s/it] 25%|██▌       | 25/99 [00:35<01:30,  1.22s/it] 26%|██▋       | 26/99 [00:36<01:28,  1.22s/it] 27%|██▋       | 27/99 [00:37<01:27,  1.22s/it] 28%|██▊       | 28/99 [00:38<01:26,  1.22s/it] 29%|██▉       | 29/99 [00:39<01:25,  1.22s/it] 30%|███       | 30/99 [00:41<01:24,  1.22s/it] 31%|███▏      | 31/99 [00:42<01:23,  1.23s/it] 32%|███▏      | 32/99 [00:43<01:21,  1.22s/it] 33%|███▎      | 33/99 [00:44<01:20,  1.22s/it] 34%|███▍      | 34/99 [00:46<01:19,  1.22s/it] 35%|███▌      | 35/99 [00:47<01:17,  1.22s/it] 36%|███▋      | 36/99 [00:48<01:16,  1.22s/it] 37%|███▋      | 37/99 [00:49<01:15,  1.22s/it] 38%|███▊      | 38/99 [00:50<01:14,  1.22s/it] 39%|███▉      | 39/99 [00:52<01:13,  1.22s/it] 40%|████      | 40/99 [00:53<01:11,  1.22s/it] 41%|████▏     | 41/99 [00:54<01:10,  1.22s/it] 42%|████▏     | 42/99 [00:55<01:09,  1.22s/it] 43%|████▎     | 43/99 [00:57<01:08,  1.22s/it] 44%|████▍     | 44/99 [00:58<01:07,  1.22s/it] 45%|████▌     | 45/99 [00:59<01:05,  1.22s/it] 46%|████▋     | 46/99 [01:00<01:04,  1.22s/it] 47%|████▋     | 47/99 [01:01<01:03,  1.22s/it] 48%|████▊     | 48/99 [01:03<01:02,  1.22s/it] 49%|████▉     | 49/99 [01:04<01:01,  1.22s/it] 51%|█████     | 50/99 [01:05<00:59,  1.22s/it] 52%|█████▏    | 51/99 [01:06<00:58,  1.23s/it] 53%|█████▎    | 52/99 [01:08<00:57,  1.23s/it] 54%|█████▎    | 53/99 [01:09<00:56,  1.23s/it] 55%|█████▍    | 54/99 [01:10<00:55,  1.23s/it] 56%|█████▌    | 55/99 [01:11<00:53,  1.23s/it] 57%|█████▋    | 56/99 [01:12<00:52,  1.23s/it] 58%|█████▊    | 57/99 [01:14<00:51,  1.23s/it] 59%|█████▊    | 58/99 [01:15<00:50,  1.23s/it] 60%|█████▉    | 59/99 [01:16<00:49,  1.23s/it] 61%|██████    | 60/99 [01:17<00:47,  1.23s/it] 62%|██████▏   | 61/99 [01:19<00:46,  1.23s/it] 63%|██████▎   | 62/99 [01:20<00:45,  1.23s/it] 64%|██████▎   | 63/99 [01:21<00:44,  1.23s/it] 65%|██████▍   | 64/99 [01:22<00:43,  1.23s/it] 66%|██████▌   | 65/99 [01:24<00:41,  1.23s/it] 67%|██████▋   | 66/99 [01:25<00:40,  1.23s/it] 68%|██████▊   | 67/99 [01:26<00:39,  1.23s/it] 69%|██████▊   | 68/99 [01:27<00:38,  1.24s/it] 70%|██████▉   | 69/99 [01:28<00:37,  1.23s/it] 71%|███████   | 70/99 [01:30<00:35,  1.23s/it] 72%|███████▏  | 71/99 [01:31<00:34,  1.24s/it] 73%|███████▎  | 72/99 [01:32<00:33,  1.24s/it] 74%|███████▎  | 73/99 [01:33<00:32,  1.23s/it] 75%|███████▍  | 74/99 [01:35<00:30,  1.23s/it] 76%|███████▌  | 75/99 [01:36<00:29,  1.23s/it] 77%|███████▋  | 76/99 [01:37<00:28,  1.23s/it] 78%|███████▊  | 77/99 [01:38<00:27,  1.23s/it] 79%|███████▉  | 78/99 [01:40<00:25,  1.23s/it] 80%|███████▉  | 79/99 [01:41<00:24,  1.23s/it] 81%|████████  | 80/99 [01:42<00:23,  1.23s/it] 82%|████████▏ | 81/99 [01:43<00:22,  1.23s/it] 83%|████████▎ | 82/99 [01:45<00:20,  1.23s/it] 84%|████████▍ | 83/99 [01:46<00:19,  1.23s/it] 85%|████████▍ | 84/99 [01:47<00:18,  1.23s/it] 86%|████████▌ | 85/99 [01:48<00:17,  1.23s/it] 87%|████████▋ | 86/99 [01:49<00:15,  1.23s/it] 88%|████████▊ | 87/99 [01:51<00:14,  1.23s/it] 89%|████████▉ | 88/99 [01:52<00:13,  1.23s/it] 90%|████████▉ | 89/99 [01:53<00:12,  1.23s/it] 91%|█████████ | 90/99 [01:54<00:11,  1.23s/it] 92%|█████████▏| 91/99 [01:56<00:09,  1.23s/it] 93%|█████████▎| 92/99 [01:57<00:08,  1.23s/it] 94%|█████████▍| 93/99 [01:58<00:07,  1.23s/it] 95%|█████████▍| 94/99 [01:59<00:06,  1.23s/it] 96%|█████████▌| 95/99 [02:00<00:04,  1.23s/it] 97%|█████████▋| 96/99 [02:02<00:03,  1.23s/it] 98%|█████████▊| 97/99 [02:03<00:02,  1.23s/it] 99%|█████████▉| 98/99 [02:04<00:01,  1.23s/it]100%|██████████| 99/99 [02:05<00:00,  1.22s/it]100%|██████████| 99/99 [02:06<00:00,  1.27s/it]
+
+Detailed metrics for DFDC:
+True Negatives (Real classified as Real): 1263
+False Positives (Real classified as Fake): 219
+False Negatives (Fake classified as Real): 675
+True Positives (Fake classified as Fake): 994
+Accuracy: 0.7163
+Precision: 0.8195
+Recall: 0.5956
+F1 Score: 0.6898
+
+Predictions shape: (3151,)
+Labels shape: (3151,)
+Number of processed images: 3151
+Number of processed image names: 3151
+len(y_pred): 3151
+len(y_true): 3151
+
+dataset: DFDC
+acc: 0.7162805458584577
+auc: 0.8233048630702441
+eer: 0.2584345479082321
+ap: 0.8478686731743097
+pred: [0.65707314 0.46650797 0.02130412 ... 0.1249955  0.9750208  0.7190216 ]
+video_auc: 0.8233048630702441
+label: [1 1 0 ... 1 1 0]
+
+Dataset: DFDCP
+Number of images: 1996
+Number of labels: 1996
+test images: 1996
+  0%|          | 0/63 [00:00<?, ?it/s]  2%|▏         | 1/63 [00:04<05:02,  4.88s/it]  3%|▎         | 2/63 [00:06<02:50,  2.80s/it]  5%|▍         | 3/63 [00:07<02:04,  2.08s/it]  6%|▋         | 4/63 [00:08<01:42,  1.74s/it]  8%|▊         | 5/63 [00:09<01:30,  1.55s/it] 10%|▉         | 6/63 [00:11<01:22,  1.45s/it] 11%|█         | 7/63 [00:12<01:16,  1.37s/it] 13%|█▎        | 8/63 [00:13<01:12,  1.33s/it] 14%|█▍        | 9/63 [00:14<01:09,  1.29s/it] 16%|█▌        | 10/63 [00:16<01:07,  1.27s/it] 17%|█▋        | 11/63 [00:17<01:05,  1.26s/it] 19%|█▉        | 12/63 [00:18<01:03,  1.25s/it] 21%|██        | 13/63 [00:19<01:01,  1.24s/it] 22%|██▏       | 14/63 [00:20<01:00,  1.23s/it] 24%|██▍       | 15/63 [00:22<00:58,  1.23s/it] 25%|██▌       | 16/63 [00:23<00:57,  1.22s/it] 27%|██▋       | 17/63 [00:24<00:56,  1.22s/it] 29%|██▊       | 18/63 [00:25<00:55,  1.22s/it] 30%|███       | 19/63 [00:26<00:53,  1.22s/it] 32%|███▏      | 20/63 [00:28<00:52,  1.22s/it] 33%|███▎      | 21/63 [00:29<00:51,  1.22s/it] 35%|███▍      | 22/63 [00:30<00:50,  1.22s/it] 37%|███▋      | 23/63 [00:31<00:48,  1.22s/it] 38%|███▊      | 24/63 [00:33<00:47,  1.22s/it] 40%|███▉      | 25/63 [00:34<00:46,  1.22s/it] 41%|████▏     | 26/63 [00:35<00:45,  1.22s/it] 43%|████▎     | 27/63 [00:36<00:43,  1.22s/it] 44%|████▍     | 28/63 [00:37<00:42,  1.22s/it] 46%|████▌     | 29/63 [00:39<00:41,  1.22s/it] 48%|████▊     | 30/63 [00:40<00:40,  1.22s/it] 49%|████▉     | 31/63 [00:41<00:39,  1.23s/it] 51%|█████     | 32/63 [00:42<00:38,  1.23s/it] 52%|█████▏    | 33/63 [00:44<00:36,  1.23s/it] 54%|█████▍    | 34/63 [00:45<00:35,  1.22s/it] 56%|█████▌    | 35/63 [00:46<00:34,  1.22s/it] 57%|█████▋    | 36/63 [00:47<00:33,  1.22s/it] 59%|█████▊    | 37/63 [00:48<00:31,  1.22s/it] 60%|██████    | 38/63 [00:50<00:30,  1.22s/it] 62%|██████▏   | 39/63 [00:51<00:29,  1.22s/it] 63%|██████▎   | 40/63 [00:52<00:27,  1.22s/it] 65%|██████▌   | 41/63 [00:53<00:26,  1.22s/it] 67%|██████▋   | 42/63 [00:55<00:25,  1.22s/it] 68%|██████▊   | 43/63 [00:56<00:24,  1.22s/it] 70%|██████▉   | 44/63 [00:57<00:23,  1.22s/it] 71%|███████▏  | 45/63 [00:58<00:22,  1.22s/it] 73%|███████▎  | 46/63 [00:59<00:20,  1.22s/it] 75%|███████▍  | 47/63 [01:01<00:19,  1.22s/it] 76%|███████▌  | 48/63 [01:02<00:18,  1.22s/it] 78%|███████▊  | 49/63 [01:03<00:17,  1.22s/it] 79%|███████▉  | 50/63 [01:04<00:15,  1.22s/it] 81%|████████  | 51/63 [01:06<00:14,  1.22s/it] 83%|████████▎ | 52/63 [01:07<00:13,  1.22s/it] 84%|████████▍ | 53/63 [01:08<00:12,  1.22s/it] 86%|████████▌ | 54/63 [01:09<00:10,  1.22s/it] 87%|████████▋ | 55/63 [01:10<00:09,  1.22s/it] 89%|████████▉ | 56/63 [01:12<00:08,  1.22s/it] 90%|█████████ | 57/63 [01:13<00:07,  1.22s/it] 92%|█████████▏| 58/63 [01:14<00:06,  1.22s/it] 94%|█████████▎| 59/63 [01:15<00:04,  1.22s/it] 95%|█████████▌| 60/63 [01:17<00:03,  1.22s/it] 97%|█████████▋| 61/63 [01:18<00:02,  1.22s/it] 98%|█████████▊| 62/63 [01:19<00:01,  1.22s/it]100%|██████████| 63/63 [01:20<00:00,  1.14s/it]100%|██████████| 63/63 [01:20<00:00,  1.28s/it]
+
+Detailed metrics for DFDCP:
+True Negatives (Real classified as Real): 569
+False Positives (Real classified as Fake): 107
+False Negatives (Fake classified as Real): 554
+True Positives (Fake classified as Fake): 766
+Accuracy: 0.6688
+Precision: 0.8774
+Recall: 0.5803
+F1 Score: 0.6986
+
+Predictions shape: (1996,)
+Labels shape: (1996,)
+Number of processed images: 1996
+Number of processed image names: 1996
+len(y_pred): 1996
+len(y_true): 1996
+
+dataset: DFDCP
+acc: 0.6688376753507014
+auc: 0.8250537923614846
+eer: 0.26479289940828404
+ap: 0.8922374452449631
+pred: [0.95234156 0.37301844 0.9923229  ... 0.05413504 0.05905837 0.05795694]
+video_auc: 0.8250537923614846
+label: [1 1 1 ... 0 1 0]
+
+Dataset: Celeb-DF-v2
+Number of images: 2022
+Number of labels: 2022
+test images: 2022
+  0%|          | 0/64 [00:00<?, ?it/s]  2%|▏         | 1/64 [00:04<04:39,  4.43s/it]  3%|▎         | 2/64 [00:05<02:44,  2.65s/it]  5%|▍         | 3/64 [00:07<02:03,  2.03s/it]  6%|▋         | 4/64 [00:08<01:43,  1.72s/it]  8%|▊         | 5/64 [00:09<01:31,  1.54s/it]  9%|▉         | 6/64 [00:10<01:23,  1.44s/it] 11%|█         | 7/64 [00:12<01:18,  1.37s/it] 12%|█▎        | 8/64 [00:13<01:14,  1.32s/it] 14%|█▍        | 9/64 [00:14<01:11,  1.29s/it] 16%|█▌        | 10/64 [00:15<01:08,  1.27s/it] 17%|█▋        | 11/64 [00:16<01:06,  1.26s/it] 19%|█▉        | 12/64 [00:18<01:04,  1.25s/it] 20%|██        | 13/64 [00:19<01:03,  1.24s/it] 22%|██▏       | 14/64 [00:20<01:01,  1.23s/it] 23%|██▎       | 15/64 [00:21<01:00,  1.23s/it] 25%|██▌       | 16/64 [00:23<00:59,  1.23s/it] 27%|██▋       | 17/64 [00:24<00:57,  1.23s/it] 28%|██▊       | 18/64 [00:25<00:56,  1.23s/it] 30%|██▉       | 19/64 [00:26<00:55,  1.23s/it] 31%|███▏      | 20/64 [00:28<00:54,  1.23s/it] 33%|███▎      | 21/64 [00:29<00:52,  1.23s/it] 34%|███▍      | 22/64 [00:30<00:51,  1.23s/it] 36%|███▌      | 23/64 [00:31<00:50,  1.23s/it] 38%|███▊      | 24/64 [00:32<00:49,  1.23s/it] 39%|███▉      | 25/64 [00:34<00:48,  1.23s/it] 41%|████      | 26/64 [00:35<00:47,  1.24s/it] 42%|████▏     | 27/64 [00:36<00:45,  1.24s/it] 44%|████▍     | 28/64 [00:37<00:44,  1.24s/it] 45%|████▌     | 29/64 [00:39<00:43,  1.24s/it] 47%|████▋     | 30/64 [00:40<00:41,  1.23s/it] 48%|████▊     | 31/64 [00:41<00:40,  1.23s/it] 50%|█████     | 32/64 [00:42<00:39,  1.23s/it] 52%|█████▏    | 33/64 [00:44<00:38,  1.23s/it] 53%|█████▎    | 34/64 [00:45<00:36,  1.23s/it] 55%|█████▍    | 35/64 [00:46<00:35,  1.23s/it] 56%|█████▋    | 36/64 [00:47<00:34,  1.23s/it] 58%|█████▊    | 37/64 [00:48<00:33,  1.23s/it] 59%|█████▉    | 38/64 [00:50<00:31,  1.22s/it] 61%|██████    | 39/64 [00:51<00:30,  1.22s/it] 62%|██████▎   | 40/64 [00:52<00:29,  1.23s/it] 64%|██████▍   | 41/64 [00:53<00:28,  1.23s/it] 66%|██████▌   | 42/64 [00:55<00:27,  1.23s/it] 67%|██████▋   | 43/64 [00:56<00:25,  1.23s/it] 69%|██████▉   | 44/64 [00:57<00:24,  1.23s/it] 70%|███████   | 45/64 [00:58<00:23,  1.23s/it] 72%|███████▏  | 46/64 [00:59<00:22,  1.23s/it] 73%|███████▎  | 47/64 [01:01<00:20,  1.23s/it] 75%|███████▌  | 48/64 [01:02<00:19,  1.23s/it] 77%|███████▋  | 49/64 [01:03<00:18,  1.23s/it] 78%|███████▊  | 50/64 [01:04<00:17,  1.23s/it] 80%|███████▉  | 51/64 [01:06<00:15,  1.23s/it] 81%|████████▏ | 52/64 [01:07<00:14,  1.23s/it] 83%|████████▎ | 53/64 [01:08<00:13,  1.23s/it] 84%|████████▍ | 54/64 [01:09<00:12,  1.23s/it] 86%|████████▌ | 55/64 [01:11<00:11,  1.23s/it] 88%|████████▊ | 56/64 [01:12<00:09,  1.22s/it] 89%|████████▉ | 57/64 [01:13<00:08,  1.22s/it] 91%|█████████ | 58/64 [01:14<00:07,  1.23s/it] 92%|█████████▏| 59/64 [01:15<00:06,  1.23s/it] 94%|█████████▍| 60/64 [01:17<00:04,  1.23s/it] 95%|█████████▌| 61/64 [01:18<00:03,  1.23s/it] 97%|█████████▋| 62/64 [01:19<00:02,  1.22s/it] 98%|█████████▊| 63/64 [01:20<00:01,  1.22s/it]100%|██████████| 64/64 [01:21<00:00,  1.01s/it]100%|██████████| 64/64 [01:21<00:00,  1.27s/it]
+
+Detailed metrics for Celeb-DF-v2:
+True Negatives (Real classified as Real): 613
+False Positives (Real classified as Fake): 70
+False Negatives (Fake classified as Real): 509
+True Positives (Fake classified as Fake): 830
+Accuracy: 0.7136
+Precision: 0.9222
+Recall: 0.6199
+F1 Score: 0.7414
+
+Predictions shape: (2022,)
+Labels shape: (2022,)
+Number of processed images: 2022
+Number of processed image names: 2022
+len(y_pred): 2022
+len(y_true): 2022
+
+dataset: Celeb-DF-v2
+acc: 0.7136498516320475
+auc: 0.8590773254663289
+eer: 0.23718887262079064
+ap: 0.9259833866528115
+pred: [0.16502261 0.21372022 0.06679342 ... 0.20773648 0.9940183  0.2939256 ]
+video_auc: 0.8590773254663289
+label: [1 1 1 ... 1 1 1]
+
+Dataset: UADFV
+Number of images: 382
+Number of labels: 382
+test images: 382
+  0%|          | 0/12 [00:00<?, ?it/s]  8%|▊         | 1/12 [00:02<00:27,  2.51s/it] 17%|█▋        | 2/12 [00:03<00:17,  1.75s/it] 25%|██▌       | 3/12 [00:04<00:13,  1.51s/it] 33%|███▎      | 4/12 [00:06<00:11,  1.39s/it] 42%|████▏     | 5/12 [00:07<00:09,  1.33s/it] 50%|█████     | 6/12 [00:08<00:07,  1.29s/it] 58%|█████▊    | 7/12 [00:09<00:06,  1.27s/it] 67%|██████▋   | 8/12 [00:11<00:05,  1.25s/it] 75%|███████▌  | 9/12 [00:12<00:03,  1.25s/it] 83%|████████▎ | 10/12 [00:13<00:02,  1.24s/it] 92%|█████████▏| 11/12 [00:14<00:01,  1.23s/it]100%|██████████| 12/12 [00:17<00:00,  1.56s/it]100%|██████████| 12/12 [00:17<00:00,  1.43s/it]
+
+Detailed metrics for UADFV:
+True Negatives (Real classified as Real): 159
+False Positives (Real classified as Fake): 31
+False Negatives (Fake classified as Real): 3
+True Positives (Fake classified as Fake): 189
+Accuracy: 0.9110
+Precision: 0.8591
+Recall: 0.9844
+F1 Score: 0.9175
+
+Predictions shape: (382,)
+Labels shape: (382,)
+Number of processed images: 382
+Number of processed image names: 382
+len(y_pred): 382
+len(y_true): 382
+
+dataset: UADFV
+acc: 0.9109947643979057
+auc: 0.9865953947368421
+eer: 0.05263157894736842
+ap: 0.9892748130115334
+pred: [0.04695375 0.99294347 0.12284503 0.99287236 0.03730783 0.9934536
+ 0.04550001 0.2758018  0.9882499  0.0242414  0.99342656 0.99517834
+ 0.9878256  0.990957   0.9915161  0.9865238  0.9673891  0.04227559
+ 0.99290425 0.99360365 0.9781084  0.02452324 0.9945287  0.05990472
+ 0.6667441  0.9931624  0.98993695 0.07501848 0.98964185 0.28406468
+ 0.3147822  0.9815248  0.07284222 0.28927708 0.05605118 0.9918447
+ 0.9938407  0.9948343  0.09115308 0.9915354  0.9808888  0.0640648
+ 0.03442632 0.995122   0.54922897 0.23014067 0.9931717  0.9877914
+ 0.2954464  0.35409617 0.9859811  0.13031498 0.14577426 0.2027648
+ 0.09663329 0.04889739 0.05521107 0.02404104 0.98680854 0.992919
+ 0.99328244 0.9899463  0.24396357 0.03902825 0.98291254 0.9840874
+ 0.04898496 0.99012905 0.99259186 0.03645128 0.99312043 0.97038305
+ 0.9837257  0.99348503 0.15810427 0.9951865  0.02449325 0.03471575
+ 0.97876257 0.9725532  0.05929906 0.97836316 0.8589982  0.74530387
+ 0.02275015 0.055548   0.99293524 0.99487513 0.46816993 0.855009
+ 0.7478397  0.117587   0.994313   0.02462479 0.5981107  0.9789682
+ 0.07390353 0.95026577 0.07011105 0.9941554  0.98195696 0.98632324
+ 0.03646418 0.02486465 0.09744195 0.9839917  0.07636936 0.9941975
+ 0.870221   0.03546385 0.10132102 0.02365362 0.989986   0.03248698
+ 0.0758421  0.03298378 0.9822036  0.04848883 0.04101214 0.12894166
+ 0.9526449  0.0492104  0.07104751 0.29721272 0.99433017 0.98893344
+ 0.0397667  0.03032732 0.95225394 0.9615105  0.13190486 0.15193585
+ 0.9903724  0.86450547 0.6178007  0.04589275 0.03856241 0.03398019
+ 0.8510105  0.9936132  0.05716931 0.98397857 0.9928276  0.98310757
+ 0.99489176 0.9933675  0.98383796 0.08018918 0.23512277 0.39306667
+ 0.9946936  0.99206054 0.9504557  0.9941327  0.33387613 0.99280435
+ 0.8595863  0.02906035 0.07255969 0.04546604 0.05168259 0.96457005
+ 0.06354885 0.9402023  0.99376476 0.99445564 0.98840266 0.04153343
+ 0.04014144 0.9891594  0.8157499  0.99449015 0.9767239  0.26357764
+ 0.02309931 0.5898532  0.99365085 0.98745096 0.9942151  0.5639456
+ 0.98928434 0.9838072  0.9907002  0.9938805  0.04139812 0.28193775
+ 0.17489414 0.99047256 0.9944238  0.99028337 0.9904845  0.0514763
+ 0.98777336 0.59505683 0.99405485 0.9857956  0.9932969  0.99167585
+ 0.11973076 0.99378574 0.9662054  0.07080924 0.23370625 0.09411074
+ 0.10191566 0.05101302 0.98903507 0.09682833 0.98049873 0.98835784
+ 0.97666264 0.02591483 0.4491086  0.98788714 0.99488336 0.03783873
+ 0.9640169  0.03445618 0.03960137 0.03929521 0.03635509 0.9945733
+ 0.23759209 0.13098478 0.99297756 0.9931813  0.8163677  0.9782883
+ 0.18136199 0.05769194 0.07020602 0.23033229 0.03966348 0.9944066
+ 0.15053612 0.42547756 0.05944118 0.9868662  0.9936566  0.9934587
+ 0.2131924  0.9926252  0.98606664 0.8470149  0.99415994 0.9928437
+ 0.98014337 0.90092915 0.9931825  0.02405983 0.9913122  0.9828016
+ 0.32047686 0.99088645 0.04799128 0.9948027  0.05164736 0.72147655
+ 0.99477553 0.08563715 0.14132062 0.9877601  0.26146695 0.9940422
+ 0.9896415  0.99275535 0.16724655 0.9917092  0.08238388 0.04712513
+ 0.15805024 0.9918624  0.9931409  0.9827728  0.02514162 0.97079873
+ 0.03567785 0.9921864  0.9939976  0.02919005 0.4988785  0.11923026
+ 0.0302327  0.9799484  0.9932641  0.99366647 0.99453074 0.9946255
+ 0.9829692  0.9818463  0.9944687  0.9932039  0.992751   0.99430346
+ 0.98996043 0.03840636 0.99414563 0.19295008 0.3744505  0.99421835
+ 0.96256614 0.03924315 0.09789587 0.04811611 0.9125011  0.99452966
+ 0.03375468 0.06474242 0.82957625 0.02610942 0.98867875 0.99357295
+ 0.03516886 0.99312085 0.99402857 0.06854471 0.25467113 0.0665601
+ 0.98637915 0.9941673  0.19467342 0.02697663 0.07100652 0.9854945
+ 0.9894757  0.5177268  0.9896175  0.9753559  0.06673153 0.1028561
+ 0.9931028  0.08201554 0.9800654  0.99334335 0.19555143 0.11548702
+ 0.1279775  0.9924821  0.98414326 0.13391533 0.07349619 0.03193737
+ 0.53710234 0.02731539 0.9905481  0.02552941 0.9853153  0.1679795
+ 0.1788644  0.98949695 0.995103   0.9761681  0.11681177 0.02398847
+ 0.9930682  0.99233377 0.9845354  0.64668465 0.9950197  0.03769033
+ 0.9952218  0.98862493 0.98585796 0.9933828  0.9936453  0.09078179
+ 0.8900552  0.50585    0.9870712  0.9914929  0.03525766 0.640207
+ 0.9940223  0.02422228 0.05715291 0.96021014 0.9911844  0.9917251
+ 0.9762422  0.9950204  0.9931774  0.98494947]
+video_auc: 0.9865953947368421
+label: [1 1 0 1 0 1 0 0 1 0 1 1 1 1 1 1 0 0 1 1 0 0 1 0 0 1 1 0 1 0 0 1 0 0 0 1 1
+ 1 0 1 1 0 0 1 0 0 1 1 0 0 1 0 0 0 0 0 0 0 1 1 1 1 0 0 1 1 0 1 1 0 1 1 1 1
+ 0 1 0 0 1 0 0 1 0 1 0 0 1 1 0 0 0 0 1 0 0 1 0 0 0 1 1 1 0 0 0 1 0 1 0 0 0
+ 0 1 0 0 0 1 0 0 0 0 0 0 0 1 1 0 0 1 1 1 0 1 0 0 0 0 0 1 1 0 1 1 1 1 1 1 0
+ 0 0 1 1 1 1 0 1 0 0 0 0 0 1 0 0 1 1 1 0 0 1 0 1 1 0 0 0 1 1 1 0 1 1 1 1 0
+ 0 0 1 1 1 1 0 1 0 1 1 1 1 0 1 1 0 0 0 0 0 1 0 1 1 1 0 0 1 1 0 0 0 0 0 0 1
+ 0 0 1 1 0 1 0 0 0 0 0 1 0 0 0 1 1 1 0 1 1 0 1 1 1 1 1 0 1 1 0 1 0 1 0 0 1
+ 0 0 1 0 1 1 1 0 1 0 0 0 1 1 1 0 1 0 1 1 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 0
+ 1 0 0 1 1 0 1 0 1 1 0 0 1 0 1 1 0 1 1 0 0 0 1 1 0 0 0 1 1 0 1 1 0 0 1 0 1
+ 1 0 0 0 1 1 0 0 0 0 0 1 0 1 0 0 1 1 1 0 0 1 1 1 0 1 0 1 1 1 1 1 0 1 0 0 1
+ 0 1 1 0 0 0 1 1 0 1 1 1]
+===> Test Done!
++ python3 training/test.py --detector_path ./training/config/detector/clip_stan.yaml --test_dataset FaceShifter DeepFakeDetection --weights_path /root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/logs/clip_stan_2025-05-31-05-25-02/test/avg/ckpt_best.pth
+/root/autodl-tmp/envs/DeepfakeBench-torch2.0/lib/python3.9/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: '/root/autodl-tmp/envs/DeepfakeBench-torch2.0/lib/python3.9/site-packages/torchvision/image.so: undefined symbol: _ZN3c1017RegisterOperatorsD1Ev'If you don't plan on using image functionality from `torchvision.io`, you can ignore this warning. Otherwise, there might be something wrong with your environment. Did you have `libjpeg` or `libpng` installed before building `torchvision` from source?
+  warn(
+['in_channels', 'out_channels', 'kernel_size', 'stride', 'padding', 'dilation', 'groups', 'bias', 'padding_mode', 'device', 'dtype']
+spatial_count=0 keep_stride_count=0
+batch_size: 32
+Skipping video DFD_fake_03_01__talking_angry_couch__JZUXXFRB because it has less than clip_size (8) frames (1).
+Skipping video DFD_fake_03_06__walking_down_street_outside_angry__1IXGY2FK because it has less than clip_size (8) frames (3).
+Skipping video DFD_fake_05_08__hugging_happy__FBICSP2C because it has less than clip_size (8) frames (7).
+Skipping video DFD_fake_07_02__secret_conversation__1JCLEEBQ because it has less than clip_size (8) frames (4).
+Skipping video DFD_fake_07_03__secret_conversation__IFSURI9X because it has less than clip_size (8) frames (4).
+Skipping video DFD_fake_07_09__secret_conversation__N9CWME71 because it has less than clip_size (8) frames (3).
+Skipping video DFD_fake_07_12__secret_conversation__1MSOAVLL because it has less than clip_size (8) frames (3).
+Skipping video DFD_fake_07_14__secret_conversation__P9QFO50U because it has less than clip_size (8) frames (3).
+Skipping video DFD_fake_07_21__secret_conversation__CRGVSDBI because it has less than clip_size (8) frames (6).
+Skipping video DFD_fake_11_21__talking_angry_couch__T7DK03O1 because it has less than clip_size (8) frames (5).
+Skipping video DFD_fake_11_21__walking_outside_cafe_disgusted__T7DK03O1 because it has less than clip_size (8) frames (1).
+Skipping video DFD_fake_12_06__secret_conversation__F3I4PDYF because it has less than clip_size (8) frames (6).
+Skipping video DFD_fake_12_07__secret_conversation__X9X7FAZG because it has less than clip_size (8) frames (5).
+Skipping video DFD_fake_12_13__secret_conversation__2TM4IFSF because it has less than clip_size (8) frames (5).
+Skipping video DFD_fake_12_15__secret_conversation__N0SRODQD because it has less than clip_size (8) frames (6).
+Skipping video DFD_fake_12_20__secret_conversation__B0X1CGG2 because it has less than clip_size (8) frames (5).
+Skipping video DFD_fake_12_20__secret_conversation__VD7BCF1U because it has less than clip_size (8) frames (5).
+Skipping video DFD_fake_12_21__secret_conversation__J54W3PV1 because it has less than clip_size (8) frames (4).
+Skipping video DFD_fake_13_02__secret_conversation__PLNVLO74 because it has less than clip_size (8) frames (6).
+Skipping video DFD_fake_13_03__secret_conversation__GBYWJW06 because it has less than clip_size (8) frames (2).
+Skipping video DFD_fake_13_12__secret_conversation__6G44TDN4 because it has less than clip_size (8) frames (6).
+Skipping video DFD_fake_13_12__secret_conversation__DJ7MF331 because it has less than clip_size (8) frames (5).
+Skipping video DFD_fake_13_15__secret_conversation__X0EIIJF7 because it has less than clip_size (8) frames (7).
+Skipping video DFD_fake_14_03__walking_down_indoor_hall_disgust__KJ221YN0 because it has less than clip_size (8) frames (1).
+Skipping video DFD_fake_14_06__secret_conversation__8U9ULZDT because it has less than clip_size (8) frames (7).
+Skipping video DFD_fake_14_18__talking_angry_couch__0YRBHIKG because it has less than clip_size (8) frames (5).
+Skipping video DFD_fake_14_20__walk_down_hall_angry__B014BKVO because it has less than clip_size (8) frames (7).
+Skipping video DFD_fake_14_21__secret_conversation__N0WM4GSV because it has less than clip_size (8) frames (6).
+Skipping video DFD_fake_15_02__walking_outside_cafe_disgusted__HTG660F8 because it has less than clip_size (8) frames (6).
+Skipping video DFD_fake_15_04__kitchen_still__46TJ9IOJ because it has less than clip_size (8) frames (1).
+Skipping video DFD_fake_16_08__walking_down_indoor_hall_disgust__8Q7JCS95 because it has less than clip_size (8) frames (3).
+Skipping video DFD_fake_17_05__hugging_happy__C4VHXZFY because it has less than clip_size (8) frames (2).
+Skipping video DFD_fake_17_05__hugging_happy__YTJYYDO9 because it has less than clip_size (8) frames (2).
+Skipping video DFD_fake_17_08__hugging_happy__05AN86QA because it has less than clip_size (8) frames (1).
+Skipping video DFD_fake_17_16__hugging_happy__S7UMSIQV because it has less than clip_size (8) frames (2).
+Skipping video DFD_fake_20_01__secret_conversation__6UBMLXK3 because it has less than clip_size (8) frames (6).
+Skipping video DFD_fake_20_01__secret_conversation__FW94AIMJ because it has less than clip_size (8) frames (4).
+Skipping video DFD_fake_20_11__secret_conversation__B2H95QXV because it has less than clip_size (8) frames (7).
+Skipping video DFD_fake_20_13__secret_conversation__4RU7I77X because it has less than clip_size (8) frames (3).
+Skipping video DFD_fake_20_14__secret_conversation__B014BKVO because it has less than clip_size (8) frames (2).
+Skipping video DFD_fake_20_14__walking_down_indoor_hall_disgust__R7SPX6OK because it has less than clip_size (8) frames (2).
+Skipping video DFD_fake_20_18__walking_down_indoor_hall_disgust__8BMQOD7S because it has less than clip_size (8) frames (3).
+Skipping video DFD_fake_20_26__secret_conversation__34DJQS3E because it has less than clip_size (8) frames (6).
+Skipping video DFD_fake_21_03__outside_talking_pan_laughing__YCSEBZO4 because it has less than clip_size (8) frames (3).
+Skipping video DFD_fake_21_09__kitchen_still__LBQF8ZN1 because it has less than clip_size (8) frames (1).
+Skipping video DFD_fake_21_25__walking_and_outside_surprised__NFBISHIN because it has less than clip_size (8) frames (6).
+Skipping video DFD_fake_22_24__walking_down_street_outside_angry__XL557XC6 because it has less than clip_size (8) frames (2).
+Skipping video DFD_fake_23_24__outside_talking_still_laughing__YR5OVD4S because it has less than clip_size (8) frames (2).
+Skipping video DFD_fake_23_24__podium_speech_happy__YR5OVD4S because it has less than clip_size (8) frames (6).
+Skipping video DFD_fake_25_02__exit_phone_room__Z7FQ69VP because it has less than clip_size (8) frames (5).
+Skipping video DFD_fake_25_06__secret_conversation__3QQBVBYN because it has less than clip_size (8) frames (4).
+Skipping video DFD_fake_25_26__secret_conversation__GJT740J9 because it has less than clip_size (8) frames (6).
+Skipping video DFD_fake_27_13__walking_and_outside_surprised__A1OSUJE9 because it has less than clip_size (8) frames (2).
+Skipping video DFD_real_07__secret_conversation because it has less than clip_size (8) frames (6).
+Skipping video DFD_real_17__hugging_happy because it has less than clip_size (8) frames (2).
+Skipping video DFD_real_20__secret_conversation because it has less than clip_size (8) frames (4).
+clip_path: weights/clip-vit-base-patch16
+features_dim: 768
+
+All parameters:
+class_embedding shape = (768,)
+cls_token shape = (1, 1, 768)
+feature_extractor.vision_model.embeddings.patch_embedding.weight shape = (768, 3, 16, 16)
+feature_extractor.vision_model.embeddings.position_embedding.weight shape = (197, 768)
+feature_extractor.vision_model.pre_layrnorm.weight shape = (768,)
+feature_extractor.vision_model.pre_layrnorm.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.0.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.0.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.0.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.0.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.0.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.0.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.0.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.1.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.1.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.1.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.1.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.1.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.1.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.1.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.2.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.2.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.2.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.2.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.2.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.2.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.2.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.3.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.3.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.3.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.3.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.3.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.3.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.3.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.4.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.4.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.4.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.4.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.4.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.4.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.4.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.5.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.5.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.5.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.5.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.5.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.5.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.5.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.6.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.6.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.6.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.6.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.6.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.6.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.6.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.7.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.7.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.7.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.7.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.7.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.7.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.7.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.8.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.8.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.8.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.8.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.8.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.8.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.8.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.9.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.9.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.9.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.9.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.9.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.9.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.9.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.10.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.10.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.10.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.10.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.10.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.10.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.10.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.11.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.11.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.11.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.11.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.11.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.11.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.11.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.post_layernorm.weight shape = (768,)
+feature_extractor.vision_model.post_layernorm.bias shape = (768,)
+STAN_S_layers.0.self_attn.k_proj.weight shape = (768, 768)
+STAN_S_layers.0.self_attn.k_proj.bias shape = (768,)
+STAN_S_layers.0.self_attn.v_proj.weight shape = (768, 768)
+STAN_S_layers.0.self_attn.v_proj.bias shape = (768,)
+STAN_S_layers.0.self_attn.q_proj.weight shape = (768, 768)
+STAN_S_layers.0.self_attn.q_proj.bias shape = (768,)
+STAN_S_layers.0.self_attn.out_proj.weight shape = (768, 768)
+STAN_S_layers.0.self_attn.out_proj.bias shape = (768,)
+STAN_S_layers.0.layer_norm1.weight shape = (768,)
+STAN_S_layers.0.layer_norm1.bias shape = (768,)
+STAN_S_layers.0.mlp.fc1.weight shape = (3072, 768)
+STAN_S_layers.0.mlp.fc1.bias shape = (3072,)
+STAN_S_layers.0.mlp.fc2.weight shape = (768, 3072)
+STAN_S_layers.0.mlp.fc2.bias shape = (768,)
+STAN_S_layers.0.layer_norm2.weight shape = (768,)
+STAN_S_layers.0.layer_norm2.bias shape = (768,)
+STAN_S_layers.1.self_attn.k_proj.weight shape = (768, 768)
+STAN_S_layers.1.self_attn.k_proj.bias shape = (768,)
+STAN_S_layers.1.self_attn.v_proj.weight shape = (768, 768)
+STAN_S_layers.1.self_attn.v_proj.bias shape = (768,)
+STAN_S_layers.1.self_attn.q_proj.weight shape = (768, 768)
+STAN_S_layers.1.self_attn.q_proj.bias shape = (768,)
+STAN_S_layers.1.self_attn.out_proj.weight shape = (768, 768)
+STAN_S_layers.1.self_attn.out_proj.bias shape = (768,)
+STAN_S_layers.1.layer_norm1.weight shape = (768,)
+STAN_S_layers.1.layer_norm1.bias shape = (768,)
+STAN_S_layers.1.mlp.fc1.weight shape = (3072, 768)
+STAN_S_layers.1.mlp.fc1.bias shape = (3072,)
+STAN_S_layers.1.mlp.fc2.weight shape = (768, 3072)
+STAN_S_layers.1.mlp.fc2.bias shape = (768,)
+STAN_S_layers.1.layer_norm2.weight shape = (768,)
+STAN_S_layers.1.layer_norm2.bias shape = (768,)
+STAN_T_layers.0.self_attn.k_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.k_proj.bias shape = (768,)
+STAN_T_layers.0.self_attn.v_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.v_proj.bias shape = (768,)
+STAN_T_layers.0.self_attn.q_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.q_proj.bias shape = (768,)
+STAN_T_layers.0.self_attn.out_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.out_proj.bias shape = (768,)
+STAN_T_layers.0.layer_norm1.weight shape = (768,)
+STAN_T_layers.0.layer_norm1.bias shape = (768,)
+STAN_T_layers.0.temporal_fc.weight shape = (768, 768)
+STAN_T_layers.0.temporal_fc.bias shape = (768,)
+STAN_T_layers.1.self_attn.k_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.k_proj.bias shape = (768,)
+STAN_T_layers.1.self_attn.v_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.v_proj.bias shape = (768,)
+STAN_T_layers.1.self_attn.q_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.q_proj.bias shape = (768,)
+STAN_T_layers.1.self_attn.out_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.out_proj.bias shape = (768,)
+STAN_T_layers.1.layer_norm1.weight shape = (768,)
+STAN_T_layers.1.layer_norm1.bias shape = (768,)
+STAN_T_layers.1.temporal_fc.weight shape = (768, 768)
+STAN_T_layers.1.temporal_fc.bias shape = (768,)
+time_embed.weight shape = (64, 768)
+model.linear.weight shape = (2, 768)
+model.linear.bias shape = (2,)
+
+🔥 Trainable parameters:
+class_embedding shape = (768,)
+cls_token shape = (1, 1, 768)
+feature_extractor.vision_model.pre_layrnorm.weight shape = (768,)
+feature_extractor.vision_model.pre_layrnorm.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.post_layernorm.weight shape = (768,)
+feature_extractor.vision_model.post_layernorm.bias shape = (768,)
+STAN_S_layers.0.layer_norm1.weight shape = (768,)
+STAN_S_layers.0.layer_norm1.bias shape = (768,)
+STAN_S_layers.0.layer_norm2.weight shape = (768,)
+STAN_S_layers.0.layer_norm2.bias shape = (768,)
+STAN_S_layers.1.layer_norm1.weight shape = (768,)
+STAN_S_layers.1.layer_norm1.bias shape = (768,)
+STAN_S_layers.1.layer_norm2.weight shape = (768,)
+STAN_S_layers.1.layer_norm2.bias shape = (768,)
+STAN_T_layers.0.self_attn.k_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.k_proj.bias shape = (768,)
+STAN_T_layers.0.self_attn.v_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.v_proj.bias shape = (768,)
+STAN_T_layers.0.self_attn.q_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.q_proj.bias shape = (768,)
+STAN_T_layers.0.self_attn.out_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.out_proj.bias shape = (768,)
+STAN_T_layers.0.layer_norm1.weight shape = (768,)
+STAN_T_layers.0.layer_norm1.bias shape = (768,)
+STAN_T_layers.0.temporal_fc.weight shape = (768, 768)
+STAN_T_layers.0.temporal_fc.bias shape = (768,)
+STAN_T_layers.1.self_attn.k_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.k_proj.bias shape = (768,)
+STAN_T_layers.1.self_attn.v_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.v_proj.bias shape = (768,)
+STAN_T_layers.1.self_attn.q_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.q_proj.bias shape = (768,)
+STAN_T_layers.1.self_attn.out_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.out_proj.bias shape = (768,)
+STAN_T_layers.1.layer_norm1.weight shape = (768,)
+STAN_T_layers.1.layer_norm1.bias shape = (768,)
+STAN_T_layers.1.temporal_fc.weight shape = (768, 768)
+STAN_T_layers.1.temporal_fc.bias shape = (768,)
+time_embed.weight shape = (64, 768)
+model.linear.weight shape = (2, 768)
+model.linear.bias shape = (2,)
+Total parameters: 105935618, trainable: 6007298, %: 5.6707
+===> Load checkpoint done!
+
+Dataset: FaceShifter
+Number of images: 1118
+Number of labels: 1118
+test images: 1118
+  0%|          | 0/35 [00:00<?, ?it/s]  3%|▎         | 1/35 [00:05<03:08,  5.54s/it]  6%|▌         | 2/35 [00:06<01:38,  3.00s/it]  9%|▊         | 3/35 [00:07<01:09,  2.19s/it] 11%|█▏        | 4/35 [00:09<00:55,  1.80s/it] 14%|█▍        | 5/35 [00:10<00:47,  1.59s/it] 17%|█▋        | 6/35 [00:11<00:42,  1.46s/it] 20%|██        | 7/35 [00:12<00:38,  1.38s/it] 23%|██▎       | 8/35 [00:14<00:35,  1.33s/it] 26%|██▌       | 9/35 [00:15<00:33,  1.30s/it] 29%|██▊       | 10/35 [00:16<00:31,  1.27s/it] 31%|███▏      | 11/35 [00:17<00:29,  1.25s/it] 34%|███▍      | 12/35 [00:18<00:28,  1.24s/it] 37%|███▋      | 13/35 [00:20<00:27,  1.23s/it] 40%|████      | 14/35 [00:21<00:25,  1.23s/it] 43%|████▎     | 15/35 [00:22<00:24,  1.23s/it] 46%|████▌     | 16/35 [00:23<00:23,  1.23s/it] 49%|████▊     | 17/35 [00:25<00:22,  1.22s/it] 51%|█████▏    | 18/35 [00:26<00:20,  1.22s/it] 54%|█████▍    | 19/35 [00:27<00:19,  1.22s/it] 57%|█████▋    | 20/35 [00:28<00:18,  1.22s/it] 60%|██████    | 21/35 [00:29<00:17,  1.22s/it] 63%|██████▎   | 22/35 [00:31<00:15,  1.22s/it] 66%|██████▌   | 23/35 [00:32<00:14,  1.22s/it] 69%|██████▊   | 24/35 [00:33<00:13,  1.22s/it] 71%|███████▏  | 25/35 [00:34<00:12,  1.22s/it] 74%|███████▍  | 26/35 [00:36<00:11,  1.23s/it] 77%|███████▋  | 27/35 [00:37<00:09,  1.23s/it] 80%|████████  | 28/35 [00:38<00:08,  1.23s/it] 83%|████████▎ | 29/35 [00:39<00:07,  1.22s/it] 86%|████████▌ | 30/35 [00:40<00:06,  1.22s/it] 89%|████████▊ | 31/35 [00:42<00:04,  1.22s/it] 91%|█████████▏| 32/35 [00:43<00:03,  1.22s/it] 94%|█████████▍| 33/35 [00:44<00:02,  1.22s/it] 97%|█████████▋| 34/35 [00:45<00:01,  1.22s/it]100%|██████████| 35/35 [00:48<00:00,  1.54s/it]100%|██████████| 35/35 [00:48<00:00,  1.38s/it]
+
+Detailed metrics for FaceShifter:
+True Negatives (Real classified as Real): 524
+False Positives (Real classified as Fake): 35
+False Negatives (Fake classified as Real): 408
+True Positives (Fake classified as Fake): 151
+Accuracy: 0.6038
+Precision: 0.8118
+Recall: 0.2701
+F1 Score: 0.4054
+
+Predictions shape: (1118,)
+Labels shape: (1118,)
+Number of processed images: 1118
+Number of processed image names: 1118
+len(y_pred): 1118
+len(y_true): 1118
+
+dataset: FaceShifter
+acc: 0.6037567084078712
+auc: 0.7125809249202351
+eer: 0.3470483005366726
+ap: 0.7328037658808892
+pred: [0.05731587 0.22041807 0.9686127  ... 0.05501304 0.04505023 0.15517047]
+video_auc: 0.7125809249202351
+label: [1 0 1 ... 0 0 1]
+
+Dataset: DeepFakeDetection
+Number of images: 11460
+Number of labels: 11460
+test images: 11460
+  0%|          | 0/359 [00:00<?, ?it/s]  0%|          | 1/359 [00:04<25:18,  4.24s/it]  1%|          | 2/359 [00:05<14:57,  2.51s/it]  1%|          | 3/359 [00:06<11:28,  1.93s/it]  1%|          | 4/359 [00:08<09:47,  1.65s/it]  1%|▏         | 5/359 [00:09<08:50,  1.50s/it]  2%|▏         | 6/359 [00:10<08:15,  1.41s/it]  2%|▏         | 7/359 [00:11<07:53,  1.35s/it]  2%|▏         | 8/359 [00:12<07:38,  1.31s/it]  3%|▎         | 9/359 [00:14<07:28,  1.28s/it]  3%|▎         | 10/359 [00:15<07:21,  1.27s/it]  3%|▎         | 11/359 [00:16<07:16,  1.25s/it]  3%|▎         | 12/359 [00:17<07:12,  1.25s/it]  4%|▎         | 13/359 [00:19<07:08,  1.24s/it]  4%|▍         | 14/359 [00:20<07:06,  1.24s/it]  4%|▍         | 15/359 [00:21<07:04,  1.23s/it]  4%|▍         | 16/359 [00:22<07:02,  1.23s/it]  5%|▍         | 17/359 [00:23<07:00,  1.23s/it]  5%|▌         | 18/359 [00:25<06:59,  1.23s/it]  5%|▌         | 19/359 [00:26<06:57,  1.23s/it]  6%|▌         | 20/359 [00:27<06:55,  1.23s/it]  6%|▌         | 21/359 [00:28<06:54,  1.23s/it]  6%|▌         | 22/359 [00:30<06:52,  1.22s/it]  6%|▋         | 23/359 [00:31<06:51,  1.23s/it]  7%|▋         | 24/359 [00:32<06:50,  1.23s/it]  7%|▋         | 25/359 [00:33<06:53,  1.24s/it]  7%|▋         | 26/359 [00:35<06:51,  1.23s/it]  8%|▊         | 27/359 [00:36<06:49,  1.23s/it]  8%|▊         | 28/359 [00:37<06:47,  1.23s/it]  8%|▊         | 29/359 [00:38<06:46,  1.23s/it]  8%|▊         | 30/359 [00:39<06:45,  1.23s/it]  9%|▊         | 31/359 [00:41<06:43,  1.23s/it]  9%|▉         | 32/359 [00:42<06:42,  1.23s/it]  9%|▉         | 33/359 [00:43<06:41,  1.23s/it]  9%|▉         | 34/359 [00:44<06:39,  1.23s/it] 10%|▉         | 35/359 [00:46<06:38,  1.23s/it] 10%|█         | 36/359 [00:47<06:37,  1.23s/it] 10%|█         | 37/359 [00:48<06:35,  1.23s/it] 11%|█         | 38/359 [00:49<06:34,  1.23s/it] 11%|█         | 39/359 [00:51<06:33,  1.23s/it] 11%|█         | 40/359 [00:52<06:32,  1.23s/it] 11%|█▏        | 41/359 [00:53<06:30,  1.23s/it] 12%|█▏        | 42/359 [00:54<06:28,  1.23s/it] 12%|█▏        | 43/359 [00:55<06:27,  1.23s/it] 12%|█▏        | 44/359 [00:57<06:26,  1.23s/it] 13%|█▎        | 45/359 [00:58<06:25,  1.23s/it] 13%|█▎        | 46/359 [00:59<06:23,  1.23s/it] 13%|█▎        | 47/359 [01:00<06:22,  1.23s/it] 13%|█▎        | 48/359 [01:02<06:22,  1.23s/it] 14%|█▎        | 49/359 [01:03<06:21,  1.23s/it] 14%|█▍        | 50/359 [01:04<06:20,  1.23s/it] 14%|█▍        | 51/359 [01:05<06:18,  1.23s/it] 14%|█▍        | 52/359 [01:06<06:17,  1.23s/it] 15%|█▍        | 53/359 [01:08<06:16,  1.23s/it] 15%|█▌        | 54/359 [01:09<06:15,  1.23s/it] 15%|█▌        | 55/359 [01:10<06:14,  1.23s/it] 16%|█▌        | 56/359 [01:11<06:12,  1.23s/it] 16%|█▌        | 57/359 [01:13<06:11,  1.23s/it] 16%|█▌        | 58/359 [01:14<06:10,  1.23s/it] 16%|█▋        | 59/359 [01:15<06:09,  1.23s/it] 17%|█▋        | 60/359 [01:16<06:07,  1.23s/it] 17%|█▋        | 61/359 [01:18<06:06,  1.23s/it] 17%|█▋        | 62/359 [01:19<06:05,  1.23s/it] 18%|█▊        | 63/359 [01:20<06:05,  1.23s/it] 18%|█▊        | 64/359 [01:21<06:04,  1.24s/it] 18%|█▊        | 65/359 [01:23<06:03,  1.24s/it] 18%|█▊        | 66/359 [01:24<06:03,  1.24s/it] 19%|█▊        | 67/359 [01:25<06:03,  1.24s/it] 19%|█▉        | 68/359 [01:26<06:01,  1.24s/it] 19%|█▉        | 69/359 [01:27<05:58,  1.24s/it] 19%|█▉        | 70/359 [01:29<05:57,  1.24s/it] 20%|█▉        | 71/359 [01:30<05:55,  1.23s/it] 20%|██        | 72/359 [01:31<05:54,  1.24s/it] 20%|██        | 73/359 [01:32<05:53,  1.23s/it] 21%|██        | 74/359 [01:34<05:52,  1.24s/it] 21%|██        | 75/359 [01:35<05:50,  1.24s/it] 21%|██        | 76/359 [01:36<05:49,  1.23s/it] 21%|██▏       | 77/359 [01:37<05:48,  1.23s/it] 22%|██▏       | 78/359 [01:39<05:46,  1.23s/it] 22%|██▏       | 79/359 [01:40<05:46,  1.24s/it] 22%|██▏       | 80/359 [01:41<05:44,  1.23s/it] 23%|██▎       | 81/359 [01:42<05:43,  1.23s/it] 23%|██▎       | 82/359 [01:44<05:41,  1.23s/it] 23%|██▎       | 83/359 [01:45<05:40,  1.23s/it] 23%|██▎       | 84/359 [01:46<05:39,  1.23s/it] 24%|██▎       | 85/359 [01:47<05:38,  1.23s/it] 24%|██▍       | 86/359 [01:48<05:36,  1.23s/it] 24%|██▍       | 87/359 [01:50<05:35,  1.23s/it] 25%|██▍       | 88/359 [01:51<05:34,  1.23s/it] 25%|██▍       | 89/359 [01:52<05:32,  1.23s/it] 25%|██▌       | 90/359 [01:53<05:31,  1.23s/it] 25%|██▌       | 91/359 [01:55<05:30,  1.23s/it] 26%|██▌       | 92/359 [01:56<05:29,  1.23s/it] 26%|██▌       | 93/359 [01:57<05:27,  1.23s/it] 26%|██▌       | 94/359 [01:58<05:26,  1.23s/it] 26%|██▋       | 95/359 [02:00<05:25,  1.23s/it] 27%|██▋       | 96/359 [02:01<05:24,  1.23s/it] 27%|██▋       | 97/359 [02:02<05:22,  1.23s/it] 27%|██▋       | 98/359 [02:03<05:21,  1.23s/it] 28%|██▊       | 99/359 [02:04<05:20,  1.23s/it] 28%|██▊       | 100/359 [02:06<05:19,  1.23s/it] 28%|██▊       | 101/359 [02:07<05:18,  1.23s/it] 28%|██▊       | 102/359 [02:08<05:16,  1.23s/it] 29%|██▊       | 103/359 [02:09<05:16,  1.24s/it] 29%|██▉       | 104/359 [02:11<05:15,  1.24s/it] 29%|██▉       | 105/359 [02:12<05:14,  1.24s/it] 30%|██▉       | 106/359 [02:13<05:12,  1.24s/it] 30%|██▉       | 107/359 [02:14<05:11,  1.24s/it] 30%|███       | 108/359 [02:16<05:09,  1.23s/it] 30%|███       | 109/359 [02:17<05:08,  1.23s/it] 31%|███       | 110/359 [02:18<05:07,  1.23s/it] 31%|███       | 111/359 [02:19<05:06,  1.24s/it] 31%|███       | 112/359 [02:21<05:06,  1.24s/it] 31%|███▏      | 113/359 [02:22<05:04,  1.24s/it] 32%|███▏      | 114/359 [02:23<05:03,  1.24s/it] 32%|███▏      | 115/359 [02:24<05:02,  1.24s/it] 32%|███▏      | 116/359 [02:25<05:00,  1.24s/it] 33%|███▎      | 117/359 [02:27<04:58,  1.23s/it] 33%|███▎      | 118/359 [02:28<04:58,  1.24s/it] 33%|███▎      | 119/359 [02:29<04:57,  1.24s/it] 33%|███▎      | 120/359 [02:30<04:55,  1.24s/it] 34%|███▎      | 121/359 [02:32<04:54,  1.24s/it] 34%|███▍      | 122/359 [02:33<04:53,  1.24s/it] 34%|███▍      | 123/359 [02:34<04:52,  1.24s/it] 35%|███▍      | 124/359 [02:35<04:50,  1.24s/it] 35%|███▍      | 125/359 [02:37<04:49,  1.24s/it] 35%|███▌      | 126/359 [02:38<04:47,  1.23s/it] 35%|███▌      | 127/359 [02:39<04:46,  1.24s/it] 36%|███▌      | 128/359 [02:40<04:45,  1.24s/it] 36%|███▌      | 129/359 [02:42<04:45,  1.24s/it] 36%|███▌      | 130/359 [02:43<04:44,  1.24s/it] 36%|███▋      | 131/359 [02:44<04:43,  1.24s/it] 37%|███▋      | 132/359 [02:45<04:43,  1.25s/it] 37%|███▋      | 133/359 [02:47<04:41,  1.24s/it] 37%|███▋      | 134/359 [02:48<04:39,  1.24s/it] 38%|███▊      | 135/359 [02:49<04:37,  1.24s/it] 38%|███▊      | 136/359 [02:50<04:35,  1.24s/it] 38%|███▊      | 137/359 [02:52<04:33,  1.23s/it] 38%|███▊      | 138/359 [02:53<04:32,  1.24s/it] 39%|███▊      | 139/359 [02:54<04:31,  1.24s/it] 39%|███▉      | 140/359 [02:55<04:32,  1.24s/it] 39%|███▉      | 141/359 [02:56<04:30,  1.24s/it] 40%|███▉      | 142/359 [02:58<04:29,  1.24s/it] 40%|███▉      | 143/359 [02:59<04:28,  1.24s/it] 40%|████      | 144/359 [03:00<04:26,  1.24s/it] 40%|████      | 145/359 [03:01<04:24,  1.24s/it] 41%|████      | 146/359 [03:03<04:23,  1.24s/it] 41%|████      | 147/359 [03:04<04:22,  1.24s/it] 41%|████      | 148/359 [03:05<04:20,  1.24s/it] 42%|████▏     | 149/359 [03:06<04:19,  1.23s/it] 42%|████▏     | 150/359 [03:08<04:18,  1.23s/it] 42%|████▏     | 151/359 [03:09<04:17,  1.24s/it] 42%|████▏     | 152/359 [03:10<04:16,  1.24s/it] 43%|████▎     | 153/359 [03:11<04:16,  1.24s/it] 43%|████▎     | 154/359 [03:13<04:14,  1.24s/it] 43%|████▎     | 155/359 [03:14<04:12,  1.24s/it] 43%|████▎     | 156/359 [03:15<04:10,  1.24s/it] 44%|████▎     | 157/359 [03:16<04:09,  1.24s/it] 44%|████▍     | 158/359 [03:18<04:08,  1.23s/it] 44%|████▍     | 159/359 [03:19<04:06,  1.23s/it] 45%|████▍     | 160/359 [03:20<04:05,  1.23s/it] 45%|████▍     | 161/359 [03:21<04:04,  1.23s/it] 45%|████▌     | 162/359 [03:22<04:02,  1.23s/it] 45%|████▌     | 163/359 [03:24<04:01,  1.23s/it] 46%|████▌     | 164/359 [03:25<04:00,  1.23s/it] 46%|████▌     | 165/359 [03:26<03:58,  1.23s/it] 46%|████▌     | 166/359 [03:27<03:57,  1.23s/it] 47%|████▋     | 167/359 [03:29<03:56,  1.23s/it] 47%|████▋     | 168/359 [03:30<03:55,  1.23s/it] 47%|████▋     | 169/359 [03:31<03:54,  1.23s/it] 47%|████▋     | 170/359 [03:32<03:53,  1.23s/it] 48%|████▊     | 171/359 [03:34<03:51,  1.23s/it] 48%|████▊     | 172/359 [03:35<03:50,  1.23s/it] 48%|████▊     | 173/359 [03:36<03:49,  1.23s/it] 48%|████▊     | 174/359 [03:37<03:48,  1.23s/it] 49%|████▊     | 175/359 [03:38<03:47,  1.24s/it] 49%|████▉     | 176/359 [03:40<03:46,  1.24s/it] 49%|████▉     | 177/359 [03:41<03:45,  1.24s/it] 50%|████▉     | 178/359 [03:42<03:44,  1.24s/it] 50%|████▉     | 179/359 [03:43<03:42,  1.24s/it] 50%|█████     | 180/359 [03:45<03:41,  1.24s/it] 50%|█████     | 181/359 [03:46<03:40,  1.24s/it] 51%|█████     | 182/359 [03:47<03:38,  1.24s/it] 51%|█████     | 183/359 [03:48<03:37,  1.24s/it] 51%|█████▏    | 184/359 [03:50<03:36,  1.24s/it] 52%|█████▏    | 185/359 [03:51<03:34,  1.23s/it] 52%|█████▏    | 186/359 [03:52<03:33,  1.24s/it] 52%|█████▏    | 187/359 [03:53<03:32,  1.24s/it] 52%|█████▏    | 188/359 [03:55<03:31,  1.24s/it] 53%|█████▎    | 189/359 [03:56<03:29,  1.23s/it] 53%|█████▎    | 190/359 [03:57<03:28,  1.24s/it] 53%|█████▎    | 191/359 [03:58<03:27,  1.24s/it] 53%|█████▎    | 192/359 [03:59<03:26,  1.24s/it] 54%|█████▍    | 193/359 [04:01<03:25,  1.24s/it] 54%|█████▍    | 194/359 [04:02<03:24,  1.24s/it] 54%|█████▍    | 195/359 [04:03<03:22,  1.24s/it] 55%|█████▍    | 196/359 [04:04<03:21,  1.24s/it] 55%|█████▍    | 197/359 [04:06<03:20,  1.24s/it] 55%|█████▌    | 198/359 [04:07<03:19,  1.24s/it] 55%|█████▌    | 199/359 [04:08<03:17,  1.24s/it] 56%|█████▌    | 200/359 [04:09<03:16,  1.24s/it] 56%|█████▌    | 201/359 [04:11<03:15,  1.24s/it] 56%|█████▋    | 202/359 [04:12<03:14,  1.24s/it] 57%|█████▋    | 203/359 [04:13<03:12,  1.24s/it] 57%|█████▋    | 204/359 [04:14<03:11,  1.24s/it] 57%|█████▋    | 205/359 [04:16<03:10,  1.24s/it] 57%|█████▋    | 206/359 [04:17<03:09,  1.24s/it] 58%|█████▊    | 207/359 [04:18<03:11,  1.26s/it] 58%|█████▊    | 208/359 [04:19<03:13,  1.28s/it] 58%|█████▊    | 209/359 [04:21<03:10,  1.27s/it] 58%|█████▊    | 210/359 [04:22<03:07,  1.26s/it] 59%|█████▉    | 211/359 [04:23<03:05,  1.25s/it] 59%|█████▉    | 212/359 [04:24<03:03,  1.25s/it] 59%|█████▉    | 213/359 [04:26<03:01,  1.24s/it] 60%|█████▉    | 214/359 [04:27<03:02,  1.26s/it] 60%|█████▉    | 215/359 [04:28<03:07,  1.30s/it] 60%|██████    | 216/359 [04:30<03:04,  1.29s/it] 60%|██████    | 217/359 [04:31<03:00,  1.27s/it] 61%|██████    | 218/359 [04:32<02:57,  1.26s/it] 61%|██████    | 219/359 [04:33<02:55,  1.25s/it] 61%|██████▏   | 220/359 [04:35<02:53,  1.25s/it] 62%|██████▏   | 221/359 [04:36<02:55,  1.27s/it] 62%|██████▏   | 222/359 [04:37<02:59,  1.31s/it] 62%|██████▏   | 223/359 [04:38<02:54,  1.29s/it] 62%|██████▏   | 224/359 [04:40<02:51,  1.27s/it] 63%|██████▎   | 225/359 [04:41<02:49,  1.26s/it] 63%|██████▎   | 226/359 [04:42<02:47,  1.26s/it] 63%|██████▎   | 227/359 [04:43<02:45,  1.25s/it] 64%|██████▎   | 228/359 [04:45<02:43,  1.25s/it] 64%|██████▍   | 229/359 [04:46<02:42,  1.25s/it] 64%|██████▍   | 230/359 [04:47<02:40,  1.24s/it] 64%|██████▍   | 231/359 [04:48<02:39,  1.24s/it] 65%|██████▍   | 232/359 [04:50<02:37,  1.24s/it] 65%|██████▍   | 233/359 [04:51<02:36,  1.24s/it] 65%|██████▌   | 234/359 [04:52<02:34,  1.24s/it] 65%|██████▌   | 235/359 [04:53<02:33,  1.24s/it] 66%|██████▌   | 236/359 [04:55<02:32,  1.24s/it] 66%|██████▌   | 237/359 [04:56<02:31,  1.24s/it] 66%|██████▋   | 238/359 [04:57<02:29,  1.24s/it] 67%|██████▋   | 239/359 [04:58<02:28,  1.24s/it] 67%|██████▋   | 240/359 [05:00<02:27,  1.24s/it] 67%|██████▋   | 241/359 [05:01<02:26,  1.24s/it] 67%|██████▋   | 242/359 [05:02<02:24,  1.24s/it] 68%|██████▊   | 243/359 [05:03<02:23,  1.24s/it] 68%|██████▊   | 244/359 [05:04<02:22,  1.24s/it] 68%|██████▊   | 245/359 [05:06<02:21,  1.24s/it] 69%|██████▊   | 246/359 [05:07<02:19,  1.24s/it] 69%|██████▉   | 247/359 [05:08<02:18,  1.23s/it] 69%|██████▉   | 248/359 [05:09<02:17,  1.24s/it] 69%|██████▉   | 249/359 [05:11<02:16,  1.24s/it] 70%|██████▉   | 250/359 [05:12<02:15,  1.24s/it] 70%|██████▉   | 251/359 [05:13<02:14,  1.24s/it] 70%|███████   | 252/359 [05:14<02:12,  1.24s/it] 70%|███████   | 253/359 [05:16<02:11,  1.24s/it] 71%|███████   | 254/359 [05:17<02:10,  1.24s/it] 71%|███████   | 255/359 [05:18<02:09,  1.24s/it] 71%|███████▏  | 256/359 [05:19<02:07,  1.24s/it] 72%|███████▏  | 257/359 [05:21<02:06,  1.24s/it] 72%|███████▏  | 258/359 [05:22<02:08,  1.27s/it] 72%|███████▏  | 259/359 [05:23<02:09,  1.30s/it] 72%|███████▏  | 260/359 [05:25<02:33,  1.55s/it] 73%|███████▎  | 261/359 [05:28<02:55,  1.80s/it] 73%|███████▎  | 262/359 [05:30<03:10,  1.96s/it] 73%|███████▎  | 263/359 [05:33<03:20,  2.09s/it] 74%|███████▎  | 264/359 [05:35<03:26,  2.18s/it] 74%|███████▍  | 265/359 [05:37<03:30,  2.24s/it] 74%|███████▍  | 266/359 [05:40<03:31,  2.28s/it] 74%|███████▍  | 267/359 [05:42<03:32,  2.31s/it] 75%|███████▍  | 268/359 [05:44<03:32,  2.33s/it] 75%|███████▍  | 269/359 [05:47<03:30,  2.34s/it] 75%|███████▌  | 270/359 [05:49<03:29,  2.35s/it] 75%|███████▌  | 271/359 [05:52<03:27,  2.35s/it] 76%|███████▌  | 272/359 [05:54<03:25,  2.36s/it] 76%|███████▌  | 273/359 [05:56<03:23,  2.36s/it] 76%|███████▋  | 274/359 [05:59<03:20,  2.36s/it] 77%|███████▋  | 275/359 [06:01<03:19,  2.37s/it] 77%|███████▋  | 276/359 [06:03<03:16,  2.37s/it] 77%|███████▋  | 277/359 [06:06<03:14,  2.38s/it] 77%|███████▋  | 278/359 [06:08<03:12,  2.37s/it] 78%|███████▊  | 279/359 [06:11<03:10,  2.38s/it] 78%|███████▊  | 280/359 [06:13<03:07,  2.38s/it] 78%|███████▊  | 281/359 [06:15<03:05,  2.38s/it] 79%|███████▊  | 282/359 [06:18<03:02,  2.38s/it] 79%|███████▉  | 283/359 [06:20<03:00,  2.38s/it] 79%|███████▉  | 284/359 [06:22<02:58,  2.38s/it] 79%|███████▉  | 285/359 [06:25<02:55,  2.38s/it] 80%|███████▉  | 286/359 [06:27<02:53,  2.38s/it] 80%|███████▉  | 287/359 [06:30<02:51,  2.38s/it] 80%|████████  | 288/359 [06:32<02:49,  2.38s/it] 81%|████████  | 289/359 [06:34<02:46,  2.38s/it] 81%|████████  | 290/359 [06:37<02:44,  2.38s/it] 81%|████████  | 291/359 [06:39<02:41,  2.38s/it] 81%|████████▏ | 292/359 [06:41<02:39,  2.38s/it] 82%|████████▏ | 293/359 [06:44<02:36,  2.38s/it] 82%|████████▏ | 294/359 [06:46<02:34,  2.37s/it] 82%|████████▏ | 295/359 [06:49<02:32,  2.38s/it] 82%|████████▏ | 296/359 [06:51<02:29,  2.38s/it] 83%|████████▎ | 297/359 [06:53<02:27,  2.38s/it] 83%|████████▎ | 298/359 [06:56<02:24,  2.38s/it] 83%|████████▎ | 299/359 [06:58<02:22,  2.38s/it] 84%|████████▎ | 300/359 [07:01<02:20,  2.38s/it] 84%|████████▍ | 301/359 [07:03<02:18,  2.38s/it] 84%|████████▍ | 302/359 [07:05<02:15,  2.38s/it] 84%|████████▍ | 303/359 [07:08<02:13,  2.38s/it] 85%|████████▍ | 304/359 [07:10<02:10,  2.38s/it] 85%|████████▍ | 305/359 [07:12<02:08,  2.38s/it] 85%|████████▌ | 306/359 [07:15<02:06,  2.38s/it] 86%|████████▌ | 307/359 [07:17<02:03,  2.38s/it] 86%|████████▌ | 308/359 [07:20<02:01,  2.38s/it] 86%|████████▌ | 309/359 [07:22<01:59,  2.38s/it] 86%|████████▋ | 310/359 [07:24<01:54,  2.34s/it] 87%|████████▋ | 311/359 [07:26<01:41,  2.11s/it] 87%|████████▋ | 312/359 [07:28<01:42,  2.19s/it] 87%|████████▋ | 313/359 [07:31<01:43,  2.24s/it] 87%|████████▋ | 314/359 [07:33<01:42,  2.28s/it] 88%|████████▊ | 315/359 [07:35<01:41,  2.31s/it] 88%|████████▊ | 316/359 [07:38<01:39,  2.33s/it] 88%|████████▊ | 317/359 [07:40<01:38,  2.34s/it] 89%|████████▊ | 318/359 [07:42<01:36,  2.35s/it] 89%|████████▉ | 319/359 [07:45<01:34,  2.36s/it] 89%|████████▉ | 320/359 [07:47<01:32,  2.36s/it] 89%|████████▉ | 321/359 [07:49<01:29,  2.36s/it] 90%|████████▉ | 322/359 [07:52<01:27,  2.37s/it] 90%|████████▉ | 323/359 [07:54<01:25,  2.37s/it] 90%|█████████ | 324/359 [07:57<01:22,  2.37s/it] 91%|█████████ | 325/359 [07:59<01:20,  2.37s/it] 91%|█████████ | 326/359 [08:01<01:18,  2.37s/it] 91%|█████████ | 327/359 [08:04<01:15,  2.37s/it] 91%|█████████▏| 328/359 [08:06<01:13,  2.37s/it] 92%|█████████▏| 329/359 [08:08<01:11,  2.38s/it] 92%|█████████▏| 330/359 [08:11<01:08,  2.37s/it] 92%|█████████▏| 331/359 [08:13<01:06,  2.38s/it] 92%|█████████▏| 332/359 [08:16<01:04,  2.38s/it] 93%|█████████▎| 333/359 [08:18<01:01,  2.38s/it] 93%|█████████▎| 334/359 [08:20<00:59,  2.38s/it] 93%|█████████▎| 335/359 [08:23<00:56,  2.37s/it] 94%|█████████▎| 336/359 [08:25<00:54,  2.37s/it] 94%|█████████▍| 337/359 [08:27<00:52,  2.37s/it] 94%|█████████▍| 338/359 [08:30<00:49,  2.37s/it] 94%|█████████▍| 339/359 [08:32<00:47,  2.37s/it] 95%|█████████▍| 340/359 [08:35<00:45,  2.37s/it] 95%|█████████▍| 341/359 [08:37<00:42,  2.37s/it] 95%|█████████▌| 342/359 [08:39<00:40,  2.37s/it] 96%|█████████▌| 343/359 [08:42<00:37,  2.37s/it] 96%|█████████▌| 344/359 [08:44<00:34,  2.30s/it] 96%|█████████▌| 345/359 [08:45<00:28,  2.05s/it] 96%|█████████▋| 346/359 [08:48<00:27,  2.14s/it] 97%|█████████▋| 347/359 [08:50<00:26,  2.21s/it] 97%|█████████▋| 348/359 [08:52<00:24,  2.25s/it] 97%|█████████▋| 349/359 [08:55<00:22,  2.28s/it] 97%|█████████▋| 350/359 [08:57<00:20,  2.31s/it] 98%|█████████▊| 351/359 [08:59<00:18,  2.33s/it] 98%|█████████▊| 352/359 [09:02<00:16,  2.34s/it] 98%|█████████▊| 353/359 [09:04<00:14,  2.34s/it] 99%|█████████▊| 354/359 [09:07<00:11,  2.35s/it] 99%|█████████▉| 355/359 [09:09<00:09,  2.36s/it] 99%|█████████▉| 356/359 [09:11<00:07,  2.36s/it] 99%|█████████▉| 357/359 [09:14<00:04,  2.36s/it]100%|█████████▉| 358/359 [09:16<00:02,  2.36s/it]100%|██████████| 359/359 [09:17<00:00,  1.87s/it]100%|██████████| 359/359 [09:17<00:00,  1.55s/it]
+
+Detailed metrics for DeepFakeDetection:
+True Negatives (Real classified as Real): 1060
+False Positives (Real classified as Fake): 121
+False Negatives (Fake classified as Real): 2068
+True Positives (Fake classified as Fake): 8211
+Accuracy: 0.8090
+Precision: 0.9855
+Recall: 0.7988
+F1 Score: 0.8824
+
+Predictions shape: (11460,)
+Labels shape: (11460,)
+Number of processed images: 11460
+Number of processed image names: 11460
+len(y_pred): 11460
+len(y_true): 11460
+
+dataset: DeepFakeDetection
+acc: 0.8089877835951135
+auc: 0.9320326975602535
+eer: 0.14648602878916173
+ap: 0.9911029893416732
+pred: [0.30224362 0.24933252 0.79538786 ... 0.9427239  0.99038994 0.07245066]
+video_auc: 0.9320326975602535
+label: [1 1 1 ... 1 1 1]
+===> Test Done!
++ python3 training/test.py --detector_path ./training/config/detector/clip_stan.yaml --test_dataset FaceForensics++ --weights_path /root/autodl-tmp/benchmark_deepfakes/DeepfakeBench/logs/clip_stan_2025-05-31-05-25-02/test/avg/ckpt_best.pth
+/root/autodl-tmp/envs/DeepfakeBench-torch2.0/lib/python3.9/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: '/root/autodl-tmp/envs/DeepfakeBench-torch2.0/lib/python3.9/site-packages/torchvision/image.so: undefined symbol: _ZN3c1017RegisterOperatorsD1Ev'If you don't plan on using image functionality from `torchvision.io`, you can ignore this warning. Otherwise, there might be something wrong with your environment. Did you have `libjpeg` or `libpng` installed before building `torchvision` from source?
+  warn(
+['in_channels', 'out_channels', 'kernel_size', 'stride', 'padding', 'dilation', 'groups', 'bias', 'padding_mode', 'device', 'dtype']
+spatial_count=0 keep_stride_count=0
+batch_size: 32
+clip_path: weights/clip-vit-base-patch16
+features_dim: 768
+
+All parameters:
+class_embedding shape = (768,)
+cls_token shape = (1, 1, 768)
+feature_extractor.vision_model.embeddings.patch_embedding.weight shape = (768, 3, 16, 16)
+feature_extractor.vision_model.embeddings.position_embedding.weight shape = (197, 768)
+feature_extractor.vision_model.pre_layrnorm.weight shape = (768,)
+feature_extractor.vision_model.pre_layrnorm.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.0.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.0.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.0.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.0.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.0.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.0.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.0.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.1.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.1.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.1.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.1.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.1.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.1.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.1.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.2.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.2.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.2.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.2.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.2.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.2.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.2.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.3.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.3.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.3.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.3.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.3.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.3.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.3.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.4.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.4.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.4.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.4.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.4.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.4.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.4.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.5.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.5.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.5.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.5.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.5.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.5.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.5.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.6.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.6.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.6.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.6.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.6.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.6.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.6.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.7.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.7.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.7.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.7.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.7.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.7.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.7.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.8.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.8.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.8.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.8.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.8.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.8.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.8.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.9.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.9.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.9.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.9.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.9.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.9.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.9.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.10.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.10.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.10.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.10.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.10.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.10.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.10.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.self_attn.k_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.11.self_attn.k_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.self_attn.v_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.11.self_attn.v_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.self_attn.q_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.11.self_attn.q_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.self_attn.out_proj.weight shape = (768, 768)
+feature_extractor.vision_model.encoder.layers.11.self_attn.out_proj.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.mlp.fc1.weight shape = (3072, 768)
+feature_extractor.vision_model.encoder.layers.11.mlp.fc1.bias shape = (3072,)
+feature_extractor.vision_model.encoder.layers.11.mlp.fc2.weight shape = (768, 3072)
+feature_extractor.vision_model.encoder.layers.11.mlp.fc2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.post_layernorm.weight shape = (768,)
+feature_extractor.vision_model.post_layernorm.bias shape = (768,)
+STAN_S_layers.0.self_attn.k_proj.weight shape = (768, 768)
+STAN_S_layers.0.self_attn.k_proj.bias shape = (768,)
+STAN_S_layers.0.self_attn.v_proj.weight shape = (768, 768)
+STAN_S_layers.0.self_attn.v_proj.bias shape = (768,)
+STAN_S_layers.0.self_attn.q_proj.weight shape = (768, 768)
+STAN_S_layers.0.self_attn.q_proj.bias shape = (768,)
+STAN_S_layers.0.self_attn.out_proj.weight shape = (768, 768)
+STAN_S_layers.0.self_attn.out_proj.bias shape = (768,)
+STAN_S_layers.0.layer_norm1.weight shape = (768,)
+STAN_S_layers.0.layer_norm1.bias shape = (768,)
+STAN_S_layers.0.mlp.fc1.weight shape = (3072, 768)
+STAN_S_layers.0.mlp.fc1.bias shape = (3072,)
+STAN_S_layers.0.mlp.fc2.weight shape = (768, 3072)
+STAN_S_layers.0.mlp.fc2.bias shape = (768,)
+STAN_S_layers.0.layer_norm2.weight shape = (768,)
+STAN_S_layers.0.layer_norm2.bias shape = (768,)
+STAN_S_layers.1.self_attn.k_proj.weight shape = (768, 768)
+STAN_S_layers.1.self_attn.k_proj.bias shape = (768,)
+STAN_S_layers.1.self_attn.v_proj.weight shape = (768, 768)
+STAN_S_layers.1.self_attn.v_proj.bias shape = (768,)
+STAN_S_layers.1.self_attn.q_proj.weight shape = (768, 768)
+STAN_S_layers.1.self_attn.q_proj.bias shape = (768,)
+STAN_S_layers.1.self_attn.out_proj.weight shape = (768, 768)
+STAN_S_layers.1.self_attn.out_proj.bias shape = (768,)
+STAN_S_layers.1.layer_norm1.weight shape = (768,)
+STAN_S_layers.1.layer_norm1.bias shape = (768,)
+STAN_S_layers.1.mlp.fc1.weight shape = (3072, 768)
+STAN_S_layers.1.mlp.fc1.bias shape = (3072,)
+STAN_S_layers.1.mlp.fc2.weight shape = (768, 3072)
+STAN_S_layers.1.mlp.fc2.bias shape = (768,)
+STAN_S_layers.1.layer_norm2.weight shape = (768,)
+STAN_S_layers.1.layer_norm2.bias shape = (768,)
+STAN_T_layers.0.self_attn.k_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.k_proj.bias shape = (768,)
+STAN_T_layers.0.self_attn.v_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.v_proj.bias shape = (768,)
+STAN_T_layers.0.self_attn.q_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.q_proj.bias shape = (768,)
+STAN_T_layers.0.self_attn.out_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.out_proj.bias shape = (768,)
+STAN_T_layers.0.layer_norm1.weight shape = (768,)
+STAN_T_layers.0.layer_norm1.bias shape = (768,)
+STAN_T_layers.0.temporal_fc.weight shape = (768, 768)
+STAN_T_layers.0.temporal_fc.bias shape = (768,)
+STAN_T_layers.1.self_attn.k_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.k_proj.bias shape = (768,)
+STAN_T_layers.1.self_attn.v_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.v_proj.bias shape = (768,)
+STAN_T_layers.1.self_attn.q_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.q_proj.bias shape = (768,)
+STAN_T_layers.1.self_attn.out_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.out_proj.bias shape = (768,)
+STAN_T_layers.1.layer_norm1.weight shape = (768,)
+STAN_T_layers.1.layer_norm1.bias shape = (768,)
+STAN_T_layers.1.temporal_fc.weight shape = (768, 768)
+STAN_T_layers.1.temporal_fc.bias shape = (768,)
+time_embed.weight shape = (64, 768)
+model.linear.weight shape = (2, 768)
+model.linear.bias shape = (2,)
+
+🔥 Trainable parameters:
+class_embedding shape = (768,)
+cls_token shape = (1, 1, 768)
+feature_extractor.vision_model.pre_layrnorm.weight shape = (768,)
+feature_extractor.vision_model.pre_layrnorm.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.0.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.1.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.2.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.3.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.4.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.5.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.6.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.7.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.8.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.9.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.10.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm1.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm1.bias shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm2.weight shape = (768,)
+feature_extractor.vision_model.encoder.layers.11.layer_norm2.bias shape = (768,)
+feature_extractor.vision_model.post_layernorm.weight shape = (768,)
+feature_extractor.vision_model.post_layernorm.bias shape = (768,)
+STAN_S_layers.0.layer_norm1.weight shape = (768,)
+STAN_S_layers.0.layer_norm1.bias shape = (768,)
+STAN_S_layers.0.layer_norm2.weight shape = (768,)
+STAN_S_layers.0.layer_norm2.bias shape = (768,)
+STAN_S_layers.1.layer_norm1.weight shape = (768,)
+STAN_S_layers.1.layer_norm1.bias shape = (768,)
+STAN_S_layers.1.layer_norm2.weight shape = (768,)
+STAN_S_layers.1.layer_norm2.bias shape = (768,)
+STAN_T_layers.0.self_attn.k_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.k_proj.bias shape = (768,)
+STAN_T_layers.0.self_attn.v_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.v_proj.bias shape = (768,)
+STAN_T_layers.0.self_attn.q_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.q_proj.bias shape = (768,)
+STAN_T_layers.0.self_attn.out_proj.weight shape = (768, 768)
+STAN_T_layers.0.self_attn.out_proj.bias shape = (768,)
+STAN_T_layers.0.layer_norm1.weight shape = (768,)
+STAN_T_layers.0.layer_norm1.bias shape = (768,)
+STAN_T_layers.0.temporal_fc.weight shape = (768, 768)
+STAN_T_layers.0.temporal_fc.bias shape = (768,)
+STAN_T_layers.1.self_attn.k_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.k_proj.bias shape = (768,)
+STAN_T_layers.1.self_attn.v_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.v_proj.bias shape = (768,)
+STAN_T_layers.1.self_attn.q_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.q_proj.bias shape = (768,)
+STAN_T_layers.1.self_attn.out_proj.weight shape = (768, 768)
+STAN_T_layers.1.self_attn.out_proj.bias shape = (768,)
+STAN_T_layers.1.layer_norm1.weight shape = (768,)
+STAN_T_layers.1.layer_norm1.bias shape = (768,)
+STAN_T_layers.1.temporal_fc.weight shape = (768, 768)
+STAN_T_layers.1.temporal_fc.bias shape = (768,)
+time_embed.weight shape = (64, 768)
+model.linear.weight shape = (2, 768)
+model.linear.bias shape = (2,)
+Total parameters: 105935618, trainable: 6007298, %: 5.6707
+===> Load checkpoint done!
+
+Dataset: FaceForensics++
+Number of images: 2788
+Number of labels: 2788
+test images: 2788
+  0%|          | 0/88 [00:00<?, ?it/s]  1%|          | 1/88 [00:09<14:24,  9.93s/it]  2%|▏         | 2/88 [00:12<07:52,  5.49s/it]  3%|▎         | 3/88 [00:14<05:47,  4.08s/it]  5%|▍         | 4/88 [00:16<04:27,  3.18s/it]  6%|▌         | 5/88 [00:18<03:45,  2.72s/it]  7%|▋         | 6/88 [00:20<03:33,  2.61s/it]  8%|▊         | 7/88 [00:23<03:25,  2.53s/it]  9%|▉         | 8/88 [00:25<03:19,  2.49s/it] 10%|█         | 9/88 [00:27<03:13,  2.45s/it] 11%|█▏        | 10/88 [00:30<03:09,  2.43s/it] 12%|█▎        | 11/88 [00:32<02:59,  2.33s/it] 14%|█▎        | 12/88 [00:33<02:33,  2.03s/it] 15%|█▍        | 13/88 [00:35<02:13,  1.79s/it] 16%|█▌        | 14/88 [00:36<01:59,  1.62s/it] 17%|█▋        | 15/88 [00:37<01:49,  1.50s/it] 18%|█▊        | 16/88 [00:38<01:42,  1.42s/it] 19%|█▉        | 17/88 [00:39<01:36,  1.36s/it] 20%|██        | 18/88 [00:41<01:32,  1.32s/it] 22%|██▏       | 19/88 [00:42<01:30,  1.31s/it] 23%|██▎       | 20/88 [00:43<01:30,  1.34s/it] 24%|██▍       | 21/88 [00:45<01:37,  1.45s/it] 25%|██▌       | 22/88 [00:47<01:53,  1.72s/it] 26%|██▌       | 23/88 [00:50<02:04,  1.92s/it] 27%|██▋       | 24/88 [00:52<02:11,  2.06s/it] 28%|██▊       | 25/88 [00:54<02:11,  2.08s/it] 30%|██▉       | 26/88 [00:57<02:14,  2.17s/it] 31%|███       | 27/88 [00:59<02:16,  2.24s/it] 32%|███▏      | 28/88 [01:01<02:16,  2.28s/it] 33%|███▎      | 29/88 [01:04<02:16,  2.31s/it] 34%|███▍      | 30/88 [01:06<02:15,  2.34s/it] 35%|███▌      | 31/88 [01:09<02:14,  2.35s/it] 36%|███▋      | 32/88 [01:11<02:12,  2.36s/it] 38%|███▊      | 33/88 [01:13<02:10,  2.37s/it] 39%|███▊      | 34/88 [01:16<02:08,  2.37s/it] 40%|███▉      | 35/88 [01:18<02:05,  2.38s/it] 41%|████      | 36/88 [01:21<02:03,  2.38s/it] 42%|████▏     | 37/88 [01:23<02:01,  2.38s/it] 43%|████▎     | 38/88 [01:25<01:58,  2.37s/it] 44%|████▍     | 39/88 [01:27<01:45,  2.15s/it] 45%|████▌     | 40/88 [01:29<01:45,  2.21s/it] 47%|████▋     | 41/88 [01:32<01:45,  2.25s/it] 48%|████▊     | 42/88 [01:34<01:45,  2.29s/it] 49%|████▉     | 43/88 [01:36<01:43,  2.31s/it] 50%|█████     | 44/88 [01:39<01:42,  2.32s/it] 51%|█████     | 45/88 [01:41<01:40,  2.34s/it] 52%|█████▏    | 46/88 [01:43<01:38,  2.34s/it] 53%|█████▎    | 47/88 [01:46<01:36,  2.35s/it] 55%|█████▍    | 48/88 [01:48<01:34,  2.36s/it] 56%|█████▌    | 49/88 [01:51<01:32,  2.36s/it] 57%|█████▋    | 50/88 [01:53<01:29,  2.36s/it] 58%|█████▊    | 51/88 [01:55<01:27,  2.37s/it] 59%|█████▉    | 52/88 [01:58<01:25,  2.38s/it] 60%|██████    | 53/88 [02:00<01:23,  2.38s/it] 61%|██████▏   | 54/88 [02:02<01:21,  2.38s/it] 62%|██████▎   | 55/88 [02:05<01:18,  2.39s/it] 64%|██████▎   | 56/88 [02:07<01:16,  2.39s/it] 65%|██████▍   | 57/88 [02:10<01:14,  2.39s/it] 66%|██████▌   | 58/88 [02:12<01:11,  2.38s/it] 67%|██████▋   | 59/88 [02:14<01:09,  2.38s/it] 68%|██████▊   | 60/88 [02:17<01:06,  2.39s/it] 69%|██████▉   | 61/88 [02:19<01:04,  2.39s/it] 70%|███████   | 62/88 [02:22<01:02,  2.39s/it] 72%|███████▏  | 63/88 [02:24<00:59,  2.40s/it] 73%|███████▎  | 64/88 [02:26<00:57,  2.39s/it] 74%|███████▍  | 65/88 [02:29<00:54,  2.38s/it] 75%|███████▌  | 66/88 [02:31<00:52,  2.38s/it] 76%|███████▌  | 67/88 [02:33<00:49,  2.38s/it] 77%|███████▋  | 68/88 [02:36<00:47,  2.38s/it] 78%|███████▊  | 69/88 [02:38<00:45,  2.37s/it] 80%|███████▉  | 70/88 [02:41<00:42,  2.37s/it] 81%|████████  | 71/88 [02:43<00:40,  2.38s/it] 82%|████████▏ | 72/88 [02:45<00:38,  2.38s/it] 83%|████████▎ | 73/88 [02:48<00:35,  2.38s/it] 84%|████████▍ | 74/88 [02:50<00:33,  2.38s/it] 85%|████████▌ | 75/88 [02:53<00:30,  2.38s/it] 86%|████████▋ | 76/88 [02:55<00:28,  2.38s/it] 88%|████████▊ | 77/88 [02:57<00:26,  2.38s/it] 89%|████████▊ | 78/88 [03:00<00:23,  2.38s/it] 90%|████████▉ | 79/88 [03:02<00:21,  2.38s/it] 91%|█████████ | 80/88 [03:04<00:19,  2.38s/it] 92%|█████████▏| 81/88 [03:07<00:16,  2.38s/it] 93%|█████████▎| 82/88 [03:09<00:14,  2.38s/it] 94%|█████████▍| 83/88 [03:12<00:11,  2.38s/it] 95%|█████████▌| 84/88 [03:14<00:09,  2.38s/it] 97%|█████████▋| 85/88 [03:16<00:07,  2.38s/it] 98%|█████████▊| 86/88 [03:19<00:04,  2.38s/it] 99%|█████████▉| 87/88 [03:21<00:02,  2.38s/it]100%|██████████| 88/88 [03:22<00:00,  1.87s/it]100%|██████████| 88/88 [03:22<00:00,  2.30s/it]
+
+Detailed metrics for FaceForensics++:
+True Negatives (Real classified as Real): 524
+False Positives (Real classified as Fake): 35
+False Negatives (Fake classified as Real): 207
+True Positives (Fake classified as Fake): 2022
+Accuracy: 0.9132
+Precision: 0.9830
+Recall: 0.9071
+F1 Score: 0.9435
+
+Predictions shape: (2788,)
+Labels shape: (2788,)
+Number of processed images: 2788
+Number of processed image names: 2788
+len(y_pred): 2788
+len(y_true): 2788
+
+dataset: FaceForensics++
+acc: 0.9131994261119082
+auc: 0.9776061367034481
+eer: 0.07692307692307693
+ap: 0.9944918898952728
+pred: [0.9962094  0.02102374 0.9936041  ... 0.96824396 0.98607814 0.08197512]
+video_auc: 0.9776061367034481
+label: [1 0 1 ... 1 1 0]
+===> Test Done!

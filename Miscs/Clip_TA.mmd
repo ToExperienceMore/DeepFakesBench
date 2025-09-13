@@ -1,9 +1,0 @@
-flowchart TD
-    A[Input Video: B x T x 3 x H x W] --> B[CLIP ViT Encoder per frame]
-    B --> C[ViT middle layer output: B x T x N x D]
-    C --> D[Reshape to: B x N x T x D]
-    D --> E[Temporal Adapter: LN + MLP + Residual]
-    E --> F[Temporal features: B x N x D]
-    F --> G[Token pooling, e.g. CLS: B x D]
-    G --> H[MLP classifier head]
-    H --> I[Output: Real / Fake]
