@@ -1,41 +1,56 @@
 #!/bin/bash
+# Environment setup script for deepfake detection models
+# Usage: ./install.sh
 
-pip install numpy==1.21.5
-pip install pandas==1.4.2
-pip install Pillow==9.0.1
-pip install dlib==19.24.0
-pip install imageio==2.9.0
-pip install imgaug==0.4.0
-pip install tqdm==4.61.0
-pip install scipy==1.7.3
-pip install seaborn==0.11.2
-pip install pyyaml==6.0
-pip install imutils==0.5.4
-pip install opencv-python==4.6.0.66
-pip install scikit-image==0.19.2
-pip install scikit-learn==1.0.2
-pip install albumentations==1.1.0
-#pip install torch==1.12.0+cu113 torchvision==0.13.0+cu113 torchaudio==0.12.0 --extra-index-url https://download.pytorch.org/whl/cu113 -i https://pypi.tuna.tsinghua.edu.cn/simple/
-pip install torch==1.12.0+cpu torchvision==0.13.0+cpu torchaudio==0.12.0 --extra-index-url https://download.pytorch.org/whl/cpu
-pip install efficientnet-pytorch==0.7.1
-pip install timm==0.6.12
-pip install segmentation-models-pytorch==0.3.2
-pip install torchtoolbox==0.1.8.2
-pip install tensorboard==2.10.1
-pip install setuptools==59.5.0
-pip install loralib
-pip install einops
+echo "Installing dependencies for deepfake detection project..."
+
+# Core PyTorch dependencies
+echo "Installing PyTorch and related packages..."
+pip install torch==2.6.0 torchvision torchaudio
 pip install transformers==4.50.0
+pip install timm==1.0.15
+
+# Computer vision and machine learning
+echo "Installing computer vision and ML packages..."
+pip install opencv-python
+pip install dlib
+pip install scikit-learn
+pip install scikit-image==0.19.2
+pip install albumentations==1.1.0
+pip install efficientnet-pytorch==0.7.1
+
+# Utilities and visualization
+echo "Installing utilities and visualization packages..."
+pip install numpy
+pip install pandas
+pip install Pillow
+pip install imageio==2.9.0
+pip install tqdm
+pip install scipy
+pip install seaborn
+pip install pyyaml
+pip install imutils==0.5.4
+pip install tensorboard
+
+# Deep learning utilities
+echo "Installing deep learning utilities..."
+pip install einops
+pip install loralib
+pip install peft==0.14.0
+pip install lightning==2.5.0
+pip install torchtoolbox==0.1.8.2
+pip install segmentation-models-pytorch==0.3.2
+
+# Additional utilities
+echo "Installing additional utilities..."
+pip install wandb==0.19.4
+pip install pydantic==2.9.2
+pip install fire==0.7.0
 pip install filterpy
 pip install simplejson
 pip install kornia
 pip install fvcore
-pip install imgaug==0.4.0
-#pip install git+https://github.com/openai/CLIP.git
+pip install setuptools
 
-# New dependencies for CLIP-Enhanced
-pip install lightning==2.5.0
-pip install wandb==0.19.4
-pip install pydantic==2.9.2
-pip install fire==0.7.0
-pip install peft==0.14.0
+echo "✅ All dependencies installed successfully!"
+echo "You can now run training and testing scripts."

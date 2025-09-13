@@ -94,7 +94,10 @@ DeepFakesDetection/
 conda create -n deepfake python=3.7.2
 conda activate deepfake
 
-# Install dependencies
+# Option 1: Automatic installation (Recommended)
+./install.sh
+
+# Option 2: Manual installation
 pip install torch==2.6.0 torchvision torchaudio
 pip install transformers==4.50.0 timm==1.0.15
 pip install opencv-python dlib scikit-learn tensorboard
